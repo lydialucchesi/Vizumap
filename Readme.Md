@@ -4,18 +4,13 @@
 
 ## Installation
 
-You can install a development version of the VizU package from [bitbucket](https://bitbucket.csiro.au/scm/~kuh009/vizu_package.git)
+You can install a development version of the VizU package from [GitHub](https://github.com/pkuhnert/VizU)
 
-<style>
-div.grey pre { background-color:whitesmoke; }
-div.grey pre.r { background-color:whitesmoke; }
-</style>
-<div class = "grey">
 ```
 # install.packages("devtools")
-devtools::install_bitbucket("https://bitbucket.csiro.au/kuh009/vizu_package/")
+devtools::install_github("pkuhnert/VizU")
 ```
-</div>
+
 
 ## Authors
 
@@ -42,15 +37,9 @@ model (e.g. mean) and the uncertainty surrounding these values (e.g. standard de
 
 A vignette for the VizU package is available and contains examples relating to each of the visualisation methods.
 
-<style>
-div.grey pre { background-color:whitesmoke; }
-div.grey pre.r { background-color:whitesmoke; }
-</style>
-<div class = "grey">
 ```
 vignette("VizU")
 ```
-</div>
 
 
 
