@@ -1,4 +1,4 @@
-# Visualising Uncertainty (VizU) Package  &nbsp; &nbsp; &nbsp; &nbsp; <img src="docs/logo.png" alt="Drawing" style="width: 200px;"/>
+# Visualising Uncertainty (VizU) Package  &nbsp; &nbsp; &nbsp; &nbsp; <img src="docs/logo.png" alt="Drawing" style="width: 50px;"/>
 
 <center> <span style="color:blue"><h2>VizU is an R package for visualising uncertainty in spatial data. </h2></span></center>
 

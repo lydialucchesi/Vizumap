@@ -1,16 +1,16 @@
 Package: VizU
 Type: Package
 Title: Visualizing Uncertainty
-Version: 0.1.0
-Author: Lydia Lucchesi and Petra Kuhnert
+Version: 0.9.0
+Author: Petra Kuhnert and Lydia Lucchesi
 Maintainer: Maintainer: Petra Kuhnert <Petra.Kuhnert@data61.csiro.aut>
 Description:
     VizU provides visualisation approaches for spatio-temporal data.
 Encoding: UTF-8
 Date: 2017-06-20
 Authors@R: c(
-    person("Lydia", "Lucchesi", email = "lydialuc@uw.edu", role = c("aut", "cre")),
-    person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = "aut")
+    person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = c("aut", "cre")),
+    person("Lydia", "Lucchesi", email = "lydialuc@uw.edu", role = "aut")
     )
 Depends:
     R (>= 3.3.3)
