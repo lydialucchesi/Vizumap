@@ -1,0 +1,39 @@
+Package: VizU
+Type: Package
+Title: Visualizing Uncertainty
+Version: 0.1.0
+Author: Lydia Lucchesi and Petra Kuhnert
+Maintainer: Maintainer: Petra Kuhnert <Petra.Kuhnert@data61.csiro.aut>
+Description:
+    VizU provides visualisation approaches for spatio-temporal data.
+Encoding: UTF-8
+Date: 2017-06-20
+Authors@R: c(
+    person("Lydia", "Lucchesi", email = "lydialuc@uw.edu", role = c("aut", "cre")),
+    person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = "aut")
+    )
+Depends:
+    R (>= 3.3.3)
+Imports:
+    dplyr,
+    ggplot2,
+    grDevices,
+    gridExtra,
+    plyr,
+    rgdal,
+    rgeos,
+    ggmap,
+    broom,
+    animation,
+    reshape2,
+    geoaxe,
+    maptools,
+    sp,
+    maps
+License: GPL-2
+LazyLoad: TRUE
+LazyData: TRUE
+RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
