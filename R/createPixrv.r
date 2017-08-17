@@ -1,9 +1,3 @@
-#'CreatePixrv
-#'
-#'This is an internal function.
-#'
-#'@param pixelGeo A pixelGeo object
-#'@param distribution Distribution. One of "uniform", "normal" or "discrete"
 #'@importFrom "reshape2" "melt"
 
 createPixrv <- function(pixelGeo, distribution){
