@@ -157,7 +157,7 @@ ca_data <- read.uv(data = ca_data, estimate = "pov_rate", error = "pov_moe")
 row.names(ca_data) <- seq(1, nrow(ca_data), 1)
 ```
 
-The county polygons for California are extracted from `us_geo` and pixelated with `pixelate`. It can take several minutes to pixelate a shapefile depending on the size of the shapefile. For example, it takes approximately one minute to pixelate California.
+The county polygons for California are extracted from `us_geo` and pixelated with `pixelate`. It can take several minutes to pixelate a shapefile depending on the size of the shapefile.
 ```{r, echo = TRUE}
 data(us_geo)
 ca_geo <- subset(us_geo, us_geo@data$STATE == "06")
@@ -174,14 +174,14 @@ ca_data$region <- as.character(ca_data$region)
 ca_data$region %in% pix$region
 ```
 
-If `distribution = "uniform"`, the values are sampled uniformly from an interval, where the lower bound is the estimate minus the error and the upper bound is the estimate plus the error. For the estimates and margins of error in `us_data`, this interval corresponds to the estimate's 90% confidence interval. Therefore, the darkest blue in each county represents the upper bound of the estimate's 90% confidence interval, the lightest blue represents the lower bound and the blue values in-between represent values within this interval. We can see that the estimates in the Northeast are less certain than the estimates along the central coast.
+If `distribution = "uniform"`, the values are sampled uniformly from an interval, where the lower bound is the estimate minus the error and the upper bound is the estimate plus the error. For the estimates and margins of error in `us_data`, this interval corresponds to the estimate's 90% confidence interval.
 ```{r, echo = TRUE, fig.height=8, fig.width=8}
 #uniform distribution
 u_m <- build_pmap(data = ca_data, distribution = "uniform", pixelGeo = pix, id = "region")
 view(u_m)
 ```
 
-If `distribution = "normal"`, the values assigned to pixels will be drawn from a normal distribution parameterised using the estimates and errors (means and standard deviations). Note there is less visible pixelation compared to the previous map as more values fall closer to the estimate.
+If `distribution = "normal"`, the values assigned to pixels will be drawn from normal distributions parameterised using the estimates and errors (means and standard deviations).
 ```{r, echo = TRUE, fig.height=8, fig.width=8}
 #normal distribution
 ca_data$se <- ca_data$pov_moe / 1.645
@@ -204,7 +204,7 @@ d_m <- build_pmap(data = ca_data, distribution = "discrete",
 view(d_m)
 ```
 
-Pixel maps be animated with `animate` so that the pixels flicker between a series of assigned values. `view` saves the animation to your computer as an html file and automatically opens a browser to view it. A longer `aniLength` corresponds to a longer animation as well as a longer running time. Generating the animation with `view` can take several minutes.
+Pixel maps can be animated with `animate` so that the pixels flicker between a series of assigned values. `view` saves the animation to your computer as an html file and automatically opens a browser to view it. A longer `aniLength` corresponds to a longer animation as well as a longer running time. Generating the animation with `view` can take several minutes.
 ```{r, echo = TRUE, eval = FALSE}
 #animate the normal distribution map
 a <- animate(n_m, aniLength = 30)

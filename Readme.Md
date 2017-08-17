@@ -24,7 +24,7 @@ Lydia Lucchesi, University of Washington,  Email: lydialuc@uw.edu
 ## About the Package
 
 This package provides three methods for visualising uncertainty in spatial data. These approaches are based on the methods developed in Lucchesi and Wikle (2017) and
-we have tried to generaise the approaches so they can be applied to most types of spatial data. We welcome any comments or suggestions about the package. Each methods is outlined below with examples.
+we have tried to generalise the approaches so they can be applied to most types of spatial data. We welcome any comments or suggestions about the package. Each methods is outlined below with examples.
 
 ### Bivariate colour maps 
 
