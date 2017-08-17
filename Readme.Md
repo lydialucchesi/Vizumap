@@ -10,6 +10,12 @@ You can install a development version of the VizU package from [GitHub](https://
 # install.packages("devtools")
 devtools::install_github("pkuhnert/VizU")
 ```
+To install the VizU vignette with the package, use
+
+```
+# install.packages("devtools")
+devtools::install_github("pkuhnert/VizU", build_vignettes = TRUE, force = TRUE)
+```
 
 
 ## Authors
@@ -23,7 +29,7 @@ Lydia Lucchesi, University of Washington,  Email: lydialuc@uw.edu
 
 ## About the Package
 
-This package provides three methods for visualising uncertainty in spatial data. These approaches are based on the methods developed in Lucchesi and Wikle (2017) and
+This package provides three methods for visualising uncertainty in spatial data. These approaches are based on the methods developed in Lucchesi and Wikle (2017), and
 we have tried to generalise the approaches so they can be applied to most types of spatial data. We welcome any comments or suggestions about the package. Each methods is outlined below with examples.
 
 ### Bivariate colour maps 
@@ -51,5 +57,6 @@ This package is free and open source software, licensed under GPL (>=2)
 ## References
 
 Lucchesi, L.R. and Wikle C.K. (2017) Visualizing uncertainty in areal data with bivariate choropleth maps, map pixelation and glyph rotation, Stat, Forthcoming
+
 
 
