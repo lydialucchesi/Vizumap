@@ -16,6 +16,10 @@
 #'  \code{GreenBlue}.
 #'@param terciles A logical value. This provides the option to define numerical
 #'  bounds for the colour key grid using terciles instead of equal intervals.
+#'
+#'@seealso \code{\link{attach_key}}
+#'
+#'
 #'@examples
 #'data(us_data)
 #'data(us_geo)

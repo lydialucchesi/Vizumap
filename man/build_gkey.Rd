@@ -34,3 +34,6 @@ key <- build_gkey(data = co_data, glyph = "icone")
 view(key)
 
 }
+\seealso{
+\code{\link{attach_key}}
+}

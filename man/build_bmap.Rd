@@ -58,3 +58,6 @@ map <- build_bmap(data = poverty, shapefile = us_geo, id = "GEO_ID",
 view(map)
 
 }
+\seealso{
+\code{\link{build_bkey}}
+}

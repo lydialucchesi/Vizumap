@@ -10,6 +10,11 @@
 #'
 #'@param data A data frame.
 #'@param glyph Name of glyph shape. Options include \code{icone} and \code{semi}.
+#'
+#'
+#'@seealso \code{\link{attach_key}}
+#'
+#'
 #'@examples
 #'data(us_data)
 #'data(us_geo)

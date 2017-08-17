@@ -22,8 +22,8 @@ view.bivkey <- function(obj){
     geom_text(aes(x = -.5, y = .1, label = paste0(obj$estimate), angle = -45), size = 4)  +
     geom_text(aes(x = 6.5, y = .1, label = paste0(obj$error), angle = 45), size = 4)  +
     geom_text(data = obj$labels, aes_string(x = 'x', y = 'y', label = 'bound', angle = 'angle'), size = 4) +
-    xlim(c(-1, 7)) +
-    ylim(c(-1, 7))
+    xlim(c(-1.2, 7.2)) +
+    ylim(c(-.75, 6))
 
   p
 

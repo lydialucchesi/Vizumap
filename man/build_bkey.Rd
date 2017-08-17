@@ -43,3 +43,6 @@ p <- build_palette(name = "usr", colrange =
 key <- build_bkey(data = poverty, palette = p)
 view(key)
 }
+\seealso{
+\code{\link{attach_key}}
+}

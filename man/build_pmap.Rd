@@ -88,3 +88,6 @@ m <- build_pmap(data = ca_data, distribution = "discrete", pixelGeo = pix,
 view(m)
 
 }
+\seealso{
+\code{\link{animate}}
+}

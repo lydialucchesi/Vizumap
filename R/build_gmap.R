@@ -29,6 +29,11 @@
 #'  \code{Greens}, \code{Greys}, \code{Oranges}, \code{Purples} or \code{Reds}
 #'  (see documentation for \code{\link[ggplot2]{scale_fill_distiller}} for more
 #'  information).
+#'
+#'
+#'@seealso \code{\link{build_gkey}}
+#'
+#'
 #'@examples
 #'data(us_data)
 #'data(us_geo)

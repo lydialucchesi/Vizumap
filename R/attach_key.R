@@ -31,12 +31,12 @@ attach_key <- function(map, mapkey) {
   m <- view(map)
 
   lay <- rbind(c(1, 1, 1, 1, NA, NA),
-               c(1, 1, 1, 1, NA, NA),
                c(1, 1, 1, 1, 2, 2),
                c(1, 1, 1, 1, 2, 2),
                c(1, 1, 1, 1, NA, NA))
 
-  m_k <- grid.arrange(m, k, layout_matrix = lay)
-  m_k
+  grid.arrange(m, k, layout_matrix = lay)
+
+
 }
 

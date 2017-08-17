@@ -60,3 +60,6 @@ map <- build_gmap(data = co_data, shapefile = co_geo, id = "GEO_ID",
 view(map)
 
 }
+\seealso{
+\code{\link{build_gkey}}
+}

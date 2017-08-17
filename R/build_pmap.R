@@ -33,6 +33,11 @@
 #'@param q A data frame of quantiles which define the distribution for each
 #'  estimate. Each row is an estimate, and each column is a quantile. See
 #'  examples for an example of \code{q} input.
+#'
+#'
+#'@seealso \code{\link{animate}}
+#'
+#'
 #'@examples
 #'
 #'data(us_geo)

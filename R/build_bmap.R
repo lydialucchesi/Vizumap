@@ -30,6 +30,9 @@
 #'  the default size.
 #'@param terciles A logical value. This provides the option to define numerical
 #'  bounds for the colour key grid using terciles instead of equal intervals.
+#'
+#'@seealso \code{\link{build_bkey}}
+#'
 #'@examples
 #'data(us_data)
 #'data(us_geo)
