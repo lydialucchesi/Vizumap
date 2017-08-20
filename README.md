@@ -19,7 +19,7 @@ Installation
 You can install a development version of the VizU package from [GitHub](https://github.com/pkuhnert/VizU)
 
     # install.packages("devtools")
-    devtools::install_github(package = "pkuhnert/VizU", build_vignettes = TRUE, force = TRUE)
+    devtools::install_github(repo = "pkuhnert/VizU", build_vignettes = TRUE, force = TRUE)
 
 Authors
 -------
