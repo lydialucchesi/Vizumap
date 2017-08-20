@@ -18,8 +18,29 @@ Installation
 
 You can install a development version of the VizU package from [GitHub](https://github.com/pkuhnert/VizU)
 
+<<<<<<< HEAD
     # install.packages("devtools")
     devtools::install_github(package = "pkuhnert/VizU", build_vignettes = TRUE, force = TRUE)
+=======
+```
+# install.packages("devtools")
+devtools::install_github("pkuhnert/VizU")
+```
+To install the VizU vignette with the package, use
+
+```
+# install.packages("devtools")
+devtools::install_github("pkuhnert/VizU", build_vignettes = TRUE, force = TRUE)
+```
+
+
+## Authors
+
+
+Petra Kuhnert, CSIRO Data61, Email: Petra.Kuhnert@data61.csiro.au 
+
+Lydia Lucchesi, University of Washington,  Email: lydialuc@uw.edu
+>>>>>>> 0f0cb99daf01b26a325ce46942f57c41356e65af
 
 Authors
 -------
@@ -28,8 +49,13 @@ Petra Kuhnert, CSIRO Data61, Email: <Petra.Kuhnert@data61.csiro.au>
 
 Lydia Lucchesi, University of Washington, Email: <lydialuc@uw.edu>
 
+<<<<<<< HEAD
 About the Package
 -----------------
+=======
+This package provides three methods for visualising uncertainty in spatial data. These approaches are based on the methods developed in Lucchesi and Wikle (2017), and
+we have tried to generalise the approaches so they can be applied to most types of spatial data. We welcome any comments or suggestions about the package. Each methods is outlined below with examples.
+>>>>>>> 0f0cb99daf01b26a325ce46942f57c41356e65af
 
 This package provides three methods for visualising uncertainty in spatial data. These approaches are based on the methods developed in Lucchesi and Wikle (2017) and we have tried to generalise the approaches so they can be applied to most types of spatial data. We welcome any comments or suggestions about the package. Each methods is outlined below with examples.
 
@@ -53,3 +79,9 @@ References
 ----------
 
 Lucchesi, L.R. and Wikle C.K. (2017) Visualizing uncertainty in areal data with bivariate choropleth maps, map pixelation and glyph rotation, Stat, Forthcoming
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 0f0cb99daf01b26a325ce46942f57c41356e65af
