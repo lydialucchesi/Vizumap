@@ -23,6 +23,14 @@ knitr::include_graphics("docs/logo.png")
 
 <center> <span style="color:blue"><h2>VizU is an R package for visualising uncertainty in spatial data. </h2></span></center>
 
+```{rbadge, echo = FALSE}
+library(badgecreatr)
+badge_github_fork(ghaccount = "pkuhnert", ghrepo = "VizU", location = "https://github.com")
+badge_license()
+
+```
+
+
 ## Installation
 
 You can install a development version of the VizU package from [GitHub](https://github.com/pkuhnert/VizU)
