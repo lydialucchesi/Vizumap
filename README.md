@@ -47,9 +47,9 @@ A vignette for the VizU package is available and contains examples relating to e
 License
 -------
 
-This package is free and open source software, licensed under GPL (&gt;=2)
+The package VizU version 1.0.0 is free and open source software, licensed under GPL (&gt;=2)
 
 References
 ----------
 
-Lucchesi, L.R. and Wikle C.K. (2017) Visualizing uncertainty in areal data with bivariate choropleth maps, map pixelation and glyph rotation, Stat, Forthcoming
+Lucchesi, L.R. and Wikle C.K. (2017) Visualizing uncertainty in areal data with bivariate choropleth maps, map pixelation and glyph rotation, Stat, 10.1002/sta4.150.

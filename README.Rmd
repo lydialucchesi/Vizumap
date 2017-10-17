@@ -1,5 +1,5 @@
 ---
-output: github_document
+output: rmarkdown::github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -79,6 +79,6 @@ The package VizU version 1.0.0 is free and open source software, licensed under 
 
 ## References
 
-Lucchesi, L.R. and Wikle C.K. (2017) Visualizing uncertainty in areal data with bivariate choropleth maps, map pixelation and glyph rotation, Stat, 10.1002/sta4.150.  
+Lucchesi, L.R. and Wikle C.K. (2017) Visualizing uncertainty in areal data with bivariate choropleth maps, map pixelation and glyph rotation, Stat, 10.1002/sta4.150.    
 
 
