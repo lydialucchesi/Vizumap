@@ -15,11 +15,6 @@ knitr::opts_chunk$set(
 
 
 # Visualising Uncertainty (VizU) Package 
-<center>
-```{r, out.width = "200px", echo = FALSE}
-knitr::include_graphics("docs/logo.png")
-```
-</center>
 
 <center> <span style="color:blue"><h2>VizU is an R package for visualising uncertainty in spatial data. </h2></span></center>
 
