@@ -2,7 +2,7 @@
 % Please edit documentation in R/view.r
 \name{view}
 \alias{view}
-\title{View a \strong{VizU} object}
+\title{View a \strong{Vizumap} object}
 \usage{
 view(obj)
 }
@@ -14,7 +14,7 @@ view(obj)
 }
 \description{
 This function views maps, keys, palettes and animations created with
-\strong{VizU}.
+\strong{Vizumap}.
 }
 \details{
 For maps, keys and palettes, assigning the output from \code{\link{view}} to a variable

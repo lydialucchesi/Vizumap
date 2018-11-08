@@ -1,17 +1,17 @@
 ---
-title: "Using VizU"
+title: "Using Vizumap"
 author: "Petra Kuhnert and Lydia Lucchesi"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using VizU}
+  %\VignetteIndexEntry{Using Vizumap}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-**VizU** is a tool for visualising uncertainty in spatial data. This vignette demonstrates how to use **VizU** to create bivariate maps, pixel maps and glyph maps, the three uncertainty visualisation methods developed in Lucchesi and Wikle (2017). We have tried to generalise the approaches so they can be applied to most types of spatial data.
+**Vizumap** is a tool for visualising uncertainty in spatial data. This vignette demonstrates how to use **Vizumap** to create bivariate maps, pixel maps and glyph maps, the three uncertainty visualisation methods developed in Lucchesi and Wikle (2017). We have tried to generalise the approaches so they can be applied to most types of spatial data.
 
-There are several types of functions in **VizU**: formatting functions, building functions and viewing functions. Formatting functions prepare data frames and spatial polygons for use in building functions. Building functions create maps, animations, keys and colour palettes. Viewing functions plot these objects. Some of these functions are useful across all three map types, such as `read.uv`, and others are map specific, such as `pixelate`. Below is a table displaying the functions that can be used with each map type. Blue functions format. Green functions create. Red functions plot.
+There are several types of functions in **Vizumap**: formatting functions, building functions and viewing functions. Formatting functions prepare data frames and spatial polygons for use in building functions. Building functions create maps, animations, keys and colour palettes. Viewing functions plot these objects. Some of these functions are useful across all three map types, such as `read.uv`, and others are map specific, such as `pixelate`. Below is a table displaying the functions that can be used with each map type. Blue functions format. Green functions create. Red functions plot.
 
 ```{r echo = FALSE, fig.align='center', fig.height=4, fig.width=6, fig.asp=.6, warning=FALSE}
 library(knitr)
@@ -55,7 +55,7 @@ plot(g)
 Two datasets are included in the package. `us_data` contains the 2015 family poverty rates for US counties, and `us_geo` is a spatial polygons data frame for a US county map, which can be used to map the estimates and errors in `us_data`. These data come from the US Census Bureau [Fact Finder website](https://factfinder.census.gov/), and documentation can be found under `?us_data` and `?us_geo`.
 
 ```{r, echo=TRUE, fig.align = "center", fig.width=4, fig.height=4, message = FALSE}
-library(VizU)
+library(Vizumap)
 
 data(us_data)
 head(us_data)
@@ -75,7 +75,7 @@ plot(us_geo)
 
 A bivariate map is based on a bivariate colour palette, which is created by blending two single hue colour palettes. One colour palette represents the variable of interest while the other represents the uncertainty, and when the palettes are blended, each colour in the new palette becomes representative of both a variable class and uncertainty class.
 
-There are four pre-prepared bivariate colour palettes included in **VizU**: `'BlueYellow'`, `'CyanMagenta'`, `'BlueRed'` and `'GreenBlue'`.
+There are four pre-prepared bivariate colour palettes included in **Vizumap**: `'BlueYellow'`, `'CyanMagenta'`, `'BlueRed'` and `'GreenBlue'`.
 
 ```{r, echo = TRUE, fig.align = "center", fig.width=2, fig.height=2}
 #use one of four pre-prepared colour palettes

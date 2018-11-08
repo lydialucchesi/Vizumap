@@ -1,11 +1,11 @@
-Package: VizU
+Package: Vizumap
 Type: Package
-Title: Visualizing Uncertainty
+Title: Visualizing Uncertainty in spatial data
 Version: 1.0.0
 Author: Petra Kuhnert and Lydia Lucchesi
 Maintainer: Maintainer: Petra Kuhnert <Petra.Kuhnert@data61.csiro.aut>
 Description:
-    VizU provides visualisation approaches for spatio-temporal data.
+    Vizumap provides visualization approaches for spatial data.
 Encoding: UTF-8
 Date: 2017-06-20
 Authors@R: c(
@@ -13,7 +13,7 @@ Authors@R: c(
     person("Lydia", "Lucchesi", email = "lydialuc@uw.edu", role = "aut")
     )
 Depends:
-    R (>= 3.3.3)
+    R (>= 3.5.0)
 Imports:
     dplyr,
     ggplot2,
@@ -30,10 +30,10 @@ Imports:
     maptools,
     sp,
     maps
-License: GPL-2
+License: GPL-3 + file LICENSE
 LazyLoad: TRUE
 LazyData: TRUE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr

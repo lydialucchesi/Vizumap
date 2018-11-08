@@ -4,8 +4,8 @@
 \alias{build_pmap}
 \title{Build a pixel map}
 \usage{
-build_pmap(data = NULL, distribution = NULL, pixelGeo, id, border = NULL,
-  palette = "Blues", q = NULL)
+build_pmap(data = NULL, distribution = NULL, pixelGeo, id,
+  border = NULL, palette = "Blues", q = NULL)
 }
 \arguments{
 \item{data}{A data frame.}

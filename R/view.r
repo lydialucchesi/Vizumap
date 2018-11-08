@@ -1,7 +1,7 @@
-#'View a \strong{VizU} object
+#'View a \strong{Vizumap} object
 #'
 #'This function views maps, keys, palettes and animations created with
-#'\strong{VizU}.
+#'\strong{Vizumap}.
 #'
 #'For maps, keys and palettes, assigning the output from \code{\link{view}} to a variable
 #'name saves the output as an object of class \code{"ggplot"}. Animations

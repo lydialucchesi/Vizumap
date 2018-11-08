@@ -1,4 +1,4 @@
-\name{VizU-internal}
+\name{Vizumap-internal}
 \alias{calcbin.r}
 \alias{findNbounds.r}
 \alias{view.bivmap.r}
@@ -7,11 +7,11 @@
 
 
 
-\title{Internal VizU functions}
+\title{Internal Vizumap functions}
 \description{
-These are internal \code{VizU} functions that are not intended to be directly called by the user
+These are internal \code{Vizumap} functions that are not intended to be directly called by the user
 }
 
 
-\author{Lydia Lucchesi and Petra Kuhnert}
+\author{Petra Kuhnert and Lydia Lucchesi}
 \keyword{internal}

@@ -14,13 +14,11 @@ knitr::opts_chunk$set(
 
 
 
-# Visualising Uncertainty (VizU) Package 
-
-<center> <span style="color:blue"><h2>VizU is an R package for visualising uncertainty in spatial data. </h2></span></center>
+<center> <span style="color:blue"><h1>Vizumap: An R package for visualising uncertainty in spatial data. </h1></span></center>
 
 ```{rbadge, echo = FALSE}
 library(badgecreatr)
-badge_github_fork(ghaccount = "pkuhnert", ghrepo = "VizU", location = "https://github.com")
+badge_github_fork(ghaccount = "pkuhnert", ghrepo = "Vizumap", location = "https://github.com")
 badge_license()
 
 ```
@@ -28,11 +26,11 @@ badge_license()
 
 ## Installation
 
-You can install a development version of the VizU package from [GitHub](https://github.com/pkuhnert/VizU)
+You can install a development version of the Vizumap package from [GitHub](https://github.com/pkuhnert/Vizumap)
 
 ```
 # install.packages("devtools")
-devtools::install_github(repo = "pkuhnert/VizU", build_vignettes = TRUE, force = TRUE)
+devtools::install_github(repo = "pkuhnert/Vizumap", build_vignettes = TRUE, force = TRUE)
 ```
 
 
@@ -47,33 +45,48 @@ Lydia Lucchesi, University of Washington,  Email: lydialuc@uw.edu
 
 ## About the Package
 
-This package provides three methods for visualising uncertainty in spatial data. These approaches are based on the methods developed in Lucchesi and Wikle (2017) and
-we have tried to generalise the approaches so they can be applied to most types of spatial data. We welcome any comments or suggestions about the package. Each methods is outlined below with examples.
+Approaches for visualizing uncertainty in spatial data are presented in this package. These include the three approaches developed in Lucchesi and Wikle (2017) and a fourth approach presented in Kuhnert et al. (2018) that uses exceedance probabilities to convey uncertainty on a map (or stream network) from a spatio-temporal model.
 
-### Bivariate colour maps 
+### Bivariate Maps
 
+This approach is an extension of previous implementations of choropleth mapping that includes new features to make the maps more useful for interpretation. Bivariate choropleth maps explore the “blending” of two colour schemes, one representing the estimate and a second representing the margin of error, which can be conveyed on a map through a single blended colour. 
 Bivariate colour maps can be created for both areal and point level data. Using a bivariate colour grid, estimates from a spatial
-model (e.g. mean) and the uncertainty surrounding these values (e.g. standard deviation) are mapped simulataneously. VizU allows the user to create a bivariate colour scheme by mathematically blending two single hue colour palettes and organising them on a 3 x 3 grid. Users can develop their own bivariate colour palette as well as select from some pre-prepared palettes.
+model (e.g. mean) and the uncertainty surrounding these values (e.g. standard deviation) are mapped simulataneously. Vizumap allows the user to create a bivariate colour scheme by mathematically blending two single hue colour palettes and organising them on a 3 x 3 grid. Users can develop their own bivariate colour palette as well as select from some pre-prepared palettes.
+
+
+### Map Pixelation
+
+This approach uses map pixelation to convey uncertainty. This is a novel approach that pixelates areas within each region of the map according to the size of the margin of error. Regions that appear visually as a solid piece of colour reflect smaller margins of error, while more pixelated regions indicate larger margins of error. These maps can be animated using visuanimation techniques to provide a novel “user experience” to visualizing uncertainty on a map. 
+
+### Glyph Rotation
+
+Glyph rotation uses a glyph to represent uncertainty. When rotated in different ways, the rotation of the glyph corresponds to the margin of error. 
+
+### Exceedance Probability Maps
+The final map based exploration of uncertainty is through exceedance probabilities, that can be showcased on a map to highlight regions that exhibit varying levels of departure from a threshold of concern or target. 
 
 
 
 ## Examples
 
-A vignette for the VizU package is available and contains examples relating to each of the visualisation methods.
+A vignette for the Vizumap package is available and contains examples relating to each of the visualisation methods.
 
 ```
-vignette("VizU")
+vignette("Vizumap")
 ```
 
-
+## How to Reference
+Vizumap : An R package for visualizing uncertainty in spatial data, DOI: 10.5281/zenodo.1013930, https://zenodo.org/record/1013930#.W-Nw7fkzbcs
 
 ## License
 
-The package VizU version 1.0.0 is free and open source software, licensed under GPL (>=2)
+The package Vizumap version 1.1.0 is licensed under GPL-3 (see LICENSE file)
 
 
 ## References
 
-Lucchesi, L.R. and Wikle C.K. (2017) Visualizing uncertainty in areal data with bivariate choropleth maps, map pixelation and glyph rotation, Stat, 10.1002/sta4.150.    
+<strong>Kuhnert, P.M.</strong>, Pagendam, D.E., Bartley, R., Gladish, D.W., Lewis, S.E. and Bainbridge, Z.T. (2018) Making management decisions in face of uncertainty: a case study using the Burdekin catchment in the Great Barrier Reef, Marine and Freshwater Research, 69, 1187-1200, https://doi.org/10.1071/MF17237.
+
+<strong>Lucchesi, L.R.</strong> and Wikle C.K. (2017) Visualizing uncertainty in areal data with bivariate choropleth maps, map pixelation and glyph rotation, Stat, https://doi.org/10.1002/sta4.150.    
 
 
