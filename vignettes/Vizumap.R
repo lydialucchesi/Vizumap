@@ -3,18 +3,18 @@ library(knitr)
 library(ggplot2)
 
 b <- data.frame(name = rev(c("read.uv", "build_bmap", "build_bkey", "build_palette", "view", "attach_key")),
-                x = rep(0, 6),
-                y = seq(0, 5, 1),
+                x = rep(0, 6), 
+                y = seq(0, 5, 1), 
                 col = rev(c("midnightblue", "darkgreen", "darkgreen", "darkgreen", "darkred", "darkred")))
 
-p <- data.frame(name = rev(c("read.uv", "pixelate", "build_pmap", "animate", "view", "")),
-                x = rep(2, 6),
-                y = seq(0, 5, 1),
+p <- data.frame(name = rev(c("read.uv", "pixelate", "build_pmap", "animate", "view", "")), 
+                x = rep(2, 6), 
+                y = seq(0, 5, 1), 
                 col = rev(c("midnightblue", "midnightblue", "darkgreen", "darkgreen", "darkred", "darkred")))
 
 
-g <- data.frame(name = rev(c("read.uv", "build_gmap", "build_gkey", "view", "attach_key", "")),
-                x = rep(4, 6),
+g <- data.frame(name = rev(c("read.uv", "build_gmap", "build_gkey", "view", "attach_key", "")), 
+                x = rep(4, 6), 
                 y = seq(0, 5, 1),
                 col = rev(c("midnightblue", "darkgreen", "darkgreen", "darkred", "darkred", "darkred")))
 
@@ -22,8 +22,8 @@ functions <- rbind(b, p, g)
 
 headings <- data.frame(name = c("Bivariate map", "Pixel map", "Glyph map"), x = c(0, 2, 4), y = rep(6, 3))
 
-g <- ggplot() + geom_text(data = functions, aes(x = x, y = y, label = name, colour=col), size = 4, fontface = "bold") +
-  scale_colour_identity() +
+g <- ggplot() + geom_text(data = functions, aes(x = x, y = y, label = name, colour=col), size = 4, fontface = "bold") + 
+  scale_colour_identity() + 
   geom_text(data = headings, aes(x = x, y = y, label = name), size = 5, fontface = "bold") +
   theme(axis.line = element_blank(),
         axis.text.x = element_blank(),
@@ -114,7 +114,7 @@ row.names(ca_data) <- seq(1, nrow(ca_data), 1)
 #  df <- data.frame(region = sapply(slot(ca_geo, "polygons"), function(x) slot(x, "ID")), name = unique(ca_geo@data$GEO_ID))
 #  ca_data$region <- df[match(ca_data$GEO_ID, df$name), 1]
 #  ca_data$region <- as.character(ca_data$region)
-#
+#  
 #  #check that values in shared column match
 #  ca_data$region %in% pix$region
 
@@ -127,7 +127,7 @@ row.names(ca_data) <- seq(1, nrow(ca_data), 1)
 #  #normal distribution
 #  ca_data$se <- ca_data$pov_moe / 1.645
 #  ca_data <- read.uv(data = ca_data, estimate = "pov_rate", error = "se")
-#
+#  
 #  n_m <- build_pmap(data = ca_data, distribution = "normal", pixelGeo = pix, id = "region")
 #  view(n_m)
 
@@ -135,9 +135,9 @@ row.names(ca_data) <- seq(1, nrow(ca_data), 1)
 #  #experiment with discrete distribution
 #  #exponential - example for q argument
 #  ca_data.q <- with(ca_data, data.frame(p0.05 = qexp(0.05, 1/pov_rate), p0.25 = qexp(0.25, 1/pov_rate), p0.5 = qexp(0.5, 1/pov_rate), p0.75 = qexp(0.75, 1/pov_rate), p0.95 = qexp(0.95, 1/pov_rate)))
-#
+#  
 #  head(ca_data.q)
-#
+#  
 #  d_m <- build_pmap(data = ca_data, distribution = "discrete",
 #                    pixelGeo = pix, id = "region", q = ca_data.q)
 #  view(d_m)

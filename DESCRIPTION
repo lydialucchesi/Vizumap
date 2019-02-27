@@ -1,7 +1,7 @@
 Package: Vizumap
 Type: Package
 Title: Visualizing Uncertainty in spatial data
-Version: 1.0.0
+Version: 1.1.0
 Author: Petra Kuhnert and Lydia Lucchesi
 Maintainer: Maintainer: Petra Kuhnert <Petra.Kuhnert@data61.csiro.aut>
 Description:
