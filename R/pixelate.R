@@ -34,6 +34,7 @@
 pixelate <- function(shapefile = NULL, file = NULL, layer = NULL, pixelSize = 2, id = "id") {
 
 
+
   #check for shapefile or file
   if (is.null(shapefile) & is.null(file))
     stop("One of shapefile or file needs to be supplied to this function.\n")
@@ -80,8 +81,14 @@ pixelate <- function(shapefile = NULL, file = NULL, layer = NULL, pixelSize = 2,
   #create definitive space
   shapefile <- gBuffer(shapefile, byid = TRUE, width = 0)
 
+  # suppress warnings that occur with the broom::tidy function as it coerces a factor to character
+  # this is OK but warnings are annoying
+  oldw <- getOption("warn")
+  options(warn = -1)
+
   #prep work for determining values passed to size and n in chop function
   s <- tidy(shapefile)
+
   lat <- s$lat
   long <- s$long
   bbox <- make_bbox(lat = lat, lon = long, data = s)
@@ -107,16 +114,22 @@ pixelate <- function(shapefile = NULL, file = NULL, layer = NULL, pixelSize = 2,
   #turn SpatialPolygons object into a data frame of coordinates
   pixel_df <- tidy(pixel_shapefile)
 
+  options(warn = oldw)
+
   #recreate the slot id of the polygons in a new id column with name provided by
   #user - ideally, for ease, the original slot ids of the polygons should match
   #the id column in their data frame of data or relative frequencies
-  pixel_df[ ,id] <- gsub("\\sg\\d*.\\d", "", pixel_df[ ,"id"])
+  # pixel_df[ ,id] <- gsub("\\sg\\d*.\\d", "", pixel_df[ ,"id"]) # OLD CODE
+  pixel_df[ ,id] <- as.vector(sapply(pixel_df[,"id"], function(x) gsub("\\sg\\d*.\\d", "", x)))
 
   #create a second ID column that is used in the loops in build_pmap
-  pixel_df$ID <- cumsum(!duplicated(pixel_df[ ,id]))
+  #pixel_df$ID <- cumsum(!duplicated(pixel_df[ ,id])) # OLD code
+  pixel_df$ID <- cumsum(!duplicated(pixel_df[ ,"id"]))
 
   #define specific class to control what maps are used with build_pmap
   oldClass(pixel_df) <- c("pixel_df", class(pixel_df))
+
+
 
   pixel_df
 
