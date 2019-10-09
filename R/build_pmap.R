@@ -25,7 +25,7 @@
 #'  \code{\link[maps]{world}} (see documentation for
 #'  \code{\link[ggplot2]{map_data}} for more information). The borders will be
 #'  refined to match latitute and longtidue coordinates provided in the data
-#'  frame or spatial polygons data frame.
+#'  frame or spatial polygons data frame. Alternatively, you can supply a \code{SpatialPolygonsDataFrame}.
 #'@param palette Name of colour palette. It must be one of \code{Blues},
 #'  \code{Greens}, \code{Greys}, \code{Oranges}, \code{Purples} or \code{Reds}
 #'  (see documentation for \code{\link[ggplot2]{scale_fill_distiller}} for more
@@ -33,6 +33,7 @@
 #'@param q A data frame of quantiles which define the distribution for each
 #'  estimate. Each row is an estimate, and each column is a quantile. See
 #'  examples for an example of \code{q} input.
+#'@param limits Limits for the legend. Default is NULL, which takes the limits to be the range of the data.
 #'
 #'
 #'@seealso \code{\link{animate}}
@@ -82,7 +83,8 @@
 
 
 
-build_pmap <- function(data = NULL, distribution = NULL, pixelGeo, id, border = NULL, palette = "Blues", q = NULL) {
+build_pmap <- function(data = NULL, distribution = NULL, pixelGeo, id, border = NULL, palette = "Blues", q = NULL,
+                       limits = NULL) {
 
   # option 1: sample from discrete probability distribution (distribution = "discrete")
   # option 2: sample from normal distribution (distribution = "normal")
@@ -105,11 +107,16 @@ build_pmap <- function(data = NULL, distribution = NULL, pixelGeo, id, border = 
 
   #check border name and load borders
   if (!is.null(border)) {
+    if(class(border) == "SpatialPolygonsDataFrame"){
+      bord <- fortify(border)
+    }
+    else
     if (border %in% c("county", "france", "italy", "nz", "state", "usa", "world"))
       bord <- map_data(border)
     else
       stop("Border name not recognised. Must be one of county, france, italy, nz, state, usa or world \n
-           (see documentation for map_data function in ggplot2 for more information).\n")
+           (see documentation for map_data function in ggplot2 for more information). Alternatively, it can
+           be a SpatialPolygonsDataFrame.\n")
   }
   else {
     long <- numeric(0)
@@ -128,6 +135,7 @@ build_pmap <- function(data = NULL, distribution = NULL, pixelGeo, id, border = 
 
   #match id classes and add estimate/error, mean/sd to pixel data frame
   if (!is.null(data)) {
+
     data[ ,id] <- as.character(data[ ,id])
 
   #  pixelGeo$estimate <- data[match(pixelGeo[ ,id], data[ ,id]), 1] # OLD CODE
@@ -140,7 +148,9 @@ build_pmap <- function(data = NULL, distribution = NULL, pixelGeo, id, border = 
   #  pixelGeo$error <- as.numeric(pixelGeo$error)  # OLD CODE
 
     if(!is.null(q)){
-      id <- match(pixelGeo[,id], data[,id])
+
+     # id <- match(pixelGeo[,id], data[,id]) # OLD CODE
+      id <- match(pixelGeo[[id]], data[[id]])
       qdf <- q[id,]
       names(qdf) <- paste0("q", 1:ncol(q))
 
@@ -154,7 +164,8 @@ build_pmap <- function(data = NULL, distribution = NULL, pixelGeo, id, border = 
   #define limits of border
   bbox <- make_bbox(lat = lat, lon = long, data = output_data)
 
-  p <- list(output_data = output_data, bord = bord, bbox = bbox, key_label = names(data)[1], palette = palette, distribution = distribution)
+  p <- list(output_data = output_data, bord = bord, bbox = bbox, key_label = names(data)[1], palette = palette,
+            distribution = distribution, limits = limits)
 
   oldClass(p) <- c("pixelmap", class(p))
 

@@ -30,6 +30,10 @@
 #'  the default size.
 #'@param terciles A logical value. This provides the option to define numerical
 #'  bounds for the colour key grid using terciles instead of equal intervals.
+#'@param bound Output from the \code{findNbounds} function if a different
+#' set of data is required to bound the map.  This is useful if you are wanting
+#' to create a bivariate map across multiple years and show colours that correspond
+#' to the same key. Default is NULL.
 #'
 #'@seealso \code{\link{build_bkey}}
 #'
@@ -52,7 +56,7 @@
 
 
 build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL, palette = "BlueYellow", size = NULL,
-                      terciles = FALSE){
+                      terciles = FALSE, bound = NULL){
 
 
   nms <- names(data)
@@ -90,7 +94,8 @@ build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL, palette
       stop("Size not recognised. Must be an integer between 1 and 20.")
   }
 
-  bound <- findNbounds(data = data, estimate = estimate, error = error, terciles = terciles)
+  if(is.null(bound))
+     bound <- findNbounds(data = data, estimate = estimate, error = error, terciles = terciles)
 
   #define color ramps based on user input
   if (class(palette)[1] == "character" & length(palette)==1) {
@@ -128,7 +133,14 @@ build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL, palette
   if (!is.null(shapefile)) {
     shapefile@data <- left_join(shapefile@data, data, by = id)
     shapefile@data$id <- rownames(shapefile@data)
+    # suppress warnings that occur with the broom::tidy function as it coerces a factor to character
+    # this is OK but warnings are annoying
+    oldw <- getOption("warn")
+    options(warn = -1)
+
     region_coord <- tidy(shapefile, region = "id")
+
+    options(warn = oldw)
     output_data <- join(region_coord, shapefile@data, by = "id")
     bbox <- make_bbox(lat = lat, lon = long, data = output_data)
   }

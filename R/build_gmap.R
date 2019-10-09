@@ -29,6 +29,10 @@
 #'  \code{Greens}, \code{Greys}, \code{Oranges}, \code{Purples} or \code{Reds}
 #'  (see documentation for \code{\link[ggplot2]{scale_fill_distiller}} for more
 #'  information).
+#'@param limits Limits for the legend. Default is NULL, which takes the limits
+#'   to be the range of the data.
+#'@param max_error maximum error value. Default is NULL, which takes the
+#'   maximum from the error given
 #'
 #'
 #'@seealso \code{\link{build_gkey}}
@@ -53,7 +57,8 @@
 #'@importFrom "maptools" "map2SpatialPolygons"
 
 
-build_gmap <- function(data, shapefile = NULL, id = NULL, size = 50, border = NULL, glyph = "icone", palette = "Blues") {
+build_gmap <- function(data, shapefile = NULL, id = NULL, size = 50, border = NULL, glyph = "icone",
+                       palette = "Blues", limits = NULL, max_error = NULL) {
 
   nms <- names(data)
   estimate <- nms[1]
@@ -84,11 +89,16 @@ build_gmap <- function(data, shapefile = NULL, id = NULL, size = 50, border = NU
   }
 
   if (!is.null(border)) {
-    if (border %in% c("county", "france", "italy", "nz", "state", "usa", "world"))
-      bord <- map_data(border)
+    if(class(border) == "SpatialPolygonsDataFrame"){
+      bord <- fortify(border) # does not seem to overlay
+    }
     else
-      stop("Border name not recognised. Must be one of county, france, italy, nz, state, usa or world \n
-           (see documentation for map_data function in ggplot2 for more information)")
+      if (border %in% c("county", "france", "italy", "nz", "state", "usa", "world"))
+        bord <- map_data(border)
+      else
+        stop("Border name not recognised. Must be one of county, france, italy, nz, state, usa or world \n
+             (see documentation for map_data function in ggplot2 for more information). Alternatively, it can
+             be a SpatialPolygonsDataFrame.\n")
   }
   else {
     long <- numeric(0)
@@ -107,7 +117,10 @@ build_gmap <- function(data, shapefile = NULL, id = NULL, size = 50, border = NU
          (see documentation for scale_fill_distiller in ggplot2 for more information)")
 
   #calculate theta for use in rotation matrix
-  df$theta <- (df[, error] / max(df[, error])) * (-pi)
+  if(is.null(max_error))
+     df$theta <- (df[, error] / max(df[, error])) * (-pi)
+  else
+     df$theta <- (df[, error] / max_error) * (-pi)
 
 
 
@@ -142,7 +155,8 @@ build_gmap <- function(data, shapefile = NULL, id = NULL, size = 50, border = NU
 
   bbox <- make_bbox(lat = lat, lon = long, data = output_data)
 
-  p <- list(output_data = output_data, bord = bord, bbox = bbox, key_label = paste(estimate), palette = palette)
+  p <- list(output_data = output_data, bord = bord, bbox = bbox, key_label = paste(estimate), palette = palette,
+            limits = limits)
 
   oldClass(p) <- c("glyphmap", class(p))
 

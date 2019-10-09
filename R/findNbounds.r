@@ -1,3 +1,4 @@
+#' @export
 findNbounds <- function(data, estimate, error, terciles){
 
 
