@@ -136,9 +136,7 @@ build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL, palette
   if (!is.null(shapefile)) {
     shapefile@data <- left_join(shapefile@data, data, by = id)
     shapefile@data$id <- rownames(shapefile@data)
- #   region_coord <- sptable(shapefile, region = "id") %>%
-#      rename(c("object_" = "id", "x_" = "long", "y_" = "lat", "branch_" = "group"))
-     region_coord <- sptable(shapefile, region = "id")
+    region_coord <- sptable(shapefile, region = "id")
     region_coord <- plyr::rename(region_coord, c("object_" = "id", "x_" = "long", "y_" = "lat", "branch_" = "group"))
     output_data <- join(region_coord, shapefile@data, by = "id")
     bbox <- make_bbox(lat = lat, lon = long, data = output_data)
