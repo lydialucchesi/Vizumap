@@ -14,11 +14,13 @@
 #'  \code{GreenBlue}.
 #'@param colrange List with a character vector of length two and a numeric
 #'  vector of length two.
-#'@param colour A character vector of two colour names from the colours() range.
+#'@param colour A character vector of two colour names from the colours() range or valid hexadecimal colors.
 #'@param difC A numeric vector of two integers 1, 2, 3 or 4. Values
 #'  control how much a colour changes in value across the grid. One corresponds
 #'  with a small change in colour value, and four corresponds with a large
 #'  change in colour value.
+#'@param flipVertical Whether the palette should be flipped vertically (ie. replace top portion with bottom portion)
+#'@param flipHorizontal Whether the palette should be flipped horizontally (ie. replace left portion with right portion)
 #'@examples
 #'#use one of four prepared colour palettes
 #'p <- build_palette(name = "CyanMagenta")
@@ -31,7 +33,7 @@
 #'@export
 #'@importFrom "grDevices" "colorRamp" "rgb" "colorRampPalette" "colours" "colors"
 
-build_palette <- function(name, colrange = list(colour = NULL, difC = NULL)){
+build_palette <- function(name, colrange = list(colour = NULL, difC = NULL), flipVertical = FALSE, flipHorizontal = FALSE){
   
   if(name == "usr"){
     if(missing(colrange))
@@ -47,13 +49,16 @@ build_palette <- function(name, colrange = list(colour = NULL, difC = NULL)){
            use one of the colours from colors() or use a valid hexadecimal colour.\n")
     }
     
-
+    isWhite <- FALSE
     #Check RGB values of passed values to make sure the colour is not close to white
     lapply(colrange$colour, function(x) {
       rgb <- col2rgb(x)
       if(length(rgb[rgb >= 200]) == 3) 
-        stop ("colours cannot be white or too close to white. Please select another colour from the colors() range or a hexadecimal value that is not white.")
+       isWhite <- TRUE
     })
+    
+    if(isWhite)
+      stop ("colours cannot be white or too close to white. Please select another colour from the colors() range or a hexadecimal value that is not white.")
     
     if(colrange$colour[1] == colrange$colour[2]) 
       stop("Colours must not be the same value. Please
@@ -126,6 +131,20 @@ build_palette <- function(name, colrange = list(colour = NULL, difC = NULL)){
   
   colours <- match_df$colour.ave
   colours <- sapply(strsplit(colours, " "), function(colours) rgb(colours[1], colours[2], colours[3], maxColorValue = 255))
+  
+  #If we flip vertically
+  if(flipVertical) {
+    colours <- replace(colours, c(1,9), colours[c(9, 1)]) #Switch [9] and [1]
+    colours <- replace(colours, c(8,4), colours[c(4, 8)]) #switch [8] and [4]
+    colours <- replace(colours, c(6,2), colours[c(2, 6)]) #Switch [6] and [2]
+  }
+  
+  #If we flip hoizontally
+  if(flipHorizontal) {
+    colours <- replace(colours, c(7,3), colours[c(3, 7)]) #Switch [7] and [3]
+    colours <- replace(colours, c(4,2), colours[c(2, 4)]) #switch [2] and [4]
+    colours <- replace(colours, c(8,6), colours[c(6, 8)]) #Switch [6] and [8]
+  }
   
   oldClass(colours) <- c("palette", class(colours))
   
