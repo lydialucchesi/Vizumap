@@ -134,6 +134,7 @@ build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL, palette
   #determine whether shapefile has been entered by user
   #if so, link shapefile and data and plot
   if (!is.null(shapefile)) {
+    shapefile@data %>% mutate_if(is.factor, as.character) -> shapefile@data
     shapefile@data <- left_join(shapefile@data, data, by = id)
     shapefile@data$id <- rownames(shapefile@data)
     region_coord <- sptable(shapefile, region = "id")
