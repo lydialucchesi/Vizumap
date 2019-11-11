@@ -47,16 +47,13 @@ build_palette <- function(name, colrange = list(colour = NULL, difC = NULL)){
            use one of the colours from colors() or use a valid hexadecimal colour.\n")
     }
     
-    #Use the Luma Conversion Formula to get Luminensce and make sure the colours given are not too bright (ie. White)
-    luma <- lapply(colrange$colour, function(x){
+
+    #Check RGB values of passed values to make sure the colour is not close to white
+    lapply(colrange$colour, function(x) {
       rgb <- col2rgb(x)
-      return (0.2126*rgb[1,] + 0.7152*rgb[2,] + 0.0722*rgb[3,])
+      if(length(rgb[rgb >= 200]) == 3) 
+        stop ("colours cannot be white or too close to white. Please select another colour from the colors() range or a hexadecimal value that is not white.")
     })
-    
-    #If any colour is of too high luminousity
-    if(any(luma > 200)) {
-      stop ("colours cannot be white or of a value that is too luminous. Please select another colour from the colors() range or a hexadecimal value that is not too luminous.")
-    }
     
     if(colrange$colour[1] == colrange$colour[2]) 
       stop("Colours must not be the same value. Please
