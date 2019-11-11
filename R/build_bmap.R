@@ -128,7 +128,7 @@ build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL, palette
  esterr <- factor(paste(as.vector(est_col), as.vector(err_col)),
                                           levels = est_err_levels)
  levels(esterr) <- colors
- data$hex_code <- esterr
+ data$hex_code <- as.character(esterr)
 
 
   #determine whether shapefile has been entered by user
