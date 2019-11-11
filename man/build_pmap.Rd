@@ -5,7 +5,7 @@
 \title{Build a pixel map}
 \usage{
 build_pmap(data = NULL, distribution = NULL, pixelGeo, id,
-  border = NULL, palette = "Blues", q = NULL)
+  border = NULL, palette = "Blues", q = NULL, limits = NULL)
 }
 \arguments{
 \item{data}{A data frame.}
@@ -34,7 +34,7 @@ one of \code{\link[maps]{county}}, \code{\link[maps]{france}},
 \code{\link[maps]{world}} (see documentation for
 \code{\link[ggplot2]{map_data}} for more information). The borders will be
 refined to match latitute and longtidue coordinates provided in the data
-frame or spatial polygons data frame.}
+frame or spatial polygons data frame. Alternatively, you can supply a \code{SpatialPolygonsDataFrame}.}
 
 \item{palette}{Name of colour palette. It must be one of \code{Blues},
 \code{Greens}, \code{Greys}, \code{Oranges}, \code{Purples} or \code{Reds}
@@ -44,6 +44,8 @@ information).}
 \item{q}{A data frame of quantiles which define the distribution for each
 estimate. Each row is an estimate, and each column is a quantile. See
 examples for an example of \code{q} input.}
+
+\item{limits}{Limits for the legend. Default is NULL, which takes the limits to be the range of the data.}
 }
 \description{
 This function builds a choropleth map that visualises estimates and errors

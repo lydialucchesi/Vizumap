@@ -5,7 +5,8 @@
 \title{Build a bivariate colour map}
 \usage{
 build_bmap(data, shapefile = NULL, id = NULL, border = NULL,
-  palette = "BlueYellow", size = NULL, terciles = FALSE)
+  palette = "BlueYellow", size = NULL, terciles = FALSE,
+  bound = NULL)
 }
 \arguments{
 \item{data}{A data frame.}
@@ -36,6 +37,11 @@ the default size.}
 
 \item{terciles}{A logical value. This provides the option to define numerical
 bounds for the colour key grid using terciles instead of equal intervals.}
+
+\item{bound}{Output from the \code{findNbounds} function if a different
+set of data is required to bound the map.  This is useful if you are wanting
+to create a bivariate map across multiple years and show colours that correspond
+to the same key. Default is NULL.}
 }
 \description{
 This function builds a map that visualises estimates and errors simultaneously

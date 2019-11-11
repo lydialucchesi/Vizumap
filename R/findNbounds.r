@@ -1,3 +1,12 @@
+#' findNbounds
+#'
+#' Find the bins for the colour grid
+#'
+#' @param data dataset from which bounds are to be determined
+#' @param estimate name of the estimate column
+#' @param error name of the error column
+#' @param terciles should terciles be calculated? (Default: FALSE)
+#'
 #' @export
 findNbounds <- function(data, estimate, error, terciles){
 

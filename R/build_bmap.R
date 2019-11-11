@@ -51,7 +51,9 @@
 #'@import "ggplot2"
 #'@importFrom "dplyr" "left_join"
 #'@importFrom "plyr" "join"
+#'@importFrom "dplyr" "rename"
 #'@importFrom "ggmap" "make_bbox"
+#'@importFrom "spbabel" "sptable"
 
 
 
@@ -116,31 +118,28 @@ build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL, palette
     stop("Palette supplied is not of class 'palette'. Please create a palette using the 'build_palette' function.")
 
 
-  #assign each region or point a color based on its estimate and its error
-  data$hex_code <-
-    ifelse(data[ ,estimate] <= bound[2] & data[ ,error] <= bound[6], colors[1],
-           ifelse(data[ ,estimate] <= bound[2] & data[ ,error] <= bound[7], colors[4],
-                  ifelse(data[ ,estimate] <= bound[2] & data[ ,error] <= bound[8], colors[7],
-                         ifelse(data[ ,estimate] <= bound[3] & data[ ,error] <= bound[6], colors[2],
-                                ifelse(data[ ,estimate] <= bound[3] & data[ ,error] <= bound[7], colors[5],
-                                       ifelse(data[ ,estimate] <= bound[3] & data[ ,error] <= bound[8], colors[8],
-                                              ifelse(data[ ,estimate] <= bound[4] & data[ ,error] <= bound[6], colors[3],
-                                                     ifelse(data[ ,estimate] <= bound[4] & data[ ,error] <= bound[7], colors[6],
-                                                            ifelse(data[ ,estimate] <= bound[4] & data[ ,error] <= bound[8], colors[9], "NA")))))))))
+ #  assign each region or point a color based on its estimate and its error
+ est_col <- cut(data[, estimate], breaks = bound[1:4], include.lowest = TRUE)
+ err_col <- cut(data[, error], breaks = bound[5:8], include.lowest = TRUE)
+ est_err_levels <- c(paste(levels(est_col), levels(err_col)[1]),
+                     paste(levels(est_col), levels(err_col)[2]),
+                     paste(levels(est_col), levels(err_col)[3]))
+
+ esterr <- factor(paste(as.vector(est_col), as.vector(err_col)),
+                                          levels = est_err_levels)
+ levels(esterr) <- colors
+ data$hex_code <- esterr
+
 
   #determine whether shapefile has been entered by user
   #if so, link shapefile and data and plot
   if (!is.null(shapefile)) {
     shapefile@data <- left_join(shapefile@data, data, by = id)
     shapefile@data$id <- rownames(shapefile@data)
-    # suppress warnings that occur with the broom::tidy function as it coerces a factor to character
-    # this is OK but warnings are annoying
-    oldw <- getOption("warn")
-    options(warn = -1)
-
-    region_coord <- tidy(shapefile, region = "id")
-
-    options(warn = oldw)
+ #   region_coord <- sptable(shapefile, region = "id") %>%
+#      rename(c("object_" = "id", "x_" = "long", "y_" = "lat", "branch_" = "group"))
+     region_coord <- sptable(shapefile, region = "id")
+    region_coord <- plyr::rename(region_coord, c("object_" = "id", "x_" = "long", "y_" = "lat", "branch_" = "group"))
     output_data <- join(region_coord, shapefile@data, by = "id")
     bbox <- make_bbox(lat = lat, lon = long, data = output_data)
   }

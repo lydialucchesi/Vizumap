@@ -5,7 +5,8 @@
 \title{Build a glyph map}
 \usage{
 build_gmap(data, shapefile = NULL, id = NULL, size = 50,
-  border = NULL, glyph = "icone", palette = "Blues")
+  border = NULL, glyph = "icone", palette = "Blues", limits = NULL,
+  max_error = NULL)
 }
 \arguments{
 \item{data}{A data frame.}
@@ -34,6 +35,12 @@ frame or spatial polygons data frame.}
 \code{Greens}, \code{Greys}, \code{Oranges}, \code{Purples} or \code{Reds}
 (see documentation for \code{\link[ggplot2]{scale_fill_distiller}} for more
 information).}
+
+\item{limits}{Limits for the legend. Default is NULL, which takes the limits
+to be the range of the data.}
+
+\item{max_error}{maximum error value. Default is NULL, which takes the
+maximum from the error given}
 }
 \description{
 This function builds a map that visualises estimates and errors simultaneously

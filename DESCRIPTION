@@ -10,7 +10,8 @@ Encoding: UTF-8
 Date: 2017-06-20
 Authors@R: c(
     person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = c("aut", "cre")),
-    person("Lydia", "Lucchesi", email = "lydialuc@uw.edu", role = "aut")
+    person("Lydia", "Lucchesi", email = "Lydia.Lucchesi@anu.edu.au", role = "aut"),
+    person("Sam", "Nelson", email = "Sam.Nelson@data61.csiro.au", role = "aut")
     )
 Depends:
     R (>= 3.5.0)
@@ -29,11 +30,12 @@ Imports:
     geoaxe,
     maptools,
     sp,
+    spbabel,
     maps
 License: GPL-3 + file LICENSE
 LazyLoad: TRUE
 LazyData: TRUE
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr

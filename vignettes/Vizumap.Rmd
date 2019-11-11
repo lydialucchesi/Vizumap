@@ -9,13 +9,18 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(ggplot2)
+library(dplyr)
+```
+
 **Vizumap** is a tool for visualising uncertainty in spatial data. This vignette demonstrates how to use **Vizumap** to create bivariate maps, pixel maps and glyph maps, the three uncertainty visualisation methods developed in Lucchesi and Wikle (2017). We have tried to generalise the approaches so they can be applied to most types of spatial data.
 
 There are several types of functions in **Vizumap**: formatting functions, building functions and viewing functions. Formatting functions prepare data frames and spatial polygons for use in building functions. Building functions create maps, animations, keys and colour palettes. Viewing functions plot these objects. Some of these functions are useful across all three map types, such as `read.uv`, and others are map specific, such as `pixelate`. Below is a table displaying the functions that can be used with each map type. Blue functions format. Green functions create. Red functions plot.
 
 ```{r echo = FALSE, fig.align='center', fig.height=4, fig.width=6, fig.asp=.6, warning=FALSE}
-library(knitr)
-library(ggplot2)
 
 b <- data.frame(name = rev(c("read.uv", "build_bmap", "build_bkey", "build_palette", "view", "attach_key")),
                 x = rep(0, 6), 

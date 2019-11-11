@@ -4,7 +4,8 @@
 \alias{build_palette}
 \title{Build a palette}
 \usage{
-build_palette(name, colrange = list(colour = NULL, difC = NULL))
+build_palette(name, colrange = list(colour = NULL, difC = NULL),
+  flipVertical = FALSE, flipHorizontal = FALSE)
 }
 \arguments{
 \item{name}{Name of colour palette or \code{usr} for option to design a new
@@ -15,7 +16,11 @@ palette. Colour palette names include
 \item{colrange}{List with a character vector of length two and a numeric
 vector of length two.}
 
-\item{colour}{A character vector of two colour names from the colours() range.}
+\item{flipVertical}{Whether the palette should be flipped vertically (ie. replace top portion with bottom portion)}
+
+\item{flipHorizontal}{Whether the palette should be flipped horizontally (ie. replace left portion with right portion)}
+
+\item{colour}{A character vector of two colour names from the colours() range or valid hexadecimal colors.}
 
 \item{difC}{A numeric vector of two integers 1, 2, 3 or 4. Values
 control how much a colour changes in value across the grid. One corresponds
