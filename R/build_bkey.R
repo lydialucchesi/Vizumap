@@ -16,6 +16,7 @@
 #'  \code{GreenBlue}.
 #'@param terciles A logical value. This provides the option to define numerical
 #'  bounds for the colour key grid using terciles instead of equal intervals.
+#'@param flipAxis A logical value. Whether to place the axis on the opposite sides or not.
 #'
 #'@seealso \code{\link{attach_key}}
 #'
@@ -37,18 +38,10 @@
 #'@export
 
 
-build_bkey <- function(data, palette = "BlueYellow", terciles = FALSE) {
-
+build_bkey <- function(data, palette = "BlueYellow", terciles = FALSE, flipAxis = FALSE) {
 
   estimate <- names(data)[1]
   error <- names(data)[2]
-
-
-  bound <- findNbounds(data = data, estimate = estimate, error = error, terciles = terciles)
-
-  labels <- data.frame(x = c(2.5, 1.5, .5, -.5, 3.5, 4.5, 5.5, 6.5),
-                       y = c(-.5, .5, 1.5, 2.5, -.5, .5, 1.5, 2.5),
-                       bound = as.character(bound), angle = c(rep(45,4), rep(-45, 4)))
 
   #define color ramps based on user input
   if (class(palette)[1] == "character" & length(palette)==1) {
@@ -68,6 +61,12 @@ build_bkey <- function(data, palette = "BlueYellow", terciles = FALSE) {
   else
     stop("Palette supplied is not of class 'palette'. Please create a palette using the 'build_palette' function.")
 
+  if(!is.logical(flipAxis))
+    stop("flipAxis must be a logical value")
+
+  if(!is.logical(terciles))
+    stop("terciles must be a logical value")
+
   x1 <- c(3, 4, 3, 2) ; x2 <- c(4, 5, 4, 3) ; x3 <- c(5, 6, 5, 4)
   x <- c(x1, x1-1, x1-2, x2, x2-1, x2-2, x3, x3-1, x3-2)
 
@@ -80,9 +79,21 @@ build_bkey <- function(data, palette = "BlueYellow", terciles = FALSE) {
 
   tiles <- data.frame(x = x, y = y, group = group, color = clr)
 
+  if(!flipAxis) {
+    bound <- findNbounds(data = data, estimate = estimate, error = error, terciles = terciles)
+    labels <- data.frame(x = c(2.5, 1.5, .5, -.5, 3.5, 4.5, 5.5, 6.5),
+                         y = c(-.5, .5, 1.5, 2.5, -.5, .5, 1.5, 2.5),
+                         bound = as.character(bound), angle = c(rep(45,4), rep(-45, 4)))
 
+    p <- list(tiles = tiles, labels = labels, estimate = estimate, error = error, flipped = flipAxis)
+  } else {
+    bound <- findNbounds(data = data, estimate = error, error = estimate, terciles = terciles)
+    labels <- data.frame(y = c(2.5, 1.5, .5, -.5, 3.5, 4.5, 5.5, 6.5),
+                         x = c(-.5, .5, 1.5, 2.5, -.5, .5, 1.5, 2.5),
+                         bound = as.character(bound), angle = c(rep(45,4), rep(-45, 4)))
 
-  p <- list(tiles = tiles, labels = labels, estimate = estimate, error = error)
+    p <- list(tiles = tiles, labels = labels, estimate = error, error = estimate, flipped = flipAxis)
+  }
 
   oldClass(p) <- c("bivkey", class(p))
 

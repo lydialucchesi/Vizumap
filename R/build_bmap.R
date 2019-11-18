@@ -34,6 +34,7 @@
 #' set of data is required to bound the map.  This is useful if you are wanting
 #' to create a bivariate map across multiple years and show colours that correspond
 #' to the same key. Default is NULL.
+#' @param flipAxis A logical value. Whether to place the axis on the opposite sides or not.
 #'
 #'@seealso \code{\link{build_bkey}}
 #'
@@ -58,12 +59,14 @@
 
 
 build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL, palette = "BlueYellow", size = NULL,
-                      terciles = FALSE, bound = NULL){
+                      terciles = FALSE, bound = NULL, flipAxis = FALSE) {
 
 
   nms <- names(data)
   estimate <- nms[1]
   error <- nms[2]
+
+
 
   if (is.null(shapefile)) {
     l1 <- match("long", names(data))
@@ -117,10 +120,19 @@ build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL, palette
   else
     stop("Palette supplied is not of class 'palette'. Please create a palette using the 'build_palette' function.")
 
+  if(!is.logical(flipAxis))
+    stop("flipAxis must be a logical value")
 
  #  assign each region or point a color based on its estimate and its error
- est_col <- cut(data[, estimate], breaks = bound[1:4], include.lowest = TRUE)
- err_col <- cut(data[, error], breaks = bound[5:8], include.lowest = TRUE)
+
+ if(!flipAxis) {
+   est_col <- cut(data[, estimate], breaks = bound[1:4], include.lowest = TRUE)
+   err_col <- cut(data[, error], breaks = bound[5:8], include.lowest = TRUE)
+ } else {
+   est_col <- cut(data[, error], breaks = bound[5:8], include.lowest = TRUE)
+   err_col <- cut(data[, estimate], breaks = bound[1:4], include.lowest = TRUE)
+ }
+
  est_err_levels <- c(paste(levels(est_col), levels(err_col)[1]),
                      paste(levels(est_col), levels(err_col)[2]),
                      paste(levels(est_col), levels(err_col)[3]))
