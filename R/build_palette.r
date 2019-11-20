@@ -50,16 +50,15 @@ build_palette <- function(name, colrange = list(colour = NULL, difC = NULL), fli
            use one of the colours from colors() or use a valid hexadecimal colour.\n")
     }
 
-    isWhite <- FALSE
-    #Check RGB values of passed values to make sure the colour is not close to white
-    lapply(colrange$colour, function(x) {
-      rgb <- col2rgb(x)
+        for(i in 1:length(colrange$colour)) {}
+      #Check RGB values of passed values to make sure the colour is not close to white
+      rgb <- col2rgb(colrange$colour[i])
       if(length(rgb[rgb >= 200]) == 3)
-       isWhite <- TRUE
-    })
+        stop ("colours cannot be white or too close to white. Please select another colour from the colors() range or a hexadecimal value that is not white.")
+
+    }
 
     if(isWhite)
-      stop ("colours cannot be white or too close to white. Please select another colour from the colors() range or a hexadecimal value that is not white.")
 
     if(colrange$colour[1] == colrange$colour[2])
       stop("Colours must not be the same value. Please
