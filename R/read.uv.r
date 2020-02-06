@@ -25,33 +25,45 @@
 #'@importFrom "utils" "read.csv"
 
 
-read.uv <- function(data = NULL, file = NULL, estimate, error){
+read.uv <- function(data = NULL, file = NULL, estimate, error, exceedance){
 
 
   if(is.null(data) & is.null(file))
     stop("One of data or file needs to be supplied to this function.\n")
-  if(!is.character(estimate))
-    stop("'estimate' is the column name of the data frame representing the estimate and this needs to be a character.\n")
-  if(!is.character(error))
-    stop("'error' is the column name of the data frame representing the error and this needs to be a character.\n")
 
 
   if(!is.null(file)){
     data <- read.csv(file)
   }
 
-  m1 <- match(estimate, names(data))
-  m2 <- match(error, names(data))
-  if(any(is.na(c(m1,m2))))
-    stop("The estimate and error need to be column names of the data.\n")
+  if(missing(exceedance)){
+    if(missing(estimate) | missing(error))
+      stop("'estimate' and 'error' are the column names of the data frame representing the estimate and error.
+           \n")
 
-  data[ ,estimate] <- as.numeric(data[ ,estimate])
-  data[ ,error] <- as.numeric(data[ ,error])
+    m1 <- match(estimate, names(data))
+    m2 <- match(error, names(data))
 
-  nms <- names(data)
-  m <- match(c(estimate, error), names(data))
-  morder <- c(nms[m], nms[-m])
-  dataR <- data[,morder]
+    data[ ,estimate] <- as.numeric(data[ ,estimate])
+    data[ ,error] <- as.numeric(data[ ,error])
+
+    nms <- names(data)
+    m <- match(c(estimate, error), names(data))
+    morder <- c(nms[m], nms[-m])
+    dataR <- data[,morder]
+
+  }
+  else{
+    m <- match(exceedance, names(data))
+    if(is.na(m))
+      stop("The exceedance probability needs to be one of the column names of the data.\n")
+
+    data[, exceedance] <- as.numeric(data[,exceedance])
+    nms <- names(data)
+    morder <- c(nms[m], nms[-m])
+    dataR <- data[,morder]
+  }
+
 
   dataR
 

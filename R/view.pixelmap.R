@@ -9,7 +9,7 @@ view.pixelmap <- function(obj){
   p <- ggplot()  +
     geom_polygon(data=obj$output_data, aes_string(x='long', y='lat', fill='values', colour='values', group='group'))  +
     scale_fill_distiller(direction=1, palette = obj$palette, name = obj$key_label, limits = obj$limits) +
-    scale_colour_distiller(direction=1, palette = obj$palette) +
+    scale_colour_distiller(direction=1, palette = obj$palette, limits = obj$limits) +
     guides(colour=FALSE)  +
     geom_path(data = obj$bord, aes_string(x = 'long', y = 'lat', group = 'group'), colour = "black")  +
     coord_cartesian(xlim = c(obj$bbox[1], obj$bbox[3]), ylim = c(obj$bbox[2], obj$bbox[4])) +
