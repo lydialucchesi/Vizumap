@@ -4,7 +4,8 @@
 \alias{build_bkey}
 \title{Build a bivariate colour key}
 \usage{
-build_bkey(data, palette = "BlueYellow", terciles = FALSE)
+build_bkey(data, palette = "BlueYellow", terciles = FALSE,
+  flipAxis = FALSE)
 }
 \arguments{
 \item{data}{A data frame.}
@@ -16,6 +17,8 @@ created with \code{\link{build_palette}} function. Colour palette names include
 
 \item{terciles}{A logical value. This provides the option to define numerical
 bounds for the colour key grid using terciles instead of equal intervals.}
+
+\item{flipAxis}{A logical value. Whether to place the axis on the opposite sides or not.}
 }
 \description{
 This function links data and a colour palette. Numerical bounds are added

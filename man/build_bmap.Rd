@@ -6,7 +6,7 @@
 \usage{
 build_bmap(data, shapefile = NULL, id = NULL, border = NULL,
   palette = "BlueYellow", size = NULL, terciles = FALSE,
-  bound = NULL)
+  bound = NULL, flipAxis = FALSE)
 }
 \arguments{
 \item{data}{A data frame.}
@@ -42,6 +42,8 @@ bounds for the colour key grid using terciles instead of equal intervals.}
 set of data is required to bound the map.  This is useful if you are wanting
 to create a bivariate map across multiple years and show colours that correspond
 to the same key. Default is NULL.}
+
+\item{flipAxis}{A logical value. Whether to place the axis on the opposite sides or not.}
 }
 \description{
 This function builds a map that visualises estimates and errors simultaneously
