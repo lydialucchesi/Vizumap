@@ -10,7 +10,7 @@
 #'
 #'@param obj An object from \code{\link{build_bmap}}, \code{\link{build_gmap}},
 #'  \code{\link{build_pmap}}, \code{\link{build_bkey}},
-#'  \code{\link{build_gkey}}, \code{\link{build_palette}} or
+#'  \code{\link{build_gkey}}, \code{\link{build_palette}}, or
 #'  \code{\link{animate}}.
 #'@examples
 #'gb <- build_palette(name = "GreenBlue")

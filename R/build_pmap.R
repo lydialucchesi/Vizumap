@@ -138,18 +138,11 @@ build_pmap <- function(data = NULL, distribution = NULL, pixelGeo, id, border = 
 
     data[ ,id] <- as.character(data[ ,id])
 
-  #  pixelGeo$estimate <- data[match(pixelGeo[ ,id], data[ ,id]), 1] # OLD CODE
-  #  pixelGeo$error <- data[match(pixelGeo[ ,id], data[ ,id]), 2]  # OLD CODE
-
     pixelGeo$estimate <- data[match(pixelGeo[[id]], data[[id]]), 1]
     pixelGeo$error <- data[match(pixelGeo[[id]], data[[id]]), 2]
 
-  #  pixelGeo$estimate <- as.numeric(pixelGeo$estimate) # OLD CODE
-  #  pixelGeo$error <- as.numeric(pixelGeo$error)  # OLD CODE
 
     if(!is.null(q)){
-
-     # id <- match(pixelGeo[,id], data[,id]) # OLD CODE
       id <- match(pixelGeo[[id]], data[[id]])
       qdf <- q[id,]
       names(qdf) <- paste0("q", 1:ncol(q))

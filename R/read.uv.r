@@ -15,6 +15,7 @@
 #'@param file A CSV file pathway.
 #'@param estimate Name of estimate column.
 #'@param error Name of error column.
+#'@param exceedance Name of exceedance probability column.
 #'
 #'@examples
 #'data(us_data)

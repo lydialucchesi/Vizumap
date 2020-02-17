@@ -4,7 +4,7 @@
 \alias{read.uv}
 \title{Format data}
 \usage{
-read.uv(data = NULL, file = NULL, estimate, error)
+read.uv(data = NULL, file = NULL, estimate, error, exceedance)
 }
 \arguments{
 \item{data}{A data frame.}
@@ -14,6 +14,8 @@ read.uv(data = NULL, file = NULL, estimate, error)
 \item{estimate}{Name of estimate column.}
 
 \item{error}{Name of error column.}
+
+\item{exceedance}{Name of exceedance probability column.}
 }
 \description{
 This function formats a data frame so it can be used with
