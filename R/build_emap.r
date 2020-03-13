@@ -33,7 +33,6 @@
 #'@examples
 #'
 #'
-#'@export
 #'@import "ggplot2"
 #'@importFrom "dplyr" "left_join"
 #'@importFrom "plyr" "join"
@@ -41,6 +40,7 @@
 #'@importFrom "dplyr" "%>%"
 #'@importFrom "ggmap" "make_bbox"
 #'@importFrom "spbabel" "sptable"
+#'@export
 
 
 
