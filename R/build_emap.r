@@ -30,9 +30,6 @@
 #'  the default size.
 #'
 #'
-#'@examples
-#'
-#'
 #'@import "ggplot2"
 #'@importFrom "dplyr" "left_join"
 #'@importFrom "plyr" "join"
