@@ -4,9 +4,17 @@
 \alias{build_gmap}
 \title{Build a glyph map}
 \usage{
-build_gmap(data, shapefile = NULL, id = NULL, size = 50,
-  border = NULL, glyph = "icone", palette = "Blues", limits = NULL,
-  max_error = NULL)
+build_gmap(
+  data,
+  shapefile = NULL,
+  id = NULL,
+  size = 50,
+  border = NULL,
+  glyph = "icone",
+  palette = "Blues",
+  limits = NULL,
+  max_error = NULL
+)
 }
 \arguments{
 \item{data}{A data frame.}

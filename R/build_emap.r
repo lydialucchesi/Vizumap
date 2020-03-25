@@ -61,7 +61,7 @@
 #'pdflist <- list(dist = pd, args = args, th = 30)
 #'map <- build_emap(data = poverty, pdflist = pdflist, shapefile = us_geo, id = "GEO_ID",
 #'             border = "state", key_label = "Pr[X > 30]")
-#'view(map)
+#'view(map) + ggplot2::ggtitle("Proper use of build_emap (appropriate distribution choice)")
 #'
 #'# Example where an inappropriate distributions is tried
 #'# Exceedance probability map with a shapefile: Pr[X>30] (Normal Distribution)
@@ -74,7 +74,7 @@
 #'pdflist <- list(dist = pd, args = args, th = 30)
 #'map <- build_emap(data = poverty, pdflist = pdflist, shapefile = us_geo, id = "GEO_ID",
 #'             border = "state", key_label = "Pr[X > 30]")
-#'view(map)
+#'view(map) + ggplot2::ggtitle("Misuse of build_emap (inappropriate distribution choice)")
 #'
 #'# Example where exceedance probabilities have been supplied (GBR Example)
 #' # Load Upper Burdekin Data
@@ -170,7 +170,7 @@ build_emap <- function(data, pdflist = NULL, shapefile = NULL, id = NULL, key_la
    }
   else{
     # assume 2 columns and pr_exc is to be calculated via a function
-    warning("Ensure the pdf you select is suitable for your data.\n")
+    warning("Ensure the pdf you select is suitable for your data. See ??build_emap for examples of good and bad distribution choices.\n")
 
     id <- match(names(data)[1:2], names(output_data))
     names(output_data)[id] <- c("estimate", "error")

@@ -4,8 +4,7 @@
 \alias{pixelate}
 \title{Pixelate polygons}
 \usage{
-pixelate(shapefile = NULL, file = NULL, layer = NULL,
-  pixelSize = 2, id = "id")
+pixelate(shapefile = NULL, file = NULL, layer = NULL, pixelSize = 2, id = "id")
 }
 \arguments{
 \item{shapefile}{An object of class "SpatialPolygons" or

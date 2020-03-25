@@ -4,8 +4,16 @@
 \alias{build_emap}
 \title{Build an exceedance probability colour map}
 \usage{
-build_emap(data, pdflist = NULL, shapefile = NULL, id = NULL,
-  key_label, palette = "YlOrRd", size = NULL, border = NULL)
+build_emap(
+  data,
+  pdflist = NULL,
+  shapefile = NULL,
+  id = NULL,
+  key_label,
+  palette = "YlOrRd",
+  size = NULL,
+  border = NULL
+)
 }
 \arguments{
 \item{data}{A data frame containing columns that house estimates of the mean,
@@ -78,7 +86,7 @@ args <- quote({ list(rate = 1/estimate) })
 pdflist <- list(dist = pd, args = args, th = 30)
 map <- build_emap(data = poverty, pdflist = pdflist, shapefile = us_geo, id = "GEO_ID",
             border = "state", key_label = "Pr[X > 30]")
-view(map)
+view(map) + ggplot2::ggtitle("Proper use of build_emap (appropriate distribution choice)")
 
 # Example where an inappropriate distributions is tried
 # Exceedance probability map with a shapefile: Pr[X>30] (Normal Distribution)
@@ -86,12 +94,12 @@ view(map)
 #---- define probability distribution
 pd <- quote({ pnorm(q, mean, sd, lower.tail = FALSE) })
 #---- define argument listing
-args <- quote({ list(mean = estimate, sd = error) })
+args <- quote({ list(mean = estimate, sd = error/1.645) })
 #---- capture distribution and arguments in a single list
 pdflist <- list(dist = pd, args = args, th = 30)
 map <- build_emap(data = poverty, pdflist = pdflist, shapefile = us_geo, id = "GEO_ID",
             border = "state", key_label = "Pr[X > 30]")
-view(map)
+view(map) + ggplot2::ggtitle("Misuse of build_emap (inappropriate distribution choice)")
 
 # Example where exceedance probabilities have been supplied (GBR Example)
 # Load Upper Burdekin Data

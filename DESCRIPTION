@@ -35,7 +35,7 @@ Imports:
 License: GPL-3 + file LICENSE
 LazyLoad: TRUE
 LazyData: TRUE
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.0
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr

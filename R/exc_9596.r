@@ -7,9 +7,7 @@
 #' (2012). The TSS estimates, error and exceedance probabilities were derived from the
 #' model developed and described in Gladish et al. (2016).
 #'
-#' @format A data frame comprising 411 rows (one for each RCA) and 5 columns:
-#' \describe{
-#' \item{TSS}{Estimate of total suspended sediment}
+#' @format A data frame comprising 411 rows (one for each RCA) and 5 columns.
 #'
 #' @references
 #' Bartley, R., Speirs, W. J., Ellis, T. W., and Waters, D. K. (2012).

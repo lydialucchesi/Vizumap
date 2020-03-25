@@ -4,8 +4,12 @@
 \alias{build_palette}
 \title{Build a palette}
 \usage{
-build_palette(name, colrange = list(colour = NULL, difC = NULL),
-  flipVertical = FALSE, flipHorizontal = FALSE)
+build_palette(
+  name,
+  colrange = list(colour = NULL, difC = NULL),
+  flipVertical = FALSE,
+  flipHorizontal = FALSE
+)
 }
 \arguments{
 \item{name}{Name of colour palette or \code{usr} for option to design a new

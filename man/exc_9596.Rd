@@ -4,7 +4,7 @@
 \name{exc_9596}
 \alias{exc_9596}
 \title{exc_9596}
-\format{An object of class \code{data.frame} with 411 rows and 5 columns.}
+\format{A data frame comprising 411 rows (one for each RCA) and 5 columns.}
 \usage{
 exc_9596
 }

@@ -4,9 +4,17 @@
 \alias{build_bmap}
 \title{Build a bivariate colour map}
 \usage{
-build_bmap(data, shapefile = NULL, id = NULL, border = NULL,
-  palette = "BlueYellow", size = NULL, terciles = FALSE,
-  bound = NULL, flipAxis = FALSE)
+build_bmap(
+  data,
+  shapefile = NULL,
+  id = NULL,
+  border = NULL,
+  palette = "BlueYellow",
+  size = NULL,
+  terciles = FALSE,
+  bound = NULL,
+  flipAxis = FALSE
+)
 }
 \arguments{
 \item{data}{A data frame.}

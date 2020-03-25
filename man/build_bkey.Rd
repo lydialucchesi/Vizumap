@@ -4,8 +4,7 @@
 \alias{build_bkey}
 \title{Build a bivariate colour key}
 \usage{
-build_bkey(data, palette = "BlueYellow", terciles = FALSE,
-  flipAxis = FALSE)
+build_bkey(data, palette = "BlueYellow", terciles = FALSE, flipAxis = FALSE)
 }
 \arguments{
 \item{data}{A data frame.}

@@ -4,44 +4,39 @@ output: rmarkdown::github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, echo = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  message = FALSE,
+  fig.path = "man/figures/README-",
+  out.width = "100%"
 )
 ```
 
-
-
-<center> <span style="color:blue"><h1>Vizumap: An R package for visualising uncertainty in spatial data. </h1></span></center>
+# Vizumap <img src='man/figures/Vizumap_Hex.png' align="right" height="138.5" />
+## An R package for visualizing uncertainty in spatial data. 
 
 ```{rbadge, echo = FALSE}
 library(badgecreatr)
-badge_github_fork(ghaccount = "pkuhnert", ghrepo = "Vizumap", location = "https://github.com")
+badge_github_fork(ghaccount = "lydialucchesi", ghrepo = "Vizumap", location = "https://github.com")
 badge_license()
-
 ```
-
 
 ## Installation
 
-You can install a development version of the Vizumap package from [GitHub](https://github.com/pkuhnert/Vizumap)
+You can install a development version of the Vizumap package from [GitHub](https://github.com/lydialucchesi/Vizumap)
 
 ```
 # install.packages("devtools")
-devtools::install_github(repo = "pkuhnert/Vizumap", build_vignettes = TRUE, force = TRUE)
+devtools::install_github(repo = "lydialucchesi/Vizumap", build_vignettes = TRUE, force = TRUE)
 ```
-
 
 ## Authors
 
-
 Petra Kuhnert, CSIRO Data61, Email: Petra.Kuhnert@data61.csiro.au 
 
-Lydia Lucchesi, University of Washington,  Email: lydialuc@uw.edu
-
-
+Lydia Lucchesi, Australian National University & CSIRO Data61,  Email: Lydia.Lucchesi@anu.edu.au
 
 ## About the Package
 
@@ -65,23 +60,21 @@ Glyph rotation uses a glyph to represent uncertainty. When rotated in different 
 ### Exceedance Probability Maps
 The final map based exploration of uncertainty is through exceedance probabilities, that can be showcased on a map to highlight regions that exhibit varying levels of departure from a threshold of concern or target. 
 
-
-
 ## Examples
 
-A vignette for the Vizumap package is available and contains examples relating to each of the visualisation methods.
+A vignette for the Vizumap package is available and contains examples relating to each of the visualization methods.
 
 ```
 vignette("Vizumap")
 ```
 
 ## How to Reference
-Vizumap : An R package for visualizing uncertainty in spatial data, DOI: 10.5281/zenodo.1013930, https://zenodo.org/record/1013930#.W-Nw7fkzbcs
+
+Vizumap: An R package for visualizing uncertainty in spatial data, DOI: 10.5281/zenodo.1013930, https://zenodo.org/record/1479951#.Xnr_Qy1L2L8
 
 ## License
 
 The package Vizumap version 1.1.0 is licensed under GPL-3 (see LICENSE file)
-
 
 ## References
 
