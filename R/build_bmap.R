@@ -59,8 +59,9 @@
 
 
 
-build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL, palette = "BlueYellow", size = NULL,
-                      terciles = FALSE, bound = NULL, flipAxis = FALSE) {
+build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL,
+                       palette = "BlueYellow", size = NULL,
+                       terciles = FALSE, bound = NULL, flipAxis = FALSE) {
 
 
   nms <- names(data)

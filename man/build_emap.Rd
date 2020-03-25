@@ -4,11 +4,20 @@
 \alias{build_emap}
 \title{Build an exceedance probability colour map}
 \usage{
-build_emap(data, shapefile = NULL, id = NULL, key_label,
-  palette = "YlOrRd", size = NULL, border = NULL)
+build_emap(data, pdflist = NULL, shapefile = NULL, id = NULL,
+  key_label, palette = "YlOrRd", size = NULL, border = NULL)
 }
 \arguments{
-\item{data}{A data frame.}
+\item{data}{A data frame containing columns that house estimates of the mean,
+standard deviation (or margin of error) and exceedance probability (optional).
+A number of options are considered for calculating the probability of exceeding
+a threshold. See below for more information.}
+
+\item{pdflist}{A list capturing the pdf function that defines the distribution function to use to
+calculate the probabilities of exeedence. By default this is NULL and assumes
+the exceedance probabilities have been calculated outside of the function and passed
+as a third column of the data dataframe.  Functions need to conform to the class
+of distribution functions available within R through the \code{stats} package.}
 
 \item{shapefile}{A spatial polygons data frame.}
 
@@ -23,8 +32,18 @@ frame through this column.}
 \code{BlueYellow}, \code{CyanMagenta}, \code{BlueRed}, \code{GreenBlue} and \code{YellowRed}.}
 
 \item{size}{An integer between 1 and 20. Value controls the size of points
-when \code{shapefile = NULL}. If \code{size = NULL}, the points will remain
-the default size.}
+ when \code{shapefile = NULL}. If \code{size = NULL}, the points will remain
+ the default size.
+
+ @details An exceedance probability map can be produced using:
+ (i) precalculated exceedance probabilities, which are provided as a third column
+ to the input dataframe; or
+ (ii) exceedance probabilities that are calculated within the function using one of
+ the standard probability distributions (e.g. \code{pnorm}) provided in the \code{stats}
+ package in R, or
+ (iii) exceedance probabilities that are calculated through a user defined function that
+ is passed to the package which conforms to a similar structure as the suite of
+ \code{Distributions} available in R.  Examples are provided below.}
 
 \item{border}{Name of geographical borders to be added to the map. It must be
 one of \code{\link[maps]{county}}, \code{\link[maps]{france}},
@@ -37,11 +56,55 @@ frame or spatial polygons data frame.}
 }
 \description{
 This function builds a map that visualises the probability of exceeding some
-threshold of concern.
+nominated threshold of concern.
 }
 \details{
 If \code{shapefile} remains \code{NULL}, the function will produce a map of
 plotted points representing specific sites; in this case, the data frame must
 include latitude and longitude coordinates in columns \code{"long"} and
 \code{"lat"}.
+}
+\examples{
+data(us_data)
+data(us_geo)
+poverty <- read.uv(data = us_data, estimate = "pov_rate", error = "pov_moe")
+
+# Exceedance probability map with a shapefile: Pr[X > 30] (Exponential Distribution)
+#---- define probability distribution
+pd <- quote({ pexp(q, rate, lower.tail = FALSE) })
+#---- define argument listing
+args <- quote({ list(rate = 1/estimate) })
+#---- capture distribution and arguments in a single list
+pdflist <- list(dist = pd, args = args, th = 30)
+map <- build_emap(data = poverty, pdflist = pdflist, shapefile = us_geo, id = "GEO_ID",
+            border = "state", key_label = "Pr[X > 30]")
+view(map)
+
+# Example where an inappropriate distributions is tried
+# Exceedance probability map with a shapefile: Pr[X>30] (Normal Distribution)
+
+#---- define probability distribution
+pd <- quote({ pnorm(q, mean, sd, lower.tail = FALSE) })
+#---- define argument listing
+args <- quote({ list(mean = estimate, sd = error) })
+#---- capture distribution and arguments in a single list
+pdflist <- list(dist = pd, args = args, th = 30)
+map <- build_emap(data = poverty, pdflist = pdflist, shapefile = us_geo, id = "GEO_ID",
+            border = "state", key_label = "Pr[X > 30]")
+view(map)
+
+# Example where exceedance probabilities have been supplied (GBR Example)
+# Load Upper Burdekin Data
+data(UB)
+
+# Build Palette
+exc_pal <- build_palette(name = "usr", colrange = list(colour = c("yellow", "red"),
+                                                       difC = c(1, 1)))
+                                                       view(exc_pal)
+# Create map and view it
+map <- build_emap(data = exc_9596,  shapefile = UB_shp, id = "scID",
+            key_label = "Pr[TSS > 837mg/L]")
+view(map)
+
+
 }

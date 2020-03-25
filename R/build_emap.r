@@ -1,14 +1,22 @@
 #'Build an exceedance probability colour map
 #'
 #'This function builds a map that visualises the probability of exceeding some
-#'threshold of concern.
+#'nominated threshold of concern.
 #'
 #'If \code{shapefile} remains \code{NULL}, the function will produce a map of
 #'plotted points representing specific sites; in this case, the data frame must
 #'include latitude and longitude coordinates in columns \code{"long"} and
 #'\code{"lat"}.
 #'
-#'@param data A data frame.
+#'@param data A data frame containing columns that house estimates of the mean,
+#'standard deviation (or margin of error) and exceedance probability (optional).
+#'A number of options are considered for calculating the probability of exceeding
+#'a threshold. See below for more information.
+#'@param pdflist A list capturing the pdf function that defines the distribution function to use to
+#'calculate the probabilities of exeedence. By default this is NULL and assumes
+#'the exceedance probabilities have been calculated outside of the function and passed
+#'as a third column of the data dataframe.  Functions need to conform to the class
+#'of distribution functions available within R through the \code{stats} package.
 #'@param shapefile A spatial polygons data frame.
 #'@param id Name of the common column shared by the objects passed to
 #'  \code{data} and \code{shapefile}. The exceedance probability in the data frame
@@ -29,6 +37,58 @@
 #'  when \code{shapefile = NULL}. If \code{size = NULL}, the points will remain
 #'  the default size.
 #'
+#'  @details An exceedance probability map can be produced using:
+#'  (i) precalculated exceedance probabilities, which are provided as a third column
+#'  to the input dataframe; or
+#'  (ii) exceedance probabilities that are calculated within the function using one of
+#'  the standard probability distributions (e.g. \code{pnorm}) provided in the \code{stats}
+#'  package in R, or
+#'  (iii) exceedance probabilities that are calculated through a user defined function that
+#'  is passed to the package which conforms to a similar structure as the suite of
+#'  \code{Distributions} available in R.  Examples are provided below.
+#'
+#'@examples
+#'data(us_data)
+#'data(us_geo)
+#'poverty <- read.uv(data = us_data, estimate = "pov_rate", error = "pov_moe")
+#'
+#'# Exceedance probability map with a shapefile: Pr[X > 30] (Exponential Distribution)
+#'#---- define probability distribution
+#'pd <- quote({ pexp(q, rate, lower.tail = FALSE) })
+#'#---- define argument listing
+#'args <- quote({ list(rate = 1/estimate) })
+#'#---- capture distribution and arguments in a single list
+#'pdflist <- list(dist = pd, args = args, th = 30)
+#'map <- build_emap(data = poverty, pdflist = pdflist, shapefile = us_geo, id = "GEO_ID",
+#'             border = "state", key_label = "Pr[X > 30]")
+#'view(map)
+#'
+#'# Example where an inappropriate distributions is tried
+#'# Exceedance probability map with a shapefile: Pr[X>30] (Normal Distribution)
+#'
+#'#---- define probability distribution
+#'pd <- quote({ pnorm(q, mean, sd, lower.tail = FALSE) })
+#'#---- define argument listing
+#'args <- quote({ list(mean = estimate, sd = error/1.645) })
+#'#---- capture distribution and arguments in a single list
+#'pdflist <- list(dist = pd, args = args, th = 30)
+#'map <- build_emap(data = poverty, pdflist = pdflist, shapefile = us_geo, id = "GEO_ID",
+#'             border = "state", key_label = "Pr[X > 30]")
+#'view(map)
+#'
+#'# Example where exceedance probabilities have been supplied (GBR Example)
+#' # Load Upper Burdekin Data
+#' data(UB)
+#'
+#'# Build Palette
+#' exc_pal <- build_palette(name = "usr", colrange = list(colour = c("yellow", "red"),
+#'                                                        difC = c(1, 1)))
+#'                                                        view(exc_pal)
+#'# Create map and view it
+#' map <- build_emap(data = exc_9596,  shapefile = UB_shp, id = "scID",
+#'             key_label = "Pr[TSS > 837mg/L]")
+#' view(map)
+#'
 #'
 #'@import "ggplot2"
 #'@importFrom "dplyr" "left_join"
@@ -41,7 +101,7 @@
 
 
 
-build_emap <- function(data, shapefile = NULL, id = NULL, key_label,
+build_emap <- function(data, pdflist = NULL, shapefile = NULL, id = NULL, key_label,
                        palette = "YlOrRd", size = NULL, border = NULL) {
 
 
@@ -86,9 +146,10 @@ build_emap <- function(data, shapefile = NULL, id = NULL, key_label,
   #determine whether shapefile has been entered by user
   #if so, link shapefile and data and plot
   if (!is.null(shapefile)) {
+
     shapefile@data <- shapefile@data %>% dplyr::mutate_if(is.factor,
                                                           as.character)
-    shapefile@data <- left_join(shapefile@data, data, by = "scID")
+    shapefile@data <- left_join(shapefile@data, data, by = id)
     shapefile@data$id <- rownames(shapefile@data)
     region_coord <- sptable(shapefile, region = "id")
     region_coord <- plyr::rename(region_coord, c(object_ = "id",
@@ -102,8 +163,26 @@ build_emap <- function(data, shapefile = NULL, id = NULL, key_label,
     bbox <- make_bbox(lat = lat, lon = long, data = output_data)
   }
 
-  id <- match(names(data)[1], names(output_data))
-  names(output_data)[id] <- "Exceedance"
+  if(is.null(pdflist)){
+    # assume 3 columns (estimate, error, pr_esc)
+    id <- match(names(data)[1:3], names(output_data))
+    names(output_data)[id] <- c("estimate", "error", "pr_exc")
+   }
+  else{
+    # assume 2 columns and pr_exc is to be calculated via a function
+    warning("Ensure the pdf you select is suitable for your data.\n")
+
+    id <- match(names(data)[1:2], names(output_data))
+    names(output_data)[id] <- c("estimate", "error")
+    estimate <- output_data$estimate
+    error <- output_data$error
+
+    args_call <- eval(do.call("substitute", list(pdflist$args, list(estimate, error))))
+    output_data$pr_exc <- pdist(pname = pdflist$dist, th = pdflist$th, args = args_call)
+
+  }
+
+
 
   p <- list(output_data = output_data, bord = bord, bbox = bbox,
             key_label = key_label, palette = palette)

@@ -10,7 +10,7 @@ view.emap <- function(obj){
   p <- ggplot() +
     geom_polygon(data = obj$output_data,
                  aes_string(x = 'long', y = 'lat', group = 'group',
-                            fill = "Exceedance"),
+                            fill = "pr_exc"),
                  colour = "black", size = .1) +
     scale_fill_distiller(direction=1, palette = obj$palette, name = obj$key_label, limits = c(0,1)) +
     scale_colour_distiller(direction=1, palette = obj$palette, limits = c(0,1)) +
