@@ -15,10 +15,10 @@ You can install a development version of the Vizumap package from
 
 ## Authors
 
-Petra Kuhnert, CSIRO Data61, Email: <Petra.Kuhnert@data61.csiro.au>
-
 Lydia Lucchesi, Australian National University & CSIRO Data61, Email:
 <Lydia.Lucchesi@anu.edu.au>
+
+Petra Kuhnert, CSIRO Data61, Email: <Petra.Kuhnert@data61.csiro.au>
 
 ## About the Package
 
