@@ -40,24 +40,24 @@ As an illustration below, we use ``Vizumap`` to visualise estimated pollutant lo
 
 This bivariate map of the upper Burdekin catchment in Queensland, Australia, depicts predicted sediment concentrations and prediction uncertainty. In this example, a custom colour palette is created and then used to build the bivariate map and colour key. The bivariate bins are defined using terciles.
 
-![](GBRexample/bivariateMap.png){width=4in height=4in}
+![](bivariateMap.png){width=4in height=4in}
 
 ## Pixel map
 
 This pixel map depicts the uncertainty of TSS predictions, while giving a general idea of the estimated TSS loads. The colours filling the pixels within each region were sampled from the relative frequency distribution of the estimate. This pixel map can be animated so that the pixels flicker between sampled values. If the map below were to be animated, the areas that appear most pixelated in the static map would, correspondingly, have the most visible movement among pixels in the animated map. Movement among pixels in areas of low uncertainty would be hard to detect due to the minimal differences between the sampled values of orange. An example of an animated pixel map can be found in @vizMethod.
-![](GBRexample/pixelMap.png){width=4in height=4in}
+![](pixelMap.png){width=4in height=4in}
 
 ## Glyph map
 
 This glyph map of the upper Burdekin catchment depicts estimated TSS loads and the uncertainty of these predictions. The colour filling each glyph represents the estimate, and the rotation of the glyph represents the uncertainty.
 
-![](GBRexample/glyphMap.png){width=4in height=4in}
+![](glyphMap.png){width=4in height=4in}
 
 ## Exceedance probability map
 
 This exceedance probability map plots the calculated probability of exceeding a certain threshold of concern (a sediment concentration greater than 837 mg/L) in order to draw attention to the high-risk regions on the map.
 
-![](GBRexample/exceedMap.png){width=4in height=4in}
+![](exceedMap.png){width=4in height=4in}
 
 # Acknowledgements
 
