@@ -16,7 +16,7 @@ authors:
 affiliations:
  - name: Australian National University, Canberra, Australia
    index: 1
- - name: CSIRO's Data61, Canberra, Australia
+ - name: CSIRO Data61, Canberra, Australia
    index: 2
  - name: University of Missouri, Columbia, USA
    index: 3 
