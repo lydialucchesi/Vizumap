@@ -63,7 +63,7 @@ This glyph map of the upper Burdekin catchment depicts estimated TSS loads and t
 
 ## Exceedance probability map
 
-This exceedance probability map plots the calculated probability of exceeding a certain threshold of concern (a sediment concentration greater than 837 mg/L) in order to draw attention to the high-risk regions on the map. These probabilities were calculated from the posterior distribution of a Bayesian hierarchical model.
+This exceedance probability map plots the calculated probability of exceeding a certain threshold of concern (a sediment concentration greater than 837 mg/L) in order to draw attention to the high-risk regions on the map. These probabilities were calculated from the posterior distributions of a Bayesian hierarchical model.
 
 ![](exceedMap.png){width=4in height=4in}
 
