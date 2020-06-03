@@ -52,7 +52,7 @@ This bivariate map of the upper Burdekin catchment in Queensland, Australia, dep
 
 ## Pixel map
 
-This pixel map depicts the uncertainty of TSS predictions, while giving a general idea of estimated TSS loads. The colours filling the pixels within each region were sampled from the relative frequency distribution of the estimate. This pixel map can be animated so that the pixels flicker between sampled values. If the map below were to be animated, the areas that appear most pixelated in the static map would, correspondingly, have the most visible movement among pixels in the animated map. Movement among pixels in areas of low uncertainty would be hard to detect due to the minimal differences between the sampled values of orange. An example of an animated pixel map can be found in @vizMethod.
+This pixel map depicts the uncertainty of TSS predictions, while giving a general idea of estimated TSS loads. The colours filling the pixels in each region were sampled from the estimate's relative frequency distribution. This pixel map can be animated so that the pixels flicker between sampled values. If the map below were to be animated, the areas that appear most pixelated in the static map would, correspondingly, have the most visible movement among pixels in the animated map. Movement among pixels in areas of low uncertainty would be hard to detect due to the minimal differences between the sampled values of orange. An example of an animated pixel map can be found in @vizMethod.
 ![](pixelMap.png){width=4in height=4in}
 
 ## Glyph map
