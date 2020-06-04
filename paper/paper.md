@@ -28,9 +28,9 @@ bibliography: paper.bib
 
 To make a sound data-driven decision, it is necessary to consider the quality and strength of the evidence. Therefore, it is important that the uncertainty of statistical estimates be effectively communicated to decision makers to ensure it is properly considered in the decision-making 
 process. Generally, this uncertainty information is shared through visualisation (e.g., error bars). However, in spatial applications, finding methods that add additional elements to a map of spatial estimates can be challenging. To address this visualisation shortcoming in spatial 
-statistics, we developed the ``Vizumap`` R package, which is a toolkit for visualising uncertainty in spatial data.
+statistics, we developed the `Vizumap` R package, which is a toolkit for visualising uncertainty in spatial data.
 
-``Vizumap`` contains a series of straightforward functions that can be used to create four different types of maps, which are discussed in detail in @vizMethod and @gbrData. The visualisation methods include the bivariate choropleth map, pixel map, glyph map, and exceedance probability map. Following is a brief description of each method.
+`Vizumap` contains a series of straightforward functions that can be used to create four different types of maps, which are discussed in detail in @vizMethod and @gbrData. The visualisation methods include the bivariate choropleth map, pixel map, glyph map, and exceedance probability map. Following is a brief description of each method.
 
 * For the bivariate choropleth map, two colour scales are merged to create a bivariate grid that can encode the estimates and errors at once, making it possible to fill each region with a single colour that represents both values.
 
@@ -38,11 +38,11 @@ statistics, we developed the ``Vizumap`` R package, which is a toolkit for visua
 
 * The glyph map is intended to address the issue of unequal region sizes on a choropleth map. Glyphs of equal size are placed at the centroid of each region, filled with a colour that represents the estimate, and rotated depending on the degree of uncertainty.
 
-* Exceedance probability maps show the probability of exceeding a nominated threshold of concern. These probabilities can be pre-calculated and passed to the exceedance probability map function or calculated within the function given a prescribed probability distribution function, estimate, and error.
+* Exceedance probability maps show the probability of exceeding a nominated threshold of concern. These probabilities can be pre-calculated and passed to the exceedance probability map function or calculated within the function given a prescribed probability distribution function, estimate, and error. For example, let $X$ denote a random variable, and $x$ is a possible value of that random variable, $X$. $F_x(x)$ is the cumulative distribution function and equals the probability that the value of $X$ is less than or equal to a specific value or threshold, $x$, so $$F_x(x) = Pr[X {\leq} x].$$ The probability that the value $X$ is greater than the specific threshold $x$ can then be written as $$Pr[X > x] = 1 - F_x(x) = 1 - Pr[X {\leq} x].$$ In R, assuming an exponential distribution, this can be evaluated through the following expressions: `1 - pexp(q, rate)` or `pexp(q, rate, lower.tail = FALSE)`.
 
-A comprehensive vignette that demonstrates how to use the ``Vizumap`` functions can be found in the package download. The functions are divided into three categories: formatting, building, and viewing. Formatting functions prepare data for use in the building functions, which are used to build the colour palettes, maps, and map keys. Viewing functions are used to check and combine the different graphical objects designed with the building functions. Previous applications of the ``Vizumap`` R package include visualising American Community Survey estimates with their corresponding margins of error. We believe ``Vizumap`` is useful in a wide range of applications, and we will continue to improve the toolkit to enhance its utility. 
+A comprehensive vignette that demonstrates how to use the `Vizumap` functions can be found in the package download. The functions are divided into three categories: formatting, building, and viewing. Formatting functions prepare data for use in the building functions, which are used to build the colour palettes, maps, and map keys. Viewing functions are used to check and combine the different graphical objects designed with the building functions. Previous applications of the `Vizumap` R package include visualising American Community Survey estimates with their corresponding margins of error. We believe `Vizumap` is useful in a wide range of applications, and we will continue to improve the toolkit to enhance its utility. 
 
-As an illustration below, we use ``Vizumap`` to visualise estimated pollutant loads of sediment from the upper Burdekin catchment in Queensland, Australia, into the Great Barrier Reef (GBR). The predictions and uncertainty, published in @gbrData, were developed from a Bayesian hierarchical model that assimilated estimates of sediment concentration and flow with modelled output from a catchment model developed on the upper Burdekin catchment. Development of this modelling strategy is discussed in @gbrMethod. Here we just focus on total suspended sediment (TSS).  The export of pollutants from coastal catchments within Australia has important implications for the health of the GBR lagoon, and ``Vizumap`` offers a variety of methods for communicating these predictions and uncertainty to catchment managers and policy makers.
+As an illustration below, we use `Vizumap` to visualise estimated pollutant loads of sediment from the upper Burdekin catchment in Queensland, Australia, into the Great Barrier Reef (GBR). The predictions and uncertainty, published in @gbrData, were developed from a Bayesian Hierarchical Model (BHM) that assimilated estimates of sediment concentration and flow with modelled output from a catchment model developed on the upper Burdekin catchment. Development of this modelling strategy is discussed in @gbrMethod. Here we just focus on total suspended sediment (TSS).  The export of pollutants from coastal catchments within Australia has important implications for the health of the GBR lagoon, and `Vizumap` offers a variety of methods for communicating these predictions and uncertainty to catchment managers and policy makers.
 
 ## Bivariate map
 
@@ -63,12 +63,12 @@ The glyph map of the upper Burdekin catchment depicts estimated TSS loads and th
 
 ## Exceedance probability map
 
-The exceedance probability map plots the calculated probability of exceeding a sediment concentration greater than 837 mg/L (a threshold of concern) in order to draw attention to the high-risk regions on the map. These probabilities were calculated from the posterior distributions of a Bayesian hierarchical model.
+The exceedance probability map plots the calculated probability of exceeding a sediment concentration greater than 837 mg/L (a threshold of concern) in order to draw attention to the high-risk regions on the map. These probabilities were calculated from the posterior distributions of a BHM as outlined in @gbrData.
 
 ![](exceedMap.png){width=4in height=4in}
 
 # Acknowledgements
 
-``Vizumap`` was built using the following R packages: ``ggplot2``, ``animation``, ``broom``, ``dplyr``, ``geoaxe``, ``ggmap``, ``grDevices``, ``gridExtra``, ``maps``, ``maptools``, ``plyr``, ``reshape2``, ``rgdal``, ``rgeos``, ``roxygen2``, ``sp``, ``spbabel``, and ``utils``.
+`Vizumap` was built using the following R packages: ``ggplot2``, ``animation``, ``broom``, ``dplyr``, ``geoaxe``, ``ggmap``, ``grDevices``, ``gridExtra``, ``maps``, ``maptools``, ``plyr``, ``reshape2``, ``rgdal``, ``rgeos``, ``roxygen2``, ``sp``, ``spbabel``, and ``utils``.
 
 # References
