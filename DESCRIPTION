@@ -2,17 +2,14 @@ Package: Vizumap
 Type: Package
 Title: Visualizing Uncertainty in spatial data
 Version: 1.2.0
-Author: Petra Kuhnert, Lydia Lucchesi and Sam Nelson
-Maintainer: Maintainer: Petra Kuhnert <Petra.Kuhnert@data61.csiro.aut>
+Author: Lydia Lucchesi and Petra Kuhnert
+Maintainer: Maintainer: Lydia <Lydia.Lucchesi@anu.edu.au>
 Description:
     Vizumap provides visualization approaches for spatial data.
 Encoding: UTF-8
-Date: 2020-02-17
-Authors@R: c(
-    person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = c("aut", "cre")),
-    person("Lydia", "Lucchesi", email = "Lydia.Lucchesi@anu.edu.au", role = "aut"),
-    person("Sam", "Nelson", email = "Sam.Nelson@data61.csiro.au", role = "aut")
-    )
+Date: 2020-06-04
+Authors@R: c(person("Lydia", "Lucchesi", email = "Lydia.Lucchesi@anu.edu.au", role = "aut"),
+    person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = c("aut", "cre"))
 Depends:
     R (>= 3.5.0)
 Imports:
