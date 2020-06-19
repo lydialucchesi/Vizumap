@@ -85,7 +85,7 @@
 #'                                                        difC = c(1, 1)))
 #'                                                        view(exc_pal)
 #'# Create map and view it
-#' map <- build_emap(data = exc_9596,  shapefile = UB_shp, id = "scID",
+#' map <- build_emap(data = UB_tss,  shapefile = UB_shp, id = "scID",
 #'             key_label = "Pr[TSS > 837mg/L]")
 #' view(map)
 #'

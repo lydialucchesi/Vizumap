@@ -8,8 +8,7 @@ Description:
     Vizumap provides visualization approaches for spatial data.
 Encoding: UTF-8
 Date: 2020-06-04
-Authors@R: c(person("Lydia", "Lucchesi", email = "Lydia.Lucchesi@anu.edu.au", role = "aut"),
-    person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = c("aut", "cre"))
+Authors@R: c(person("Lydia", "Lucchesi", email = "Lydia.Lucchesi@anu.edu.au", role = "aut"), person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = c("aut", "cre")))
 Depends:
     R (>= 3.5.0)
 Imports:

@@ -1,4 +1,4 @@
-#' exc_9596
+#' UB_tss
 #'
 #' @description A dataset that contains estimates of Total Suspended Sediment (TSS),
 #' the error, i.e. standard deviation (TSS_error), the exceedance probabilities that
@@ -20,4 +20,4 @@
 #' of modelled catchment loads with monitoring data in the Great Barrier
 #' Reef. The Annals of Applied Statistics 10, 1590–1618. doi:10.1214/16-
 #' AOAS950
-"exc_9596"
+"UB_tss"
