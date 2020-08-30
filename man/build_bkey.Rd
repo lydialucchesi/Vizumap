@@ -35,11 +35,11 @@ data(us_data)
 data(us_geo)
 poverty <- read.uv(data = us_data, estimate = "pov_rate", error = "pov_moe")
 
-#use a prepared palette and terciles
+# use a prepared palette and terciles
 key <- build_bkey(data = poverty, terciles = TRUE)
 view(key)
 
-#use a created palette
+# use a created palette
 p <- build_palette(name = "usr", colrange =
  list(colour = c("darkblue", "chartreuse4"), difC = c(3, 4)))
 key <- build_bkey(data = poverty, palette = p)

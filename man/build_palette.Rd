@@ -42,11 +42,11 @@ will lead to a colour palette lacking noticeable differences across the 3 x 3
 colour grid.
 }
 \examples{
-#use one of four prepared colour palettes
+# use one of four prepared colour palettes
 p <- build_palette(name = "CyanMagenta")
 view(p)
 
-#design a new palette
+# design a new palette
 p <- build_palette(name = "usr", colrange =
  list(colour = c("darkblue", "chartreuse4"), difC = c(3, 4)))
 view(p)

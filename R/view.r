@@ -16,7 +16,7 @@
 #'gb <- build_palette(name = "GreenBlue")
 #'view(gb)
 #'
-#'#ggplot object
+#'# ggplot object
 #'p <- view(gb)
 #'
 #'

@@ -22,11 +22,11 @@
 #'@param flipVertical Whether the palette should be flipped vertically (ie. replace top portion with bottom portion)
 #'@param flipHorizontal Whether the palette should be flipped horizontally (ie. replace left portion with right portion)
 #'@examples
-#'#use one of four prepared colour palettes
+#'# use one of four prepared colour palettes
 #'p <- build_palette(name = "CyanMagenta")
 #'view(p)
 #'
-#'#design a new palette
+#'# design a new palette
 #'p <- build_palette(name = "usr", colrange =
 #'  list(colour = c("darkblue", "chartreuse4"), difC = c(3, 4)))
 #'view(p)

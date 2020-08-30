@@ -69,7 +69,7 @@ us_data$GEO.id2 <- as.numeric(us_data$GEO.id2)
 co_data <- subset(us_data, us_data$GEO.id2 > 8000 & us_data$GEO.id2 < 9000)
 co_data <- read.uv(data = co_data, estimate = "pov_rate", error = "pov_moe")
 
-#build a glyph map
+# build a glyph map
 map <- build_gmap(data = co_data, shapefile = co_geo, id = "GEO_ID",
  size = 70, border = "state", glyph = "icone")
 view(map)

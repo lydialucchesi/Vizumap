@@ -43,7 +43,7 @@
 #'data(us_geo)
 #'poverty <- read.uv(data = us_data, estimate = "pov_rate", error = "pov_moe")
 #'
-#'#bivariate map with a shapefile
+#'# bivariate map with a shapefile
 #'map <- build_bmap(data = poverty, shapefile = us_geo, id = "GEO_ID",
 #'  border = "state", terciles = TRUE)
 #'view(map)

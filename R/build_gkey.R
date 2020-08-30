@@ -23,7 +23,7 @@
 #'co_data <- subset(us_data, us_data$GEO.id2 > 8000 & us_data$GEO.id2 < 9000)
 #'co_data <- read.uv(data = co_data, estimate = "pov_rate", error = "pov_moe")
 #'
-#'#build a glyph key
+#'# build a glyph key
 #'key <- build_gkey(data = co_data, glyph = "icone")
 #'view(key)
 #'
