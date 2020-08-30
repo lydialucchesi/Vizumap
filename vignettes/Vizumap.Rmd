@@ -1,6 +1,6 @@
 ---
 title: "Visualising Uncertainty in Poverty Rates across the USA"
-author: "Petra Kuhnert and Lydia Lucchesi"
+author: "Lydia Lucchesi and Petra Kuhnert"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -16,11 +16,11 @@ library(ggplot2)
 library(dplyr)
 ```
 
-**Vizumap** is a tool for visualising uncertainty in spatial data. This vignette demonstrates how to use **Vizumap** to create bivariate maps, pixel maps and glyph maps, the three uncertainty visualisation methods developed in Lucchesi and Wikle (2017). We have tried to generalise the approaches so they can be applied to most types of spatial data.
+**Vizumap** is a tool for visualising uncertainty in spatial data. This vignette demonstrates how to use the package to create bivariate maps, pixel maps, glyph maps, and exceedance probability maps. We have tried to generalise the visualisation approaches so that they are applicable for most types of spatial data.
 
-There are several types of functions in **Vizumap**: formatting functions, building functions and viewing functions. Formatting functions prepare data frames and spatial polygons for use in building functions. Building functions create maps, animations, keys and colour palettes. Viewing functions plot these objects. Some of these functions are useful across all three map types, such as `read.uv`, and others are map specific, such as `pixelate`. Below is a table displaying the functions that can be used with each map type. Blue functions format. Green functions create. Red functions plot.
+There are three types of functions in **Vizumap**: formatting functions, building functions, and viewing functions. Formatting functions prepare data frames and spatial polygons for use in building functions. Building functions create maps, animations, keys, and colour palettes. Viewing functions plot these objects. Some of these functions are useful across all four map types, such as `read.uv`, and others are map specific, such as `pixelate`. Below is a table displaying the functions that can be used with each map type. Blue functions format. Green functions create. Red functions plot.
 
-```{r echo = FALSE, fig.align='center', fig.height=4, fig.width=6, fig.asp=.6, warning=FALSE}
+```{r echo = FALSE, fig.align='center', fig.height=5, fig.width=8, fig.asp=.6, warning=FALSE}
 
 b <- data.frame(name = rev(c("read.uv", "build_bmap", "build_bkey", "build_palette", "view", "attach_key")),
                 x = rep(0, 6), 
@@ -28,19 +28,24 @@ b <- data.frame(name = rev(c("read.uv", "build_bmap", "build_bkey", "build_palet
                 col = rev(c("midnightblue", "darkgreen", "darkgreen", "darkgreen", "darkred", "darkred")))
 
 p <- data.frame(name = rev(c("read.uv", "pixelate", "build_pmap", "animate", "view", "")), 
-                x = rep(2, 6), 
+                x = rep(5, 6), 
                 y = seq(0, 5, 1), 
                 col = rev(c("midnightblue", "midnightblue", "darkgreen", "darkgreen", "darkred", "darkred")))
 
 
 g <- data.frame(name = rev(c("read.uv", "build_gmap", "build_gkey", "view", "attach_key", "")), 
-                x = rep(4, 6), 
+                x = rep(10, 6), 
                 y = seq(0, 5, 1),
                 col = rev(c("midnightblue", "darkgreen", "darkgreen", "darkred", "darkred", "darkred")))
 
-functions <- rbind(b, p, g)
+e <- data.frame(name = rev(c("read.uv", "build_emap", "view", "", "", "")), 
+                x = rep(15, 6), 
+                y = seq(0, 5, 1),
+                col = rev(c("midnightblue", "darkgreen", "darkred", "darkred", "darkred", "darkred")))
 
-headings <- data.frame(name = c("Bivariate map", "Pixel map", "Glyph map"), x = c(0, 2, 4), y = rep(6, 3))
+functions <- rbind(b, p, g, e)
+
+headings <- data.frame(name = c("Bivariate map", "Pixel map", "Glyph map", "Exceedance map"), x = c(0, 5, 10, 15), y = rep(6, 4))
 
 g <- ggplot() + geom_text(data = functions, aes(x = x, y = y, label = name, colour=col), size = 4, fontface = "bold") + 
   scale_colour_identity() + 
@@ -51,13 +56,13 @@ g <- ggplot() + geom_text(data = functions, aes(x = x, y = y, label = name, colo
         axis.ticks = element_blank(),
         axis.title.x = element_blank(),
         axis.title.y = element_blank(),
-        panel.background = element_blank()) + lims(x = c(-1, 5), y = c(-.5, 7))
+        panel.background = element_blank()) + lims(x = c(-1, 17), y = c(-.5, 7))
 plot(g)
 ```
 
 ## Data
 
-Two datasets are included in the package. `us_data` contains the 2015 family poverty rates for US counties, and `us_geo` is a spatial polygons data frame for a US county map, which can be used to map the estimates and errors in `us_data`. These data come from the US Census Bureau [Fact Finder website](https://factfinder.census.gov/), and documentation can be found under `?us_data` and `?us_geo`.
+One of the included datasets in the **Vizumap** package is `us_data`, which contains the estimated family poverty rates for all US counties in 2015. Also included is a spatial polygons data frame for a US county map (`us_geo`), which can be used to map the estimates and errors in `us_data`. These data come from the US Census Bureau [Fact Finder website](https://factfinder.census.gov/), and documentation can be found under `?us_data` and `?us_geo`.
 
 ```{r, echo=TRUE, fig.align = "center", fig.width=4, fig.height=4, message = FALSE}
 library(Vizumap)
@@ -66,87 +71,82 @@ data(us_data)
 head(us_data)
 ```
 
-```{r, echo=FALSE, fig.align = "center", fig.width=4, fig.height=4, message = FALSE}
-library(rgdal)
-```
-
 ```{r, echo=TRUE, eval = TRUE, fig.align = "center", fig.width=4, fig.height=4, message = FALSE}
 data(us_geo)
-plot(us_geo)
 ```
 
 
 ## Building bivariate maps
 
-A bivariate map is based on a bivariate colour palette, which is created by blending two single hue colour palettes. One colour palette represents the variable of interest while the other represents the uncertainty, and when the palettes are blended, each colour in the new palette becomes representative of both a variable class and uncertainty class.
+A bivariate map is based on a bivariate colour palette, which is created by blending two single hue colour palettes. One colour palette represents the variable of interest while the other represents the uncertainty. When the palettes are blended, each colour in the new palette becomes representative of both a variable class and uncertainty class.
 
 There are four pre-prepared bivariate colour palettes included in **Vizumap**: `'BlueYellow'`, `'CyanMagenta'`, `'BlueRed'` and `'GreenBlue'`.
 
 ```{r, echo = TRUE, fig.align = "center", fig.width=2, fig.height=2}
-#use one of four pre-prepared colour palettes
-p <- build_palette(name = "CyanMagenta")
-view(p)
+# use one of four pre-prepared colour palettes
+cmBivPal <- build_palette(name = "CyanMagenta")
+view(cmBivPal)
 ```
 
 You can also design your own bivariate colour palette with `build_palette`. Instead of entering one of the four pre-prepared palettes into `name`, you enter `'usr'`. If you choose two light colours when creating your own palette, the palette will lack important differences in colour across the grid. Therefore, it is best to use two darker colours. For example, `'chartreusu4'` and `'darkblue'` work better than `'tan2'` and `'lightskyblue'` (see comparison below). The numeric vector passed to `difC` controls the colour change across each single hue colour gradient.
 
 ```{r, echo = TRUE, fig.align = "center", fig.width=2, fig.height=2}
-#test two light colours with low values
-#creates a bad palette
-p <- build_palette(name = "usr", colrange = list(colour = c("tan2", "lightskyblue"), difC = c(1, 1)))
-view(p)
+# test two light colours with low difC values
+# creates a bad palette
+customBivPal1 <- build_palette(name = "usr", colrange = list(colour = c("tan2", "lightskyblue"), difC = c(1, 1)))
+view(customBivPal1)
 
-#change colours for a better palette
-p <- build_palette(name = "usr", colrange = list(colour = c("chartreuse4", "darkblue"), difC = c(1, 1)))
-view(p)
+# change colours for a better palette
+customBivPal2 <- build_palette(name = "usr", colrange = list(colour = c("chartreuse4", "darkblue"), difC = c(1, 1)))
+view(customBivPal2)
 
-#change difC values to increase colour differences
-my_pal <- build_palette(name = "usr", colrange = list(colour = c("chartreuse4", "darkblue"), difC = c(3, 4)))
-view(my_pal)
+# change difC values to increase colour differences
+customBivPal3 <- build_palette(name = "usr", colrange = list(colour = c("chartreuse4", "darkblue"), difC = c(3, 4)))
+view(customBivPal3)
 ```
 
 A bivariate map can be used to simultaneously visualise the estimates and errors in `us_data`. Before the data frame of estimates and errors is passed to `build_bmap`, it must be formatted with `read.uv` as the estimates and errors need to be in the first and second columns of the data frame. You can also import a dataset by passing a CSV file pathway to `file`.
 
 ```{r, echo = TRUE, fig.align = "center"}
-#load data
+# load data
 data(us_data)
 data(us_geo)
 
-#current column order of us_data
+# current column order of us_data
 head(us_data)
 
-#format data frame
+# format data frame
 poverty <- read.uv(data = us_data, estimate = "pov_rate", error = "pov_moe")
 
-#estimates and errors are now in the first two columns
+# estimates and errors are now in the first two columns
 head(poverty)
 ```
 
 In this example, terciles are used to define the numerical bounds for the different estimate and error classes because the dataset contains several outliers.
 ```{r, echo = TRUE, fig.align = "center", fig.width=8, fig.height=6, fig.asp=.7}
-#build a bivariate map with a shapefile
-m <- build_bmap(data = poverty, shapefile = us_geo, id = "GEO_ID", border = "state", terciles = TRUE)
-view(m)
+# build a bivariate map with the map data
+usBivMap <- build_bmap(data = poverty, shapefile = us_geo, id = "GEO_ID", terciles = TRUE)
+view(usBivMap)
 ```
 
 Keys for the bivariate maps are not automatically generated with `build_bmap` and must be created separately with `build_bkey`. It is important that the key arguments match the map arguments. For example, if `terciles` was set to `FALSE`, the key would not accurately reflect the county colour assignments for this example US map.
 
 ```{r, echo = TRUE, fig.align = "center", fig.width=4, fig.height=4}
-#build a key
-k <- build_bkey(data = poverty, terciles = TRUE)
-view(k)
+# build a key
+usBivKey <- build_bkey(data = poverty, terciles = TRUE)
+view(usBivKey)
 ```
 
 Maps and keys can be viewed together with `attach_key`.
 ```{r, echo=TRUE, fig.align="center", fig.asp=.5, fig.height=10, fig.width=14, message=FALSE, warning=FALSE}
-attach_key(m, k)
+attach_key(usBivMap, usBivKey)
 ```
 
-Changing `terciles`, `border` and `palette` leads to a map that looks very different than the previous map even though it is displaying the same dataset.
+Changing the `terciles` and `palette` arguments leads to a map that looks very different than the previous map even though it is displaying the same dataset. Here the custom colour palette is used.
 ```{r, echo = TRUE, eval = TRUE, fig.align = "center", fig.width=8, fig.height=8, fig.asp=.75}
 #make some changes
-m2 <- build_bmap(data = poverty, shapefile = us_geo, id = "GEO_ID", border = "world", terciles = FALSE, palette = my_pal)
-view(m2)
+usBivMapDif <- build_bmap(data = poverty, shapefile = us_geo, id = "GEO_ID", terciles = FALSE, palette = customBivPal3)
+view(usBivMapDif)
 ```
 
 ## Building pixel maps
@@ -162,58 +162,58 @@ ca_data <- read.uv(data = ca_data, estimate = "pov_rate", error = "pov_moe")
 row.names(ca_data) <- seq(1, nrow(ca_data), 1)
 ```
 
-The county polygons for California are extracted from `us_geo` and pixelated with `pixelate`. It can take several minutes to pixelate a shapefile depending on the size of the shapefile. Below is the code, which is not run for the vignette.
-```{r, echo = TRUE, eval = FALSE}
+The county polygons for California are extracted from `us_geo` and pixelated with `pixelate`. It can take several minutes to pixelate a shapefile depending on the size of the shapefile.
+```{r, echo = TRUE, eval = TRUE}
 data(us_geo)
 ca_geo <- subset(us_geo, us_geo@data$STATE == "06")
 pix <- pixelate(ca_geo, id = "region")
 ```
 
 There must be a shared column between `ca_data` and `pix`. Depending on your shapefile, getting this shared column might require some creativity. `pixelate` returns a column that contains the slot IDs for the polygons. Adding these slot IDs to `ca_data` through the `GEO_ID` column present in both `ca_data` and `ca_geo` creates a shared column that can be used for the `id` argument in `build_pmap`. Ultimately, if the shapefile slot IDs are not referenced in your data frame of estimates and errors, you will need to find a way to way to get this information added to your data frame of estimates and errors before using `build_pmap`.
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE, eval = TRUE}
 df <- data.frame(region = sapply(slot(ca_geo, "polygons"), function(x) slot(x, "ID")), name = unique(ca_geo@data$GEO_ID))
 ca_data$region <- df[match(ca_data$GEO_ID, df$name), 1]
 ca_data$region <- as.character(ca_data$region)
 
-#check that values in shared column match
-ca_data$region %in% pix$region
+# check that values in shared column match
+all(ca_data$region %in% pix$region)
 ```
 
 If `distribution = "uniform"`, the values are sampled uniformly from an interval, where the lower bound is the estimate minus the error and the upper bound is the estimate plus the error. For the estimates and margins of error in `us_data`, this interval corresponds to the estimate's 90% confidence interval.
-```{r, echo = TRUE, fig.height=8, fig.width=8, eval = FALSE}
-#uniform distribution
-u_m <- build_pmap(data = ca_data, distribution = "uniform", pixelGeo = pix, id = "region")
-view(u_m)
+```{r, echo = TRUE, fig.height=8, fig.width=8, eval = TRUE, message = FALSE}
+# uniform distribution
+unifPixMap <- build_pmap(data = ca_data, distribution = "uniform", pixelGeo = pix, id = "region", border = ca_geo)
+view(unifPixMap)
 ```
 
 If `distribution = "normal"`, the values assigned to pixels will be drawn from normal distributions parameterised using the estimates and errors (means and standard deviations).
-```{r, echo = TRUE, fig.height=8, fig.width=8, eval = FALSE}
-#normal distribution
+```{r, echo = TRUE, fig.height=8, fig.width=8, eval = TRUE, message = FALSE}
+# normal distribution
 ca_data$se <- ca_data$pov_moe / 1.645
 ca_data <- read.uv(data = ca_data, estimate = "pov_rate", error = "se")
 
-n_m <- build_pmap(data = ca_data, distribution = "normal", pixelGeo = pix, id = "region")
-view(n_m)
+normPixMap <- build_pmap(data = ca_data, distribution = "normal", pixelGeo = pix, id = "region", border = ca_geo)
+view(normPixMap)
 ```
 
 If `distribution = "discrete"`, a data frame of quantiles, which define the relative frequency distributions for the estimates, must be passed to `q`. Below is what the California map would look like if the relative frequency distributions for the estimates followed exponential distributions.
-```{r, echo = TRUE, fig.height=8, fig.width=8, eval = FALSE}
-#experiment with discrete distribution
-#exponential - example for q argument
+```{r, echo = TRUE, fig.height=8, fig.width=8, eval = TRUE, message = FALSE}
+# experiment with discrete distribution
+# exponential - example for q argument
 ca_data.q <- with(ca_data, data.frame(p0.05 = qexp(0.05, 1/pov_rate), p0.25 = qexp(0.25, 1/pov_rate), p0.5 = qexp(0.5, 1/pov_rate), p0.75 = qexp(0.75, 1/pov_rate), p0.95 = qexp(0.95, 1/pov_rate)))
 
 head(ca_data.q)
 
-d_m <- build_pmap(data = ca_data, distribution = "discrete", 
-                  pixelGeo = pix, id = "region", q = ca_data.q)
-view(d_m)
+discPixMap <- build_pmap(data = ca_data, distribution = "discrete", 
+                  pixelGeo = pix, id = "region", q = ca_data.q, border = ca_geo)
+view(discPixMap)
 ```
 
 Pixel maps can be animated with `animate` so that the pixels flicker between a series of assigned values. `view` saves the animation to your computer as an html file and automatically opens a browser to view it. A longer `aniLength` corresponds to a longer animation as well as a longer running time. Generating the animation with `view` can take several minutes.
-```{r, echo = TRUE, eval = FALSE}
-#animate the normal distribution map
-a <- animate(n_m, aniLength = 30)
-view(a)
+```{r, echo = TRUE, eval = TRUE}
+# animate the normal distribution map
+normPixAni <- animate(normPixMap, aniLength = 30)
+# view(normPixAni)
 ```
 
 ## Building glyph maps
@@ -234,26 +234,61 @@ co_data <- read.uv(data = co_data, estimate = "pov_rate", error = "pov_moe")
 
 Because `shapefile` is included in this example, the `build_gmap` function will plot a glyph at each region centroid. The colour of the glyph represents the estimated poverty rate among families, and the rotation of the glyph represents the margin of error for the estimate.
 ```{r, echo = TRUE, fig.align = "center", fig.width=8, fig.height=8, fig.asp=.75}
-#build a glyph map
-map <- build_gmap(data = co_data, shapefile = co_geo, id = "GEO_ID", size = 80, glyph = "icone", border = "state")
-view(map)
+# build a glyph map
+usGlyphMap <- build_gmap(data = co_data, shapefile = co_geo, id = "GEO_ID", size = 80, glyph = "icone", border = "state")
+view(usGlyphMap)
 ```
 
 Keys for glyph maps are not automatically generated with `build_gmap` and must be created separately with `build_gkey`. It is important that the key arguments match the map arguments.
 ```{r, echo = TRUE, fig.align = "center", fig.width=4, fig.height=4}
-#build a glyph key
-key <- build_gkey(data = co_data, glyph = "icone")
-view(key)
+# build a glyph key
+usGlyphKey <- build_gkey(data = co_data, glyph = "icone")
+view(usGlyphKey)
 ```
 
 Maps and keys can be viewed together with `attach_key`.
 ```{r, echo = TRUE, fig.align = "center", fig.width=10, fig.height=6, fig.asp=.5, message = FALSE}
-attach_key(map, key)
+attach_key(usGlyphMap, usGlyphKey)
 ```
 
-You can change the size, shape and colour of the glyphs as well as add different borders.
+You can change the size, shape, and colour of the glyphs as well as add different borders.
 ```{r, echo = TRUE, fig.align = "center", fig.width=8, fig.height=8, fig.asp=.75}
-#build a glyph map
-map2 <- build_gmap(data = co_data, shapefile = co_geo, id = "GEO_ID", size = 70, border = "county", glyph = "semi", palette = "Reds")
-view(map2)
+# build a glyph map
+usGlyphMapDif <- build_gmap(data = co_data, shapefile = co_geo, id = "GEO_ID", size = 70, border = "county", glyph = "semi", palette = "Reds")
+view(usGlyphMapDif)
+```
+
+## Building exceedance probability maps
+
+Exceedance maps plot the probability of exceeding some nominated threshold of concern. The `UB` dataset included in the package contains pre-calculated exceedance probabilities. However, the `us_data` data frame does not contain pre-calculated exceedance probabilities, and these will therefore need to be generated. First, a threshold needs to be selected - let's choose a poverty rate of 30%.
+
+```{r, echo = TRUE}
+# load data
+data(us_data)
+data(us_geo)
+
+# format the data
+poverty <- read.uv(data = us_data, estimate = "pov_rate", error = "pov_moe")
+
+# check variable quantiles
+quantile(us_data$pov_rate)
+```
+
+An exponential distribution is an appropriate choice for this application (a normal distribution would not be). A list containing information about the distribution and threshold is passed to the `build_emap` function, where the probabilities are calculated and plotted. Below is an example of how to prepare this list.
+
+```{r, echo = TRUE}
+# define probability distribution (exponential distribution)
+pd <- quote({ pexp(q, rate, lower.tail = FALSE) })
+
+# define argument listing
+args <- quote({ list(rate = 1/estimate) })
+
+# capture distribution and arguments in a single list
+pdflist <- list(dist = pd, args = args, th = 30)
+```
+
+Finally, we build the exceedance map using the `build_emap` function. We need to supply the formatted data frame, instructions for calculating the exceedance probabilities, and information about map design.
+```{r echo=TRUE, fig.align="center", fig.asp=.6, fig.height=8, fig.width=8, message=FALSE, warning=FALSE}
+usExcMap <- build_emap(data = poverty, pdflist = pdflist, shapefile = us_geo, id = "GEO_ID", key_label = "Pr[X > 30]")
+view(usExcMap)
 ```
