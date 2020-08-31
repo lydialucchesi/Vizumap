@@ -68,6 +68,8 @@ The exceedance probability map plots the calculated probability of exceeding a s
 
 # Acknowledgements
 
+We would like to acknowledge the support and funding from the CSIRO Digiscape Future Science Platform.
+
 `Vizumap` was built using the following R packages: ``ggplot2``, ``animation``, ``broom``, ``dplyr``, ``geoaxe``, ``ggmap``, ``grDevices``, ``gridExtra``, ``maps``, ``maptools``, ``plyr``, ``reshape2``, ``rgdal``, ``rgeos``, ``roxygen2``, ``sp``, ``spbabel``, and ``utils``.
 
 # References
