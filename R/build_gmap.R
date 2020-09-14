@@ -3,16 +3,16 @@
 #'This function builds a map that visualises estimates and errors simultaneously
 #'with rotated glyphs.
 #'
-#'If a shapefile is used, glyphs will be plotted at region
-#'centroids. If \code{shapefile} remains \code{NULL}, glyphs will be plotted at
+#'If a spatial polygons data frame is used, glyphs will be plotted at region
+#'centroids. If \code{geoData} remains \code{NULL}, glyphs will be plotted at
 #'points on the map representing specific sites; in this case, the data frame
 #'must include latitude and longitude coordinates in columns \code{"long"} and
 #'\code{"lat"}.
 #'
 #'@param data A data frame.
-#'@param shapefile A spatial polygons data frame.
+#'@param geoData A spatial polygons data frame.
 #'@param id Name of the common column shared by the objects passed to
-#'  \code{data} and \code{shapefile}. The estimates and errors in the data frame
+#'  \code{data} and \code{geoData}. The estimates and errors in the data frame
 #'  will be matched to the geographical regions of the spatial polygons data
 #'  frame through this column.
 #'@param size An integer between 1 and 100. Value controls the size of the glyphs.
@@ -47,7 +47,7 @@
 #'co_data <- read.uv(data = co_data, estimate = "pov_rate", error = "pov_moe")
 #'
 #'# build a glyph map
-#'map <- build_gmap(data = co_data, shapefile = co_geo, id = "GEO_ID",
+#'map <- build_gmap(data = co_data, geoData = co_geo, id = "GEO_ID",
 #'  size = 70, border = "state", glyph = "icone")
 #'view(map)
 #'
@@ -57,35 +57,35 @@
 #'@importFrom "maptools" "map2SpatialPolygons"
 
 
-build_gmap <- function(data, shapefile = NULL, id = NULL, size = 50, border = NULL, glyph = "icone",
+build_gmap <- function(data, geoData = NULL, id = NULL, size = 50, border = NULL, glyph = "icone",
                        palette = "Blues", limits = NULL, max_error = NULL) {
 
   nms <- names(data)
   estimate <- nms[1]
   error <- nms[2]
 
-  if (is.null(shapefile)) {
+  if (is.null(geoData)) {
     l1 <- match("long", names(data))
     l2 <- match("lat", names(data))
     if (any(is.na(c(l1, l2))))
       stop("There must be coordinates in data columns named long and lat.\n")
   }
 
-  if (!is.null(shapefile) & is.null(id)) {
-    stop("Missing id. Must be a common column shared by data and shapefile.")
+  if (!is.null(geoData) & is.null(id)) {
+    stop("Missing id. Must be a common column shared by data and geoData.")
   }
 
-  if (is.null(shapefile)) {
+  if (is.null(geoData)) {
     df <- data
   } else {
-    centroids <- as.data.frame(coordinates(shapefile))
+    centroids <- as.data.frame(coordinates(geoData))
     names(centroids) <- c("long", "lat")
-    shapefile@data <- cbind(shapefile@data, centroids)
-    shapefile@data[, estimate] <-
-      data[match(shapefile@data[, id], data[, id]), 1]
-    shapefile@data[, error] <-
-      data[match(shapefile@data[, id], data[, id]), 2]
-    df <- shapefile@data
+    geoData@data <- cbind(geoData@data, centroids)
+    geoData@data[, estimate] <-
+      data[match(geoData@data[, id], data[, id]), 1]
+    geoData@data[, error] <-
+      data[match(geoData@data[, id], data[, id]), 2]
+    df <- geoData@data
   }
 
   if (!is.null(border)) {
@@ -116,7 +116,7 @@ build_gmap <- function(data, shapefile = NULL, id = NULL, size = 50, border = NU
     stop("Palette name not recognised. Must be one of Blues, Greens, Greys, Oranges, Purples or Reds \n
          (see documentation for scale_fill_distiller in ggplot2 for more information)")
 
-  #calculate theta for use in rotation matrix
+  # calculate theta for use in rotation matrix
   if(is.null(max_error))
      df$theta <- (df[, error] / max(df[, error])) * (-pi)
   else
@@ -124,7 +124,7 @@ build_gmap <- function(data, shapefile = NULL, id = NULL, size = 50, border = NU
 
 
 
-  #create id for use in loop
+  # create id for use in loop
   df$id <- seq(from = 1,
                to = nrow(df),
                by = 1)
@@ -133,7 +133,7 @@ build_gmap <- function(data, shapefile = NULL, id = NULL, size = 50, border = NU
 
   df$glyph <- rep(glyph, nrow(df))
 
-  #create an empty data frame, which is appended after each loop iteration
+  # create an empty data frame, which is appended after each loop iteration
   array <- tapply(1:nrow(df), df$id,
 
                   function(x, theta, est, error, id, long, lat, size, glyph)

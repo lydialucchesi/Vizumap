@@ -21,7 +21,7 @@ data(us_geo)
 poverty <- read.uv(data = us_data, estimate = "pov_rate", error = "pov_moe")
 
 # bivariate map and key together
-map <- build_bmap(data = poverty, shapefile = us_geo, id = "GEO_ID",
+map <- build_bmap(data = poverty, geoData = us_geo, id = "GEO_ID",
  border = "state", terciles = TRUE)
 key <- build_bkey(data = poverty, terciles = TRUE)
 attach_key(map, key)

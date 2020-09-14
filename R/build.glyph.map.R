@@ -1,14 +1,14 @@
-#internal function to build glyph for maps
+# internal function to build glyph for maps
 
 build.glyph.map <- function(shape) {
 
-  #right now there are only two glyphs, but we can add to this
+  # right now there are only two glyphs, but we can add to this
   g <- c("icone", "semi")
   if ((shape %in% g) == FALSE) {
     stop("Glyph name not recognised. Must be one of icone or semi.")
   }
 
-  #create data frame of coordinates for glyph for key
+  # create data frame of coordinates for glyph for key
   if (shape == "icone") {
     x <- seq(-3, 3, .05)
     y = sqrt(9 - x ^ 2)
@@ -23,7 +23,7 @@ build.glyph.map <- function(shape) {
     glyphDat <- as.data.frame(cbind(x, y))
   }
 
-  #output glyphDat for use in the build_glyphMap function
+  # output glyphDat for use in the build_glyphMap function
   glyphDat
 
 }

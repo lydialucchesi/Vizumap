@@ -21,7 +21,7 @@ view.palette <- function(obj){
 
 
 
-  #plot color key grid
+  # plot color key grid
   p <- ggplot() + geom_polygon(data = tiles, aes_string(x = 'x', y = 'y', group = 'group', fill = 'color'),
                                colour = "black") +
     scale_fill_identity() +

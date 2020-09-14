@@ -24,7 +24,7 @@ key <- build_bkey(data = dat,
 map <-
   build_bmap(
     data = dat,
-    shapefile = UB_shp,
+    geoData = UB_shp,
     id = "scID",
     palette = UB_pal,
     terciles = TRUE
@@ -89,7 +89,7 @@ dat <- read.uv(data = UB_tss,
 map <-
   build_gmap(
     data = dat,
-    shapefile = UB_shp,
+    geoData = UB_shp,
     id = "scID",
     size = 1,
     glyph = "icone",
@@ -119,7 +119,7 @@ dat <-
 map <-
   build_emap(
     data = dat,
-    shapefile = UB_shp,
+    geoData = UB_shp,
     id = "scID",
     key_label = "Pr[TSS > 837mg/L]"
   )

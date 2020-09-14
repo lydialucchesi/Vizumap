@@ -6,7 +6,7 @@
 \usage{
 build_gmap(
   data,
-  shapefile = NULL,
+  geoData = NULL,
   id = NULL,
   size = 50,
   border = NULL,
@@ -19,10 +19,10 @@ build_gmap(
 \arguments{
 \item{data}{A data frame.}
 
-\item{shapefile}{A spatial polygons data frame.}
+\item{geoData}{A spatial polygons data frame.}
 
 \item{id}{Name of the common column shared by the objects passed to
-\code{data} and \code{shapefile}. The estimates and errors in the data frame
+\code{data} and \code{geoData}. The estimates and errors in the data frame
 will be matched to the geographical regions of the spatial polygons data
 frame through this column.}
 
@@ -55,8 +55,8 @@ This function builds a map that visualises estimates and errors simultaneously
 with rotated glyphs.
 }
 \details{
-If a shapefile is used, glyphs will be plotted at region
-centroids. If \code{shapefile} remains \code{NULL}, glyphs will be plotted at
+If a spatial polygons data frame is used, glyphs will be plotted at region
+centroids. If \code{geoData} remains \code{NULL}, glyphs will be plotted at
 points on the map representing specific sites; in this case, the data frame
 must include latitude and longitude coordinates in columns \code{"long"} and
 \code{"lat"}.
@@ -70,7 +70,7 @@ co_data <- subset(us_data, us_data$GEO.id2 > 8000 & us_data$GEO.id2 < 9000)
 co_data <- read.uv(data = co_data, estimate = "pov_rate", error = "pov_moe")
 
 # build a glyph map
-map <- build_gmap(data = co_data, shapefile = co_geo, id = "GEO_ID",
+map <- build_gmap(data = co_data, geoData = co_geo, id = "GEO_ID",
  size = 70, border = "state", glyph = "icone")
 view(map)
 

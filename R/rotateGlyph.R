@@ -2,7 +2,7 @@
 
 rotateGlyph <- function(x, theta, est, error, id, long, lat, size, glyph) {
 
-  #run internal function
+  # run internal function
   glyphDat <- build.glyph.map(shape = glyph[x])
 
   R <- matrix(c(cos(theta[x]), sin(theta[x]), -sin(theta[x]), cos(theta[x])), nrow = 2)

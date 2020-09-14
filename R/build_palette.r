@@ -51,7 +51,7 @@ build_palette <- function(name, colrange = list(colour = NULL, difC = NULL), fli
     }
 
     for(i in 1:length(colrange$colour)) {
-      #Check RGB values of passed values to make sure the colour is not close to white
+      # check RGB values of passed values to make sure the colour is not close to white
       rgb <- col2rgb(colrange$colour[i])
       if(length(rgb[rgb >= 200]) == 3)
         stop ("colours cannot be white or too close to white. Please select another colour from the colors() range or a hexadecimal value that is not white.")
@@ -104,14 +104,14 @@ build_palette <- function(name, colrange = list(colour = NULL, difC = NULL), fli
     stop("Palette name not recognised. Must be one of BlueYellow, CyanMagenta, BlueRed, GreenBlue or usr.\n")
 
 
-  #build a data frame to get light, middle, and dark colours
-  #colour ramp only accepts values 0-1 (0=lightest, 1=darkest)
+  # build a data frame to get light, middle, and dark colours
+  # colour ramp only accepts values 0-1 (0=lightest, 1=darkest)
   lmd1 <- c(0, .5, 1, 0, .5, 1, 0, .5, 1)
   lmd2 <- c(0, 0, 0, .5, .5, .5, 1, 1, 1)
 
   lmd_df <- as.data.frame(cbind(lmd1, lmd2))
 
-  #apply colour ramps
+  # apply colour ramps
   match1 <- with(lmd_df, ramp1(lmd1))
   match2 <- with(lmd_df, ramp2(lmd2))
 
@@ -119,7 +119,7 @@ build_palette <- function(name, colrange = list(colour = NULL, difC = NULL), fli
 
   colnames(match_df) <- c("red1", "green1", "blue1", "red2", "green2", "blue2")
 
-  #average two single hue colour palettes
+  # average two single hue colour palettes
   match_df$red.ave <- round((match_df$red1 + match_df$red2) / 2)
   match_df$green.ave <- round((match_df$green1 + match_df$green2) / 2)
   match_df$blue.ave <- round((match_df$blue1 + match_df$blue2) / 2)
@@ -129,14 +129,14 @@ build_palette <- function(name, colrange = list(colour = NULL, difC = NULL), fli
   colours <- match_df$colour.ave
   colours <- sapply(strsplit(colours, " "), function(colours) rgb(colours[1], colours[2], colours[3], maxColorValue = 255))
 
-  #If we flip vertically
+  # if we flip vertically
   if(flipVertical) {
     colours <- replace(colours, c(1,9), colours[c(9, 1)]) #Switch [9] and [1]
     colours <- replace(colours, c(8,4), colours[c(4, 8)]) #switch [8] and [4]
     colours <- replace(colours, c(6,2), colours[c(2, 6)]) #Switch [6] and [2]
   }
 
-  #If we flip hoizontally
+  # if we flip hoizontally
   if(flipHorizontal) {
     colours <- replace(colours, c(7,3), colours[c(3, 7)]) #Switch [7] and [3]
     colours <- replace(colours, c(4,2), colours[c(2, 4)]) #switch [2] and [4]

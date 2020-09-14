@@ -43,7 +43,7 @@ build_bkey <- function(data, palette = "BlueYellow", terciles = FALSE, flipAxis 
   estimate <- names(data)[1]
   error <- names(data)[2]
 
-  #define color ramps based on user input
+  # define color ramps based on user input
   if (class(palette)[1] == "character" & length(palette)==1) {
     if (palette == "BlueYellow")
       colors <- build_palette(name = "BlueYellow")

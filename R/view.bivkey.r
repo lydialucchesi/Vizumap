@@ -12,7 +12,7 @@ view.bivkey <- function(obj){
     x <- 'y'; y <- 'x'
   }
 
-  #plot color key grid and add it to the user's environment so that it can be replotted if needed
+  # plot color key grid and add it to the user's environment so that it can be replotted if needed
   p <- ggplot() + geom_polygon(data = obj$tiles, aes_string(x = 'x', y = 'y', group = 'group', fill = 'color'),
                                colour = "black") +
     scale_fill_identity() +

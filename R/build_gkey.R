@@ -35,17 +35,17 @@ build_gkey <- function(data, glyph = "icone") {
   estimate <- nms[1]
   error <- nms[2]
 
-  #run internal function
+  # run internal function
   glyphDat <- build.glyph.key(shape = glyph)
 
-  #create an empty data frame, which is appended after each loop iteration
+  # create an empty data frame, which is appended after each loop iteration
   main3 <- data.frame(
     V1 = as.numeric(),
     V2 = as.numeric(),
     id = as.numeric()
   )
 
-  #rotation for 0, middle, and max glyphs on key
+  # rotation for 0, middle, and max glyphs on key
   for (i in seq(from = 0,
                 to = max(data[ ,error]),
                 by = (max(data[ ,error]) / 2))) {
@@ -58,14 +58,14 @@ build_gkey <- function(data, glyph = "icone") {
     main3 <- rbind(main3, final)
   }
 
-  #create an empty data frame, which is appended after each loop iteration
+  # create an empty data frame, which is appended after each loop iteration
   extra5 <- data.frame(
     V1 = as.numeric(),
     V2 = as.numeric(),
     id = as.numeric()
   )
 
-  #rotation for in-between glyphs on key
+  # rotation for in-between glyphs on key
   for (i in seq(from = 0,
                 to = max(data[ ,error]),
                 by = (max(data[ ,error]) / 5))) {
@@ -78,7 +78,7 @@ build_gkey <- function(data, glyph = "icone") {
     extra5 <- rbind(extra5, final)
   }
 
-  #create number labels for 0, middle, and max glyph
+  # create number labels for 0, middle, and max glyph
   main3_labels <-
     round(seq(
       from = 0,

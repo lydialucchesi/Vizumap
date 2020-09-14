@@ -1,5 +1,5 @@
 # internal functions to create random values
-# Discrete
+# discrete
 createD <- function(x, q){
 
   qsub <- q[x,]

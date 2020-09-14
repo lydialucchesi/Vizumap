@@ -4,22 +4,22 @@
 \alias{pixelate}
 \title{Pixelate polygons}
 \usage{
-pixelate(shapefile = NULL, file = NULL, layer = NULL, pixelSize = 2, id = "id")
+pixelate(geoData = NULL, file = NULL, layer = NULL, pixelSize = 2, id = "id")
 }
 \arguments{
-\item{shapefile}{An object of class "SpatialPolygons" or
+\item{geoData}{An object of class "SpatialPolygons" or
 "SpatialPolygonsDataFrame".}
 
 \item{file}{A shapefile pathway.}
 
-\item{layer}{Name of shapefile layer (see documentation for
+\item{layer}{Name of geoData layer (see documentation for
 \code{\link[rgdal]{readOGR}} for more information).}
 
 \item{pixelSize}{An integer 1, 2 or 3. One corresponds to the smallest pixel
 size, and three corresponds to the largest.}
 
 \item{id}{A name which will be given to the new ID column. This ID corresponds to the slot ID in
-the shapefile.}
+the spatial data.}
 }
 \description{
 This function divides a shapefile into pixels so it can be used to create a

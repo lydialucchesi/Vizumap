@@ -2,16 +2,16 @@
 
 animate.pixelmap <- function(pmap, flickerSpeed = 0.05 , aniLength) {
 
-  #check that map was pixelated with pixelate function
+  # check that map was pixelated with pixelate function
   if (class(pmap)[1] != "pixelmap")
     stop("Object is not of class 'pixelmap.'\n")
 
-  #check for aniLength
+  # check for aniLength
   if (missing(aniLength)) {
     stop("Missing aniLength. Must be an integer greater than number of columns in data or distribution.\n")
   }
 
-  #check for aniLength
+  # check for aniLength
   if (flickerSpeed > 1) {
     stop("The flicker speed must be a value less than or equal to .5.\n")
   }

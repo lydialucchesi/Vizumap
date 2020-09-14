@@ -6,7 +6,7 @@
 \usage{
 build_bmap(
   data,
-  shapefile = NULL,
+  geoData = NULL,
   id = NULL,
   border = NULL,
   palette = "BlueYellow",
@@ -19,10 +19,10 @@ build_bmap(
 \arguments{
 \item{data}{A data frame.}
 
-\item{shapefile}{A spatial polygons data frame.}
+\item{geoData}{A spatial polygons data frame.}
 
 \item{id}{Name of the common column shared by the objects passed to
-\code{data} and \code{shapefile}. The estimates and errors in the data frame
+\code{data} and \code{geoData}. The estimates and errors in the data frame
 will be matched to the geographical regions of the spatial polygons data
 frame through this column.}
 
@@ -40,7 +40,7 @@ from the \code{\link{build_palette}} function. Colour palette names include
 \code{BlueYellow}, \code{CyanMagenta}, \code{BlueRed} and \code{GreenBlue}.}
 
 \item{size}{An integer between 1 and 20. Value controls the size of points
-when \code{shapefile = NULL}. If \code{size = NULL}, the points will remain
+when \code{geoData = NULL}. If \code{size = NULL}, the points will remain
 the default size.}
 
 \item{terciles}{A logical value. This provides the option to define numerical
@@ -58,7 +58,7 @@ This function builds a map that visualises estimates and errors simultaneously
 with a bivariate colour scheme.
 }
 \details{
-If \code{shapefile} remains \code{NULL}, the function will produce a map of
+If \code{geoData} remains \code{NULL}, the function will produce a map of
 plotted points representing specific sites; in this case, the data frame must
 include latitude and longitude coordinates in columns \code{"long"} and
 \code{"lat"}.
@@ -68,8 +68,8 @@ data(us_data)
 data(us_geo)
 poverty <- read.uv(data = us_data, estimate = "pov_rate", error = "pov_moe")
 
-# bivariate map with a shapefile
-map <- build_bmap(data = poverty, shapefile = us_geo, id = "GEO_ID",
+# bivariate map with a spatial polygons data frame
+map <- build_bmap(data = poverty, geoData = us_geo, id = "GEO_ID",
  border = "state", terciles = TRUE)
 view(map)
 

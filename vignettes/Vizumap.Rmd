@@ -125,7 +125,7 @@ head(poverty)
 In this example, terciles are used to define the numerical bounds for the different estimate and error classes because the dataset contains several outliers.
 ```{r, echo = TRUE, fig.align = "center", fig.width=8, fig.height=6, fig.asp=.7}
 # build a bivariate map with the map data
-usBivMap <- build_bmap(data = poverty, shapefile = us_geo, id = "GEO_ID", terciles = TRUE)
+usBivMap <- build_bmap(data = poverty, geoData = us_geo, id = "GEO_ID", terciles = TRUE)
 view(usBivMap)
 ```
 
@@ -144,8 +144,8 @@ attach_key(usBivMap, usBivKey)
 
 Changing the `terciles` and `palette` arguments leads to a map that looks very different than the previous map even though it is displaying the same dataset. Here the custom colour palette is used.
 ```{r, echo = TRUE, eval = TRUE, fig.align = "center", fig.width=8, fig.height=8, fig.asp=.75}
-#make some changes
-usBivMapDif <- build_bmap(data = poverty, shapefile = us_geo, id = "GEO_ID", terciles = FALSE, palette = customBivPal3)
+# make some changes
+usBivMapDif <- build_bmap(data = poverty, geoData = us_geo, id = "GEO_ID", terciles = FALSE, palette = customBivPal3)
 view(usBivMapDif)
 ```
 
@@ -232,10 +232,10 @@ co_data <- subset(us_data, us_data$GEO.id2 > 8000 & us_data$GEO.id2 < 9000)
 co_data <- read.uv(data = co_data, estimate = "pov_rate", error = "pov_moe")
 ```
 
-Because `shapefile` is included in this example, the `build_gmap` function will plot a glyph at each region centroid. The colour of the glyph represents the estimated poverty rate among families, and the rotation of the glyph represents the margin of error for the estimate.
+Because `geoData` is included in this example, the `build_gmap` function will plot a glyph at each region centroid. The colour of the glyph represents the estimated poverty rate among families, and the rotation of the glyph represents the margin of error for the estimate.
 ```{r, echo = TRUE, fig.align = "center", fig.width=8, fig.height=8, fig.asp=.75}
 # build a glyph map
-usGlyphMap <- build_gmap(data = co_data, shapefile = co_geo, id = "GEO_ID", size = 80, glyph = "icone", border = "state")
+usGlyphMap <- build_gmap(data = co_data, geoData = co_geo, id = "GEO_ID", size = 80, glyph = "icone", border = "state")
 view(usGlyphMap)
 ```
 
@@ -254,7 +254,7 @@ attach_key(usGlyphMap, usGlyphKey)
 You can change the size, shape, and colour of the glyphs as well as add different borders.
 ```{r, echo = TRUE, fig.align = "center", fig.width=8, fig.height=8, fig.asp=.75}
 # build a glyph map
-usGlyphMapDif <- build_gmap(data = co_data, shapefile = co_geo, id = "GEO_ID", size = 70, border = "county", glyph = "semi", palette = "Reds")
+usGlyphMapDif <- build_gmap(data = co_data, geoData = co_geo, id = "GEO_ID", size = 70, border = "county", glyph = "semi", palette = "Reds")
 view(usGlyphMapDif)
 ```
 
@@ -289,6 +289,6 @@ pdflist <- list(dist = pd, args = args, th = 30)
 
 Finally, we build the exceedance map using the `build_emap` function. We need to supply the formatted data frame, instructions for calculating the exceedance probabilities, and information about map design.
 ```{r echo=TRUE, fig.align="center", fig.asp=.6, fig.height=8, fig.width=8, message=FALSE, warning=FALSE}
-usExcMap <- build_emap(data = poverty, pdflist = pdflist, shapefile = us_geo, id = "GEO_ID", key_label = "Pr[X > 30]")
+usExcMap <- build_emap(data = poverty, pdflist = pdflist, geoData = us_geo, id = "GEO_ID", key_label = "Pr[X > 30]")
 view(usExcMap)
 ```

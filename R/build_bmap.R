@@ -3,15 +3,15 @@
 #'This function builds a map that visualises estimates and errors simultaneously
 #'with a bivariate colour scheme.
 #'
-#'If \code{shapefile} remains \code{NULL}, the function will produce a map of
+#'If \code{geoData} remains \code{NULL}, the function will produce a map of
 #'plotted points representing specific sites; in this case, the data frame must
 #'include latitude and longitude coordinates in columns \code{"long"} and
 #'\code{"lat"}.
 #'
 #'@param data A data frame.
-#'@param shapefile A spatial polygons data frame.
+#'@param geoData A spatial polygons data frame.
 #'@param id Name of the common column shared by the objects passed to
-#'  \code{data} and \code{shapefile}. The estimates and errors in the data frame
+#'  \code{data} and \code{geoData}. The estimates and errors in the data frame
 #'  will be matched to the geographical regions of the spatial polygons data
 #'  frame through this column.
 #'@param border Name of geographical borders to be added to the map. It must be
@@ -26,7 +26,7 @@
 #'  from the \code{\link{build_palette}} function. Colour palette names include
 #'  \code{BlueYellow}, \code{CyanMagenta}, \code{BlueRed} and \code{GreenBlue}.
 #'@param size An integer between 1 and 20. Value controls the size of points
-#'  when \code{shapefile = NULL}. If \code{size = NULL}, the points will remain
+#'  when \code{geoData = NULL}. If \code{size = NULL}, the points will remain
 #'  the default size.
 #'@param terciles A logical value. This provides the option to define numerical
 #'  bounds for the colour key grid using terciles instead of equal intervals.
@@ -43,8 +43,8 @@
 #'data(us_geo)
 #'poverty <- read.uv(data = us_data, estimate = "pov_rate", error = "pov_moe")
 #'
-#'# bivariate map with a shapefile
-#'map <- build_bmap(data = poverty, shapefile = us_geo, id = "GEO_ID",
+#'# bivariate map with a spatial polygons data frame
+#'map <- build_bmap(data = poverty, geoData = us_geo, id = "GEO_ID",
 #'  border = "state", terciles = TRUE)
 #'view(map)
 #'
@@ -59,7 +59,7 @@
 
 
 
-build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL,
+build_bmap <- function(data, geoData = NULL, id = NULL, border = NULL,
                        palette = "BlueYellow", size = NULL,
                        terciles = FALSE, bound = NULL, flipAxis = FALSE) {
 
@@ -70,15 +70,15 @@ build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL,
 
 
 
-  if (is.null(shapefile)) {
+  if (is.null(geoData)) {
     l1 <- match("long", names(data))
     l2 <- match("lat", names(data))
     if (any(is.na(c(l1, l2))))
       stop("There must be coordinates in data columns named long and lat.\n")
   }
 
-  if (!is.null(shapefile) & is.null(id)) {
-    stop("Missing id. Must be a common column shared by data and shapefile.")
+  if (!is.null(geoData) & is.null(id)) {
+    stop("Missing id. Must be a common column shared by data and geoData.")
   }
 
   if (!is.null(border)) {
@@ -104,7 +104,7 @@ build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL,
   if(is.null(bound))
      bound <- findNbounds(data = data, estimate = estimate, error = error, terciles = terciles)
 
-  #define color ramps based on user input
+  # define color ramps based on user input
   if (class(palette)[1] == "character" & length(palette)==1) {
     if (palette == "BlueYellow")
       colors <- build_palette(name = "BlueYellow")
@@ -125,7 +125,7 @@ build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL,
   if(!is.logical(flipAxis))
     stop("flipAxis must be a logical value")
 
- #  assign each region or point a color based on its estimate and its error
+ # assign each region or point a color based on its estimate and its error
 
  if(!flipAxis) {
    est_col <- cut(data[, estimate], breaks = bound[1:4], include.lowest = TRUE)
@@ -145,15 +145,15 @@ build_bmap <- function(data, shapefile = NULL, id = NULL, border = NULL,
  data$hex_code <- as.character(esterr)
 
 
-  #determine whether shapefile has been entered by user
-  #if so, link shapefile and data and plot
-  if (!is.null(shapefile)) {
-    shapefile@data %>% dplyr::mutate_if(is.factor, as.character) -> shapefile@data
-    shapefile@data <- left_join(shapefile@data, data, by = id)
-    shapefile@data$id <- rownames(shapefile@data)
-    region_coord <- sptable(shapefile, region = "id")
+  # determine whether geoData has been entered by user
+  # if so, link geoData and data and plot
+  if (!is.null(geoData)) {
+    geoData@data %>% dplyr::mutate_if(is.factor, as.character) -> geoData@data
+    geoData@data <- left_join(geoData@data, data, by = id)
+    geoData@data$id <- rownames(geoData@data)
+    region_coord <- sptable(geoData, region = "id")
     region_coord <- plyr::rename(region_coord, c("object_" = "id", "x_" = "long", "y_" = "lat", "branch_" = "group"))
-    output_data <- join(region_coord, shapefile@data, by = "id")
+    output_data <- join(region_coord, geoData@data, by = "id")
     bbox <- make_bbox(lat = lat, lon = long, data = output_data)
   }
   else {

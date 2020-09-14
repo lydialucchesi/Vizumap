@@ -2,7 +2,7 @@
 #'@importFrom "graphics" "plot"
 #'@importFrom "animation" "ani.options" "saveHTML"
 
-#function to view animation
+# function to view animation
 
 view.anipixelmap <- function(obj) {
 
@@ -15,7 +15,7 @@ view.anipixelmap <- function(obj) {
 
   newobj <- obj[1:(length(obj)-1)]
 
-  #plot maps in succession for animation
+  # plot maps in succession for animation
   gen_anim <- function() {
     for(i in 1:length(newobj)){
       m <- view(newobj[[i]])

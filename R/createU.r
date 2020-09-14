@@ -1,5 +1,5 @@
 # internal functions to create random values
-# Uniform
+# uniform
 createU <- function(x, est, error){
 
   up <- unique(est[x]) + unique(error[x])

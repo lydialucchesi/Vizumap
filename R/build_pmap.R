@@ -92,21 +92,21 @@ build_pmap <- function(data = NULL, distribution = NULL, pixelGeo, id, border = 
   # option 3: sequence across confidence interval - uniform distribution (distribution = "uniform")
 
 
-  #check that data or distribution is entered
+  # check that data or distribution is entered
   if (is.null(data) & is.null(distribution)) {
     stop("Missing data or distribution. Distribution needs to be one of 'uniform', 'normal' or 'discrete'.\n")
   }
 
-  #check that map was pixelated with pixelate function
+  # check that map was pixelated with pixelate function
   if (class(pixelGeo)[1] != "pixel_df")
     stop("Object is not of class 'pixel_df.'\n")
 
-  #check for id
+  # check for id
   if (missing(id)) {
     stop("Missing id. Must be a common column shared by data and pixelGeo or distribution and pixelGeo.\n")
   }
 
-  #check border name and load borders
+  # check border name and load borders
   if (!is.null(border)) {
     if(class(border) == "SpatialPolygonsDataFrame"){
       bord <- fortify(border)
@@ -125,7 +125,7 @@ build_pmap <- function(data = NULL, distribution = NULL, pixelGeo, id, border = 
     bord <- data.frame(long = long, lat = lat, group = numeric(0))
   }
 
-  #check palette name
+  # check palette name
   if (!(palette %in% c("Blues", "Greens", "Greys", "Oranges", "Purples", "Reds")))
     stop("Palette name not recognised. Must be one of Blues, Greens, Greys, Oranges, Purples or Reds \n
          (see documentation for scale_fill_distiller in ggplot2 for more information).\n")
@@ -134,7 +134,7 @@ build_pmap <- function(data = NULL, distribution = NULL, pixelGeo, id, border = 
     stop("A cumulative distribution function needs to be specified.\n")
 
 
-  #match id classes and add estimate/error, mean/sd to pixel data frame
+  # match id classes and add estimate/error, mean/sd to pixel data frame
   if (!is.null(data)) {
 
     data[ ,id] <- as.character(data[ ,id])
@@ -155,7 +155,7 @@ build_pmap <- function(data = NULL, distribution = NULL, pixelGeo, id, border = 
 
   output_data <- createPixrv(pixelGeo, distribution)
 
-  #define limits of border
+  # define limits of border
   bbox <- make_bbox(lat = lat, lon = long, data = output_data)
 
   p <- list(output_data = output_data, bord = bord, bbox = bbox, key_label = names(data)[1], palette = palette,

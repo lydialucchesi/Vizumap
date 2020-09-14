@@ -3,7 +3,7 @@
 #'This function builds a map that visualises the probability of exceeding some
 #'nominated threshold of concern.
 #'
-#'If \code{shapefile} remains \code{NULL}, the function will produce a map of
+#'If \code{geoData} remains \code{NULL}, the function will produce a map of
 #'plotted points representing specific sites; in this case, the data frame must
 #'include latitude and longitude coordinates in columns \code{"long"} and
 #'\code{"lat"}.
@@ -17,9 +17,9 @@
 #'the exceedance probabilities have been calculated outside of the function and passed
 #'as a third column of the data dataframe.  Functions need to conform to the class
 #'of distribution functions available within R through the \code{stats} package.
-#'@param shapefile A spatial polygons data frame.
+#'@param geoData A spatial polygons data frame.
 #'@param id Name of the common column shared by the objects passed to
-#'  \code{data} and \code{shapefile}. The exceedance probability in the data frame
+#'  \code{data} and \code{geoData}. The exceedance probability in the data frame
 #'  will be matched to the geographical regions of the spatial polygons data
 #'  frame through this column.
 #'@param key_label Label of legend.
@@ -34,7 +34,7 @@
 #'@param palette Name of colour palette. Colour palette names include
 #'  \code{BlueYellow}, \code{CyanMagenta}, \code{BlueRed}, \code{GreenBlue} and \code{YellowRed}.
 #'@param size An integer between 1 and 20. Value controls the size of points
-#'  when \code{shapefile = NULL}. If \code{size = NULL}, the points will remain
+#'  when \code{geoData = NULL}. If \code{size = NULL}, the points will remain
 #'  the default size.
 #'
 #'  @details An exceedance probability map can be produced using:
@@ -52,19 +52,19 @@
 #'data(us_geo)
 #'poverty <- read.uv(data = us_data, estimate = "pov_rate", error = "pov_moe")
 #'
-#'# Exceedance probability map with a shapefile: Pr[X > 30] (Exponential Distribution)
+#'# Exceedance probability map: Pr[X > 30] (Exponential Distribution)
 #'#---- define probability distribution
 #'pd <- quote({ pexp(q, rate, lower.tail = FALSE) })
 #'#---- define argument listing
 #'args <- quote({ list(rate = 1/estimate) })
 #'#---- capture distribution and arguments in a single list
 #'pdflist <- list(dist = pd, args = args, th = 30)
-#'map <- build_emap(data = poverty, pdflist = pdflist, shapefile = us_geo, id = "GEO_ID",
+#'map <- build_emap(data = poverty, pdflist = pdflist, geoData = us_geo, id = "GEO_ID",
 #'             border = "state", key_label = "Pr[X > 30]")
 #'view(map) + ggplot2::ggtitle("Proper use of build_emap (appropriate distribution choice)")
 #'
 #'# Example where an inappropriate distributions is tried
-#'# Exceedance probability map with a shapefile: Pr[X>30] (Normal Distribution)
+#'# Exceedance probability map: Pr[X>30] (Normal Distribution)
 #'
 #'#---- define probability distribution
 #'pd <- quote({ pnorm(q, mean, sd, lower.tail = FALSE) })
@@ -72,7 +72,7 @@
 #'args <- quote({ list(mean = estimate, sd = error/1.645) })
 #'#---- capture distribution and arguments in a single list
 #'pdflist <- list(dist = pd, args = args, th = 30)
-#'map <- build_emap(data = poverty, pdflist = pdflist, shapefile = us_geo, id = "GEO_ID",
+#'map <- build_emap(data = poverty, pdflist = pdflist, geoData = us_geo, id = "GEO_ID",
 #'             border = "state", key_label = "Pr[X > 30]")
 #'view(map) + ggplot2::ggtitle("Misuse of build_emap (inappropriate distribution choice)")
 #'
@@ -85,7 +85,7 @@
 #'                                                        difC = c(1, 1)))
 #'                                                        view(exc_pal)
 #'# Create map and view it
-#' map <- build_emap(data = UB_tss,  shapefile = UB_shp, id = "scID",
+#' map <- build_emap(data = UB_tss,  geoData = UB_shp, id = "scID",
 #'             key_label = "Pr[TSS > 837mg/L]")
 #' view(map)
 #'
@@ -101,19 +101,19 @@
 
 
 
-build_emap <- function(data, pdflist = NULL, shapefile = NULL, id = NULL, key_label,
+build_emap <- function(data, pdflist = NULL, geoData = NULL, id = NULL, key_label,
                        palette = "YlOrRd", size = NULL, border = NULL) {
 
 
-  if (is.null(shapefile)) {
+  if (is.null(geoData)) {
     l1 <- match("long", names(data))
     l2 <- match("lat", names(data))
     if (any(is.na(c(l1, l2))))
       stop("There must be coordinates in data columns named long and lat.\n")
   }
 
-  if (!is.null(shapefile) & is.null(id)) {
-    stop("Missing id. Must be a common column shared by data and shapefile.")
+  if (!is.null(geoData) & is.null(id)) {
+    stop("Missing id. Must be a common column shared by data and geoData.")
   }
 
   if (!is.null(border)) {
@@ -143,18 +143,18 @@ build_emap <- function(data, pdflist = NULL, shapefile = NULL, id = NULL, key_la
          (see documentation for scale_fill_distiller in ggplot2 for more information).\n")
 
 
-  #determine whether shapefile has been entered by user
-  #if so, link shapefile and data and plot
-  if (!is.null(shapefile)) {
+  # determine whether geoData has been entered by user
+  # if so, link geoData and data and plot
+  if (!is.null(geoData)) {
 
-    shapefile@data <- shapefile@data %>% dplyr::mutate_if(is.factor,
+    geoData@data <- geoData@data %>% dplyr::mutate_if(is.factor,
                                                           as.character)
-    shapefile@data <- left_join(shapefile@data, data, by = id)
-    shapefile@data$id <- rownames(shapefile@data)
-    region_coord <- sptable(shapefile, region = "id")
+    geoData@data <- left_join(geoData@data, data, by = id)
+    geoData@data$id <- rownames(geoData@data)
+    region_coord <- sptable(geoData, region = "id")
     region_coord <- plyr::rename(region_coord, c(object_ = "id",
                                                  x_ = "long", y_ = "lat", branch_ = "group"))
-    output_data <- plyr::join(region_coord, shapefile@data, by = "id")
+    output_data <- plyr::join(region_coord, geoData@data, by = "id")
     bbox <- make_bbox(lat = lat, lon = long, data = output_data)
 
   }
