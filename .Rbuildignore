@@ -3,3 +3,5 @@
 ^README\.Rmd$
 ^README-.*\.png$
 ^paper$
+^CODE_OF_CONDUCT\.md$
+^\.github$

@@ -7,7 +7,7 @@
 
 ## Installation
 
-You can install a development version of the Vizumap package using the
+You can install a development version of the `Vizumap` package using the
 command below.
 
     remotes::install_github(repo = "lydialucchesi/Vizumap", build_vignettes = TRUE, force = TRUE)
@@ -57,14 +57,23 @@ levels of departure from a threshold of concern or target.
 
 ## Examples
 
-A vignette for the Vizumap package is available and contains examples
+A vignette for the `Vizumap` package is available and contains examples
 relating to each of the visualisation methods.
 
     vignette("Vizumap")
 
+## Contribute
+
+Please note that the `Vizumap` project is released with a [Contributor
+Code of Conduct](CONDUCT.md). By contributing to this project, you agree
+to abide by its terms.
+
+To contribute to `Vizumap`, please follow these
+[guidelines](CONTRIBUTING.md).
+
 ## License
 
-Vizumap version 1.1.0 is licensed under GPLv3.
+`Vizumap` version 1.1.0 is licensed under [GPLv3](LICENSE.md).
 
 ## References
 
