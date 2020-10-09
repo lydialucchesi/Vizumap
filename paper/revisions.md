@@ -33,7 +33,8 @@
 * Added \dontrun{} to examples instead of commenting out
 * Renamed "shapefile" argument to "geoData"
 * Reformatted comments to follow Hadley style guide ("# comment" instead of "#comment")
-* Removed projection changes from pixelate function
+* Removed projection changes from pixelate function (there is no longer a warning about spTransform)
+* Started adding testing for data formatting
 
 ### Paper
 * Moved the directory to Rbuildignore
