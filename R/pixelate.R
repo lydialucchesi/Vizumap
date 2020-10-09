@@ -55,28 +55,14 @@ pixelate <- function(geoData = NULL, file = NULL, layer = NULL, pixelSize = 2, i
     x <- proj4string(geoData)
   }
 
-  # change projection to "+proj=longlat +datum=WGS84" if not NA, this proj
-  # works with chop (e.g. with this proj (which is the proj supplied when
-  # importing a geoData from factfinder) "+proj=merc +a=6378137 +b=6378137
-  # +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null
-  # +no_defs" chop returns an empty SpatialPolygons object)
   if (!is.na(x)) {
     if (!is.null(file)) {
       geoData <- SpatialPolygons(geoData@polygons, proj4string = geoData@proj4string)
-      geoData <- spTransform(geoData, CRS("+proj=longlat +datum=WGS84"))
-    } else if (class(geoData) == "SpatialPolygonsDataFrame") {
-      geoData <- SpatialPolygons(geoData@polygons, proj4string = geoData@proj4string)
-      geoData <- spTransform(geoData, CRS("+proj=longlat +datum=WGS84"))
     }
-    else
-      geoData <- spTransform(geoData, CRS("+proj=longlat +datum=WGS84"))
+    if (class(geoData) == "SpatialPolygonsDataFrame") {
+      geoData <- SpatialPolygons(geoData@polygons, proj4string = geoData@proj4string)
+    }
   }
-
-
-  # remove projection
-  pol <- "POLYGON((0 0, 0 1, 1 1, 1 0, 0 0))"
-  poly <- readWKT(pol)
-  proj4string(geoData) <- proj4string(poly)
 
   # create definitive space
   geoData <- gBuffer(geoData, byid = TRUE, width = 0)
@@ -109,7 +95,7 @@ pixelate <- function(geoData = NULL, file = NULL, layer = NULL, pixelSize = 2, i
   size <- v/n
 
   # pixelate SpatialPolygons object with chop function
-  pixel_geoData <- chop(geoData, size = size, n = n)
+  pixel_geoData <- geoaxe::chop(geoData, size = size, n = n)
 
   # turn SpatialPolygons object into a data frame of coordinates
   pixel_df <- tidy(pixel_geoData)

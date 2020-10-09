@@ -34,6 +34,8 @@ License: GPL-3
 LazyLoad: TRUE
 LazyData: TRUE
 RoxygenNote: 7.0.0
-Suggests: knitr,
-    rmarkdown
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
