@@ -64,12 +64,12 @@ relating to each of the visualisation methods.
 
 ## Contribute
 
+To contribute to `Vizumap`, please follow these
+[guidelines](CONTRIBUTING.md).
+
 Please note that the `Vizumap` project is released with a [Contributor
 Code of Conduct](CONDUCT.md). By contributing to this project, you agree
 to abide by its terms.
-
-To contribute to `Vizumap`, please follow these
-[guidelines](CONTRIBUTING.md).
 
 ## License
 

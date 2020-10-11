@@ -41,9 +41,9 @@ plot <- grid.arrange(map, key, layout_matrix = lay)
 
 
 
-# make pixel map figure
-# an rda object that we made that contains a data frame with rel freq distr quantiles (amc95)
-# not included in Vizumap package
+# # make pixel map figure
+# # an rda object that we made that contains a data frame with rel freq distr quantiles (amc95)
+# # not included in Vizumap package
 #
 # load("UB_Joss.rda")
 #
@@ -78,6 +78,74 @@ plot <- grid.arrange(map, key, layout_matrix = lay)
 #   )
 #
 # map <- view(map) + coord_fixed()
+
+# # create a subset of these five regions to outline on original map and plot separately
+# # 453, 474, 508, 491, 466
+#
+# subDat <-
+#   as.data.frame(subset(
+#     map$output_data,
+#     map$output_data$region %in% c("453", "474", "508", "491", "466")
+#   ))
+# subBord <-
+#   as.data.frame(subset(map$bord, map$bord$id %in% c("453", "474", "508", "491", "466")))
+#
+# zoom <- ggplot()  +
+#   geom_polygon(data = subDat,
+#                aes(
+#                  x = long,
+#                  y = lat,
+#                  fill = values,
+#                  colour = values,
+#                  group = group
+#                ))  +
+#   scale_fill_distiller(
+#     direction = 1,
+#     palette = map$palette,
+#     limits = c(min(map$output_data$values), max(map$output_data$values))
+#   ) +
+#   scale_colour_distiller(
+#     direction = 1,
+#     palette = map$palette,
+#     limits = c(min(map$output_data$values), max(map$output_data$values))
+#   ) +
+#   guides(colour = FALSE, fill = FALSE)  +
+#   geom_path(data = subBord,
+#             aes(x = long, y = lat, group = group),
+#             colour = "black")  +
+#   theme(
+#     axis.line = element_blank(),
+#     axis.text.x = element_blank(),
+#     axis.text.y = element_blank(),
+#     axis.ticks = element_blank(),
+#     axis.title.x = element_blank(),
+#     axis.title.y = element_blank(),
+#     panel.background = element_blank()
+#   )
+#
+# mapBord <-
+#   view(map) + geom_path(
+#     data = subBord,
+#     aes(x = long, y = lat, group = group),
+#     colour = "black",
+#     size = 1
+#   ) +
+#   geom_segment(
+#     aes(
+#       x = 146.56,
+#       y = -19.95,
+#       xend = 146.837,
+#       yend = -19.95
+#     ),
+#     arrow = arrow(length = unit(.4, "cm")),
+#     size = .5
+#   )
+#
+# lay <- rbind(c(1, 1, 1, 1, NA, NA),
+#              c(1, 1, 1, 1, 2, 2),
+#              c(1, 1, 1, 1, 2, 2))
+#
+# plot <- grid.arrange(mapBord, zoom, layout_matrix = lay)
 
 
 
