@@ -1,51 +1,54 @@
 # Vizumap JOSS paper revisions
 
+(DN) - Edit based on revision suggested by Daniel Nüst (https://github.com/openjournals/joss-reviews/issues/2409#issuecomment-664007471)
+
 ### README 
 * Edited method descriptions
-* Hyperlinked to open-access papers
-* Fixed license description
-* Switched from devtools to remotes installation
-* Removed Zenodo reference
-* Added section about contributing to the package
+* (DN) Hyperlinked to open-access papers
+* (DN) Fixed license description
+* (DN) Switched from devtools to remotes installation
+* (DN) Removed Zenodo reference
+* (DN) Added section about contributing to the package
   * Generated a Code of Conduct file with usethis::use_code_of_conduct()
   * Added contribution guidelines file
 
 ### License
-* Removed incorrect file from repo
-* Added correct full text license file (GPLv3)
+* (DN) Removed incorrect file from repo
+* (DN) Added correct full text license file (GPLv3)
 
 ### Description
 * Corrected package version (it should be v1.1.0)
   * In the JOSS submission form, it was submitted as v1.2.0 - is this going to be an issue?
-* Deleted extra maintainer
-* Added a longer description
-* Updated author fields and included contribution descriptions
-* Added ORCIDs for all authors
+* (DN) Deleted extra maintainer
+* (DN) Added a longer description
+* (DN & editor @bstabler) Updated author fields and included contribution descriptions
+* (DN) Added ORCIDs for all authors
 
 ### Vignette
-* Improved variable/item naming
-* Fixed Mexico border overlap
-* Added all() wrapper
+* (DN) Added exceedance map example
+* (DN) Improved variable/item naming
+* (DN) Fixed Mexico border overlap
+* (DN) Added all() wrapper
 * Added California border to pixel map to improve map interpretability
 * Included running of pixelation code (seems fast enough to include)
 
 ### Vizumap code
-* Added \dontrun{} to examples instead of commenting out
-* Renamed "shapefile" argument to "geoData"
+* (DN) Added `\dontrun{}` to examples instead of commenting out
+* (DN) Renamed "shapefile" argument to "geoData"
 * Reformatted comments to follow Hadley style guide ("# comment" instead of "#comment")
-* Removed projection changes from pixelate function (there is no longer a warning about spTransform)
-* Started adding testing for data formatting
+* (DN) Removed projection changes from pixelate function (there is no longer a warning about spTransform)
+* (DN) Started adding testing for data formatting
 
 ### Paper
-* Moved the directory to Rbuildignore
-* Included an R script with code that produces the paper figures
+* (DN) Moved the directory to Rbuildignore
+* (DN) Included an R script with code that produces the paper figures
 * Added funding acknowledgement
-* Incorporated Daniel’s rephrasing suggestions
+* (DN) Incorporated Daniel’s rephrasing suggestions
   * “finding methods that add additional elements” to “finding methods that can communicate additional information, about the spatial estimates, in an understandable and meaningful way”
   * “functions can be found in the package download” to “is available after package installation”
-* Clarified audience for statement of need requirement:
+* (DN) Clarified audience for statement of need requirement:
   * “However, in spatial applications, finding methods that can communicate additional information, about the spatial estimates, in an understandable and meaningful way can be challenging. To address this visualisation shortcoming in spatial statistics, we developed the Vizumap R package. **It is a toolkit designed for statisticians, scientists, data journalists, etc., discussing uncertainty in spatial data.**”
-* Added zoom view of five regions for the pixel map figure and a sentence about this in the map description
+* (DN) Added zoom view of five regions for the pixel map figure and a sentence about this in the map description
 
 
 
