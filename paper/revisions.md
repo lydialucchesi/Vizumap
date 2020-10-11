@@ -45,6 +45,7 @@
   * “functions can be found in the package download” to “is available after package installation”
 * Clarified audience for statement of need requirement:
   * “However, in spatial applications, finding methods that can communicate additional information, about the spatial estimates, in an understandable and meaningful way can be challenging. To address this visualisation shortcoming in spatial statistics, we developed the Vizumap R package. **It is a toolkit designed for statisticians, scientists, data journalists, etc., discussing uncertainty in spatial data.**”
+* Added zoom view of five regions for the pixel map figure
 
 
 
