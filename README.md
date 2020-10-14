@@ -73,7 +73,7 @@ to abide by its terms.
 
 ## License
 
-`Vizumap` version 1.1.0 is licensed under [GPLv3](LICENSE.md).
+`Vizumap` version 1.0.0 is licensed under [GPLv3](LICENSE.md).
 
 ## References
 

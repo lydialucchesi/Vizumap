@@ -73,7 +73,7 @@ Please note that the `Vizumap` project is released with a [Contributor Code of C
 
 ## License
 
-`Vizumap` version 1.1.0 is licensed under [GPLv3](LICENSE.md).
+`Vizumap` version 1.0.0 is licensed under [GPLv3](LICENSE.md).
 
 ## References
 

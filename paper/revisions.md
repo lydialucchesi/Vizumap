@@ -17,7 +17,7 @@
 * (DN) Added correct full text license file (GPLv3)
 
 ### Description
-* Corrected package version (it should be v1.1.0)
+* (DN) Corrected package version (it should be v1.0.0)
   * In the JOSS submission form, it was submitted as v1.2.0 - is this going to be an issue?
 * (DN) Deleted extra maintainer
 * (DN) Added a longer description
@@ -49,6 +49,8 @@
 * (DN) Clarified audience for statement of need requirement:
   * “However, in spatial applications, finding methods that can communicate additional information, about the spatial estimates, in an understandable and meaningful way can be challenging. To address this visualisation shortcoming in spatial statistics, we developed the Vizumap R package. **It is a toolkit designed for statisticians, scientists, data journalists, etc., discussing uncertainty in spatial data.**”
 * (DN) Added zoom view of five regions for the pixel map figure and a sentence about this in the map description
+* (DN) Commented on related R packages
+* Added testthat and usethis to package acknowledgements
 
 
 
