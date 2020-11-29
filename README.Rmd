@@ -17,11 +17,7 @@ knitr::opts_chunk$set(
 # Vizumap <img src='man/figures/Vizumap_Hex.png' align="right" height="138.5" />
 ## An R package for visualizing uncertainty in spatial data. 
 
-```{rbadge, echo = FALSE}
-library(badgecreatr)
-badge_github_fork(ghaccount = "lydialucchesi", ghrepo = "Vizumap", location = "https://github.com")
-badge_license()
-```
+[![R build status](https://github.com/lydialucchesi/Vizumap/workflows/R-CMD-check/badge.svg)](https://github.com/lydialucchesi/Vizumap/actions)
 
 ## Installation
 

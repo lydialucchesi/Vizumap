@@ -5,6 +5,9 @@
 
 ## An R package for visualizing uncertainty in spatial data.
 
+[![R build
+status](https://github.com/lydialucchesi/Vizumap/workflows/R-CMD-check/badge.svg)](https://github.com/lydialucchesi/Vizumap/actions)
+
 ## Installation
 
 You can install a development version of the `Vizumap` package using the
