@@ -11,6 +11,8 @@
 * (DN) Added section about contributing to the package
   * Generated a Code of Conduct file with usethis::use_code_of_conduct()
   * Added contribution guidelines file
+* (DN) Added section about running tests
+* (DN) Added action badge
 
 ### License
 * (DN) Removed incorrect file from repo
@@ -51,6 +53,7 @@
 * (DN) Added zoom view of five regions for the pixel map figure and a sentence about this in the map description
 * (DN) Commented on related R packages
 * Added testthat and usethis to package acknowledgements
+* (DN) Fixed text under pixel figure
 
 
 

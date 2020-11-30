@@ -65,6 +65,15 @@ relating to each of the visualisation methods.
 
     vignette("Vizumap")
 
+## Testing
+
+If you would like to install and run the unit tests interactively,
+include `INSTALL_opts = "--install-tests"` in the installation code.
+
+    remotes::install_github(repo = "lydialucchesi/Vizumap", build_vignettes = TRUE, force = TRUE, INSTALL_opts = "--install-tests")
+    
+    testthat::test_package("Vizumap", reporter = "stop")
+
 ## Contribute
 
 To contribute to `Vizumap`, please follow these
