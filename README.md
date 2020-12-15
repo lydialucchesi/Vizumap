@@ -8,6 +8,9 @@
 [![R build
 status](https://github.com/lydialucchesi/Vizumap/workflows/R-CMD-check/badge.svg)](https://github.com/lydialucchesi/Vizumap/actions)
 
+`Vizumap` pkgdown site with vignette:
+<https://lydialucchesi.github.io/Vizumap/>.
+
 ## Installation
 
 You can install a development version of the `Vizumap` package using the
@@ -60,8 +63,8 @@ levels of departure from a threshold of concern or target.
 
 ## Examples
 
-A vignette for the `Vizumap` package is available and contains examples
-relating to each of the visualisation methods.
+A for the `Vizumap` package is available and contains examples relating
+to each of the visualisation methods.
 
     vignette("Vizumap")
 

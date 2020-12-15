@@ -16,6 +16,7 @@
 * (DN) Added section about running tests
 * (DN) Added action badge
 * (DN & editor @bstabler) Added section about Vizumap collaboration history
+* (SD) Added links to pkgdown site and vignette
 
 ### Website
 * (SD) Generated a website for Vizumap using pkgdown
