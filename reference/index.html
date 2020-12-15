@@ -78,19 +78,22 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/Vizumap.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Vignettes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/Vizumap.html">Using Vizumap</a>
+    </li>
+  </ul>
+</li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -122,7 +125,7 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+          <h2 id="section-data-and-maps" class="hasAnchor"><a href="#section-data-and-maps" class="anchor"></a>Data and maps</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -132,96 +135,6 @@
       
       
       <tr>
-        
-        <td>
-          <p><code><a href="UB_shp.html">UB_shp</a></code> </p>
-        </td>
-        <td><p>UB_shp</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="UB_tss.html">UB_tss</a></code> </p>
-        </td>
-        <td><p>UB_tss</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="animate.html">animate()</a></code> </p>
-        </td>
-        <td><p>Animate a pixel map</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="attach_key.html">attach_key()</a></code> </p>
-        </td>
-        <td><p>Attach a key</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="build_bkey.html">build_bkey()</a></code> </p>
-        </td>
-        <td><p>Build a bivariate colour key</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="build_bmap.html">build_bmap()</a></code> </p>
-        </td>
-        <td><p>Build a bivariate colour map</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="build_emap.html">build_emap()</a></code> </p>
-        </td>
-        <td><p>Build an exceedance probability colour map</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="build_gkey.html">build_gkey()</a></code> </p>
-        </td>
-        <td><p>Build a glyph key</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="build_gmap.html">build_gmap()</a></code> </p>
-        </td>
-        <td><p>Build a glyph map</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="build_palette.html">build_palette()</a></code> </p>
-        </td>
-        <td><p>Build a palette</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="build_pmap.html">build_pmap()</a></code> </p>
-        </td>
-        <td><p>Build a pixel map</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="findNbounds.html">findNbounds()</a></code> </p>
-        </td>
-        <td><p>findNbounds</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pdist.html">pdist()</a></code> </p>
-        </td>
-        <td><p>pdist</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pixelate.html">pixelate()</a></code> </p>
-        </td>
-        <td><p>Pixelate polygons</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read.uv.html">read.uv()</a></code> </p>
-        </td>
-        <td><p>Format data</p></td>
-      </tr><tr>
         
         <td>
           <p><code><a href="us_data.html">us_data</a></code> </p>
@@ -236,9 +149,151 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="UB_shp.html">UB_shp</a></code> </p>
+        </td>
+        <td><p>UB_shp</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="UB_tss.html">UB_tss</a></code> </p>
+        </td>
+        <td><p>UB_tss</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-formatting-functions" class="hasAnchor"><a href="#section-formatting-functions" class="anchor"></a>Formatting functions</h2>
+          <p class="section-desc"><p>Functions for preparing data frames and maps for the building functions</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="read.uv.html">read.uv()</a></code> </p>
+        </td>
+        <td><p>Format data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pixelate.html">pixelate()</a></code> </p>
+        </td>
+        <td><p>Pixelate polygons</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-building-functions" class="hasAnchor"><a href="#section-building-functions" class="anchor"></a>Building functions</h2>
+          <p class="section-desc"><p>Functions for making maps, keys, colour palettes, and animations</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="build_bmap.html">build_bmap()</a></code> </p>
+        </td>
+        <td><p>Build a bivariate colour map</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="build_pmap.html">build_pmap()</a></code> </p>
+        </td>
+        <td><p>Build a pixel map</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="build_gmap.html">build_gmap()</a></code> </p>
+        </td>
+        <td><p>Build a glyph map</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="build_emap.html">build_emap()</a></code> </p>
+        </td>
+        <td><p>Build an exceedance probability colour map</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="build_bkey.html">build_bkey()</a></code> </p>
+        </td>
+        <td><p>Build a bivariate colour key</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="build_gkey.html">build_gkey()</a></code> </p>
+        </td>
+        <td><p>Build a glyph key</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="build_palette.html">build_palette()</a></code> </p>
+        </td>
+        <td><p>Build a palette</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="animate.html">animate()</a></code> </p>
+        </td>
+        <td><p>Animate a pixel map</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-viewing-functions" class="hasAnchor"><a href="#section-viewing-functions" class="anchor"></a>Viewing functions</h2>
+          <p class="section-desc"><p>Functions for plotting objects made with the building functions</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
           <p><code><a href="view.html">view()</a></code> </p>
         </td>
         <td><p>View a <strong>Vizumap</strong> object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="attach_key.html">attach_key()</a></code> </p>
+        </td>
+        <td><p>Attach a key</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-helper-functions" class="hasAnchor"><a href="#section-helper-functions" class="anchor"></a>Helper functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="findNbounds.html">findNbounds()</a></code> </p>
+        </td>
+        <td><p>findNbounds</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pdist.html">pdist()</a></code> </p>
+        </td>
+        <td><p>pdist</p></td>
       </tr>
     </tbody>
     </table>
