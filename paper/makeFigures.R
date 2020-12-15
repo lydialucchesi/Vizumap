@@ -46,7 +46,6 @@ plot <- grid.arrange(map, key, layout_matrix = lay)
 # # not included in Vizumap package
 #
 # load("UB_Joss.rda")
-#
 # pixUB <- pixelate(UB_shp, id = "region")
 #
 # df <-
@@ -57,7 +56,7 @@ plot <- grid.arrange(map, key, layout_matrix = lay)
 # amc95$region <- df[match(amc95$scID, df$name), 1]
 # amc95$region <- as.character(amc95$region)
 #
-# amc95$region %in% pixUB$region
+# all(amc95$region %in% pixUB$region)
 #
 # amc95_q <- amc95[, 3:15]
 #
@@ -77,21 +76,16 @@ plot <- grid.arrange(map, key, layout_matrix = lay)
 #     border = UB_shp
 #   )
 #
-# map <- view(map) + coord_fixed()
-
-# # create a subset of these five regions to outline on original map and plot separately
-# # 453, 474, 508, 491, 466
-#
-# subDat <-
+# subdat <-
 #   as.data.frame(subset(
 #     map$output_data,
 #     map$output_data$region %in% c("453", "474", "508", "491", "466")
 #   ))
-# subBord <-
+# subbord <-
 #   as.data.frame(subset(map$bord, map$bord$id %in% c("453", "474", "508", "491", "466")))
 #
 # zoom <- ggplot()  +
-#   geom_polygon(data = subDat,
+#   geom_polygon(data = subdat,
 #                aes(
 #                  x = long,
 #                  y = lat,
@@ -110,7 +104,7 @@ plot <- grid.arrange(map, key, layout_matrix = lay)
 #     limits = c(min(map$output_data$values), max(map$output_data$values))
 #   ) +
 #   guides(colour = FALSE, fill = FALSE)  +
-#   geom_path(data = subBord,
+#   geom_path(data = subbord,
 #             aes(x = long, y = lat, group = group),
 #             colour = "black")  +
 #   theme(
@@ -120,12 +114,14 @@ plot <- grid.arrange(map, key, layout_matrix = lay)
 #     axis.ticks = element_blank(),
 #     axis.title.x = element_blank(),
 #     axis.title.y = element_blank(),
-#     panel.background = element_blank()
-#   )
+#     panel.background = element_blank(),
+#     plot.caption = element_text(size = 15, hjust = 0)
+#   ) +
+#   labs(caption = "(B)")
 #
 # mapBord <-
 #   view(map) + geom_path(
-#     data = subBord,
+#     data = subbord,
 #     aes(x = long, y = lat, group = group),
 #     colour = "black",
 #     size = 1
@@ -139,7 +135,9 @@ plot <- grid.arrange(map, key, layout_matrix = lay)
 #     ),
 #     arrow = arrow(length = unit(.4, "cm")),
 #     size = .5
-#   )
+#   ) +
+#   labs(caption = "(A)") +
+#   theme(plot.caption = element_text(size = 15, hjust = 0))
 #
 # lay <- rbind(c(1, 1, 1, 1, NA, NA),
 #              c(1, 1, 1, 1, 2, 2),

@@ -3,14 +3,14 @@ Type: Package
 Title: Visualizing uncertainty in spatial data
 Version: 1.0.0
 Author: Lydia Lucchesi and Petra Kuhnert
-Maintainer: Lydia <Lydia.Lucchesi@anu.edu.au>
+Maintainer: Lydia Lucchesi <Lydia.Lucchesi@anu.edu.au>
 Description: Vizumap provides four uncertainty visualization approaches for spatial data.
     These approaches include the bivariate choropleth map, map pixelation, glyph rotation, and the exceedance probability map.
     In Vizumap, there are three different types of functions - formatting, building, and viewing functions - that make it easy to create 
     these uncertainty maps for a range of applied spatial problems.
 Encoding: UTF-8
 Date: 2020-06-04
-Authors@R: c(person("Lydia", "Lucchesi", email = "Lydia.Lucchesi@anu.edu.au", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-1901-4301", "Worked on the development/design of three Vizumap visualisation methods (bivariate map, map pixelation, and glyph rotation) with Chris. Wrote original R code to produce the first example maps for those three methods (http://faculty.missouri.edu/~wiklec/sta4150-sup-0001-supplementary). Developed Vizumap package with Petra (original development code housed in a CSIRO Bitbucket repo).")), person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = c("aut"), comment = c(ORCID = "0000-0001-9070-0091", "Developed Vizumap package with Lydia (original development code housed in a CSIRO Bitbucket repo). Designed the exceendance probability mapping method.")), person("Christopher", "Wikle", email = "wiklec@missouri.edu", role = c("ctb"), comment = c(ORCID = "0000-0002-0655-2696", "Worked on the development/design of three Vizumap visualisation methods (bivariate map, map pixelation, and glyph rotation) with Lydia.")))
+Authors@R: c(person("Lydia", "Lucchesi", email = "Lydia.Lucchesi@anu.edu.au", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-1901-4301")), person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = c("aut"), comment = c(ORCID = "0000-0001-9070-0091")), person("Christopher", "Wikle", email = "wiklec@missouri.edu", role = c("ctb"), comment = c(ORCID = "0000-0002-0655-2696")))
 Depends:
     R (>= 3.5.0)
 Imports:

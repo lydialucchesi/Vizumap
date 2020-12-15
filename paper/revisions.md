@@ -2,6 +2,8 @@
 
 (DN) - Edit based on revision suggested by Daniel Nüst (https://github.com/openjournals/joss-reviews/issues/2409#issuecomment-664007471)
 
+(SD) - Edit based on revision suggested by Shaoqing Dai (https://github.com/openjournals/joss-reviews/issues/2409#issuecomment-736095413)
+
 ### README 
 * Edited method descriptions
 * (DN) Hyperlinked to open-access papers
@@ -13,6 +15,10 @@
   * Added contribution guidelines file
 * (DN) Added section about running tests
 * (DN) Added action badge
+* (DN & editor @bstabler) Added section about Vizumap collaboration history
+
+### Website
+* (SD) Generated a website for Vizumap using pkgdown
 
 ### License
 * (DN) Removed incorrect file from repo
@@ -23,7 +29,7 @@
   * In the JOSS submission form, it was submitted as v1.2.0 - is this going to be an issue?
 * (DN) Deleted extra maintainer
 * (DN) Added a longer description
-* (DN & editor @bstabler) Updated author fields and included contribution descriptions
+* (DN & editor @bstabler) Updated author fields
 * (DN) Added ORCIDs for all authors
 
 ### Vignette
@@ -54,6 +60,9 @@
 * (DN) Commented on related R packages
 * Added testthat and usethis to package acknowledgements
 * (DN) Fixed text under pixel figure
+* (SD) Added figure captions
+* (SD) Numbered equations
+* (SD) Added figure labels to pixel map
 
 
 

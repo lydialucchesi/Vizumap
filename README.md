@@ -22,7 +22,7 @@ Lydia Lucchesi, Australian National University & CSIRO Data61, Email:
 
 Petra Kuhnert, CSIRO Data61, Email: <Petra.Kuhnert@data61.csiro.au>
 
-## About the Package
+## About the package
 
 Approaches for visualising uncertainty in spatial data are presented in
 this package. These include the three approaches developed in [Lucchesi
@@ -86,6 +86,37 @@ to abide by its terms.
 ## License
 
 `Vizumap` version 1.0.0 is licensed under [GPLv3](LICENSE.md).
+
+## History of Vizumap
+
+Vizumap began as a visualisation project at the University of Missouri
+in 2016. Chris Wikle, professor of statistics, posed an interesting
+research question to Lydia Lucchesi, a student curious about data
+visualisation and R.
+
+How do you include uncertainty on a map displaying areal data estimates?
+
+Over the course of a year, they put together three methods for
+visualising uncertainty in spatial statistics: the bivariate choropleth
+map, the pixel map, and the glyph map. By mid-2017, there were maps, and
+there was a lot of R code, but there was not a tool that others could
+use to easily make these types of maps, too. That’s when statistician
+Petra Kuhnert recommended developing an R package. Over the course of a
+month, Petra and Lydia developed Vizumap (originally named VizU) at
+CSIRO Data61 in Canberra, Australia. Since then, the package has been
+expanded to include exceedance probability maps, an uncertainty
+visualisation method developed by Petra while working on a Great Barrier
+Reef (GBR) project.
+
+Vizumap has been used to visualise the uncertainty of American Community
+Survey estimates, the prediction errors of sediment load estimates in a
+GBR catchment, and most recently the [uncertainty of estimated locust
+densities in
+Australia](https://www.nature.com/articles/s41598-020-73897-1/figures/4).
+We would like to assemble a Vizumap gallery that showcases different
+applications of the package’s mapping methods. If you use Vizumap to
+visualise uncertainty, please feel free to send the map our way. We
+would like to see it\!
 
 ## References
 

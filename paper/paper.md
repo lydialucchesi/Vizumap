@@ -37,7 +37,15 @@ process. Generally, this uncertainty information is shared through visualisation
 
 * The glyph map is intended to address the issue of unequal region sizes on a choropleth map. Glyphs of equal size are placed at the centroid of each region, filled with a colour that represents the estimate, and rotated depending on the degree of uncertainty.
 
-* Exceedance probability maps show the probability of exceeding a nominated threshold of concern. These probabilities can be pre-calculated and passed to the exceedance probability map function or calculated within the function given a prescribed probability distribution function, estimate, and error. For example, let $X$ denote a random variable, and $x$ is a possible value of that random variable, $X$. $F_x(x)$ is the cumulative distribution function and equals the probability that the value of $X$ is less than or equal to a specific value or threshold, $x$, so $$F_x(x) = Pr[X {\leq} x].$$ The probability that the value $X$ is greater than the specific threshold $x$ can then be written as $$Pr[X > x] = 1 - F_x(x) = 1 - Pr[X {\leq} x].$$ In R, assuming an exponential distribution, this can be evaluated through the following expressions: `1 - pexp(q, rate)` or `pexp(q, rate, lower.tail = FALSE)`.
+* Exceedance probability maps show the probability of exceeding a nominated threshold of concern. These probabilities can be pre-calculated and passed to the exceedance probability map function or calculated within the function given a prescribed probability distribution function, estimate, and error. For example, let $X$ denote a random variable, and $x$ is a possible value of that random variable, $X$. $F_x(x)$ is the cumulative distribution function and equals the probability that the value of $X$ is less than or equal to a specific value or threshold, $x$, so 
+\begin{equation}\label{eq:eq1}
+{F_x(x) = Pr[X {\leq} x].}
+\end{equation}
+The probability that the value $X$ is greater than the specific threshold $x$ can then be written as 
+\begin{equation}\label{eq:eq2}
+{Pr[X > x] = 1 - F_x(x) = 1 - Pr[X {\leq} x].}
+\end{equation}
+In R, assuming an exponential distribution, this can be evaluated through the following expressions: `1 - pexp(q, rate)` or `pexp(q, rate, lower.tail = FALSE)`.
 
 Other related R packages include `pixelate` and `biscale`. The `pixelate` package explores the use of pixelation for uncertainty visualisation on isopleth maps [@pixelatePackage], and the `biscale` package can be used to generate bivariate maps for two variables [@biscalePackage].
 
@@ -47,27 +55,27 @@ As an illustration below, we use `Vizumap` to visualise estimated pollutant load
 
 ## Bivariate map
 
-The bivariate map of the upper Burdekin catchment in Queensland, Australia, depicts predicted sediment concentrations and prediction uncertainty. In this example, a custom colour palette is created and then used to build the bivariate map and colour key. The bivariate bins are defined using terciles.
+Figure \ref{bivMap} is a bivariate map of the upper Burdekin catchment in Queensland, Australia. It visualises predicted sediment concentrations and prediction uncertainty. In this example, a custom colour palette is created and then used to build the bivariate map and colour key. The bivariate bins are defined using terciles.
 
-![](bivariateMap.png){width=4in height=4in}
+![Bivariate map and bivariate key.\label{bivMap}](bivariateMap.png){width=4in height=4in}
 
 ## Pixel map
 
-The pixel map depicts the uncertainty of TSS predictions, while giving a general idea of estimated TSS loads. For a closer look at the pixelation, a subset of regions is included to the right of the map. The colours filling the pixels in each region were sampled from the estimate's relative frequency distribution. This pixel map can be animated so that the pixels flicker between sampled values. If the map below were to be animated, the areas that appear most pixelated in the static map would, correspondingly, have the most visible movement among pixels in the animated map. Movement among pixels in areas of low uncertainty would be hard to detect due to the minimal differences between the sampled values of orange. An example of an animated pixel map can be found in @vizMethod.
+Figure \ref{pixMap} visualises the uncertainty of TSS predictions, while giving a general idea of estimated TSS loads. For a closer look at the pixelation, a subset of regions is included to the right of the map (sub-figure B). The colours filling the pixels in each region were sampled from the estimate's relative frequency distribution. This pixel map can be animated so that the pixels flicker between sampled values. If the map below were to be animated, the areas that appear most pixelated in the static map would, correspondingly, have the most visible movement among pixels in the animated map. Movement among pixels in areas of low uncertainty would be hard to detect due to the minimal differences between the sampled values of orange. An example of an animated pixel map can be found in @vizMethod.
 
-![](pixelMap.png){width=4in height=4in}
+![Pixel map. Sub-figure B provides a closer look at the pixelation in five regions from figure A. \label{pixMap}](pixelMap.png){width=4in height=4in}
 
 ## Glyph map
 
-The glyph map of the upper Burdekin catchment depicts estimated TSS loads and the uncertainty of these predictions. The colour filling each glyph (located at the region centroid) represents the estimate, and the rotation of the glyph represents the uncertainty.
+Figure \ref{glyphMap} depicts estimated TSS loads and the uncertainty of these predictions. The colour filling each glyph (located at the region centroid) represents the estimate, and the rotation of the glyph represents the uncertainty.
 
-![](glyphMap.png){width=4in height=4in}
+![Glyph map and glyph key.\label{glyphMap}](glyphMap.png){width=4in height=4in}
 
 ## Exceedance probability map
 
-The exceedance probability map plots the calculated probability of exceeding a sediment concentration greater than 837 mg/L (a threshold of concern) in order to draw attention to the high-risk regions on the map. These probabilities were calculated from the posterior distributions of a BHM as outlined in @gbrData.
+In figure \ref{exceedMap}, the calculated probability of exceeding a sediment concentration greater than 837 mg/L (a threshold of concern) is plotted in order to draw attention to the high-risk regions on the map. These probabilities were calculated from the posterior distributions of a BHM as outlined in @gbrData.
 
-![](exceedMap.png){width=4in height=4in}
+![Exceedance probability map.\label{exceedMap}](exceedMap.png){width=4in height=4in}
 
 # Acknowledgements
 

@@ -1,5 +1,5 @@
 ---
-title: "Visualising Uncertainty in Poverty Rates across the USA"
+title: "Using Vizumap"
 author: "Lydia Lucchesi and Petra Kuhnert"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
