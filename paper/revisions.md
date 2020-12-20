@@ -32,6 +32,7 @@
 * (DN) Added a longer description
 * (DN & editor @bstabler) Updated author fields
 * (DN) Added ORCIDs for all authors
+* Added pkgdown and source code urls
 
 ### Vignette
 * (DN) Added exceedance map example
@@ -45,8 +46,9 @@
 * (DN) Added `\dontrun{}` to examples instead of commenting out
 * (DN) Renamed "shapefile" argument to "geoData"
 * Reformatted comments to follow Hadley style guide ("# comment" instead of "#comment")
-* (DN) Removed projection changes from pixelate function (there is no longer a warning about spTransform)
 * (DN) Started adding testing for data formatting
+* (DN and SD) Addressed pixelate warnings (remove and then return to original projection)
+* (DN) Added comment to pixelate documentation about projection changes
 
 ### Paper
 * (DN) Moved the directory to Rbuildignore
@@ -63,7 +65,8 @@
 * (DN) Fixed text under pixel figure
 * (SD) Added figure captions
 * (SD) Numbered equations
-* (SD) Added figure labels to pixel map
+* (SD) Added sub-figure labels to pixel map
+* Changed "TSS loads" to "TSS concentrations"
 
 
 

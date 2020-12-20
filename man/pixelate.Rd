@@ -26,7 +26,7 @@ This function divides a shapefile into pixels so it can be used to create a
 pixel map with \code{\link{build_pmap}}.
 }
 \details{
-This function can take several minutes to run depending on the size of the shapefile.
+This function can take several minutes to run depending on the size of the shapefile. Within this function, the projection of the spatial object is removed and then returned to the original projection.
 }
 \examples{
 data(us_geo)

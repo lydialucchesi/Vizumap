@@ -112,8 +112,8 @@ visualisation method developed by Petra while working on a Great Barrier
 Reef (GBR) project.
 
 Vizumap has been used to visualise the uncertainty of American Community
-Survey estimates, the prediction errors of sediment load estimates in a
-GBR catchment, and most recently the [uncertainty of estimated locust
+Survey estimates, the prediction errors of sediment estimates in a GBR
+catchment, and most recently the [uncertainty of estimated locust
 densities in
 Australia](https://www.nature.com/articles/s41598-020-73897-1/figures/4).
 We would like to assemble a Vizumap gallery that showcases different
