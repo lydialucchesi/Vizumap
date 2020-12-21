@@ -1,7 +1,7 @@
 Package: Vizumap
 Type: Package
 Title: Visualizing uncertainty in spatial data
-Version: 1.0.0
+Version: 1.1.0
 Author: Lydia Lucchesi and Petra Kuhnert
 Maintainer: Lydia Lucchesi <Lydia.Lucchesi@anu.edu.au>
 Description: Vizumap provides four uncertainty visualization approaches for spatial data.

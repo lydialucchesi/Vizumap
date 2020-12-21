@@ -1,8 +1,13 @@
-## version 1.0.0
+## Vizumap v1.1.0
 
 ---
 
-### NEWS.md setup
+- updates since first release in 2017
+- package renamed in November 2018
 
-- added NEWS.md creation with newsmd
+## VizU v1.0.0
+
+---
+
+- initial package release
 
