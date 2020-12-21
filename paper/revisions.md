@@ -67,6 +67,7 @@
 * (SD) Numbered equations
 * (SD) Added sub-figure labels to pixel map
 * Changed "TSS loads" to "TSS concentrations"
+* Edits to pixel sampling description
 
 
 
