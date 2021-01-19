@@ -54,7 +54,7 @@
 ### Paper
 * (DN) Moved the directory to Rbuildignore
 * (DN) Included an R script with code that produces the paper figures
-* Added funding acknowledgement for second author
+* Added funding acknowledgement
 * (DN) Incorporated Daniel’s rephrasing suggestions
   * “finding methods that add additional elements” to “finding methods that can communicate additional information, about the spatial estimates, in an understandable and meaningful way”
   * “functions can be found in the package download” to “is available after package installation”
