@@ -51,7 +51,7 @@ Other related R packages include `pixelate` and `biscale`. The `pixelate` packag
 
 A comprehensive vignette that demonstrates how to use `Vizumap` is available after package installation. The functions are divided into three categories: formatting, building, and viewing. Formatting functions prepare data for use in the building functions, which are used to build the colour palettes, maps, and map keys. Viewing functions are used to check and combine the different graphical objects designed with the building functions. Previous applications of the `Vizumap` R package include visualising American Community Survey estimates with their corresponding margins of error. We believe `Vizumap` is useful in a wide range of applications, and we will continue to improve the toolkit to enhance its utility.
 
-As an illustration below, we use `Vizumap` to visualise estimated pollutant loads of sediment from the upper Burdekin catchment in Queensland, Australia, into the Great Barrier Reef (GBR). The predictions and uncertainty, published in @gbrData, were developed from a Bayesian Hierarchical Model (BHM) that assimilated estimates of sediment concentration and flow with modelled output from a catchment model developed on the upper Burdekin catchment. Development of this modelling strategy is discussed in @gbrMethod. Here we just focus on total suspended sediment (TSS).  The export of pollutants from coastal catchments within Australia has important implications for the health of the GBR lagoon, and `Vizumap` offers a variety of methods for communicating these predictions and uncertainty to catchment managers and policy makers.
+As an illustration below, we use `Vizumap` to visualise estimated pollutant loads of sediment from the upper Burdekin catchment in Queensland, Australia, into the Great Barrier Reef (GBR). The predictions and uncertainty, published in @gbrData, were developed from a Bayesian Hierarchical Model (BHM) that assimilated estimates of sediment concentration and flow with modelled output from a catchment model developed on the upper Burdekin catchment. Development of this modelling strategy is discussed in @gbrMethod. Here we just focus on total suspended sediment (TSS).  The export of pollutants from coastal catchments within Australia has important implications for the health of the GBR lagoon, and `Vizumap` offers a variety of methods for communicating these predictions and uncertainties to catchment managers and policy makers.
 
 ## Bivariate map
 
@@ -61,9 +61,9 @@ Figure \ref{bivMap} is a bivariate map of the upper Burdekin catchment in Queens
 
 ## Pixel map
 
-Figure \ref{pixMap} visualises the uncertainty of TSS predictions, while giving a general idea of estimated TSS concentrations. For a closer look at the pixelation, a subset of regions is included to the right of the map (sub-figure B). The colours filling the pixels in each region were sampled from the estimate's relative frequency distribution. This pixel map can be animated so that the pixels flicker between sampled values. If the map below were to be animated, the areas that appear most pixelated in the static map would, correspondingly, have the most visible movement among pixels in the animated map. Movement among pixels in areas of low uncertainty would be hard to detect due to the minimal differences between the sampled values of orange. An example of an animated pixel map can be found in @vizMethod.
+Figure \ref{pixMap} visualises the uncertainty of TSS predictions, while giving a general idea of estimated TSS concentrations. For a closer look at the pixelation, a subset of regions is included to the right of the map (Sub-figure B). The colours filling the pixels in each region were sampled from the estimate's relative frequency distribution. This pixel map can be animated so that the pixels flicker between sampled values. If the map below were to be animated, the areas that appear most pixelated in the static map would, correspondingly, have the most visible movement among pixels in the animated map. Movement among pixels in areas of low uncertainty would be hard to detect due to the minimal differences between the sampled values of orange. An example of an animated pixel map can be found in @vizMethod.
 
-![Pixel map showing the TSS concentrations for the upper Burdekin catchment in Queensland, Australia. Sub-figure B provides a closer look at the pixelation in five regions from figure A. \label{pixMap}](pixelMap.png){width=4in height=4in}
+![Pixel map showing the TSS concentrations for the upper Burdekin catchment in Queensland, Australia. Sub-figure B provides a closer look at the pixelation in five regions from Figure A. \label{pixMap}](pixelMap.png){width=4in height=4in}
 
 ## Glyph map
 
@@ -73,13 +73,13 @@ Figure \ref{glyphMap} depicts estimated TSS concentrations and the uncertainty o
 
 ## Exceedance probability map
 
-In figure \ref{exceedMap}, the calculated probability of exceeding a sediment concentration greater than 837 mg/L (a threshold of concern discussed in @gbrData) is plotted in order to draw attention to the high-risk regions on the map. These probabilities were calculated from the posterior distributions of a BHM as outlined in @gbrData.
+In Figure \ref{exceedMap}, the calculated probability of exceeding a sediment concentration greater than 837 mg/L (a threshold of concern discussed in @gbrData) is plotted in order to draw attention to the high-risk regions on the map. These probabilities were calculated from the posterior distributions of a BHM as outlined in @gbrData.
 
 ![Exceedance probability map showing the probability of exceeding the nominated guideline of 837 mg/L for TSS in the upper Burdekin catchment in Queensland, Australia.\label{exceedMap}](exceedMap.png){width=4in height=4in}
 
 # Acknowledgements
 
-We would like to acknowledge the support and funding from the CSIRO Digiscape Future Science Platform.
+We would like to acknowledge the support and funding from the CSIRO Digiscape Future Science Platform for the second author.
 
 `Vizumap` was built using the following R packages: `ggplot2`, `animation`, `broom`, `dplyr`, `geoaxe`, `ggmap`, `grDevices`, `gridExtra`, `maps`, `maptools`, `plyr`, `reshape2`, `rgdal`, `rgeos`, `roxygen2`, `sp`, `spbabel`, `testthat`, `usethis`, and `utils`.
 

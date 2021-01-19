@@ -28,6 +28,7 @@
 ### Description
 * (DN) Corrected package version (it should be v1.0.0)
   * In the JOSS submission form, it was submitted as v1.2.0 - is this going to be an issue?
+  * UPDATED PACKAGE VERSION TO 1.1.0
 * (DN) Deleted extra maintainer
 * (DN) Added a longer description
 * (DN & editor @bstabler) Updated author fields
