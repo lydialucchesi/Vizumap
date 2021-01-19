@@ -61,9 +61,9 @@ Figure \ref{bivMap} is a bivariate map of the upper Burdekin catchment in Queens
 
 ## Pixel map
 
-Figure \ref{pixMap} visualises the uncertainty of TSS predictions, while giving a general idea of estimated TSS concentrations. For a closer look at the pixelation, a subset of regions is included to the right of the map (Sub-figure B). The colours filling the pixels in each region were sampled from the estimate's relative frequency distribution. This pixel map can be animated so that the pixels flicker between sampled values. If the map below were to be animated, the areas that appear most pixelated in the static map would, correspondingly, have the most visible movement among pixels in the animated map. Movement among pixels in areas of low uncertainty would be hard to detect due to the minimal differences between the sampled values of orange. An example of an animated pixel map can be found in @vizMethod.
+Figure \ref{pixMap} visualises the uncertainty of TSS predictions, while giving a general idea of estimated TSS concentrations. For a closer look at the pixelation, a subset of regions is included to the right of the map (Figure \ref{pixMap}(B)). The colours filling the pixels in each region were sampled from the estimate's relative frequency distribution. This pixel map can be animated so that the pixels flicker between sampled values. If the map below were to be animated, the areas that appear most pixelated in the static map would, correspondingly, have the most visible movement among pixels in the animated map. Movement among pixels in areas of low uncertainty would be hard to detect due to the minimal differences between the sampled values of orange. An example of an animated pixel map can be found in @vizMethod.
 
-![Pixel map showing the TSS concentrations for the upper Burdekin catchment in Queensland, Australia. Sub-figure B provides a closer look at the pixelation in five regions from Figure A. \label{pixMap}](pixelMap.png){width=4in height=4in}
+![Pixel map showing the TSS concentrations for the upper Burdekin catchment in Queensland, Australia. Figure 2(B) provides a closer look at the pixelation in five regions from Figure 2(A). \label{pixMap}](pixelMap.png){width=4in height=4in}
 
 ## Glyph map
 
