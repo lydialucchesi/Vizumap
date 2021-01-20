@@ -31,7 +31,7 @@ Imports:
     sp,
     spbabel,
     maps
-Remotes: url::https://github.com/ropensci-archive/geoaxe/archive/master.zip
+Remotes: ropensci-archive/geoaxe
 License: GPL-3
 LazyLoad: TRUE
 LazyData: TRUE
