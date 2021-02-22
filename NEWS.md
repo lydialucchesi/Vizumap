@@ -1,3 +1,9 @@
+## Vizumap v1.2.0
+
+---
+
+- JOSS revisions
+
 ## Vizumap v1.1.0
 
 ---
