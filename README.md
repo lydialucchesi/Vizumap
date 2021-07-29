@@ -8,8 +8,12 @@
 [![R build
 status](https://github.com/lydialucchesi/Vizumap/workflows/R-CMD-check/badge.svg)](https://github.com/lydialucchesi/Vizumap/actions)
 
-`Vizumap` pkgdown site with vignette:
-<https://lydialucchesi.github.io/Vizumap/>.
+There is a [`Vizumap` pkgdown
+site](https://lydialucchesi.github.io/Vizumap/) with a vignette.
+
+A [`Vizumap` paper](https://doi.org/10.21105/joss.02409) is available in
+the Journal of Open Source Software (JOSS). If you use `Vizumap`, please
+cite this paper.
 
 ## Installation
 
@@ -33,6 +37,8 @@ and Wikle
 (2017)](http://faculty.missouri.edu/~wiklec/LucchesiWikle2017Stat) and a
 fourth approach presented in [Kuhnert et
 al. (2018)](https://publications.csiro.au/publications/#publication/PIcsiro:EP168206).
+The package is outlined in [Lucchesi et
+al. (2021)](https://doi.org/10.21105/joss.02409).
 
 #### Bivariate Maps
 
@@ -63,8 +69,8 @@ levels of departure from a threshold of concern or target.
 
 ## Examples
 
-A for the `Vizumap` package is available and contains examples relating
-to each of the visualisation methods.
+A vignette for the `Vizumap` package is available and contains examples
+relating to each of the visualisation methods.
 
     vignette("Vizumap")
 
@@ -89,6 +95,22 @@ to abide by its terms.
 ## License
 
 `Vizumap` version 1.2.0 is licensed under [GPLv3](LICENSE.md).
+
+## Citation
+
+Lucchesi et al., (2021). Vizumap: an R package for visualising
+uncertainty in spatial data. Journal of Open Source Software, 6(59),
+2409, <https://doi.org/10.21105/joss.02409>
+
+    @article{lucchesi2021vizumap,
+      title={Vizumap: an R package for visualising uncertainty in spatial data},
+      author={Lucchesi, Lydia R and Kuhnert, Petra M and Wikle, Christopher K},
+      journal={Journal of Open Source Software},
+      volume={6},
+      number={59},
+      pages={2409},
+      year={2021}
+    }
 
 ## History of Vizumap
 
@@ -134,3 +156,8 @@ Lucchesi, L.R. and Wikle C.K. (2017) [Visualizing uncertainty in areal
 data with bivariate choropleth maps, map pixelation and glyph
 rotation](http://faculty.missouri.edu/~wiklec/LucchesiWikle2017Stat),
 Stat, <https://doi.org/10.1002/sta4.150>.
+
+Lucchesi, L.R., Kuhnert, P.M. and Wikle, C.K. (2021) [Vizumap: an R
+package for visualising uncertainty in spatial
+data](https://doi.org/10.21105/joss.02409), Journal of Open Source
+Software, <https://doi.org/10.21105/joss.02409>.

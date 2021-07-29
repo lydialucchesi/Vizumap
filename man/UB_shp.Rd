@@ -4,7 +4,9 @@
 \name{UB_shp}
 \alias{UB_shp}
 \title{UB_shp}
-\format{A shape file stored as a \code{SpatialPolygonsDataFrame}.}
+\format{
+A shape file stored as a \code{SpatialPolygonsDataFrame}.
+}
 \usage{
 UB_shp
 }

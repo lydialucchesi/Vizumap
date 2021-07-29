@@ -35,7 +35,7 @@ Remotes: ropensci-archive/geoaxe
 License: GPL-3
 LazyLoad: TRUE
 LazyData: TRUE
-RoxygenNote: 7.0.0
+RoxygenNote: 7.1.1
 Suggests: 
     knitr,
     rmarkdown,

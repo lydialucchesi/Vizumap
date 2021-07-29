@@ -4,7 +4,9 @@
 \name{UB_tss}
 \alias{UB_tss}
 \title{UB_tss}
-\format{A data frame comprising 411 rows (one for each RCA) and 5 columns.}
+\format{
+A data frame comprising 411 rows (one for each RCA) and 5 columns.
+}
 \usage{
 UB_tss
 }
