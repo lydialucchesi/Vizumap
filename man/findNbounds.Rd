@@ -4,17 +4,37 @@
 \alias{findNbounds}
 \title{findNbounds}
 \usage{
-findNbounds(data, estimate, error, terciles)
+findNbounds(
+  data,
+  estimate,
+  error,
+  terciles,
+  expertR_est = NA,
+  expertR_err = NA
+)
 }
 \arguments{
-\item{data}{dataset from which bounds are to be determined}
+\item{data}{Dataset from which bounds are to be determined.}
 
-\item{estimate}{name of the estimate column}
+\item{estimate}{Name of the estimate column.}
 
-\item{error}{name of the error column}
+\item{error}{Name of the error column.}
 
-\item{terciles}{should terciles be calculated? (Default: FALSE)}
+\item{terciles}{Should terciles be calculated? (Default: FALSE).}
+
+\item{expertR_est}{A vector consisting of the range of expert values for the
+estimate (Default: NA).}
+
+\item{expertR_err}{A vector consisting of the range of expert values for the
+error (Default: NA).}
 }
 \description{
 Find the bins for the colour grid
+}
+\details{
+Expert ranges for the estimate and error can be supplied to assist
+  with the comparison of multiple figures. By default these are set to NA,
+  which will result in the bounds being directly computed from the data.
+  Note, if the expert values do not span the range of the data, this function
+  will default to finding the bounds of the data.
 }

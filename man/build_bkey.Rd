@@ -4,31 +4,57 @@
 \alias{build_bkey}
 \title{Build a bivariate colour key}
 \usage{
-build_bkey(data, palette = "BlueYellow", terciles = FALSE, flipAxis = FALSE)
+build_bkey(
+  data,
+  palette = "BlueYellow",
+  terciles = FALSE,
+  flipAxis = FALSE,
+  expertR_est = NA,
+  expertR_err = NA,
+  bound = NULL
+)
 }
 \arguments{
 \item{data}{A data frame.}
 
 \item{palette}{Name of colour palette or character vector of hex colour codes
-created with \code{\link{build_palette}} function. Colour palette names include
-\code{BlueYellow}, \code{CyanMagenta}, \code{BlueRed} and
+created with \code{\link{build_palette}} function. Colour palette names
+include \code{BlueYellow}, \code{CyanMagenta}, \code{BlueRed} and
 \code{GreenBlue}.}
 
 \item{terciles}{A logical value. This provides the option to define numerical
 bounds for the colour key grid using terciles instead of equal intervals.}
 
-\item{flipAxis}{A logical value. Whether to place the axis on the opposite sides or not.}
+\item{flipAxis}{A logical value. Whether to place the axis on the opposite
+sides or not.}
+
+\item{expertR_est}{A vector consisting of the range of expert values for the
+estimate (Default: NA).}
+
+\item{expertR_err}{A vector consisting of the range of expert values for the
+error (Default: NA).}
+
+\item{bound}{A vector of eight elements representing the bounds for the
+estimate and error that will be used on the bivariate colour key.  These can
+be created offline using the \code{\link{findNbounds}} function.}
 }
 \description{
-This function links data and a colour palette. Numerical bounds are added
-to the 3 x 3 colour grid.
+This function links data and a colour palette. Numerical bounds are added to
+the 3 x 3 colour grid.
 }
 \details{
 A key for the bivariate map is not automatically generated with
-\code{\link{build_bmap}} and must be made using \code{\link{build_bkey}}. It is important
-that the arguments passed to \code{\link{build_bkey}} match those passed to
-\code{\link{build_bmap}}. The map and key can be viewed together using
-\code{\link{attach_key}}.
+\code{\link{build_bmap}} and must be made using \code{\link{build_bkey}}. It
+is important that the arguments passed to \code{\link{build_bkey}} match those
+passed to \code{\link{build_bmap}}. The map and key can be viewed together
+using \code{\link{attach_key}}.
+
+If bound is NULL, the bounds for the legend will be computed from the
+ data and expert bounds (if available) using the findNbound function.  The
+ argument bound should only be used if you want to make comparison against
+ multiple maps.  For that scenario, the user should use the findNbounds
+ function to generate a bound for the larger set of data that wish to
+ compare.
 }
 \examples{
 data(us_data)

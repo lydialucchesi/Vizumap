@@ -117,29 +117,53 @@
     <p>Find the bins for the colour grid</p>
     </div>
 
-    <pre class="usage"><span class='fu'>findNbounds</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>estimate</span>, <span class='va'>error</span>, <span class='va'>terciles</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>findNbounds</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>estimate</span>,
+  <span class='va'>error</span>,
+  <span class='va'>terciles</span>,
+  expertR_est <span class='op'>=</span> <span class='cn'>NA</span>,
+  expertR_err <span class='op'>=</span> <span class='cn'>NA</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>dataset from which bounds are to be determined</p></td>
+      <td><p>Dataset from which bounds are to be determined.</p></td>
     </tr>
     <tr>
       <th>estimate</th>
-      <td><p>name of the estimate column</p></td>
+      <td><p>Name of the estimate column.</p></td>
     </tr>
     <tr>
       <th>error</th>
-      <td><p>name of the error column</p></td>
+      <td><p>Name of the error column.</p></td>
     </tr>
     <tr>
       <th>terciles</th>
-      <td><p>should terciles be calculated? (Default: FALSE)</p></td>
+      <td><p>Should terciles be calculated? (Default: FALSE).</p></td>
+    </tr>
+    <tr>
+      <th>expertR_est</th>
+      <td><p>A vector consisting of the range of expert values for the
+estimate (Default: NA).</p></td>
+    </tr>
+    <tr>
+      <th>expertR_err</th>
+      <td><p>A vector consisting of the range of expert values for the
+error (Default: NA).</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Expert ranges for the estimate and error can be supplied to assist
+  with the comparison of multiple figures. By default these are set to NA,
+  which will result in the bounds being directly computed from the data.
+  Note, if the expert values do not span the range of the data, this function
+  will default to finding the bounds of the data.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
