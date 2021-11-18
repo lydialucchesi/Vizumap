@@ -70,7 +70,7 @@
       <h1 data-toc-skip>Using Vizumap</h1>
                         <h4 class="author">Lydia Lucchesi and Petra Kuhnert</h4>
             
-            <h4 class="date">2021-07-29</h4>
+            <h4 class="date">2021-11-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/lydialucchesi/Vizumap/blob/master/vignettes/Vizumap.Rmd"><code>vignettes/Vizumap.Rmd</code></a></small>
       <div class="hidden name"><code>Vizumap.Rmd</code></div>
@@ -203,7 +203,7 @@
 <span class="va">ca_data</span><span class="op">$</span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span><span class="op">)</span>
 
 <span class="co"># check that values in shared column match</span>
-<span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span> <span class="op">%in%</span> <span class="va">pix</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">pix</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>If <code>distribution = "uniform"</code>, the values are sampled uniformly from an interval, where the lower bound is the estimate minus the error and the upper bound is the estimate plus the error. For the estimates and margins of error in <code>us_data</code>, this interval corresponds to the estimate’s 90% confidence interval.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">

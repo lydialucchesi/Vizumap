@@ -143,11 +143,12 @@ threshold.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>pname</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>quote</a></span><span class='op'>(</span><span class='op'>{</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span><span class='op'>(</span><span class='va'>q</span>, <span class='va'>mean</span>, <span class='va'>sd</span>, lower.tail <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>}</span><span class='op'>)</span>
-<span class='fu'>pdist</span><span class='op'>(</span>pname <span class='op'>=</span> <span class='va'>pname</span>, th <span class='op'>=</span> <span class='fl'>3</span>, args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>mean <span class='op'>=</span> <span class='fl'>2</span>, sd <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 0.1586553</div><div class='input'>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>pname</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>quote</a></span><span class='op'>(</span><span class='op'>{</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span><span class='op'>(</span><span class='va'>q</span>, <span class='va'>mean</span>, <span class='va'>sd</span>, lower.tail <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>}</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>pdist</span><span class='op'>(</span>pname <span class='op'>=</span> <span class='va'>pname</span>, th <span class='op'>=</span> <span class='fl'>3</span>, args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>mean <span class='op'>=</span> <span class='fl'>2</span>, sd <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.1586553</span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

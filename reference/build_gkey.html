@@ -144,18 +144,19 @@ that the arguments passed to <code>build_gkey</code> match those passed to
     <div class='dont-index'><p><code><a href='attach_key.html'>attach_key</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>us_data</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>us_geo</span><span class='op'>)</span>
-<span class='va'>co_geo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>us_geo</span>, <span class='va'>us_geo</span><span class='op'>@</span><span class='va'>data</span><span class='op'>$</span><span class='va'>STATE</span> <span class='op'>==</span> <span class='st'>"08"</span><span class='op'>)</span>
-<span class='va'>us_data</span><span class='op'>$</span><span class='va'>GEO.id2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>us_data</span><span class='op'>$</span><span class='va'>GEO.id2</span><span class='op'>)</span>
-<span class='va'>co_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>us_data</span>, <span class='va'>us_data</span><span class='op'>$</span><span class='va'>GEO.id2</span> <span class='op'>&gt;</span> <span class='fl'>8000</span> <span class='op'>&amp;</span> <span class='va'>us_data</span><span class='op'>$</span><span class='va'>GEO.id2</span> <span class='op'>&lt;</span> <span class='fl'>9000</span><span class='op'>)</span>
-<span class='va'>co_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read.uv.html'>read.uv</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>co_data</span>, estimate <span class='op'>=</span> <span class='st'>"pov_rate"</span>, error <span class='op'>=</span> <span class='st'>"pov_moe"</span><span class='op'>)</span>
-
-<span class='co'># build a glyph key</span>
-<span class='va'>key</span> <span class='op'>&lt;-</span> <span class='fu'>build_gkey</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>co_data</span>, glyph <span class='op'>=</span> <span class='st'>"icone"</span><span class='op'>)</span>
-<span class='fu'><a href='view.html'>view</a></span><span class='op'>(</span><span class='va'>key</span><span class='op'>)</span>
-</div><div class='img'><img src='build_gkey-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>us_data</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>us_geo</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>co_geo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>us_geo</span>, <span class='va'>us_geo</span><span class='op'>@</span><span class='va'>data</span><span class='op'>$</span><span class='va'>STATE</span> <span class='op'>==</span> <span class='st'>"08"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>us_data</span><span class='op'>$</span><span class='va'>GEO.id2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>us_data</span><span class='op'>$</span><span class='va'>GEO.id2</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>co_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>us_data</span>, <span class='va'>us_data</span><span class='op'>$</span><span class='va'>GEO.id2</span> <span class='op'>&gt;</span> <span class='fl'>8000</span> <span class='op'>&amp;</span> <span class='va'>us_data</span><span class='op'>$</span><span class='va'>GEO.id2</span> <span class='op'>&lt;</span> <span class='fl'>9000</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>co_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read.uv.html'>read.uv</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>co_data</span>, estimate <span class='op'>=</span> <span class='st'>"pov_rate"</span>, error <span class='op'>=</span> <span class='st'>"pov_moe"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># build a glyph key</span></span>
+<span class='r-in'><span class='va'>key</span> <span class='op'>&lt;-</span> <span class='fu'>build_gkey</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>co_data</span>, glyph <span class='op'>=</span> <span class='st'>"icone"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='view.html'>view</a></span><span class='op'>(</span><span class='va'>key</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='build_gkey-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

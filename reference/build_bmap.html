@@ -201,16 +201,17 @@ include latitude and longitude coordinates in columns <code>"long"</code> and
     <div class='dont-index'><p><code><a href='build_bkey.html'>build_bkey</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>us_data</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>us_geo</span><span class='op'>)</span>
-<span class='va'>poverty</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read.uv.html'>read.uv</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>us_data</span>, estimate <span class='op'>=</span> <span class='st'>"pov_rate"</span>, error <span class='op'>=</span> <span class='st'>"pov_moe"</span><span class='op'>)</span>
-
-<span class='co'># bivariate map with a spatial polygons data frame</span>
-<span class='va'>map</span> <span class='op'>&lt;-</span> <span class='fu'>build_bmap</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>poverty</span>, geoData <span class='op'>=</span> <span class='va'>us_geo</span>, id <span class='op'>=</span> <span class='st'>"GEO_ID"</span>,
- border <span class='op'>=</span> <span class='st'>"state"</span>, terciles <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'><a href='view.html'>view</a></span><span class='op'>(</span><span class='va'>map</span><span class='op'>)</span>
-</div><div class='img'><img src='build_bmap-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>us_data</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>us_geo</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>poverty</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read.uv.html'>read.uv</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>us_data</span>, estimate <span class='op'>=</span> <span class='st'>"pov_rate"</span>, error <span class='op'>=</span> <span class='st'>"pov_moe"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># bivariate map with a spatial polygons data frame</span></span>
+<span class='r-in'><span class='va'>map</span> <span class='op'>&lt;-</span> <span class='fu'>build_bmap</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>poverty</span>, geoData <span class='op'>=</span> <span class='va'>us_geo</span>, id <span class='op'>=</span> <span class='st'>"GEO_ID"</span>,</span>
+<span class='r-in'> border <span class='op'>=</span> <span class='st'>"state"</span>, terciles <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='view.html'>view</a></span><span class='op'>(</span><span class='va'>map</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='build_bmap-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

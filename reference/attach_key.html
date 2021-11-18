@@ -136,16 +136,17 @@ bivariate colour map or a glyph key to a glyph map so that they can be viewed to
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>us_data</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>us_geo</span><span class='op'>)</span>
-<span class='va'>poverty</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read.uv.html'>read.uv</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>us_data</span>, estimate <span class='op'>=</span> <span class='st'>"pov_rate"</span>, error <span class='op'>=</span> <span class='st'>"pov_moe"</span><span class='op'>)</span>
-
-<span class='co'># bivariate map and key together</span>
-<span class='va'>map</span> <span class='op'>&lt;-</span> <span class='fu'><a href='build_bmap.html'>build_bmap</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>poverty</span>, geoData <span class='op'>=</span> <span class='va'>us_geo</span>, id <span class='op'>=</span> <span class='st'>"GEO_ID"</span>,
- border <span class='op'>=</span> <span class='st'>"state"</span>, terciles <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='va'>key</span> <span class='op'>&lt;-</span> <span class='fu'><a href='build_bkey.html'>build_bkey</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>poverty</span>, terciles <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'>attach_key</span><span class='op'>(</span><span class='va'>map</span>, <span class='va'>key</span><span class='op'>)</span>
-</div><div class='img'><img src='attach_key-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>us_data</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>us_geo</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>poverty</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read.uv.html'>read.uv</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>us_data</span>, estimate <span class='op'>=</span> <span class='st'>"pov_rate"</span>, error <span class='op'>=</span> <span class='st'>"pov_moe"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># bivariate map and key together</span></span>
+<span class='r-in'><span class='va'>map</span> <span class='op'>&lt;-</span> <span class='fu'><a href='build_bmap.html'>build_bmap</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>poverty</span>, geoData <span class='op'>=</span> <span class='va'>us_geo</span>, id <span class='op'>=</span> <span class='st'>"GEO_ID"</span>,</span>
+<span class='r-in'> border <span class='op'>=</span> <span class='st'>"state"</span>, terciles <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>key</span> <span class='op'>&lt;-</span> <span class='fu'><a href='build_bkey.html'>build_bkey</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>poverty</span>, terciles <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>attach_key</span><span class='op'>(</span><span class='va'>map</span>, <span class='va'>key</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='attach_key-1.png' alt='' width='700' height='433' /></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
