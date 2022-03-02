@@ -125,7 +125,7 @@ build_bkey <-
               4.5, 5.5, 6.5),
         y = c(-0.5, 0.5, 1.5, 2.5,-0.5,
               0.5, 1.5, 2.5),
-        bound = as.character(bound),
+        bound = as.character(round(bound, 2)),
         angle = c(rep(45,
                       4), rep(-45, 4))
       )
@@ -156,7 +156,7 @@ build_bkey <-
               4.5, 5.5, 6.5),
         x = c(-0.5, 0.5, 1.5, 2.5,-0.5,
               0.5, 1.5, 2.5),
-        bound = as.character(bound),
+        bound = as.character(round(bound, 2)),
         angle = c(rep(45,
                       4), rep(-45, 4))
       )
