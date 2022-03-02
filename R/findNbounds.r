@@ -93,11 +93,11 @@ findNbounds <-
         min = min_error
       )
     bound <- c(
-      round(min_estimate, 2),
+      min_estimate,
       estimate_bin1,
       estimate_bin2,
       estimate_bin3,
-      round(min_error, 2),
+      min_error,
       error_bin1,
       error_bin2,
       error_bin3
