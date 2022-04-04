@@ -25,6 +25,8 @@
 #'@param bound A vector of eight elements representing the bounds for the
 #'  estimate and error that will be used on the bivariate colour key.  These can
 #'  be created offline using the \code{\link{findNbounds}} function.
+#'@param transparent A logical value. Option to make the key background
+#'  transparent. Default value is FALSE.
 #'
 #'@details If bound is NULL, the bounds for the legend will be computed from the
 #'  data and expert bounds (if available) using the findNbound function.  The
@@ -59,7 +61,8 @@ build_bkey <-
             flipAxis = FALSE,
             expertR_est = NA,
             expertR_err = NA,
-            bound = NULL)
+            bound = NULL,
+            transparent = FALSE)
   {
     estimate <- names(data)[1]
     error <- names(data)[2]
@@ -77,13 +80,13 @@ build_bkey <-
         stop(
           "Palette name not recognised. Must be one of BlueYellow, CyanMagenta, BlueRed or GreenBlue.\n"
         )
-    }
-    else if (class(palette)[1] == "palette")
+    } else if (class(palette)[1] == "palette") {
       colors <- palette
-    else
+    } else {
       stop(
         "Palette supplied is not of class 'palette'. Please create a palette using the 'build_palette' function."
       )
+    }
     if (!is.logical(flipAxis))
       stop("flipAxis must be a logical value")
     if (!is.logical(terciles))
@@ -134,11 +137,11 @@ build_bkey <-
         labels = labels,
         estimate = estimate,
         error = error,
-        flipped = flipAxis
+        flipped = flipAxis,
+        transparent = transparent
       )
 
-    }
-    else {
+    } else {
       if (is.null(bound)) {
         bound <-
           findNbounds(
@@ -165,7 +168,8 @@ build_bkey <-
         labels = labels,
         estimate = error,
         error = estimate,
-        flipped = flipAxis
+        flipped = flipAxis,
+        transparent = transparent
       )
     }
     oldClass(p) <- c("bivkey", class(p))

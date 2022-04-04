@@ -11,7 +11,8 @@ build_bkey(
   flipAxis = FALSE,
   expertR_est = NA,
   expertR_err = NA,
-  bound = NULL
+  bound = NULL,
+  transparent = FALSE
 )
 }
 \arguments{
@@ -37,6 +38,9 @@ error (Default: NA).}
 \item{bound}{A vector of eight elements representing the bounds for the
 estimate and error that will be used on the bivariate colour key.  These can
 be created offline using the \code{\link{findNbounds}} function.}
+
+\item{transparent}{A logical value. Option to make the key background
+transparent. Default value is FALSE.}
 }
 \description{
 This function links data and a colour palette. Numerical bounds are added to

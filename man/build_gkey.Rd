@@ -4,22 +4,27 @@
 \alias{build_gkey}
 \title{Build a glyph key}
 \usage{
-build_gkey(data, glyph = "icone")
+build_gkey(data, glyph = "icone", transparent = FALSE)
 }
 \arguments{
 \item{data}{A data frame.}
 
-\item{glyph}{Name of glyph shape. Options include \code{icone} and \code{semi}.}
+\item{glyph}{Name of glyph shape. Options include \code{icone} and
+\code{semi}.}
+
+\item{transparent}{A logical value. Option to make key background transparent.
+Default is FALSE.}
 }
 \description{
-This function creates a key of rotated glyphs for a map produced with \code{\link{build_gmap}}.
+This function creates a key of rotated glyphs for a map produced with
+\code{\link{build_gmap}}.
 }
 \details{
 A key for the glyph map is not automatically generated with
-\code{\link{build_gmap}} and must be made using \code{\link{build_gkey}}. It is important
-that the arguments passed to \code{\link{build_gkey}} match those passed to
-\code{\link{build_gmap}}. The map and key can be viewed together using
-\code{\link{attach_key}}.
+\code{\link{build_gmap}} and must be made using \code{\link{build_gkey}}. It
+is important that the arguments passed to \code{\link{build_gkey}} match those
+passed to \code{\link{build_gmap}}. The map and key can be viewed together
+using \code{\link{attach_key}}.
 }
 \examples{
 data(us_data)
