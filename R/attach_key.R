@@ -16,7 +16,7 @@
 #'key <- build_bkey(data = poverty, terciles = TRUE)
 #'attach_key(map, key)
 #' @export
-#' @importFrom "gridExtra" "grid.arrange"
+#' @import "patchwork"
 
 attach_key <- function(map, mapkey) {
 
@@ -29,13 +29,7 @@ attach_key <- function(map, mapkey) {
   k <- view(mapkey)
   m <- view(map)
 
-
-  lay <- rbind(c(1, 1, 1, 1, NA, NA),
-               c(1, 1, 1, 1, 2, 2),
-               c(1, 1, 1, 1, 2, 2),
-               c(1, 1, 1, 1, NA, NA))
-
-  grid.arrange(m, k, layout_matrix = lay)
+  m + k + plot_layout(widths = c(4, 1), heights = c(4, 1))
 
 
 }

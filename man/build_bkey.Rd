@@ -12,6 +12,7 @@ build_bkey(
   expertR_est = NA,
   expertR_err = NA,
   bound = NULL,
+  fontSize = 3,
   transparent = FALSE
 )
 }
@@ -38,6 +39,8 @@ error (Default: NA).}
 \item{bound}{A vector of eight elements representing the bounds for the
 estimate and error that will be used on the bivariate colour key.  These can
 be created offline using the \code{\link{findNbounds}} function.}
+
+\item{fontSize}{An integer value. Default is 3.}
 
 \item{transparent}{A logical value. Option to make the key background
 transparent. Default value is FALSE.}

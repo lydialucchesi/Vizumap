@@ -138,7 +138,7 @@ view(usBivKey)
 ```
 
 Maps and keys can be viewed together with `attach_key`.
-```{r, echo=TRUE, fig.align="center", fig.asp=.5, fig.height=10, fig.width=14, message=FALSE, warning=FALSE}
+```{r, echo=TRUE, fig.align="center", fig.asp=.65, fig.height=10, fig.width=14, message=FALSE, warning=FALSE}
 attach_key(usBivMap, usBivKey)
 ```
 

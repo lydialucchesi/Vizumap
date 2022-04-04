@@ -40,21 +40,21 @@ view.bivkey <- function(obj) {
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank()
       ) +
-      geom_text(aes(
+      geom_label(aes(
         x = -.5,
         y = .1,
         label = paste0(obj$estimate)
       ),
       angle = -45,
-      size = 4)  +
-      geom_text(aes(
+      size = obj$fontSize)  +
+      geom_label(aes(
         x = 6.5,
         y = .1,
         label = paste0(obj$error)
       ),
       angle = 45,
-      size = 4)  +
-      geom_text(
+      size = obj$fontSize)  +
+      geom_label(
         data = obj$labels,
         aes_string(
           x = x,
@@ -62,7 +62,7 @@ view.bivkey <- function(obj) {
           label = 'bound',
           angle = 'angle'
         ),
-        size = 4
+        size = obj$fontSize
       ) +
       xlim(c(-1.2, 7.2)) +
       ylim(c(-.75, 6))
@@ -95,14 +95,14 @@ view.bivkey <- function(obj) {
         label = paste0(obj$estimate)
       ),
       angle = -45,
-      size = 4)  +
+      size = obj$fontSize)  +
       geom_text(aes(
         x = 6.5,
         y = .1,
         label = paste0(obj$error)
       ),
       angle = 45,
-      size = 4)  +
+      size = obj$fontSize)  +
       geom_text(
         data = obj$labels,
         aes_string(
@@ -111,7 +111,7 @@ view.bivkey <- function(obj) {
           label = 'bound',
           angle = 'angle'
         ),
-        size = 4
+        size = obj$fontSize
       ) +
       xlim(c(-1.2, 7.2)) +
       ylim(c(-.75, 6))

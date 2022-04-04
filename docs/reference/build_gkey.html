@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="Build a glyph key — build_gkey" />
-<meta property="og:description" content="This function creates a key of rotated glyphs for a map produced with build_gmap." />
+<meta property="og:description" content="This function creates a key of rotated glyphs for a map produced with
+build_gmap." />
 
 
 
@@ -114,10 +115,11 @@
     </div>
 
     <div class="ref-description">
-    <p>This function creates a key of rotated glyphs for a map produced with <code><a href='build_gmap.html'>build_gmap</a></code>.</p>
+    <p>This function creates a key of rotated glyphs for a map produced with
+<code><a href='build_gmap.html'>build_gmap</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>build_gkey</span><span class='op'>(</span><span class='va'>data</span>, glyph <span class='op'>=</span> <span class='st'>"icone"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>build_gkey</span><span class='op'>(</span><span class='va'>data</span>, glyph <span class='op'>=</span> <span class='st'>"icone"</span>, fontSize <span class='op'>=</span> <span class='fl'>3</span>, transparent <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -128,17 +130,27 @@
     </tr>
     <tr>
       <th>glyph</th>
-      <td><p>Name of glyph shape. Options include <code>icone</code> and <code>semi</code>.</p></td>
+      <td><p>Name of glyph shape. Options include <code>icone</code> and
+<code>semi</code>.</p></td>
+    </tr>
+    <tr>
+      <th>fontSize</th>
+      <td><p>An integer value. Default is 3.</p></td>
+    </tr>
+    <tr>
+      <th>transparent</th>
+      <td><p>A logical value. Option to make key background transparent.
+Default is FALSE.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>A key for the glyph map is not automatically generated with
-<code><a href='build_gmap.html'>build_gmap</a></code> and must be made using <code>build_gkey</code>. It is important
-that the arguments passed to <code>build_gkey</code> match those passed to
-<code><a href='build_gmap.html'>build_gmap</a></code>. The map and key can be viewed together using
-<code><a href='attach_key.html'>attach_key</a></code>.</p>
+<code><a href='build_gmap.html'>build_gmap</a></code> and must be made using <code>build_gkey</code>. It
+is important that the arguments passed to <code>build_gkey</code> match those
+passed to <code><a href='build_gmap.html'>build_gmap</a></code>. The map and key can be viewed together
+using <code><a href='attach_key.html'>attach_key</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='attach_key.html'>attach_key</a></code></p></div>

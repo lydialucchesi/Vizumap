@@ -30,7 +30,8 @@ Imports:
     maptools,
     sp,
     spbabel,
-    maps
+    maps,
+    patchwork
 Remotes: ropensci-archive/geoaxe
 License: GPL-3
 LazyLoad: TRUE

@@ -4,13 +4,15 @@
 \alias{build_gkey}
 \title{Build a glyph key}
 \usage{
-build_gkey(data, glyph = "icone", transparent = FALSE)
+build_gkey(data, glyph = "icone", fontSize = 3, transparent = FALSE)
 }
 \arguments{
 \item{data}{A data frame.}
 
 \item{glyph}{Name of glyph shape. Options include \code{icone} and
 \code{semi}.}
+
+\item{fontSize}{An integer value. Default is 3.}
 
 \item{transparent}{A logical value. Option to make key background transparent.
 Default is FALSE.}

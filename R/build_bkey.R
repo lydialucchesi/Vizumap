@@ -25,6 +25,7 @@
 #'@param bound A vector of eight elements representing the bounds for the
 #'  estimate and error that will be used on the bivariate colour key.  These can
 #'  be created offline using the \code{\link{findNbounds}} function.
+#'@param fontSize An integer value. Default is 3.
 #'@param transparent A logical value. Option to make the key background
 #'  transparent. Default value is FALSE.
 #'
@@ -62,8 +63,8 @@ build_bkey <-
             expertR_est = NA,
             expertR_err = NA,
             bound = NULL,
-            transparent = FALSE)
-  {
+            fontSize = 3,
+            transparent = FALSE) {
     estimate <- names(data)[1]
     error <- names(data)[2]
     if (class(palette)[1] == "character" & length(palette) ==
@@ -124,9 +125,9 @@ build_bkey <-
 
 
       labels <- data.frame(
-        x = c(2.5, 1.5, 0.5,-0.5, 3.5,
+        x = c(2.5, 1.5, 0.5, -0.5, 3.5,
               4.5, 5.5, 6.5),
-        y = c(-0.5, 0.5, 1.5, 2.5,-0.5,
+        y = c(-0.5, 0.5, 1.5, 2.5, -0.5,
               0.5, 1.5, 2.5),
         bound = as.character(round(bound, 2)),
         angle = c(rep(45,
@@ -138,6 +139,7 @@ build_bkey <-
         estimate = estimate,
         error = error,
         flipped = flipAxis,
+        fontSize = fontSize,
         transparent = transparent
       )
 
@@ -155,9 +157,9 @@ build_bkey <-
       }
 
       labels <- data.frame(
-        y = c(2.5, 1.5, 0.5,-0.5, 3.5,
+        y = c(2.5, 1.5, 0.5, -0.5, 3.5,
               4.5, 5.5, 6.5),
-        x = c(-0.5, 0.5, 1.5, 2.5,-0.5,
+        x = c(-0.5, 0.5, 1.5, 2.5, -0.5,
               0.5, 1.5, 2.5),
         bound = as.character(round(bound, 2)),
         angle = c(rep(45,
@@ -169,6 +171,7 @@ build_bkey <-
         estimate = error,
         error = estimate,
         flipped = flipAxis,
+        fontSize = fontSize,
         transparent = transparent
       )
     }

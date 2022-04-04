@@ -12,6 +12,7 @@
 #'@param data A data frame.
 #'@param glyph Name of glyph shape. Options include \code{icone} and
 #'  \code{semi}.
+#'@param fontSize An integer value. Default is 3.
 #'@param transparent A logical value. Option to make key background transparent.
 #'  Default is FALSE.
 #'
@@ -33,7 +34,7 @@
 #'
 #'@export
 
-build_gkey <- function(data, glyph = "icone", transparent = FALSE) {
+build_gkey <- function(data, glyph = "icone", fontSize = 3, transparent = FALSE) {
 
   nms <- names(data)
   estimate <- nms[1]
@@ -90,7 +91,7 @@ build_gkey <- function(data, glyph = "icone", transparent = FALSE) {
       by = (max(data[ ,error]) / 2)
     ), 2)
 
-  p <- list(main3 = main3, main3_labels = main3_labels, extra5 = extra5, key_label = paste(error), transparent = transparent)
+  p <- list(main3 = main3, main3_labels = main3_labels, extra5 = extra5, key_label = paste(error), fontSize = fontSize, transparent = transparent)
 
   oldClass(p) <- c("glyphkey", class(p))
 

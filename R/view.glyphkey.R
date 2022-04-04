@@ -36,26 +36,26 @@ view.glyphkey <- function(obj) {
       ),
       colour = "black",
       alpha = .5) +
-      geom_text(aes(
+      geom_label(aes(
         x = 0,
         y = 12,
         label = obj$key_label
-      ), size = 4) +
-      geom_text(aes(
+      ), size = obj$fontSize) +
+      geom_label(aes(
         x = -4,
         y = 7,
         label = obj$main3_labels[1]
-      ), size = 4) +
-      geom_text(aes(
+      ), size = obj$fontSize) +
+      geom_label(aes(
         x = 11.1,
         y = 1.4,
         label = obj$main3_labels[2]
-      ), size = 4) +
-      geom_text(aes(
+      ), size = obj$fontSize) +
+      geom_label(aes(
         x = -5.5,
         y = -7,
         label = obj$main3_labels[3]
-      ), size = 4) +
+      ), size = obj$fontSize) +
       xlim(c(-9, 13)) +
       ylim(c(-11, 12)) +
       theme(
@@ -105,22 +105,22 @@ view.glyphkey <- function(obj) {
         x = 0,
         y = 12,
         label = obj$key_label
-      ), size = 4) +
+      ), size = obj$fontSize) +
       geom_text(aes(
         x = -4,
         y = 7,
         label = obj$main3_labels[1]
-      ), size = 4) +
+      ), size = obj$fontSize) +
       geom_text(aes(
         x = 11.1,
         y = 1.4,
         label = obj$main3_labels[2]
-      ), size = 4) +
+      ), size = obj$fontSize) +
       geom_text(aes(
         x = -5.5,
         y = -7,
         label = obj$main3_labels[3]
-      ), size = 4) +
+      ), size = obj$fontSize) +
       xlim(c(-9, 13)) +
       ylim(c(-11, 12)) +
       theme(
