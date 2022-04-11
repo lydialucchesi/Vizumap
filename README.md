@@ -34,7 +34,7 @@ Petra Kuhnert, CSIRO Data61, Email: <Petra.Kuhnert@data61.csiro.au>
 Approaches for visualising uncertainty in spatial data are presented in
 this package. These include the three approaches developed in [Lucchesi
 and Wikle
-(2017)](http://faculty.missouri.edu/~wiklec/LucchesiWikle2017Stat) and a
+(2017)](https://onlinelibrary.wiley.com/doi/full/10.1002/sta4.150) and a
 fourth approach presented in [Kuhnert et
 al. (2018)](https://publications.csiro.au/publications/#publication/PIcsiro:EP168206).
 The package is outlined in [Lucchesi et
@@ -80,7 +80,7 @@ If you would like to install and run the unit tests interactively,
 include `INSTALL_opts = "--install-tests"` in the installation code.
 
     remotes::install_github(repo = "lydialucchesi/Vizumap", build_vignettes = TRUE, force = TRUE, INSTALL_opts = "--install-tests")
-    
+
     testthat::test_package("Vizumap", reporter = "stop")
 
 ## Contribute
@@ -141,7 +141,7 @@ Australia](https://www.nature.com/articles/s41598-020-73897-1/figures/4).
 We would like to assemble a Vizumap gallery that showcases different
 applications of the package’s mapping methods. If you use Vizumap to
 visualise uncertainty, please feel free to send the map our way. We
-would like to see it\!
+would like to see it!
 
 ## References
 
@@ -154,7 +154,7 @@ Research](https://publications.csiro.au/publications/#publication/PIcsiro:EP1682
 
 Lucchesi, L.R. and Wikle C.K. (2017) [Visualizing uncertainty in areal
 data with bivariate choropleth maps, map pixelation and glyph
-rotation](http://faculty.missouri.edu/~wiklec/LucchesiWikle2017Stat),
+rotation](https://onlinelibrary.wiley.com/doi/full/10.1002/sta4.150),
 Stat, <https://doi.org/10.1002/sta4.150>.
 
 Lucchesi, L.R., Kuhnert, P.M. and Wikle, C.K. (2021) [Vizumap: an R
