@@ -32,11 +32,12 @@ Imports:
     spbabel,
     maps,
     patchwork
-Remotes: ropensci-archive/geoaxe
+Remotes: url::https://cran.r-project.org/src/contrib/Archive/geoaxe/geoaxe_0.1.0.tar.gz
+         url::https://cran.r-project.org/src/contrib/Archive/rgdal/rgdal_1.5-30.tar.gz
 License: GPL-3
 LazyLoad: TRUE
 LazyData: TRUE
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Suggests: 
     knitr,
     rmarkdown,
