@@ -30,7 +30,7 @@ Imports:
     spbabel,
     maps,
     patchwork
-Remotes: url::https://cran.r-project.org/src/contrib/Archive/geoaxe/geoaxe_0.1.0.tar.gz,
+Remotes: ropensci-archive/geoaxe,
          url::https://cran.r-project.org/src/contrib/Archive/rgdal/rgdal_1.5-30.tar.gz
 License: GPL-3
 LazyLoad: TRUE
