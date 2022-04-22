@@ -33,7 +33,7 @@ Imports:
     maps,
     patchwork
 Remotes: ropensci-archive/geoaxe,
-         url::https://cran.r-project.org/src/contrib/Archive/rgdal/rgdal_1.5-30.tar.gz
+         url::https://cran.r-project.org/src/contrib/Archive/rgdal/rgdal_1.5-8.tar.gz
 License: GPL-3
 LazyLoad: TRUE
 LazyData: TRUE
