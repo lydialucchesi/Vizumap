@@ -16,6 +16,7 @@ Depends:
     R (>= 3.5.0)
 Imports:
     dplyr,
+    geoaxe,
     ggplot2,
     grDevices,
     gridExtra,
@@ -25,6 +26,7 @@ Imports:
     broom,
     animation,
     reshape2,
+    rgdal,
     maptools,
     sp,
     spbabel,
