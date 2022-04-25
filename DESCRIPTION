@@ -28,12 +28,12 @@ Imports:
     reshape2,
     rgdal,
     maptools,
+    sf,
     sp,
     spbabel,
     maps,
     patchwork
-Remotes: ropensci-archive/geoaxe,
-         url::https://cran.r-project.org/src/contrib/Archive/rgdal/rgdal_1.5-8.tar.gz
+Remotes: ropensci-archive/geoaxe
 License: GPL-3
 LazyLoad: TRUE
 LazyData: TRUE

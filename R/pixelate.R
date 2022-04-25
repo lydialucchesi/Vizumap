@@ -21,7 +21,7 @@
 #'pix <- pixelate(ca_geo, id = "region")
 #'
 #'
-#'@importFrom "rgdal" "readOGR"
+#'@importFrom "sf" "read_sf"
 #'@importFrom "sp" "SpatialPolygons" "spTransform" "proj4string" "CRS" "proj4string<-"
 #'@importFrom "rgeos" "readWKT" "gBuffer"
 #'@importFrom "ggmap" "make_bbox"
@@ -56,14 +56,17 @@ pixelate <-
     if (!is.null(geoData))
       x <- proj4string(geoData)
     else {
-      geoData <- readOGR(file, layer = layer)
-      x <- proj4string(geoData)
+#      geoData <- readOGR(file, layer = layer)
+    #  browser()
+      geoData <- read_sf(file, layer = layer)
+      x <- st_crs(geoData)
     }
 
     if (!is.na(x)) {
       if (!is.null(file)) {
-        geoData <-
-          SpatialPolygons(geoData@polygons, proj4string = geoData@proj4string)
+        geoData <- sf:::as_Spatial(geoData$geometry)
+     #   geoData <-
+    #      SpatialPolygons(geoData@polygons, proj4string = geoData@proj4string)
       }
       if (class(geoData) == "SpatialPolygonsDataFrame") {
         geoData <-
