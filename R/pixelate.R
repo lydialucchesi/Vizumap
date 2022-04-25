@@ -9,7 +9,7 @@
 #'  "SpatialPolygonsDataFrame".
 #'@param file A shapefile pathway.
 #'@param layer Name of geoData layer (see documentation for
-#'  \code{\link[rgdal]{readOGR}} for more information).
+#'  \code{\link[sf]{read_sf}} for more information).
 #'@param pixelSize An integer 1, 2 or 3. One corresponds to the smallest pixel
 #'  size, and three corresponds to the largest.
 #'@param id A name which will be given to the new ID column. This ID corresponds to the slot ID in
@@ -56,8 +56,6 @@ pixelate <-
     if (!is.null(geoData))
       x <- proj4string(geoData)
     else {
-#      geoData <- readOGR(file, layer = layer)
-    #  browser()
       geoData <- read_sf(file, layer = layer)
       x <- st_crs(geoData)
     }
@@ -65,8 +63,6 @@ pixelate <-
     if (!is.na(x)) {
       if (!is.null(file)) {
         geoData <- sf:::as_Spatial(geoData$geometry)
-     #   geoData <-
-    #      SpatialPolygons(geoData@polygons, proj4string = geoData@proj4string)
       }
       if (class(geoData) == "SpatialPolygonsDataFrame") {
         geoData <-
