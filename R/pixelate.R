@@ -57,12 +57,12 @@ pixelate <-
       x <- proj4string(geoData)
     else {
       geoData <- read_sf(file, layer = layer)
-      x <- st_crs(geoData)
+      x <- sf::st_crs(geoData)
     }
 
     if (!is.na(x)) {
       if (!is.null(file)) {
-        geoData <- sf:::as_Spatial(geoData$geometry)
+        geoData <- sf::as_Spatial(geoData$geometry)
       }
       if (class(geoData) == "SpatialPolygonsDataFrame") {
         geoData <-
