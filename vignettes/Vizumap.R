@@ -95,7 +95,7 @@ view(usBivMap)
 usBivKey <- build_bkey(data = poverty, terciles = TRUE)
 view(usBivKey)
 
-## ---- echo=TRUE, fig.align="center", fig.asp=.5, fig.height=10, fig.width=14, message=FALSE, warning=FALSE----
+## ---- echo=TRUE, fig.align="center", fig.asp=.65, fig.height=10, fig.width=14, message=FALSE, warning=FALSE----
 attach_key(usBivMap, usBivKey)
 
 ## ---- echo = TRUE, eval = TRUE, fig.align = "center", fig.width=8, fig.height=8, fig.asp=.75----

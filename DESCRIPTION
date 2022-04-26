@@ -16,18 +16,18 @@ Depends:
     R (>= 3.5.0)
 Imports:
     dplyr,
+    geoaxe,
     ggplot2,
     grDevices,
     gridExtra,
     plyr,
-    rgdal,
     rgeos,
     ggmap,
     broom,
     animation,
     reshape2,
-    geoaxe,
     maptools,
+    sf,
     sp,
     spbabel,
     maps,
@@ -36,7 +36,7 @@ Remotes: ropensci-archive/geoaxe
 License: GPL-3
 LazyLoad: TRUE
 LazyData: TRUE
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Suggests: 
     knitr,
     rmarkdown,
