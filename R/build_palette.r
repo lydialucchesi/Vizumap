@@ -36,7 +36,7 @@
 #'view(p)
 #'@export
 #'@importFrom "grDevices" "colorRamp" "rgb" "colorRampPalette" "colours" "colors"
-#'@importFrom "grDevices"  "col2rgb" "PBSmapping"
+#'@importFrom "grDevices"  "col2rgb" 
 #'@importFrom "Pbsmapping"  "RGB2RYB" "RYB2RGB
 #'
 build_palette <- function(name, colrange = list(colour = NULL, difC = NULL), flipVertical = FALSE, flipHorizontal = FALSE, subtractive = FALSE){
