@@ -31,12 +31,13 @@ Imports:
     sp,
     spbabel,
     maps,
-    patchwork
+    patchwork,
+    PBSmapping
 Remotes: ropensci-archive/geoaxe
 License: GPL-3
 LazyLoad: TRUE
 LazyData: TRUE
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.2
 Suggests: 
     knitr,
     rmarkdown,
