@@ -28,7 +28,7 @@ view.pixelmap <- function(obj){
       palette = obj$palette,
       limits = obj$limits
     ) +
-    guides(colour = FALSE)  +
+    guides(colour = "none")  +
     geom_path(
       data = obj$bord,
       aes_string(x = 'long', y = 'lat', group = 'group'),
