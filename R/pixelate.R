@@ -20,7 +20,6 @@
 #'ca_geo <- subset(us_geo, us_geo@data$STATE == "06")
 #'pix <- pixelate(ca_geo, id = "region")
 #'
-#'
 #'@importFrom "sf" "read_sf"
 #'@importFrom "sp" "SpatialPolygons" "spTransform" "proj4string" "CRS" "proj4string<-"
 #'@importFrom "rgeos" "readWKT" "gBuffer"
