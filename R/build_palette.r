@@ -7,6 +7,9 @@
 #'When choosing colours, it is best to avoid light colours or tints as these
 #'will lead to a colour palette lacking noticeable differences across the 3 x 3
 #'colour grid.
+#'Note that \code{subtractive = FALSE} allows for additive colour mixing under
+#'the RGB colour wheel while \code{subtractive = TRUE} allows for subtractive
+#'colour mixing under the RYB colour wheel.
 #'
 #'@param name Name of colour palette or \code{usr} for option to design a new
 #'  palette. Colour palette names include
@@ -21,6 +24,7 @@
 #'  change in colour value.
 #'@param flipVertical Whether the palette should be flipped vertically (ie. replace top portion with bottom portion)
 #'@param flipHorizontal Whether the palette should be flipped horizontally (ie. replace left portion with right portion)
+#'@param subtractive A logical evaluating to TRUE or FALSE indicating whether the colour mixing is subtractive or additive
 #'@examples
 #'# use one of four prepared colour palettes
 #'p <- build_palette(name = "CyanMagenta")
@@ -33,8 +37,10 @@
 #'@export
 #'@importFrom "grDevices" "colorRamp" "rgb" "colorRampPalette" "colours" "colors"
 #'@importFrom "grDevices"  "col2rgb"
+#'@importFrom "PBSmapping"  "RGB2RYB"
+#'@importFrom "PBSmapping"  "RYB2RGB"
 #'
-build_palette <- function(name, colrange = list(colour = NULL, difC = NULL), flipVertical = FALSE, flipHorizontal = FALSE){
+build_palette <- function(name, colrange = list(colour = NULL, difC = NULL), flipVertical = FALSE, flipHorizontal = FALSE, subtractive = FALSE){
 
   if(name == "usr"){
     if(missing(colrange))
@@ -45,7 +51,7 @@ build_palette <- function(name, colrange = list(colour = NULL, difC = NULL), fli
 
 
     isValidColour <- tryCatch ({ col2rgb(colrange$colour) }, error=function(e){ return(NULL) } )
-    if (is.null(isValidColour)) {
+    if (is.null(isValidColour)) {+
       stop("one of the colours specified by (", paste(colrange$colour[], collapse = " , "), ") is not a valid colour. Please
            use one of the colours from colors() or use a valid hexadecimal colour.\n")
     }
@@ -115,19 +121,43 @@ build_palette <- function(name, colrange = list(colour = NULL, difC = NULL), fli
   match1 <- with(lmd_df, ramp1(lmd1))
   match2 <- with(lmd_df, ramp2(lmd2))
 
-  match_df <- as.data.frame(cbind(match1, match2))
+  if(subtractive){
+    # convert RGB to RYB
+    match1 <- RGB2RYB(match1)
+    match2 <- RGB2RYB(match2)
 
-  colnames(match_df) <- c("red1", "green1", "blue1", "red2", "green2", "blue2")
+    match_df <- as.data.frame(cbind(match1, match2))
+    colnames(match_df) <- c("red1", "yellow1", "blue1", "red2", "yellow2", "blue2")
 
-  # average two single hue colour palettes
-  match_df$red.ave <- round((match_df$red1 + match_df$red2) / 2)
-  match_df$green.ave <- round((match_df$green1 + match_df$green2) / 2)
-  match_df$blue.ave <- round((match_df$blue1 + match_df$blue2) / 2)
+    # average two single hue colour palettes
+    match_df$red.ave <- (match_df$red1 + match_df$red2) / 2
+    match_df$yellow.ave <- (match_df$yellow1 + match_df$yellow2) / 2
+    match_df$blue.ave <- (match_df$blue1 + match_df$blue2) / 2
 
-  match_df$colour.ave <- paste(match_df$red.ave, match_df$green.ave, match_df$blue.ave)
+    # convert average back to RGB
+      match_df[,7:9] <- round(RYB2RGB(match_df[,7:9])*255)
 
-  colours <- match_df$colour.ave
-  colours <- sapply(strsplit(colours, " "), function(colours) rgb(colours[1], colours[2], colours[3], maxColorValue = 255))
+
+    match_df$colour.ave <- paste(match_df$red.ave, match_df$yellow.ave, match_df$blue.ave)
+
+    colours <- match_df$colour.ave
+    colours <- sapply(strsplit(colours, " "), function(colours) rgb(colours[1], colours[2], colours[3], maxColorValue = 255))
+  }
+  else{
+    match_df <- as.data.frame(cbind(match1, match2))
+    colnames(match_df) <- c("red1", "green1", "blue1", "red2", "green2", "blue2")
+
+    # average two single hue colour palettes
+    match_df$red.ave <- round((match_df$red1 + match_df$red2) / 2)
+    match_df$green.ave <- round((match_df$green1 + match_df$green2) / 2)
+    match_df$blue.ave <- round((match_df$blue1 + match_df$blue2) / 2)
+
+    match_df$colour.ave <- paste(match_df$red.ave, match_df$green.ave, match_df$blue.ave)
+
+    colours <- match_df$colour.ave
+    colours <- sapply(strsplit(colours, " "), function(colours) rgb(colours[1], colours[2], colours[3], maxColorValue = 255))
+  }
+
 
   # if we flip vertically
   if(flipVertical) {

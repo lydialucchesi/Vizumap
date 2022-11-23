@@ -8,7 +8,8 @@ build_palette(
   name,
   colrange = list(colour = NULL, difC = NULL),
   flipVertical = FALSE,
-  flipHorizontal = FALSE
+  flipHorizontal = FALSE,
+  subtractive = FALSE
 )
 }
 \arguments{
@@ -23,6 +24,8 @@ vector of length two.}
 \item{flipVertical}{Whether the palette should be flipped vertically (ie. replace top portion with bottom portion)}
 
 \item{flipHorizontal}{Whether the palette should be flipped horizontally (ie. replace left portion with right portion)}
+
+\item{subtractive}{A logical evaluating to TRUE or FALSE indicating whether the colour mixing is subtractive or additive}
 
 \item{colour}{A character vector of two colour names from the colours() range or valid hexadecimal colors.}
 
@@ -40,6 +43,9 @@ Note that \code{colrange} only needs to be specified if \code{name = "usr."}
 When choosing colours, it is best to avoid light colours or tints as these
 will lead to a colour palette lacking noticeable differences across the 3 x 3
 colour grid.
+Note that \code{subtractive = FALSE} allows for additive colour mixing under
+the RGB colour wheel while \code{subtractive = TRUE} allows for subtractive
+colour mixing under the RYB colour wheel.
 }
 \examples{
 # use one of four prepared colour palettes
