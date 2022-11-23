@@ -15,12 +15,11 @@
 #'  palette. Colour palette names include
 #'  \code{BlueYellow}, \code{CyanMagenta}, \code{BlueRed} and
 #'  \code{GreenBlue}.
-#'@param colrange List with a character vector of length two and a numeric
-#'  vector of length two.
-#'@param colour A character vector of two colour names from the colours() range or valid hexadecimal colors.
-#'@param difC A numeric vector of two integers 1, 2, 3 or 4. Values
-#'  control how much a colour changes in value across the grid. One corresponds
-#'  with a small change in colour value, and four corresponds with a large
+#'@param colrange List with a character vector of length two called colour and a numeric
+#'  vector of length two called difC. colour contains two colour names
+#'  from the colours() range or valid hexadecimal colors. difC contains two
+#'  integers (1, 2, 3 or 4), which control how much a colour changes in value across the grid.
+#'  One corresponds with a small change in colour value, and four corresponds with a large
 #'  change in colour value.
 #'@param flipVertical Whether the palette should be flipped vertically (ie. replace top portion with bottom portion)
 #'@param flipHorizontal Whether the palette should be flipped horizontally (ie. replace left portion with right portion)

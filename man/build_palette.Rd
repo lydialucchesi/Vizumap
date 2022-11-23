@@ -18,21 +18,18 @@ palette. Colour palette names include
 \code{BlueYellow}, \code{CyanMagenta}, \code{BlueRed} and
 \code{GreenBlue}.}
 
-\item{colrange}{List with a character vector of length two and a numeric
-vector of length two.}
+\item{colrange}{List with a character vector of length two called colour and a numeric
+vector of length two called difC. colour contains two colour names
+from the colours() range or valid hexadecimal colors. difC contains two
+integers (1, 2, 3 or 4), which control how much a colour changes in value across the grid.
+One corresponds with a small change in colour value, and four corresponds with a large
+change in colour value.}
 
 \item{flipVertical}{Whether the palette should be flipped vertically (ie. replace top portion with bottom portion)}
 
 \item{flipHorizontal}{Whether the palette should be flipped horizontally (ie. replace left portion with right portion)}
 
 \item{subtractive}{A logical evaluating to TRUE or FALSE indicating whether the colour mixing is subtractive or additive}
-
-\item{colour}{A character vector of two colour names from the colours() range or valid hexadecimal colors.}
-
-\item{difC}{A numeric vector of two integers 1, 2, 3 or 4. Values
-control how much a colour changes in value across the grid. One corresponds
-with a small change in colour value, and four corresponds with a large
-change in colour value.}
 }
 \description{
 This function prepares one of the four included colour palettes
