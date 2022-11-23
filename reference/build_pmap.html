@@ -58,22 +58,24 @@ simultaneously through pixelation and sampling.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">build_pmap</span><span class="op">(</span>
-  data <span class="op">=</span> <span class="cn">NULL</span>,
-  distribution <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">pixelGeo</span>,
-  <span class="va">id</span>,
-  border <span class="op">=</span> <span class="cn">NULL</span>,
-  palette <span class="op">=</span> <span class="st">"Blues"</span>,
-  q <span class="op">=</span> <span class="cn">NULL</span>,
-  limits <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">build_pmap</span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  distribution <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">pixelGeo</span>,</span>
+<span>  <span class="va">id</span>,</span>
+<span>  border <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"Blues"</span>,</span>
+<span>  q <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  limits <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>A data frame.</p></dd>
+
+
 <dt>distribution</dt>
 <dd><p>Name of the distribution that the pixel assignments will
 be drawn from. It must be one of <code>discrete</code>, <code>normal</code> or
@@ -85,12 +87,18 @@ parameterised using the estimates and errors (means and standard
 deviations). If <code>distribution = "uniform"</code>, values will be sampled with
 equal probability from a sequence of 5 numbers that spans the estimate minus
 its error to the estimate plus its error.</p></dd>
+
+
 <dt>pixelGeo</dt>
 <dd><p>An object from <code><a href="pixelate.html">pixelate</a></code>.</p></dd>
+
+
 <dt>id</dt>
 <dd><p>Name of the common column shared by the objects passed to
 <code>data</code>, <code>pixelGeo</code> and <code>q</code> (if <code>distribution =
 "discrete"</code>).</p></dd>
+
+
 <dt>border</dt>
 <dd><p>Name of geographical borders to be added to the map. It must be
 one of <code><a href="https://rdrr.io/pkg/maps/man/county.html" class="external-link">county</a></code>, <code><a href="https://rdrr.io/pkg/maps/man/france.html" class="external-link">france</a></code>,
@@ -100,17 +108,24 @@ one of <code><a href="https://rdrr.io/pkg/maps/man/county.html" class="external-
 <code><a href="https://ggplot2.tidyverse.org/reference/map_data.html" class="external-link">map_data</a></code> for more information). The borders will be
 refined to match latitute and longtidue coordinates provided in the data
 frame or spatial polygons data frame. Alternatively, you can supply a <code>SpatialPolygonsDataFrame</code>.</p></dd>
+
+
 <dt>palette</dt>
 <dd><p>Name of colour palette. It must be one of <code>Blues</code>,
 <code>Greens</code>, <code>Greys</code>, <code>Oranges</code>, <code>Purples</code> or <code>Reds</code>
 (see documentation for <code><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_fill_distiller</a></code> for more
 information).</p></dd>
+
+
 <dt>q</dt>
 <dd><p>A data frame of quantiles which define the distribution for each
 estimate. Each row is an estimate, and each column is a quantile. See
 examples for an example of <code>q</code> input.</p></dd>
+
+
 <dt>limits</dt>
 <dd><p>Limits for the legend. Default is NULL, which takes the limits to be the range of the data.</p></dd>
+
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -119,45 +134,45 @@ examples for an example of <code>q</code> input.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># This code will produce a pixelated map when run in R</span></span>
-<span class="r-in"><span class="co"># It is not run here.</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">ca_geo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">us_geo</span>, <span class="va">us_geo</span><span class="op">@</span><span class="va">data</span><span class="op">$</span><span class="va">STATE</span> <span class="op">==</span> <span class="st">"06"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">pix</span> <span class="op">&lt;-</span> <span class="fu"><a href="pixelate.html">pixelate</a></span><span class="op">(</span><span class="va">ca_geo</span>, id <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">ca_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">us_data</span>, <span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&gt;</span> <span class="fl">6000</span> <span class="op">&amp;</span> <span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&lt;</span> <span class="fl">7000</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">ca_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"pov_moe"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/row.names.html" class="external-link">row.names</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fu">slot</span><span class="op">(</span><span class="va">ca_geo</span>, <span class="st">"polygons"</span><span class="op">)</span>,</span>
-<span class="r-in"> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">slot</span><span class="op">(</span><span class="va">x</span>, <span class="st">"ID"</span><span class="op">)</span><span class="op">)</span>, name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ca_geo</span><span class="op">@</span><span class="va">data</span><span class="op">$</span><span class="va">GEO_ID</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">$</span><span class="va">GEO_ID</span>, <span class="va">df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>, <span class="fl">1</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># uniform distribution</span></span>
-<span class="r-in"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">build_pmap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, distribution <span class="op">=</span> <span class="st">"uniform"</span>, pixelGeo <span class="op">=</span> <span class="va">pix</span>, id <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># normal distribution</span></span>
-<span class="r-in"><span class="va">ca_data</span><span class="op">$</span><span class="va">se</span> <span class="op">&lt;-</span> <span class="va">ca_data</span><span class="op">$</span><span class="va">pov_moe</span> <span class="op">/</span> <span class="fl">1.645</span></span>
-<span class="r-in"><span class="va">ca_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"se"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">build_pmap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, distribution <span class="op">=</span> <span class="st">"normal"</span>, pixelGeo <span class="op">=</span> <span class="va">pix</span>, id <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># experiment with discrete distribution</span></span>
-<span class="r-in"><span class="co"># exponential - example for q argument</span></span>
-<span class="r-in"><span class="va">ca_data.q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">ca_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>p0.05 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>,</span>
-<span class="r-in"> p0.25 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>, p0.5 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>,</span>
-<span class="r-in"> p0.75 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.75</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>, p0.95 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.95</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">build_pmap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, distribution <span class="op">=</span> <span class="st">"discrete"</span>, pixelGeo <span class="op">=</span> <span class="va">pix</span>,</span>
-<span class="r-in"> id <span class="op">=</span> <span class="st">"region"</span>, q <span class="op">=</span> <span class="va">ca_data.q</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># This code will produce a pixelated map when run in R</span></span></span>
+<span class="r-in"><span><span class="co"># It is not run here.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ca_geo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">us_geo</span>, <span class="va">us_geo</span><span class="op">@</span><span class="va">data</span><span class="op">$</span><span class="va">STATE</span> <span class="op">==</span> <span class="st">"06"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">pix</span> <span class="op">&lt;-</span> <span class="fu"><a href="pixelate.html">pixelate</a></span><span class="op">(</span><span class="va">ca_geo</span>, id <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ca_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">us_data</span>, <span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&gt;</span> <span class="fl">6000</span> <span class="op">&amp;</span> <span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&lt;</span> <span class="fl">7000</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ca_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"pov_moe"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html" class="external-link">row.names</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fu">slot</span><span class="op">(</span><span class="va">ca_geo</span>, <span class="st">"polygons"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">slot</span><span class="op">(</span><span class="va">x</span>, <span class="st">"ID"</span><span class="op">)</span><span class="op">)</span>, name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ca_geo</span><span class="op">@</span><span class="va">data</span><span class="op">$</span><span class="va">GEO_ID</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">$</span><span class="va">GEO_ID</span>, <span class="va">df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>, <span class="fl">1</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># uniform distribution</span></span></span>
+<span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">build_pmap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, distribution <span class="op">=</span> <span class="st">"uniform"</span>, pixelGeo <span class="op">=</span> <span class="va">pix</span>, id <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># normal distribution</span></span></span>
+<span class="r-in"><span><span class="va">ca_data</span><span class="op">$</span><span class="va">se</span> <span class="op">&lt;-</span> <span class="va">ca_data</span><span class="op">$</span><span class="va">pov_moe</span> <span class="op">/</span> <span class="fl">1.645</span></span></span>
+<span class="r-in"><span><span class="va">ca_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"se"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">build_pmap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, distribution <span class="op">=</span> <span class="st">"normal"</span>, pixelGeo <span class="op">=</span> <span class="va">pix</span>, id <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># experiment with discrete distribution</span></span></span>
+<span class="r-in"><span><span class="co"># exponential - example for q argument</span></span></span>
+<span class="r-in"><span><span class="va">ca_data.q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">ca_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>p0.05 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> p0.25 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>, p0.5 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> p0.75 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.75</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>, p0.95 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.95</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">build_pmap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, distribution <span class="op">=</span> <span class="st">"discrete"</span>, pixelGeo <span class="op">=</span> <span class="va">pix</span>,</span></span>
+<span class="r-in"><span> id <span class="op">=</span> <span class="st">"region"</span>, q <span class="op">=</span> <span class="va">ca_data.q</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -172,7 +187,7 @@ examples for an example of <code>q</code> input.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

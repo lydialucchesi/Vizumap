@@ -58,49 +58,66 @@ the 3 x 3 colour grid.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">build_bkey</span><span class="op">(</span>
-  <span class="va">data</span>,
-  palette <span class="op">=</span> <span class="st">"BlueYellow"</span>,
-  terciles <span class="op">=</span> <span class="cn">FALSE</span>,
-  flipAxis <span class="op">=</span> <span class="cn">FALSE</span>,
-  expertR_est <span class="op">=</span> <span class="cn">NA</span>,
-  expertR_err <span class="op">=</span> <span class="cn">NA</span>,
-  bound <span class="op">=</span> <span class="cn">NULL</span>,
-  fontSize <span class="op">=</span> <span class="fl">3</span>,
-  transparent <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">build_bkey</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"BlueYellow"</span>,</span>
+<span>  terciles <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  flipAxis <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  expertR_est <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  expertR_err <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  bound <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fontSize <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  transparent <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>A data frame.</p></dd>
+
+
 <dt>palette</dt>
 <dd><p>Name of colour palette or character vector of hex colour codes
 created with <code><a href="build_palette.html">build_palette</a></code> function. Colour palette names
 include <code>BlueYellow</code>, <code>CyanMagenta</code>, <code>BlueRed</code> and
 <code>GreenBlue</code>.</p></dd>
+
+
 <dt>terciles</dt>
 <dd><p>A logical value. This provides the option to define numerical
 bounds for the colour key grid using terciles instead of equal intervals.</p></dd>
+
+
 <dt>flipAxis</dt>
 <dd><p>A logical value. Whether to place the axis on the opposite
 sides or not.</p></dd>
+
+
 <dt>expertR_est</dt>
 <dd><p>A vector consisting of the range of expert values for the
 estimate (Default: NA).</p></dd>
+
+
 <dt>expertR_err</dt>
 <dd><p>A vector consisting of the range of expert values for the
 error (Default: NA).</p></dd>
+
+
 <dt>bound</dt>
 <dd><p>A vector of eight elements representing the bounds for the
 estimate and error that will be used on the bivariate colour key.  These can
 be created offline using the <code><a href="findNbounds.html">findNbounds</a></code> function.</p></dd>
+
+
 <dt>fontSize</dt>
 <dd><p>An integer value. Default is 3.</p></dd>
+
+
 <dt>transparent</dt>
 <dd><p>A logical value. Option to make the key background
 transparent. Default value is FALSE.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -123,20 +140,20 @@ using <code><a href="attach_key.html">attach_key</a></code>.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">poverty</span> <span class="op">&lt;-</span> <span class="fu"><a href="read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">us_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"pov_moe"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># use a prepared palette and terciles</span></span>
-<span class="r-in"><span class="va">key</span> <span class="op">&lt;-</span> <span class="fu">build_bkey</span><span class="op">(</span>data <span class="op">=</span> <span class="va">poverty</span>, terciles <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">key</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">poverty</span> <span class="op">&lt;-</span> <span class="fu"><a href="read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">us_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"pov_moe"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># use a prepared palette and terciles</span></span></span>
+<span class="r-in"><span><span class="va">key</span> <span class="op">&lt;-</span> <span class="fu">build_bkey</span><span class="op">(</span>data <span class="op">=</span> <span class="va">poverty</span>, terciles <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">key</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="build_bkey-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># use a created palette</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="build_palette.html">build_palette</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"usr"</span>, colrange <span class="op">=</span></span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkblue"</span>, <span class="st">"chartreuse4"</span><span class="op">)</span>, difC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">key</span> <span class="op">&lt;-</span> <span class="fu">build_bkey</span><span class="op">(</span>data <span class="op">=</span> <span class="va">poverty</span>, palette <span class="op">=</span> <span class="va">p</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">key</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># use a created palette</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="build_palette.html">build_palette</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"usr"</span>, colrange <span class="op">=</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkblue"</span>, <span class="st">"chartreuse4"</span><span class="op">)</span>, difC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">key</span> <span class="op">&lt;-</span> <span class="fu">build_bkey</span><span class="op">(</span>data <span class="op">=</span> <span class="va">poverty</span>, palette <span class="op">=</span> <span class="va">p</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">key</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="build_bkey-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -152,7 +169,7 @@ using <code><a href="attach_key.html">attach_key</a></code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

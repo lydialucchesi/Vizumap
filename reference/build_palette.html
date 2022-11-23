@@ -58,12 +58,13 @@ or builds a new colour palette.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">build_palette</span><span class="op">(</span>
-  <span class="va">name</span>,
-  colrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="cn">NULL</span>, difC <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>,
-  flipVertical <span class="op">=</span> <span class="cn">FALSE</span>,
-  flipHorizontal <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">build_palette</span><span class="op">(</span></span>
+<span>  <span class="va">name</span>,</span>
+<span>  colrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="cn">NULL</span>, difC <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>,</span>
+<span>  flipVertical <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  flipHorizontal <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  subtractive <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -73,40 +74,58 @@ or builds a new colour palette.</p>
 palette. Colour palette names include
 <code>BlueYellow</code>, <code>CyanMagenta</code>, <code>BlueRed</code> and
 <code>GreenBlue</code>.</p></dd>
+
+
 <dt>colrange</dt>
 <dd><p>List with a character vector of length two and a numeric
 vector of length two.</p></dd>
+
+
 <dt>flipVertical</dt>
 <dd><p>Whether the palette should be flipped vertically (ie. replace top portion with bottom portion)</p></dd>
+
+
 <dt>flipHorizontal</dt>
 <dd><p>Whether the palette should be flipped horizontally (ie. replace left portion with right portion)</p></dd>
+
+
+<dt>subtractive</dt>
+<dd><p>A logical evaluating to TRUE or FALSE indicating whether the colour mixing is subtractive or additive</p></dd>
+
+
 <dt>colour</dt>
 <dd><p>A character vector of two colour names from the colours() range or valid hexadecimal colors.</p></dd>
+
+
 <dt>difC</dt>
 <dd><p>A numeric vector of two integers 1, 2, 3 or 4. Values
 control how much a colour changes in value across the grid. One corresponds
 with a small change in colour value, and four corresponds with a large
 change in colour value.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
     <p>Note that <code>colrange</code> only needs to be specified if <code>name = "usr."</code>
 When choosing colours, it is best to avoid light colours or tints as these
 will lead to a colour palette lacking noticeable differences across the 3 x 3
-colour grid.</p>
+colour grid.
+Note that <code>subtractive = FALSE</code> allows for additive colour mixing under
+the RGB colour wheel while <code>subtractive = TRUE</code> allows for subtractive
+colour mixing under the RYB colour wheel.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># use one of four prepared colour palettes</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">build_palette</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"CyanMagenta"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># use one of four prepared colour palettes</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">build_palette</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"CyanMagenta"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="build_palette-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># design a new palette</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">build_palette</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"usr"</span>, colrange <span class="op">=</span></span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkblue"</span>, <span class="st">"chartreuse4"</span><span class="op">)</span>, difC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># design a new palette</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">build_palette</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"usr"</span>, colrange <span class="op">=</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkblue"</span>, <span class="st">"chartreuse4"</span><span class="op">)</span>, difC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="build_palette-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -122,7 +141,7 @@ colour grid.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -72,7 +72,7 @@
       <h1 data-toc-skip>Using Vizumap</h1>
                         <h4 data-toc-skip class="author">Lydia Lucchesi and Petra Kuhnert</h4>
             
-            <h4 data-toc-skip class="date">2022-04-11</h4>
+            <h4 data-toc-skip class="date">2022-11-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/lydialucchesi/Vizumap/blob/HEAD/vignettes/Vizumap.Rmd" class="external-link"><code>vignettes/Vizumap.Rmd</code></a></small>
       <div class="hidden name"><code>Vizumap.Rmd</code></div>
@@ -89,19 +89,19 @@
 </h2>
 <p>One of the included datasets in the <strong>Vizumap</strong> package is <code>us_data</code>, which contains the estimated family poverty rates for all US counties in 2015. Also included is a spatial polygons data frame for a US county map (<code>us_geo</code>), which can be used to map the estimates and errors in <code>us_data</code>. These data come from the US Census Bureau <a href="https://factfinder.census.gov/" class="external-link">Fact Finder website</a>, and documentation can be found under <code><a href="../reference/us_data.html">?us_data</a></code> and <code><a href="../reference/us_geo.html">?us_geo</a></code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lydialucchesi.github.io/Vizumap/" class="external-link">Vizumap</a></span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##           GEO_ID GEO.id2       GEO.display.label pov_rate pov_moe</span>
-<span class="co">## 1 0500000US01001    1001 Autauga County, Alabama      9.3     1.9</span>
-<span class="co">## 2 0500000US01003    1003 Baldwin County, Alabama      9.6     1.1</span>
-<span class="co">## 3 0500000US01005    1005 Barbour County, Alabama     19.5     2.8</span>
-<span class="co">## 4 0500000US01007    1007    Bibb County, Alabama     12.8     4.4</span>
-<span class="co">## 5 0500000US01009    1009  Blount County, Alabama     12.3     2.0</span>
-<span class="co">## 6 0500000US01011    1011 Bullock County, Alabama     22.7     6.5</span></code></pre>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lydialucchesi.github.io/Vizumap/" class="external-link">Vizumap</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##           GEO_ID GEO.id2       GEO.display.label pov_rate pov_moe</span></span>
+<span><span class="co">## 1 0500000US01001    1001 Autauga County, Alabama      9.3     1.9</span></span>
+<span><span class="co">## 2 0500000US01003    1003 Baldwin County, Alabama      9.6     1.1</span></span>
+<span><span class="co">## 3 0500000US01005    1005 Barbour County, Alabama     19.5     2.8</span></span>
+<span><span class="co">## 4 0500000US01007    1007    Bibb County, Alabama     12.8     4.4</span></span>
+<span><span class="co">## 5 0500000US01009    1009  Blount County, Alabama     12.3     2.0</span></span>
+<span><span class="co">## 6 0500000US01011    1011 Bullock County, Alabama     22.7     6.5</span></span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="building-bivariate-maps">Building bivariate maps<a class="anchor" aria-label="anchor" href="#building-bivariate-maps"></a>
@@ -109,76 +109,76 @@
 <p>A bivariate map is based on a bivariate colour palette, which is created by blending two single hue colour palettes. One colour palette represents the variable of interest while the other represents the uncertainty. When the palettes are blended, each colour in the new palette becomes representative of both a variable class and uncertainty class.</p>
 <p>There are four pre-prepared bivariate colour palettes included in <strong>Vizumap</strong>: <code>'BlueYellow'</code>, <code>'CyanMagenta'</code>, <code>'BlueRed'</code> and <code>'GreenBlue'</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># use one of four pre-prepared colour palettes</span>
-<span class="va">cmBivPal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_palette.html">build_palette</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"CyanMagenta"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">cmBivPal</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># use one of four pre-prepared colour palettes</span></span>
+<span><span class="va">cmBivPal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_palette.html">build_palette</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"CyanMagenta"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">cmBivPal</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-4-1.png" width="192" style="display: block; margin: auto;"></p>
 <p>You can also design your own bivariate colour palette with <code>build_palette</code>. Instead of entering one of the four pre-prepared palettes into <code>name</code>, you enter <code>'usr'</code>. If you choose two light colours when creating your own palette, the palette will lack important differences in colour across the grid. Therefore, it is best to use two darker colours. For example, <code>'chartreusu4'</code> and <code>'darkblue'</code> work better than <code>'tan2'</code> and <code>'lightskyblue'</code> (see comparison below). The numeric vector passed to <code>difC</code> controls the colour change across each single hue colour gradient.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># test two light colours with low difC values</span>
-<span class="co"># creates a bad palette</span>
-<span class="va">customBivPal1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_palette.html">build_palette</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"usr"</span>, colrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tan2"</span>, <span class="st">"lightskyblue"</span><span class="op">)</span>, difC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">customBivPal1</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># test two light colours with low difC values</span></span>
+<span><span class="co"># creates a bad palette</span></span>
+<span><span class="va">customBivPal1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_palette.html">build_palette</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"usr"</span>, colrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tan2"</span>, <span class="st">"lightskyblue"</span><span class="op">)</span>, difC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">customBivPal1</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-5-1.png" width="192" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># change colours for a better palette</span>
-<span class="va">customBivPal2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_palette.html">build_palette</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"usr"</span>, colrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chartreuse4"</span>, <span class="st">"darkblue"</span><span class="op">)</span>, difC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">customBivPal2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># change colours for a better palette</span></span>
+<span><span class="va">customBivPal2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_palette.html">build_palette</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"usr"</span>, colrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chartreuse4"</span>, <span class="st">"darkblue"</span><span class="op">)</span>, difC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">customBivPal2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-5-2.png" width="192" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># change difC values to increase colour differences</span>
-<span class="va">customBivPal3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_palette.html">build_palette</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"usr"</span>, colrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chartreuse4"</span>, <span class="st">"darkblue"</span><span class="op">)</span>, difC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">customBivPal3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># change difC values to increase colour differences</span></span>
+<span><span class="va">customBivPal3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_palette.html">build_palette</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"usr"</span>, colrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chartreuse4"</span>, <span class="st">"darkblue"</span><span class="op">)</span>, difC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">customBivPal3</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-5-3.png" width="192" style="display: block; margin: auto;"></p>
 <p>A bivariate map can be used to simultaneously visualise the estimates and errors in <code>us_data</code>. Before the data frame of estimates and errors is passed to <code>build_bmap</code>, it must be formatted with <code>read.uv</code> as the estimates and errors need to be in the first and second columns of the data frame. You can also import a dataset by passing a CSV file pathway to <code>file</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># load data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span>
-
-<span class="co"># current column order of us_data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##           GEO_ID GEO.id2       GEO.display.label pov_rate pov_moe</span>
-<span class="co">## 1 0500000US01001    1001 Autauga County, Alabama      9.3     1.9</span>
-<span class="co">## 2 0500000US01003    1003 Baldwin County, Alabama      9.6     1.1</span>
-<span class="co">## 3 0500000US01005    1005 Barbour County, Alabama     19.5     2.8</span>
-<span class="co">## 4 0500000US01007    1007    Bibb County, Alabama     12.8     4.4</span>
-<span class="co">## 5 0500000US01009    1009  Blount County, Alabama     12.3     2.0</span>
-<span class="co">## 6 0500000US01011    1011 Bullock County, Alabama     22.7     6.5</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># load data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># current column order of us_data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##           GEO_ID GEO.id2       GEO.display.label pov_rate pov_moe</span></span>
+<span><span class="co">## 1 0500000US01001    1001 Autauga County, Alabama      9.3     1.9</span></span>
+<span><span class="co">## 2 0500000US01003    1003 Baldwin County, Alabama      9.6     1.1</span></span>
+<span><span class="co">## 3 0500000US01005    1005 Barbour County, Alabama     19.5     2.8</span></span>
+<span><span class="co">## 4 0500000US01007    1007    Bibb County, Alabama     12.8     4.4</span></span>
+<span><span class="co">## 5 0500000US01009    1009  Blount County, Alabama     12.3     2.0</span></span>
+<span><span class="co">## 6 0500000US01011    1011 Bullock County, Alabama     22.7     6.5</span></span></code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># format data frame</span>
-<span class="va">poverty</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">us_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"pov_moe"</span><span class="op">)</span>
-
-<span class="co"># estimates and errors are now in the first two columns</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">poverty</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##   pov_rate pov_moe         GEO_ID GEO.id2       GEO.display.label</span>
-<span class="co">## 1      9.3     1.9 0500000US01001    1001 Autauga County, Alabama</span>
-<span class="co">## 2      9.6     1.1 0500000US01003    1003 Baldwin County, Alabama</span>
-<span class="co">## 3     19.5     2.8 0500000US01005    1005 Barbour County, Alabama</span>
-<span class="co">## 4     12.8     4.4 0500000US01007    1007    Bibb County, Alabama</span>
-<span class="co">## 5     12.3     2.0 0500000US01009    1009  Blount County, Alabama</span>
-<span class="co">## 6     22.7     6.5 0500000US01011    1011 Bullock County, Alabama</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># format data frame</span></span>
+<span><span class="va">poverty</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">us_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"pov_moe"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># estimates and errors are now in the first two columns</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">poverty</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   pov_rate pov_moe         GEO_ID GEO.id2       GEO.display.label</span></span>
+<span><span class="co">## 1      9.3     1.9 0500000US01001    1001 Autauga County, Alabama</span></span>
+<span><span class="co">## 2      9.6     1.1 0500000US01003    1003 Baldwin County, Alabama</span></span>
+<span><span class="co">## 3     19.5     2.8 0500000US01005    1005 Barbour County, Alabama</span></span>
+<span><span class="co">## 4     12.8     4.4 0500000US01007    1007    Bibb County, Alabama</span></span>
+<span><span class="co">## 5     12.3     2.0 0500000US01009    1009  Blount County, Alabama</span></span>
+<span><span class="co">## 6     22.7     6.5 0500000US01011    1011 Bullock County, Alabama</span></span></code></pre>
 <p>In this example, terciles are used to define the numerical bounds for the different estimate and error classes because the dataset contains several outliers.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># build a bivariate map with the map data</span>
-<span class="va">usBivMap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_bmap.html">build_bmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">poverty</span>, geoData <span class="op">=</span> <span class="va">us_geo</span>, id <span class="op">=</span> <span class="st">"GEO_ID"</span>, terciles <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">usBivMap</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># build a bivariate map with the map data</span></span>
+<span><span class="va">usBivMap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_bmap.html">build_bmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">poverty</span>, geoData <span class="op">=</span> <span class="va">us_geo</span>, id <span class="op">=</span> <span class="st">"GEO_ID"</span>, terciles <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">usBivMap</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-7-1.png" width="768" style="display: block; margin: auto;"></p>
 <p>Keys for the bivariate maps are not automatically generated with <code>build_bmap</code> and must be created separately with <code>build_bkey</code>. It is important that the key arguments match the map arguments. For example, if <code>terciles</code> was set to <code>FALSE</code>, the key would not accurately reflect the county colour assignments for this example US map.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># build a key</span>
-<span class="va">usBivKey</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_bkey.html">build_bkey</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">poverty</span>, terciles <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">usBivKey</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># build a key</span></span>
+<span><span class="va">usBivKey</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_bkey.html">build_bkey</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">poverty</span>, terciles <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">usBivKey</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-8-1.png" width="384" style="display: block; margin: auto;"></p>
 <p>Maps and keys can be viewed together with <code>attach_key</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/attach_key.html">attach_key</a></span><span class="op">(</span><span class="va">usBivMap</span>, <span class="va">usBivKey</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/attach_key.html">attach_key</a></span><span class="op">(</span><span class="va">usBivMap</span>, <span class="va">usBivKey</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-9-1.png" width="1344" style="display: block; margin: auto;"></p>
 <p>Changing the <code>terciles</code> and <code>palette</code> arguments leads to a map that looks very different than the previous map even though it is displaying the same dataset. Here the custom colour palette is used.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># make some changes</span>
-<span class="va">usBivMapDif</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_bmap.html">build_bmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">poverty</span>, geoData <span class="op">=</span> <span class="va">us_geo</span>, id <span class="op">=</span> <span class="st">"GEO_ID"</span>, terciles <span class="op">=</span> <span class="cn">FALSE</span>, palette <span class="op">=</span> <span class="va">customBivPal3</span><span class="op">)</span>
-<span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">usBivMapDif</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># make some changes</span></span>
+<span><span class="va">usBivMapDif</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_bmap.html">build_bmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">poverty</span>, geoData <span class="op">=</span> <span class="va">us_geo</span>, id <span class="op">=</span> <span class="st">"GEO_ID"</span>, terciles <span class="op">=</span> <span class="cn">FALSE</span>, palette <span class="op">=</span> <span class="va">customBivPal3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">usBivMapDif</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-10-1.png" width="768" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
@@ -187,139 +187,136 @@
 <p>Pixel maps are created by pixelating regions and assigning each pixel in a region a value from an estimate’s confidence interval or discrete relative frequency distribution. The first step is to format the data frame containing the data with <code>read.uv</code> and pixelate the map with <code>pixelate</code>.</p>
 <p>A California county map will be used to illustrate the method. A subset of <code>us_data</code> that contains only California estimates and errors is created.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span>
-<span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span><span class="op">)</span>
-<span class="va">ca_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">us_data</span>, <span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&gt;</span> <span class="fl">6000</span> <span class="op">&amp;</span> <span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&lt;</span> <span class="fl">7000</span><span class="op">)</span>
-<span class="va">ca_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"pov_moe"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/row.names.html" class="external-link">row.names</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span></span>
+<span><span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span><span class="op">)</span></span>
+<span><span class="va">ca_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">us_data</span>, <span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&gt;</span> <span class="fl">6000</span> <span class="op">&amp;</span> <span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&lt;</span> <span class="fl">7000</span><span class="op">)</span></span>
+<span><span class="va">ca_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"pov_moe"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html" class="external-link">row.names</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <p>The county polygons for California are extracted from <code>us_geo</code> and pixelated with <code>pixelate</code>. It can take several minutes to pixelate a shapefile depending on the size of the shapefile.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span>
-<span class="va">ca_geo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">us_geo</span>, <span class="va">us_geo</span><span class="op">@</span><span class="va">data</span><span class="op">$</span><span class="va">STATE</span> <span class="op">==</span> <span class="st">"06"</span><span class="op">)</span>
-<span class="va">pix</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pixelate.html">pixelate</a></span><span class="op">(</span><span class="va">ca_geo</span>, id <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning in wkt(obj): CRS object has no comment</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span></span>
+<span><span class="va">ca_geo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">us_geo</span>, <span class="va">us_geo</span><span class="op">@</span><span class="va">data</span><span class="op">$</span><span class="va">STATE</span> <span class="op">==</span> <span class="st">"06"</span><span class="op">)</span></span>
+<span><span class="va">pix</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pixelate.html">pixelate</a></span><span class="op">(</span><span class="va">ca_geo</span>, id <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span></code></pre></div>
 <p>There must be a shared column between <code>ca_data</code> and <code>pix</code>. Depending on your shapefile, getting this shared column might require some creativity. <code>pixelate</code> returns a column that contains the slot IDs for the polygons. Adding these slot IDs to <code>ca_data</code> through the <code>GEO_ID</code> column present in both <code>ca_data</code> and <code>ca_geo</code> creates a shared column that can be used for the <code>id</code> argument in <code>build_pmap</code>. Ultimately, if the shapefile slot IDs are not referenced in your data frame of estimates and errors, you will need to find a way to way to get this information added to your data frame of estimates and errors before using <code>build_pmap</code>.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fu">slot</span><span class="op">(</span><span class="va">ca_geo</span>, <span class="st">"polygons"</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">slot</span><span class="op">(</span><span class="va">x</span>, <span class="st">"ID"</span><span class="op">)</span><span class="op">)</span>, name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ca_geo</span><span class="op">@</span><span class="va">data</span><span class="op">$</span><span class="va">GEO_ID</span><span class="op">)</span><span class="op">)</span>
-<span class="va">ca_data</span><span class="op">$</span><span class="va">region</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">$</span><span class="va">GEO_ID</span>, <span class="va">df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>, <span class="fl">1</span><span class="op">]</span>
-<span class="va">ca_data</span><span class="op">$</span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span><span class="op">)</span>
-
-<span class="co"># check that values in shared column match</span>
-<span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">pix</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] TRUE</span></code></pre>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fu">slot</span><span class="op">(</span><span class="va">ca_geo</span>, <span class="st">"polygons"</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">slot</span><span class="op">(</span><span class="va">x</span>, <span class="st">"ID"</span><span class="op">)</span><span class="op">)</span>, name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ca_geo</span><span class="op">@</span><span class="va">data</span><span class="op">$</span><span class="va">GEO_ID</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">$</span><span class="va">GEO_ID</span>, <span class="va">df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>, <span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># check that values in shared column match</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">ca_data</span><span class="op">$</span><span class="va">region</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">pix</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
 <p>If <code>distribution = "uniform"</code>, the values are sampled uniformly from an interval, where the lower bound is the estimate minus the error and the upper bound is the estimate plus the error. For the estimates and margins of error in <code>us_data</code>, this interval corresponds to the estimate’s 90% confidence interval.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># uniform distribution</span>
-<span class="va">unifPixMap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_pmap.html">build_pmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, distribution <span class="op">=</span> <span class="st">"uniform"</span>, pixelGeo <span class="op">=</span> <span class="va">pix</span>, id <span class="op">=</span> <span class="st">"region"</span>, border <span class="op">=</span> <span class="va">ca_geo</span><span class="op">)</span>
-<span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">unifPixMap</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =</span>
-<span class="co">## "none")` instead.</span></code></pre>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># uniform distribution</span></span>
+<span><span class="va">unifPixMap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_pmap.html">build_pmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, distribution <span class="op">=</span> <span class="st">"uniform"</span>, pixelGeo <span class="op">=</span> <span class="va">pix</span>, id <span class="op">=</span> <span class="st">"region"</span>, border <span class="op">=</span> <span class="va">ca_geo</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">unifPixMap</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: The `&lt;scale&gt;` argument of `guides()` cannot be `FALSE`. Use "none" instead as</span></span>
+<span><span class="co">## of ggplot2 3.3.4.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">Vizumap</span> package.</span></span>
+<span><span class="co">##   Please report the issue to the authors.</span></span></code></pre>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-14-1.png" width="768"></p>
 <p>If <code>distribution = "normal"</code>, the values assigned to pixels will be drawn from normal distributions parameterised using the estimates and errors (means and standard deviations).</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># normal distribution</span>
-<span class="va">ca_data</span><span class="op">$</span><span class="va">se</span> <span class="op">&lt;-</span> <span class="va">ca_data</span><span class="op">$</span><span class="va">pov_moe</span> <span class="op">/</span> <span class="fl">1.645</span>
-<span class="va">ca_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"se"</span><span class="op">)</span>
-
-<span class="va">normPixMap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_pmap.html">build_pmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, distribution <span class="op">=</span> <span class="st">"normal"</span>, pixelGeo <span class="op">=</span> <span class="va">pix</span>, id <span class="op">=</span> <span class="st">"region"</span>, border <span class="op">=</span> <span class="va">ca_geo</span><span class="op">)</span>
-<span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">normPixMap</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =</span>
-<span class="co">## "none")` instead.</span></code></pre>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># normal distribution</span></span>
+<span><span class="va">ca_data</span><span class="op">$</span><span class="va">se</span> <span class="op">&lt;-</span> <span class="va">ca_data</span><span class="op">$</span><span class="va">pov_moe</span> <span class="op">/</span> <span class="fl">1.645</span></span>
+<span><span class="va">ca_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"se"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">normPixMap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_pmap.html">build_pmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, distribution <span class="op">=</span> <span class="st">"normal"</span>, pixelGeo <span class="op">=</span> <span class="va">pix</span>, id <span class="op">=</span> <span class="st">"region"</span>, border <span class="op">=</span> <span class="va">ca_geo</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">normPixMap</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-15-1.png" width="768"></p>
 <p>If <code>distribution = "discrete"</code>, a data frame of quantiles, which define the relative frequency distributions for the estimates, must be passed to <code>q</code>. Below is what the California map would look like if the relative frequency distributions for the estimates followed exponential distributions.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># experiment with discrete distribution</span></span>
+<span><span class="co"># exponential - example for q argument</span></span>
+<span><span class="va">ca_data.q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">ca_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>p0.05 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>, p0.25 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>, p0.5 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>, p0.75 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.75</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>, p0.95 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.95</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ca_data.q</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##       p0.05    p0.25     p0.5     p0.75    p0.95</span></span>
+<span><span class="co">## 1 0.4359930 2.445298 5.891751 11.783502 25.46372</span></span>
+<span><span class="co">## 2 0.4308637 2.416529 5.822436 11.644873 25.16415</span></span>
+<span><span class="co">## 3 0.3590531 2.013775 4.852030  9.704061 20.97013</span></span>
+<span><span class="co">## 4 0.6719422 3.768635 9.080228 18.160456 39.24409</span></span>
+<span><span class="co">## 5 0.4000877 2.243920 5.406548 10.813096 23.36671</span></span>
+<span><span class="co">## 6 0.6103902 3.423417 8.248451 16.496903 35.64921</span></span></code></pre>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># experiment with discrete distribution</span>
-<span class="co"># exponential - example for q argument</span>
-<span class="va">ca_data.q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">ca_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>p0.05 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>, p0.25 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>, p0.5 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>, p0.75 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.75</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span>, p0.95 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">qexp</a></span><span class="op">(</span><span class="fl">0.95</span>, <span class="fl">1</span><span class="op">/</span><span class="va">pov_rate</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ca_data.q</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##       p0.05    p0.25     p0.5     p0.75    p0.95</span>
-<span class="co">## 1 0.4359930 2.445298 5.891751 11.783502 25.46372</span>
-<span class="co">## 2 0.4308637 2.416529 5.822436 11.644873 25.16415</span>
-<span class="co">## 3 0.3590531 2.013775 4.852030  9.704061 20.97013</span>
-<span class="co">## 4 0.6719422 3.768635 9.080228 18.160456 39.24409</span>
-<span class="co">## 5 0.4000877 2.243920 5.406548 10.813096 23.36671</span>
-<span class="co">## 6 0.6103902 3.423417 8.248451 16.496903 35.64921</span></code></pre>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">discPixMap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_pmap.html">build_pmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, distribution <span class="op">=</span> <span class="st">"discrete"</span>, 
-                  pixelGeo <span class="op">=</span> <span class="va">pix</span>, id <span class="op">=</span> <span class="st">"region"</span>, q <span class="op">=</span> <span class="va">ca_data.q</span>, border <span class="op">=</span> <span class="va">ca_geo</span><span class="op">)</span>
-<span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">discPixMap</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =</span>
-<span class="co">## "none")` instead.</span></code></pre>
+<code class="sourceCode R"><span><span class="va">discPixMap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_pmap.html">build_pmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ca_data</span>, distribution <span class="op">=</span> <span class="st">"discrete"</span>, </span>
+<span>                  pixelGeo <span class="op">=</span> <span class="va">pix</span>, id <span class="op">=</span> <span class="st">"region"</span>, q <span class="op">=</span> <span class="va">ca_data.q</span>, border <span class="op">=</span> <span class="va">ca_geo</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">discPixMap</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-16-1.png" width="768"></p>
 <p>Pixel maps can be animated with <code>animate</code> so that the pixels flicker between a series of assigned values. <code>view</code> saves the animation to your computer as an html file and automatically opens a browser to view it. A longer <code>aniLength</code> corresponds to a longer animation as well as a longer running time. Generating the animation with <code>view</code> can take several minutes.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># animate the normal distribution map</span>
-<span class="va">normPixAni</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">normPixMap</span>, aniLength <span class="op">=</span> <span class="fl">30</span><span class="op">)</span>
-<span class="co"># view(normPixAni)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># animate the normal distribution map</span></span>
+<span><span class="va">normPixAni</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">normPixMap</span>, aniLength <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="co"># view(normPixAni)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="building-glyph-maps">Building glyph maps<a class="anchor" aria-label="anchor" href="#building-glyph-maps"></a>
 </h2>
 <p>The process of creating a glyph map is very similar to the process of creating a bivariate map. The data are formatted; the map is created; the key is created; and the two are merged. Glyphs are plotted at either region centroids or specific sites, and the colour and rotation of the glyph represent the variable of interest and the uncertainty. The method is illustrated below with a Colorado county map.</p>
 <p>The datasets are loaded and subsetted. <code>co_data</code> is formatted with <code>read.uv</code> for use in <code>build_gmap</code> and <code>buid_gkey</code>.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span>
-
-<span class="va">co_geo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">us_geo</span>, <span class="va">us_geo</span><span class="op">@</span><span class="va">data</span><span class="op">$</span><span class="va">STATE</span> <span class="op">==</span> <span class="st">"08"</span><span class="op">)</span>
-
-<span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span><span class="op">)</span>
-<span class="va">co_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">us_data</span>, <span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&gt;</span> <span class="fl">8000</span> <span class="op">&amp;</span> <span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&lt;</span> <span class="fl">9000</span><span class="op">)</span>
-<span class="va">co_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">co_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"pov_moe"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">co_geo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">us_geo</span>, <span class="va">us_geo</span><span class="op">@</span><span class="va">data</span><span class="op">$</span><span class="va">STATE</span> <span class="op">==</span> <span class="st">"08"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span><span class="op">)</span></span>
+<span><span class="va">co_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">us_data</span>, <span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&gt;</span> <span class="fl">8000</span> <span class="op">&amp;</span> <span class="va">us_data</span><span class="op">$</span><span class="va">GEO.id2</span> <span class="op">&lt;</span> <span class="fl">9000</span><span class="op">)</span></span>
+<span><span class="va">co_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">co_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"pov_moe"</span><span class="op">)</span></span></code></pre></div>
 <p>Because <code>geoData</code> is included in this example, the <code>build_gmap</code> function will plot a glyph at each region centroid. The colour of the glyph represents the estimated poverty rate among families, and the rotation of the glyph represents the margin of error for the estimate.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># build a glyph map</span>
-<span class="va">usGlyphMap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_gmap.html">build_gmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">co_data</span>, geoData <span class="op">=</span> <span class="va">co_geo</span>, id <span class="op">=</span> <span class="st">"GEO_ID"</span>, size <span class="op">=</span> <span class="fl">80</span>, glyph <span class="op">=</span> <span class="st">"icone"</span>, border <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">usGlyphMap</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># build a glyph map</span></span>
+<span><span class="va">usGlyphMap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_gmap.html">build_gmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">co_data</span>, geoData <span class="op">=</span> <span class="va">co_geo</span>, id <span class="op">=</span> <span class="st">"GEO_ID"</span>, size <span class="op">=</span> <span class="fl">80</span>, glyph <span class="op">=</span> <span class="st">"icone"</span>, border <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">usGlyphMap</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-19-1.png" width="768" style="display: block; margin: auto;"></p>
 <p>Keys for glyph maps are not automatically generated with <code>build_gmap</code> and must be created separately with <code>build_gkey</code>. It is important that the key arguments match the map arguments.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># build a glyph key</span>
-<span class="va">usGlyphKey</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_gkey.html">build_gkey</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">co_data</span>, glyph <span class="op">=</span> <span class="st">"icone"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">usGlyphKey</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># build a glyph key</span></span>
+<span><span class="va">usGlyphKey</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_gkey.html">build_gkey</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">co_data</span>, glyph <span class="op">=</span> <span class="st">"icone"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">usGlyphKey</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-20-1.png" width="384" style="display: block; margin: auto;"></p>
 <p>Maps and keys can be viewed together with <code>attach_key</code>.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/attach_key.html">attach_key</a></span><span class="op">(</span><span class="va">usGlyphMap</span>, <span class="va">usGlyphKey</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/attach_key.html">attach_key</a></span><span class="op">(</span><span class="va">usGlyphMap</span>, <span class="va">usGlyphKey</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-21-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>You can change the size, shape, and colour of the glyphs as well as add different borders.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># build a glyph map</span>
-<span class="va">usGlyphMapDif</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_gmap.html">build_gmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">co_data</span>, geoData <span class="op">=</span> <span class="va">co_geo</span>, id <span class="op">=</span> <span class="st">"GEO_ID"</span>, size <span class="op">=</span> <span class="fl">70</span>, border <span class="op">=</span> <span class="st">"county"</span>, glyph <span class="op">=</span> <span class="st">"semi"</span>, palette <span class="op">=</span> <span class="st">"Reds"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">usGlyphMapDif</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># build a glyph map</span></span>
+<span><span class="va">usGlyphMapDif</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_gmap.html">build_gmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">co_data</span>, geoData <span class="op">=</span> <span class="va">co_geo</span>, id <span class="op">=</span> <span class="st">"GEO_ID"</span>, size <span class="op">=</span> <span class="fl">70</span>, border <span class="op">=</span> <span class="st">"county"</span>, glyph <span class="op">=</span> <span class="st">"semi"</span>, palette <span class="op">=</span> <span class="st">"Reds"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">usGlyphMapDif</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-22-1.png" width="768" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="building-exceedance-probability-maps">Building exceedance probability maps<a class="anchor" aria-label="anchor" href="#building-exceedance-probability-maps"></a>
 </h2>
 <p>Exceedance maps plot the probability of exceeding some nominated threshold of concern. The <code>UB</code> dataset included in the package contains pre-calculated exceedance probabilities. However, the <code>us_data</code> data frame does not contain pre-calculated exceedance probabilities, and these will therefore need to be generated. First, a threshold needs to be selected - let’s choose a poverty rate of 30%.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># load data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span>
-
-<span class="co"># format the data</span>
-<span class="va">poverty</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">us_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"pov_moe"</span><span class="op">)</span>
-
-<span class="co"># check variable quantiles</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">$</span><span class="va">pov_rate</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##   0%  25%  50%  75% 100% </span>
-<span class="co">##  0.0  8.1 11.3 15.1 45.4</span></code></pre>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># format the data</span></span>
+<span><span class="va">poverty</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">us_data</span>, estimate <span class="op">=</span> <span class="st">"pov_rate"</span>, error <span class="op">=</span> <span class="st">"pov_moe"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># check variable quantiles</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">us_data</span><span class="op">$</span><span class="va">pov_rate</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   0%  25%  50%  75% 100% </span></span>
+<span><span class="co">##  0.0  8.1 11.3 15.1 45.4</span></span></code></pre>
 <p>An exponential distribution is an appropriate choice for this application (a normal distribution would not be). A list containing information about the distribution and threshold is passed to the <code>build_emap</code> function, where the probabilities are calculated and plotted. Below is an example of how to prepare this list.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># define probability distribution (exponential distribution)</span>
-<span class="va">pd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">pexp</a></span><span class="op">(</span><span class="va">q</span>, <span class="va">rate</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">}</span><span class="op">)</span>
-
-<span class="co"># define argument listing</span>
-<span class="va">args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>rate <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="va">estimate</span><span class="op">)</span> <span class="op">}</span><span class="op">)</span>
-
-<span class="co"># capture distribution and arguments in a single list</span>
-<span class="va">pdflist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>dist <span class="op">=</span> <span class="va">pd</span>, args <span class="op">=</span> <span class="va">args</span>, th <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># define probability distribution (exponential distribution)</span></span>
+<span><span class="va">pd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">pexp</a></span><span class="op">(</span><span class="va">q</span>, <span class="va">rate</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># define argument listing</span></span>
+<span><span class="va">args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>rate <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="va">estimate</span><span class="op">)</span> <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># capture distribution and arguments in a single list</span></span>
+<span><span class="va">pdflist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>dist <span class="op">=</span> <span class="va">pd</span>, args <span class="op">=</span> <span class="va">args</span>, th <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></code></pre></div>
 <p>Finally, we build the exceedance map using the <code>build_emap</code> function. We need to supply the formatted data frame, instructions for calculating the exceedance probabilities, and information about map design.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">usExcMap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_emap.html">build_emap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">poverty</span>, pdflist <span class="op">=</span> <span class="va">pdflist</span>, geoData <span class="op">=</span> <span class="va">us_geo</span>, id <span class="op">=</span> <span class="st">"GEO_ID"</span>, key_label <span class="op">=</span> <span class="st">"Pr[X &gt; 30]"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">usExcMap</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">usExcMap</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_emap.html">build_emap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">poverty</span>, pdflist <span class="op">=</span> <span class="va">pdflist</span>, geoData <span class="op">=</span> <span class="va">us_geo</span>, id <span class="op">=</span> <span class="st">"GEO_ID"</span>, key_label <span class="op">=</span> <span class="st">"Pr[X &gt; 30]"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/view.html">view</a></span><span class="op">(</span><span class="va">usExcMap</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Vizumap_files/figure-html/unnamed-chunk-25-1.png" width="768" style="display: block; margin: auto;"></p>
 </div>
   </div>
@@ -341,7 +338,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
