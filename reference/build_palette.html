@@ -77,8 +77,12 @@ palette. Colour palette names include
 
 
 <dt>colrange</dt>
-<dd><p>List with a character vector of length two and a numeric
-vector of length two.</p></dd>
+<dd><p>List with a character vector of length two called colour and a numeric
+vector of length two called difC. colour contains two colour names
+from the colours() range or valid hexadecimal colors. difC contains two
+integers (1, 2, 3 or 4), which control how much a colour changes in value across the grid.
+One corresponds with a small change in colour value, and four corresponds with a large
+change in colour value.</p></dd>
 
 
 <dt>flipVertical</dt>
@@ -91,17 +95,6 @@ vector of length two.</p></dd>
 
 <dt>subtractive</dt>
 <dd><p>A logical evaluating to TRUE or FALSE indicating whether the colour mixing is subtractive or additive</p></dd>
-
-
-<dt>colour</dt>
-<dd><p>A character vector of two colour names from the colours() range or valid hexadecimal colors.</p></dd>
-
-
-<dt>difC</dt>
-<dd><p>A numeric vector of two integers 1, 2, 3 or 4. Values
-control how much a colour changes in value across the grid. One corresponds
-with a small change in colour value, and four corresponds with a large
-change in colour value.</p></dd>
 
 </dl></div>
     <div id="details">
