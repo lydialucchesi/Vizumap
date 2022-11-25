@@ -120,10 +120,27 @@ build_palette <- function(name, colrange = list(colour = NULL, difC = NULL), fli
   match1 <- with(lmd_df, ramp1(lmd1))
   match2 <- with(lmd_df, ramp2(lmd2))
 
+  # adjustments to conform to RGB/RYB conversion
+  for(i in 1:nrow(match1)){
+    match1[i,2] <- match1[i,2]+10^-10
+  }
+
+  for(i in 1:nrow(match2)){
+    match2[i,2] <- match2[i,2]+10^-10
+  }
+
+  # For values greater than 255, change to 255
+  match1[match1>255] <- 255
+  match2[match2>255] <- 255
+
   if(subtractive){
     # convert RGB to RYB
     match1 <- RGB2RYB(match1)
     match2 <- RGB2RYB(match2)
+
+    # Replace NA values with 0 (RGB2RYB white conversion)
+    match1[is.na(match1)] <- 0
+    match2[is.na(match2)] <- 0
 
     match_df <- as.data.frame(cbind(match1, match2))
     colnames(match_df) <- c("red1", "yellow1", "blue1", "red2", "yellow2", "blue2")
@@ -165,7 +182,7 @@ build_palette <- function(name, colrange = list(colour = NULL, difC = NULL), fli
     colours <- replace(colours, c(6,2), colours[c(2, 6)]) #Switch [6] and [2]
   }
 
-  # if we flip hoizontally
+  # if we flip horizontally
   if(flipHorizontal) {
     colours <- replace(colours, c(7,3), colours[c(3, 7)]) #Switch [7] and [3]
     colours <- replace(colours, c(4,2), colours[c(2, 4)]) #switch [2] and [4]
