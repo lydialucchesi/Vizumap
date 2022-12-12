@@ -34,7 +34,7 @@ view.pixelmap <- function(obj){
       aes_string(x = 'long', y = 'lat', group = 'group'),
       colour = "black"
     )  +
-    coord_cartesian(xlim = c(obj$bbox[1], obj$bbox[3]),
+    coord_fixed(xlim = c(obj$bbox[1], obj$bbox[3]),
                     ylim = c(obj$bbox[2], obj$bbox[4])) +
     theme(
       axis.line = element_blank(),

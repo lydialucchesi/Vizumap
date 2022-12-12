@@ -14,6 +14,7 @@ view.emap <- function(obj){
                  colour = "black", size = .1) +
     scale_fill_distiller(direction=1, palette = obj$palette, name = obj$key_label, limits = c(0,1)) +
     scale_colour_distiller(direction=1, palette = obj$palette, limits = c(0,1)) +
+    coord_fixed() +
     theme(axis.line = element_blank(),
           axis.text.x = element_blank(),
           axis.text.y = element_blank(),

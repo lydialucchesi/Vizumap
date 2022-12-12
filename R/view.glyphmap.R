@@ -10,7 +10,7 @@ view.glyphmap <- function(obj){
     geom_polygon(data = obj$output_data, aes_string(x = 'long', y = 'lat', group = 'id', fill = 'val')) +
     scale_fill_distiller(direction=1, palette = obj$palette, name = obj$key_label, limits = obj$limits)  +
     geom_path(data = obj$bord, aes_string(x = 'long', y = 'lat', group = 'group'), colour = "black")  +
-    coord_cartesian(xlim = c(obj$bbox[1], obj$bbox[3]), ylim = c(obj$bbox[2], obj$bbox[4])) +
+    coord_fixed(xlim = c(obj$bbox[1], obj$bbox[3]), ylim = c(obj$bbox[2], obj$bbox[4])) +
     theme(axis.line = element_blank(),
           axis.text.x = element_blank(),
           axis.text.y = element_blank(),

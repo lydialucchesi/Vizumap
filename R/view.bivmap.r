@@ -14,7 +14,7 @@ view.bivmap <- function(obj){
                    colour = "black", size = .1) +
       scale_fill_identity()  +
       geom_path(data = obj$bord, aes_string(x = 'long', y = 'lat', group = 'group'), colour = "black")  +
-      coord_cartesian(xlim = c(obj$bbox[1], obj$bbox[3]), ylim = c(obj$bbox[2], obj$bbox[4])) +
+      coord_fixed(xlim = c(obj$bbox[1], obj$bbox[3]), ylim = c(obj$bbox[2], obj$bbox[4])) +
       theme(axis.line = element_blank(),
             axis.text.x = element_blank(),
             axis.text.y = element_blank(),
@@ -30,13 +30,13 @@ view.bivmap <- function(obj){
         geom_point(data = obj$output_data, aes_string(x = 'long', y = 'lat', colour = 'hex_code')) +
         scale_color_identity() +
         geom_path(data = obj$bord, aes_string(x = 'long', y = 'lat', group = 'group'), colour = "black") +
-        coord_cartesian(xlim = c(obj$bbox[1], obj$bbox[3]), ylim = c(obj$bbox[2], obj$bbox[4]))
+        coord_fixed(xlim = c(obj$bbox[1], obj$bbox[3]), ylim = c(obj$bbox[2], obj$bbox[4]))
     } else
       p <- ggplot() +
         geom_point(data = obj$output_data, aes_string(x = 'long', y = 'lat', colour = 'hex_code'), size = obj$size) +
         scale_color_identity() +
         geom_path(data = obj$bord, aes_string(x = 'long', y = 'lat', group = 'group'), colour = "black") +
-        coord_cartesian(xlim = c(obj$bbox[1], obj$bbox[3]), ylim = c(obj$bbox[2], obj$bbox[4]))
+        coord_fixed(xlim = c(obj$bbox[1], obj$bbox[3]), ylim = c(obj$bbox[2], obj$bbox[4]))
 
 
   }
