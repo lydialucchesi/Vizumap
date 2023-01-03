@@ -32,7 +32,7 @@
 #'  refined to match latitute and longtidue coordinates provided in the data
 #'  frame or spatial polygons data frame.
 #'@param palette Name of colour palette. Colour palette names include
-#'  \code{BlueYellow}, \code{CyanMagenta}, \code{BlueRed}, \code{GreenBlue} and \code{YellowRed}.
+#'  \code{"YlOrBr"}, \code{"YlOrRd"}, \code{"YlGnBu"} and \code{"PuBuGn"}.
 #'@param size An integer between 1 and 20. Value controls the size of points
 #'  when \code{geoData = NULL}. If \code{size = NULL}, the points will remain
 #'  the default size.

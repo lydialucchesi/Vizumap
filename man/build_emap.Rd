@@ -37,7 +37,7 @@ frame through this column.}
 \item{key_label}{Label of legend.}
 
 \item{palette}{Name of colour palette. Colour palette names include
-\code{BlueYellow}, \code{CyanMagenta}, \code{BlueRed}, \code{GreenBlue} and \code{YellowRed}.}
+\code{"YlOrBr"}, \code{"YlOrRd"}, \code{"YlGnBu"} and \code{"PuBuGn"}.}
 
 \item{size}{An integer between 1 and 20. Value controls the size of points
  when \code{geoData = NULL}. If \code{size = NULL}, the points will remain
