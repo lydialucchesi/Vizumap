@@ -104,7 +104,7 @@ frame through this column.</p></dd>
 
 <dt>palette</dt>
 <dd><p>Name of colour palette. Colour palette names include
-<code>BlueYellow</code>, <code>CyanMagenta</code>, <code>BlueRed</code>, <code>GreenBlue</code> and <code>YellowRed</code>.</p></dd>
+<code>"YlOrBr"</code>, <code>"YlOrRd"</code>, <code>"YlGnBu"</code> and <code>"PuBuGn"</code>.</p></dd>
 
 
 <dt>size</dt>
@@ -185,7 +185,8 @@ include latitude and longitude coordinates in columns <code>"long"</code> and
 <span class="r-in"><span>                                                       <span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">exc_pal</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="build_emap-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># Create map and view it</span></span></span>
-<span class="r-in"><span><span class="va">map</span> <span class="op">&lt;-</span> <span class="fu">build_emap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_tss</span>,  geoData <span class="op">=</span> <span class="va">UB_shp</span>, id <span class="op">=</span> <span class="st">"scID"</span>,</span></span>
+<span class="r-in"><span><span class="va">tss</span> <span class="op">&lt;-</span> <span class="fu"><a href="read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_tss</span>, estimate <span class="op">=</span> <span class="st">"TSS"</span>, error <span class="op">=</span> <span class="st">"TSS Error"</span>, exceedance <span class="op">=</span> <span class="st">"TSS_exc1"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">map</span> <span class="op">&lt;-</span> <span class="fu">build_emap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">tss</span>,  geoData <span class="op">=</span> <span class="va">UB_shp</span>, id <span class="op">=</span> <span class="st">"scID"</span>,</span></span>
 <span class="r-in"><span>            key_label <span class="op">=</span> <span class="st">"Pr[TSS &gt; 837mg/L]"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="view.html">view</a></span><span class="op">(</span><span class="va">map</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="build_emap-4.png" alt="" width="700" height="433"></span>
@@ -205,7 +206,7 @@ include latitude and longitude coordinates in columns <code>"long"</code> and
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
