@@ -110,7 +110,8 @@ exc_pal <- build_palette(name = "usr", colrange = list(colour = c("yellow", "red
                                                        difC = c(1, 1)))
                                                        view(exc_pal)
 # Create map and view it
-map <- build_emap(data = UB_tss,  geoData = UB_shp, id = "scID",
+tss <- read.uv(data = UB_tss, estimate = "TSS", error = "TSS Error", exceedance = "TSS_exc1")
+map <- build_emap(data = tss,  geoData = UB_shp, id = "scID",
             key_label = "Pr[TSS > 837mg/L]")
 view(map)
 
