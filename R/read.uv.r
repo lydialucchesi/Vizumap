@@ -6,8 +6,8 @@
 #'
 #'Estimates and errors must be in the first and second columns of a data frame
 #'for \code{\link{build_bmap}}, \code{\link{build_gmap}},
-#'\code{\link{build_pmap}}, \code{\link{build_bkey}} and
-#'\code{\link{build_gkey}}. \code{\link{read.uv}} provides an automated way to
+#'\code{\link{build_pmap}}, \code{\link{build_emap}},
+#'\code{\link{build_bkey}} and \code{\link{build_gkey}}. \code{\link{read.uv}} provides an automated way to
 #'format a data frame already loaded in R or to import a CSV file as a data
 #'frame and arrange the columns correctly.
 #'

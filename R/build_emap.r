@@ -32,7 +32,7 @@
 #'  refined to match latitute and longtidue coordinates provided in the data
 #'  frame or spatial polygons data frame.
 #'@param palette Name of colour palette. Colour palette names include
-#'  \code{BlueYellow}, \code{CyanMagenta}, \code{BlueRed}, \code{GreenBlue} and \code{YellowRed}.
+#'  \code{"YlOrBr"}, \code{"YlOrRd"}, \code{"YlGnBu"} and \code{"PuBuGn"}.
 #'@param size An integer between 1 and 20. Value controls the size of points
 #'  when \code{geoData = NULL}. If \code{size = NULL}, the points will remain
 #'  the default size.
@@ -85,7 +85,8 @@
 #'                                                        difC = c(1, 1)))
 #'                                                        view(exc_pal)
 #'# Create map and view it
-#' map <- build_emap(data = UB_tss,  geoData = UB_shp, id = "scID",
+#' tss <- read.uv(data = UB_tss, estimate = "TSS", error = "TSS Error", exceedance = "TSS_exc1")
+#' map <- build_emap(data = tss,  geoData = UB_shp, id = "scID",
 #'             key_label = "Pr[TSS > 837mg/L]")
 #' view(map)
 #'
@@ -164,9 +165,9 @@ build_emap <- function(data, pdflist = NULL, geoData = NULL, id = NULL, key_labe
   }
 
   if(is.null(pdflist)){
-    # assume 3 columns (estimate, error, pr_esc)
+    # assume 3 columns (pr_exc, estimate, error)
     id <- match(names(data)[1:3], names(output_data))
-    names(output_data)[id] <- c("estimate", "error", "pr_exc")
+    names(output_data)[id] <- c("pr_exc", "estimate", "error")
    }
   else{
     # assume 2 columns and pr_exc is to be calculated via a function

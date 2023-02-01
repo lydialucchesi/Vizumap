@@ -37,7 +37,7 @@ frame through this column.}
 \item{key_label}{Label of legend.}
 
 \item{palette}{Name of colour palette. Colour palette names include
-\code{BlueYellow}, \code{CyanMagenta}, \code{BlueRed}, \code{GreenBlue} and \code{YellowRed}.}
+\code{"YlOrBr"}, \code{"YlOrRd"}, \code{"YlGnBu"} and \code{"PuBuGn"}.}
 
 \item{size}{An integer between 1 and 20. Value controls the size of points
  when \code{geoData = NULL}. If \code{size = NULL}, the points will remain
@@ -110,7 +110,8 @@ exc_pal <- build_palette(name = "usr", colrange = list(colour = c("yellow", "red
                                                        difC = c(1, 1)))
                                                        view(exc_pal)
 # Create map and view it
-map <- build_emap(data = UB_tss,  geoData = UB_shp, id = "scID",
+tss <- read.uv(data = UB_tss, estimate = "TSS", error = "TSS Error", exceedance = "TSS_exc1")
+map <- build_emap(data = tss,  geoData = UB_shp, id = "scID",
             key_label = "Pr[TSS > 837mg/L]")
 view(map)
 
