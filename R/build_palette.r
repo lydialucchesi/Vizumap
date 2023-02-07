@@ -29,10 +29,15 @@
 #'p <- build_palette(name = "CyanMagenta")
 #'view(p)
 #'
+#'# use subtractive colour mixing (blue + yellow = green)
+#'p <- build_palette(name = "BlueYellow", subtractive = TRUE)
+#'view(p)
+#'
 #'# design a new palette
 #'p <- build_palette(name = "usr", colrange =
 #'  list(colour = c("darkblue", "chartreuse4"), difC = c(3, 4)))
 #'view(p)
+#'
 #'@export
 #'@importFrom "grDevices" "colorRamp" "rgb" "colorRampPalette" "colours" "colors"
 #'@importFrom "grDevices"  "col2rgb"
