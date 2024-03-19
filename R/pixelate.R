@@ -50,7 +50,7 @@ pixelate <-
     # define a function that finds the pixels inside each region
     pixel_poly <- function(x) {
       grid <- st_intersection(full_grid, st_as_sf(geoData[x,]))
-      grid <- st_cast(grid, "POLYGON")
+      grid <- suppressWarnings(st_cast(grid, "POLYGON"))
       grid <- as_Spatial(grid)
       grid$ID <- rep(geoData[x, id][[1]], length(grid))
       return(grid)

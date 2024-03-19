@@ -58,7 +58,7 @@ pixel map with <code><a href="build_pmap.html">build_pmap</a></code>.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pixelate</span><span class="op">(</span>geoData <span class="op">=</span> <span class="cn">NULL</span>, file <span class="op">=</span> <span class="cn">NULL</span>, layer <span class="op">=</span> <span class="cn">NULL</span>, pixelSize <span class="op">=</span> <span class="fl">2</span>, id <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pixelate</span><span class="op">(</span>geoData <span class="op">=</span> <span class="cn">NULL</span>, file <span class="op">=</span> <span class="cn">NULL</span>, layer <span class="op">=</span> <span class="cn">NULL</span>, pixelSize <span class="op">=</span> <span class="fl">40</span>, id <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -78,13 +78,12 @@ pixel map with <code><a href="build_pmap.html">build_pmap</a></code>.</p>
 
 
 <dt>pixelSize</dt>
-<dd><p>An integer 1, 2 or 3. One corresponds to the smallest pixel
-size, and three corresponds to the largest.</p></dd>
+<dd><p>An integer. Larger values result in smaller pixels.</p></dd>
 
 
 <dt>id</dt>
-<dd><p>A name which will be given to the new ID column. This ID corresponds to the slot ID in
-the spatial data.</p></dd>
+<dd><p>The ID column shared by the geoData object and the dataset with
+estimates and errors.</p></dd>
 
 </dl></div>
     <div id="details">
@@ -96,9 +95,7 @@ the spatial data.</p></dd>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">us_geo</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ca_geo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">us_geo</span>, <span class="va">us_geo</span><span class="op">@</span><span class="va">data</span><span class="op">$</span><span class="va">STATE</span> <span class="op">==</span> <span class="st">"06"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">pix</span> <span class="op">&lt;-</span> <span class="fu">pixelate</span><span class="op">(</span><span class="va">ca_geo</span>, id <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GEOS support is provided by the sf and terra packages among others</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GEOS support is provided by the sf and terra packages among others</span>
+<span class="r-in"><span><span class="va">pix</span> <span class="op">&lt;-</span> <span class="fu">pixelate</span><span class="op">(</span><span class="va">ca_geo</span>, pixelSize <span class="op">=</span> <span class="fl">60</span>, id <span class="op">=</span> <span class="st">"GEO_ID"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
