@@ -166,23 +166,13 @@ The county polygons for California are extracted from `us_geo` and pixelated wit
 ```{r, echo = TRUE, eval = TRUE}
 data(us_geo)
 ca_geo <- subset(us_geo, us_geo@data$STATE == "06")
-pix <- pixelate(ca_geo, id = "region")
-```
-
-There must be a shared column between `ca_data` and `pix`. Depending on your shapefile, getting this shared column might require some creativity. `pixelate` returns a column that contains the slot IDs for the polygons. Adding these slot IDs to `ca_data` through the `GEO_ID` column present in both `ca_data` and `ca_geo` creates a shared column that can be used for the `id` argument in `build_pmap`. Ultimately, if the shapefile slot IDs are not referenced in your data frame of estimates and errors, you will need to find a way to way to get this information added to your data frame of estimates and errors before using `build_pmap`.
-```{r, echo = TRUE, eval = TRUE}
-df <- data.frame(region = sapply(slot(ca_geo, "polygons"), function(x) slot(x, "ID")), name = unique(ca_geo@data$GEO_ID))
-ca_data$region <- df[match(ca_data$GEO_ID, df$name), 1]
-ca_data$region <- as.character(ca_data$region)
-
-# check that values in shared column match
-all(ca_data$region %in% pix$region)
+pix <- pixelate(ca_geo, pixelSize = 70, id = "GEO_ID")
 ```
 
 If `distribution = "uniform"`, the values are sampled uniformly from an interval, where the lower bound is the estimate minus the error and the upper bound is the estimate plus the error. For the estimates and margins of error in `us_data`, this interval corresponds to the estimate's 90% confidence interval.
 ```{r, echo = TRUE, fig.height=8, fig.width=8, eval = TRUE, message = FALSE}
 # uniform distribution
-unifPixMap <- build_pmap(data = ca_data, distribution = "uniform", pixelGeo = pix, id = "region", border = ca_geo)
+unifPixMap <- build_pmap(data = ca_data, distribution = "uniform", pixelGeo = pix, id = "GEO_ID", border = ca_geo)
 view(unifPixMap)
 ```
 
@@ -192,7 +182,7 @@ If `distribution = "normal"`, the values assigned to pixels will be drawn from n
 ca_data$se <- ca_data$pov_moe / 1.645
 ca_data <- read.uv(data = ca_data, estimate = "pov_rate", error = "se")
 
-normPixMap <- build_pmap(data = ca_data, distribution = "normal", pixelGeo = pix, id = "region", border = ca_geo)
+normPixMap <- build_pmap(data = ca_data, distribution = "normal", pixelGeo = pix, id = "GEO_ID", border = ca_geo)
 view(normPixMap)
 ```
 
@@ -205,7 +195,7 @@ ca_data.q <- with(ca_data, data.frame(p0.05 = qexp(0.05, 1/pov_rate), p0.25 = qe
 head(ca_data.q)
 
 discPixMap <- build_pmap(data = ca_data, distribution = "discrete", 
-                  pixelGeo = pix, id = "region", q = ca_data.q, border = ca_geo)
+                  pixelGeo = pix, id = "GEO_ID", q = ca_data.q, border = ca_geo)
 view(discPixMap)
 ```
 

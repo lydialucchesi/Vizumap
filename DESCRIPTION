@@ -18,24 +18,18 @@ Depends:
     R (>= 3.5.0)
 Imports:
     dplyr,
-    geoaxe,
     ggplot2,
     grDevices,
-    gridExtra,
     plyr,
-    rgeos,
     ggmap,
-    broom,
     animation,
     reshape2,
-    maptools,
     sf,
     sp,
     spbabel,
-    maps,
     patchwork,
-    PBSmapping
-Remotes: ropensci-archive/geoaxe
+    PBSmapping,
+    FRK
 License: GPL-3
 LazyLoad: TRUE
 LazyData: TRUE

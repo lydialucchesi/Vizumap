@@ -10,31 +10,24 @@
 #'@param file A shapefile pathway.
 #'@param layer Name of geoData layer (see documentation for
 #'  \code{\link[sf]{read_sf}} for more information).
-#'@param pixelSize An integer 1, 2 or 3. One corresponds to the smallest pixel
-#'  size, and three corresponds to the largest.
-#'@param id A name which will be given to the new ID column. This ID corresponds to the slot ID in
-#'  the spatial data.
+#'@param pixelSize An integer. Larger values result in smaller pixels.
+#'@param id The ID column shared by the geoData object and the dataset with
+#'  estimates and errors.
 #'
 #'@examples
 #'data(us_geo)
 #'ca_geo <- subset(us_geo, us_geo@data$STATE == "06")
-#'pix <- pixelate(ca_geo, id = "region")
+#'pix <- pixelate(ca_geo, pixelSize = 60, id = "GEO_ID")
 #'
-#'@importFrom "sf" "read_sf"
-#'@importFrom "sp" "SpatialPolygons" "spTransform" "proj4string" "CRS" "proj4string<-"
-#'@importFrom "rgeos" "readWKT" "gBuffer"
-#'@importFrom "ggmap" "make_bbox"
-#'@importFrom "geoaxe" "chop"
-#'@importFrom "broom" "tidy"
+#'@import sf
+#'@importFrom "FRK" "SpatialPolygonsDataFrame_to_df"
 #'@export
-
-
 
 pixelate <-
   function(geoData = NULL,
            file = NULL,
            layer = NULL,
-           pixelSize = 2,
+           pixelSize = 40,
            id = "id") {
     # check for geoData or file
     if (is.null(geoData) & is.null(file))
@@ -51,80 +44,30 @@ pixelate <-
     if (!is.null(file) & is.null(layer))
       stop("Layer needs to be supplied if file is supplied.\n")
 
-    # find projection of geo object
-    if (!is.null(geoData))
-      x <- proj4string(geoData)
-    else {
-      geoData <- read_sf(file, layer = layer)
-      x <- sf::st_crs(geoData)
+    # create a grid of pixels that covers the entire map
+    full_grid <- st_make_grid(geoData, n = pixelSize)
+
+    # define a function that finds the pixels inside each region
+    pixel_poly <- function(x) {
+      grid <- st_intersection(full_grid, st_as_sf(geoData[x,]))
+      grid <- st_cast(grid, "POLYGON")
+      grid <- as_Spatial(grid)
+      grid$ID <- rep(geoData[x, id][[1]], length(grid))
+      return(grid)
     }
 
-    if (!is.na(x)) {
-      if (!is.null(file)) {
-        geoData <- sf::as_Spatial(geoData$geometry)
-      }
-      if (class(geoData) == "SpatialPolygonsDataFrame") {
-        geoData <-
-          SpatialPolygons(geoData@polygons, proj4string = geoData@proj4string)
-      }
-    }
-
-    # remove projection
-    pol <- "POLYGON((0 0, 0 1, 1 1, 1 0, 0 0))"
-    poly <- readWKT(pol)
-    geoDataProjNA <- geoData
-    proj4string(geoDataProjNA) <- proj4string(poly)
-
-    # create definitive space
-    geoDataProjNA <- gBuffer(geoDataProjNA, byid = TRUE, width = 0)
-
-    # prep work for determining values passed to size and n in chop function
-    s <- tidy(geoDataProjNA)
-
-    lat <- s$lat
-    long <- s$long
-    bbox <- make_bbox(lat = lat, lon = long, data = s)
-    dif <- c(abs(bbox[1] - bbox[3]), abs(bbox[2] - bbox[4]))
-    v <- max(dif)
-
-    # chop into pixels
-    if (pixelSize == 1)
-      n <- (233 + (1 / 3))
-    else if (pixelSize == 2)
-      n <- 175
-    else if (pixelSize == 3)
-      n <- 140
-    else
-      stop("PixelSize must be one of 1, 2 or 3.\n")
-
-    # calculate pixel size
-    size <- v / n
-
-    # pixelate SpatialPolygons object with chop function
-    pixel_geoData <- geoaxe::chop(geoDataProjNA, size = size, n = n)
-    # return to original projection
-    pixel_geoData <-
-      SpatialPolygons(pixel_geoData@polygons, proj4string = geoData@proj4string)
-
-    # turn SpatialPolygons object into a data frame of coordinates
-    pixel_df <- tidy(pixel_geoData)
-
-    # recreate the slot id of the polygons in a new id column with name provided by
-    # user - ideally, for ease, the original slot ids of the polygons should match
-    # the id column in their data frame of data or relative frequencies
-    # pixel_df[ ,id] <- gsub("\\sg\\d*.\\d", "", pixel_df[ ,"id"]) # OLD CODE
-    pixel_df[, id] <-
-      as.vector(sapply(pixel_df[, "id"], function(x)
-        gsub("\\sg\\d*.\\d", "", x)))
+    # reformat all of the region grids into a single data frame
+    list_grids <- lapply(1:length(geoData), pixel_poly)
+    all_grids <- do.call(rbind, list_grids)
+    pixel_df <- SpatialPolygonsDataFrame_to_df(all_grids)
+    pixel_df$`id.1` <- NULL
+    colnames(pixel_df) <- c("long", "lat", "group", id)
 
     # create a second ID column that is used in the loops in build_pmap
-    # pixel_df$ID <- cumsum(!duplicated(pixel_df[ ,id])) # OLD code
-    pixel_df$ID <- cumsum(!duplicated(pixel_df[, "id"]))
+    pixel_df$ID <- cumsum(!duplicated(pixel_df[, id]))
 
     # define specific class to control what maps are used with build_pmap
     oldClass(pixel_df) <- c("pixel_df", class(pixel_df))
-
-
 
     pixel_df
 

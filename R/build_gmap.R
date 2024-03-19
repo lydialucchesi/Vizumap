@@ -54,7 +54,6 @@
 #'@export
 #'@importFrom "sp" "coordinates"
 #'@importFrom "ggmap" "make_bbox"
-#'@importFrom "maptools" "map2SpatialPolygons"
 
 
 build_gmap <- function(data, geoData = NULL, id = NULL, size = 50, border = NULL, glyph = "icone",

@@ -45,7 +45,7 @@
 #'# It is not run here.
 #'data(us_geo)
 #'ca_geo <- subset(us_geo, us_geo@data$STATE == "06")
-#'pix <- pixelate(ca_geo, id = "region")
+#'pix <- pixelate(geoData = ca_geo, pixelSize = 70, id = "GEO_ID")
 #'
 #'data(us_data)
 #'us_data$GEO.id2 <- as.numeric(us_data$GEO.id2)
@@ -53,20 +53,15 @@
 #'ca_data <- read.uv(data = ca_data, estimate = "pov_rate", error = "pov_moe")
 #'row.names(ca_data) <- seq(1, nrow(ca_data), 1)
 #'
-#'df <- data.frame(region = sapply(slot(ca_geo, "polygons"),
-#'  function(x) slot(x, "ID")), name = unique(ca_geo@data$GEO_ID))
-#'ca_data$region <- df[match(ca_data$GEO_ID, df$name), 1]
-#'ca_data$region <- as.character(ca_data$region)
-#'
 #'# uniform distribution
-#'m <- build_pmap(data = ca_data, distribution = "uniform", pixelGeo = pix, id = "region")
+#'m <- build_pmap(data = ca_data, distribution = "uniform", pixelGeo = pix, id = "GEO_ID")
 #'view(m)
 #'
 #'# normal distribution
 #'ca_data$se <- ca_data$pov_moe / 1.645
 #'ca_data <- read.uv(data = ca_data, estimate = "pov_rate", error = "se")
 #'
-#'m <- build_pmap(data = ca_data, distribution = "normal", pixelGeo = pix, id = "region")
+#'m <- build_pmap(data = ca_data, distribution = "normal", pixelGeo = pix, id = "GEO_ID")
 #'view(m)
 #'
 #'# experiment with discrete distribution
@@ -76,7 +71,7 @@
 #'  p0.75 = qexp(0.75, 1/pov_rate), p0.95 = qexp(0.95, 1/pov_rate)))
 #'
 #'m <- build_pmap(data = ca_data, distribution = "discrete", pixelGeo = pix,
-#'  id = "region", q = ca_data.q)
+#'  id = "GEO_ID", q = ca_data.q)
 #'view(m)
 #'}
 #'@importFrom "ggmap" "make_bbox"

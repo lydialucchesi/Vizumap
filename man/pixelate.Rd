@@ -4,7 +4,7 @@
 \alias{pixelate}
 \title{Pixelate polygons}
 \usage{
-pixelate(geoData = NULL, file = NULL, layer = NULL, pixelSize = 2, id = "id")
+pixelate(geoData = NULL, file = NULL, layer = NULL, pixelSize = 40, id = "id")
 }
 \arguments{
 \item{geoData}{An object of class "SpatialPolygons" or
@@ -15,11 +15,10 @@ pixelate(geoData = NULL, file = NULL, layer = NULL, pixelSize = 2, id = "id")
 \item{layer}{Name of geoData layer (see documentation for
 \code{\link[sf]{read_sf}} for more information).}
 
-\item{pixelSize}{An integer 1, 2 or 3. One corresponds to the smallest pixel
-size, and three corresponds to the largest.}
+\item{pixelSize}{An integer. Larger values result in smaller pixels.}
 
-\item{id}{A name which will be given to the new ID column. This ID corresponds to the slot ID in
-the spatial data.}
+\item{id}{The ID column shared by the geoData object and the dataset with
+estimates and errors.}
 }
 \description{
 This function divides a shapefile into pixels so it can be used to create a
@@ -31,6 +30,6 @@ This function can take several minutes to run depending on the size of the shape
 \examples{
 data(us_geo)
 ca_geo <- subset(us_geo, us_geo@data$STATE == "06")
-pix <- pixelate(ca_geo, id = "region")
+pix <- pixelate(ca_geo, pixelSize = 60, id = "GEO_ID")
 
 }
