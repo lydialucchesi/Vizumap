@@ -7,7 +7,7 @@ Maintainer: Lydia Lucchesi <Lydia.Lucchesi@anu.edu.au>
 Description: Vizumap provides four uncertainty visualization approaches for spatial data.
     These approaches include the bivariate choropleth map, map pixelation, glyph rotation, and the exceedance probability map.
     In Vizumap, there are three different types of functions - formatting, building, and viewing functions - that make it easy to create 
-    these uncertainty maps for a range of applied spatial problems.
+    these uncertainty maps for a range of applied spatial problems..
 URL: https://lydialucchesi.github.io/Vizumap/, https://github.com/lydialucchesi/Vizumap
 Encoding: UTF-8
 Date: 2020-06-04
