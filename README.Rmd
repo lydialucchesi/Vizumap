@@ -25,53 +25,38 @@ A [`Vizumap` paper](https://doi.org/10.21105/joss.02409) is available in the Jou
 
 ## Installation
 
-You can install a development version of the `Vizumap` package using the command below.
+You can install `Vizumap` using the command below.
 
 ```
 remotes::install_github(repo = "lydialucchesi/Vizumap", build_vignettes = TRUE, force = TRUE)
 ```
-## Authors 
-
-Lydia Lucchesi, Australian National University & CSIRO Data61,  Email: Lydia.Lucchesi@anu.edu.au
-
-Petra Kuhnert, CSIRO Data61, Email: Petra.Kuhnert@data61.csiro.au 
 
 ## About the package
 
 Approaches for visualising uncertainty in spatial data are presented in this package. These include the three approaches developed in [Lucchesi and Wikle (2017)](https://onlinelibrary.wiley.com/doi/full/10.1002/sta4.150) and a fourth approach presented in [Kuhnert et al. (2018)](https://publications.csiro.au/publications/#publication/PIcsiro:EP168206). The package is outlined in [Lucchesi et al. (2021)](https://doi.org/10.21105/joss.02409).
 
-#### Bivariate Maps
+#### Bivariate map
 
 In these bivariate choropleth maps, two colour schemes, one representing the estimates and another representing the margins of error, are blended so that an estimate and its error can be conveyed on a map using a single colour. 
 
-#### Map Pixelation
+#### Pixel map
 
 In this approach, each map region is pixelated. Pixels are filled with colours representing values within an estimate's margin of error. Regions that appear as a solid colour reflect smaller margins of error, while more pixelated regions indicate greater uncertainty. These maps can be animated to provide a novel uncertainty visualisation experience.
 
-#### Glyph Rotation
+#### Glyph map
 
 In this method, glyphs located at region centroids are rotated to represent uncertainty. The colour filling each glyph corresponds to the estimate.
 
-#### Exceedance Probability Maps
+#### Exceedance probability map
 
 The final map-based exploration is through exceedance probabilities, which are visualised on a map to highlight regions that exhibit varying levels of departure from a threshold of concern or target. 
 
 ## Examples
 
-A vignette for the `Vizumap` package is available and contains examples relating to each of the visualisation methods.
+A vignette is available and contains examples for each map type.
 
 ```
 vignette("Vizumap")
-```
-
-## Testing
-
-If you would like to install and run the unit tests interactively, include `INSTALL_opts = "--install-tests"` in the installation code.
-
-```
-remotes::install_github(repo = "lydialucchesi/Vizumap", build_vignettes = TRUE, force = TRUE, INSTALL_opts = "--install-tests")
-
-testthat::test_package("Vizumap", reporter = "stop")
 ```
 
 ## Contribute

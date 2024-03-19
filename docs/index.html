@@ -22,6 +22,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -34,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">Vizumap</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.0</span>
       </span>
     </div>
 
@@ -52,7 +54,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/lydialucchesi/Vizumap/">
+  <a href="https://github.com/lydialucchesi/Vizumap/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -69,157 +71,149 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="vizumap-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#vizumap-" class="anchor"></a>Vizumap <img src="reference/figures/Vizumap_Hex.png" align="right" height="138.5">
+<div class="section level1">
+<div class="page-header"><h1 id="vizumap-">Vizumap <img src="reference/figures/Vizumap_Hex.png" align="right" height="138.5"><a class="anchor" aria-label="anchor" href="#vizumap-"></a>
 </h1></div>
-<div id="an-r-package-for-visualizing-uncertainty-in-spatial-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#an-r-package-for-visualizing-uncertainty-in-spatial-data" class="anchor"></a>An R package for visualizing uncertainty in spatial data.</h2>
-
-<p>There is a <a href="https://lydialucchesi.github.io/Vizumap/"><code>Vizumap</code> pkgdown site</a> with a vignette.</p>
-<p>A <a href="https://doi.org/10.21105/joss.02409"><code>Vizumap</code> paper</a> is available in the Journal of Open Source Software (JOSS). If you use <code>Vizumap</code>, please cite this paper.</p>
+<div class="section level2">
+<h2 id="an-r-package-for-visualizing-uncertainty-in-spatial-data">An R package for visualizing uncertainty in spatial data.<a class="anchor" aria-label="anchor" href="#an-r-package-for-visualizing-uncertainty-in-spatial-data"></a>
+</h2>
+<p><a href="https://github.com/lydialucchesi/Vizumap/actions" class="external-link"><img src="https://github.com/lydialucchesi/Vizumap/workflows/R-CMD-check/badge.svg" alt="R build status"></a></p>
+<p>There is a <a href="https://lydialucchesi.github.io/Vizumap/" class="external-link"><code>Vizumap</code> pkgdown site</a> with a vignette.</p>
+<p>A <a href="https://doi.org/10.21105/joss.02409" class="external-link"><code>Vizumap</code> paper</a> is available in the Journal of Open Source Software (JOSS). If you use <code>Vizumap</code>, please cite this paper.</p>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install a development version of the <code>Vizumap</code> package using the command below.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install <code>Vizumap</code> using the command below.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="at">repo =</span> <span class="st">"lydialucchesi/Vizumap"</span>, <span class="at">build_vignettes =</span> <span class="cn">TRUE</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
-<div id="authors" class="section level2">
-<h2 class="hasAnchor">
-<a href="#authors" class="anchor"></a>Authors</h2>
-<p>Lydia Lucchesi, Australian National University &amp; CSIRO Data61, Email: <a href="mailto:Lydia.Lucchesi@anu.edu.au" class="email">Lydia.Lucchesi@anu.edu.au</a></p>
-<p>Petra Kuhnert, CSIRO Data61, Email: <a href="mailto:Petra.Kuhnert@data61.csiro.au" class="email">Petra.Kuhnert@data61.csiro.au</a></p>
-</div>
-<div id="about-the-package" class="section level2">
-<h2 class="hasAnchor">
-<a href="#about-the-package" class="anchor"></a>About the package</h2>
-<p>Approaches for visualising uncertainty in spatial data are presented in this package. These include the three approaches developed in <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/sta4.150">Lucchesi and Wikle (2017)</a> and a fourth approach presented in <a href="https://publications.csiro.au/publications/#publication/PIcsiro:EP168206">Kuhnert et al. (2018)</a>. The package is outlined in <a href="https://doi.org/10.21105/joss.02409">Lucchesi et al. (2021)</a>.</p>
-<div id="bivariate-maps" class="section level4">
-<h4 class="hasAnchor">
-<a href="#bivariate-maps" class="anchor"></a>Bivariate Maps</h4>
+<div class="section level2">
+<h2 id="about-the-package">About the package<a class="anchor" aria-label="anchor" href="#about-the-package"></a>
+</h2>
+<p>Approaches for visualising uncertainty in spatial data are presented in this package. These include the three approaches developed in <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/sta4.150" class="external-link">Lucchesi and Wikle (2017)</a> and a fourth approach presented in <a href="https://publications.csiro.au/publications/#publication/PIcsiro:EP168206" class="external-link">Kuhnert et al. (2018)</a>. The package is outlined in <a href="https://doi.org/10.21105/joss.02409" class="external-link">Lucchesi et al. (2021)</a>.</p>
+<div class="section level4">
+<h4 id="bivariate-map">Bivariate map<a class="anchor" aria-label="anchor" href="#bivariate-map"></a>
+</h4>
 <p>In these bivariate choropleth maps, two colour schemes, one representing the estimates and another representing the margins of error, are blended so that an estimate and its error can be conveyed on a map using a single colour.</p>
 </div>
-<div id="map-pixelation" class="section level4">
-<h4 class="hasAnchor">
-<a href="#map-pixelation" class="anchor"></a>Map Pixelation</h4>
+<div class="section level4">
+<h4 id="pixel-map">Pixel map<a class="anchor" aria-label="anchor" href="#pixel-map"></a>
+</h4>
 <p>In this approach, each map region is pixelated. Pixels are filled with colours representing values within an estimate’s margin of error. Regions that appear as a solid colour reflect smaller margins of error, while more pixelated regions indicate greater uncertainty. These maps can be animated to provide a novel uncertainty visualisation experience.</p>
 </div>
-<div id="glyph-rotation" class="section level4">
-<h4 class="hasAnchor">
-<a href="#glyph-rotation" class="anchor"></a>Glyph Rotation</h4>
+<div class="section level4">
+<h4 id="glyph-map">Glyph map<a class="anchor" aria-label="anchor" href="#glyph-map"></a>
+</h4>
 <p>In this method, glyphs located at region centroids are rotated to represent uncertainty. The colour filling each glyph corresponds to the estimate.</p>
 </div>
-<div id="exceedance-probability-maps" class="section level4">
-<h4 class="hasAnchor">
-<a href="#exceedance-probability-maps" class="anchor"></a>Exceedance Probability Maps</h4>
+<div class="section level4">
+<h4 id="exceedance-probability-map">Exceedance probability map<a class="anchor" aria-label="anchor" href="#exceedance-probability-map"></a>
+</h4>
 <p>The final map-based exploration is through exceedance probabilities, which are visualised on a map to highlight regions that exhibit varying levels of departure from a threshold of concern or target.</p>
 </div>
 </div>
-<div id="examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h2>
-<p>A vignette for the <code>Vizumap</code> package is available and contains examples relating to each of the visualisation methods.</p>
+<div class="section level2">
+<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+</h2>
+<p>A vignette is available and contains examples for each map type.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"Vizumap"</span>)</span></code></pre></div>
 </div>
-<div id="testing" class="section level2">
-<h2 class="hasAnchor">
-<a href="#testing" class="anchor"></a>Testing</h2>
-<p>If you would like to install and run the unit tests interactively, include <code>INSTALL_opts = "--install-tests"</code> in the installation code.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="at">repo =</span> <span class="st">"lydialucchesi/Vizumap"</span>, <span class="at">build_vignettes =</span> <span class="cn">TRUE</span>, <span class="at">force =</span> <span class="cn">TRUE</span>, <span class="at">INSTALL_opts =</span> <span class="st">"--install-tests"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">test_package</span>(<span class="st">"Vizumap"</span>, <span class="at">reporter =</span> <span class="st">"stop"</span>)</span></code></pre></div>
-</div>
-<div id="contribute" class="section level2">
-<h2 class="hasAnchor">
-<a href="#contribute" class="anchor"></a>Contribute</h2>
+<div class="section level2">
+<h2 id="contribute">Contribute<a class="anchor" aria-label="anchor" href="#contribute"></a>
+</h2>
 <p>To contribute to <code>Vizumap</code>, please follow these <a href="CONTRIBUTING.html">guidelines</a>.</p>
 <p>Please note that the <code>Vizumap</code> project is released with a <a href="CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
-<div id="license" class="section level2">
-<h2 class="hasAnchor">
-<a href="#license" class="anchor"></a>License</h2>
+<div class="section level2">
+<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h2>
 <p><code>Vizumap</code> version 1.2.0 is licensed under <a href="LICENSE.html">GPLv3</a>.</p>
 </div>
-<div id="citation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#citation" class="anchor"></a>Citation</h2>
-<p>Lucchesi et al., (2021). Vizumap: an R package for visualising uncertainty in spatial data. Journal of Open Source Software, 6(59), 2409, <a href="https://doi.org/10.21105/joss.02409" class="uri">https://doi.org/10.21105/joss.02409</a></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>article{lucchesi2021vizumap,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  title<span class="ot">=</span>{Vizumap<span class="sc">:</span> an R package <span class="cf">for</span> visualising uncertainty <span class="cf">in</span> spatial data},</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  author<span class="ot">=</span>{Lucchesi, Lydia R and Kuhnert, Petra M and Wikle, Christopher K},</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  journal<span class="ot">=</span>{Journal of Open Source Software},</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  volume<span class="ot">=</span>{<span class="dv">6</span>},</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  number<span class="ot">=</span>{<span class="dv">59</span>},</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  pages<span class="ot">=</span>{<span class="dv">2409</span>},</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  year<span class="ot">=</span>{<span class="dv">2021</span>}</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>Lucchesi et al., (2021). Vizumap: an R package for visualising uncertainty in spatial data. Journal of Open Source Software, 6(59), 2409, <a href="https://doi.org/10.21105/joss.02409" class="external-link uri">https://doi.org/10.21105/joss.02409</a></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>article{lucchesi2021vizumap,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  title<span class="ot">=</span>{Vizumap<span class="sc">:</span> an R package <span class="cf">for</span> visualising uncertainty <span class="cf">in</span> spatial data},</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  author<span class="ot">=</span>{Lucchesi, Lydia R and Kuhnert, Petra M and Wikle, Christopher K},</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  journal<span class="ot">=</span>{Journal of Open Source Software},</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  volume<span class="ot">=</span>{<span class="dv">6</span>},</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  number<span class="ot">=</span>{<span class="dv">59</span>},</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  pages<span class="ot">=</span>{<span class="dv">2409</span>},</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  year<span class="ot">=</span>{<span class="dv">2021</span>}</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
-<div id="history-of-vizumap" class="section level2">
-<h2 class="hasAnchor">
-<a href="#history-of-vizumap" class="anchor"></a>History of Vizumap</h2>
+<div class="section level2">
+<h2 id="history-of-vizumap">History of Vizumap<a class="anchor" aria-label="anchor" href="#history-of-vizumap"></a>
+</h2>
 <p>Vizumap began as a visualisation project at the University of Missouri in 2016. Chris Wikle, professor of statistics, posed an interesting research question to Lydia Lucchesi, a student curious about data visualisation and R.</p>
 <p>How do you include uncertainty on a map displaying areal data estimates?</p>
 <p>Over the course of a year, they put together three methods for visualising uncertainty in spatial statistics: the bivariate choropleth map, the pixel map, and the glyph map. By mid-2017, there were maps, and there was a lot of R code, but there was not a tool that others could use to easily make these types of maps, too. That’s when statistician Petra Kuhnert recommended developing an R package. Over the course of a month, Petra and Lydia developed Vizumap (originally named VizU) at CSIRO Data61 in Canberra, Australia. Since then, the package has been expanded to include exceedance probability maps, an uncertainty visualisation method developed by Petra while working on a Great Barrier Reef (GBR) project.</p>
-<p>Vizumap has been used to visualise the uncertainty of American Community Survey estimates, the prediction errors of sediment estimates in a GBR catchment, and most recently the <a href="https://www.nature.com/articles/s41598-020-73897-1/figures/4">uncertainty of estimated locust densities in Australia</a>. We would like to assemble a Vizumap gallery that showcases different applications of the package’s mapping methods. If you use Vizumap to visualise uncertainty, please feel free to send the map our way. We would like to see it!</p>
+<p>Vizumap has been used to visualise the uncertainty of American Community Survey estimates, the prediction errors of sediment estimates in a GBR catchment, and most recently the <a href="https://www.nature.com/articles/s41598-020-73897-1/figures/4" class="external-link">uncertainty of estimated locust densities in Australia</a>. We would like to assemble a Vizumap gallery that showcases different applications of the package’s mapping methods. If you use Vizumap to visualise uncertainty, please feel free to send the map our way. We would like to see it!</p>
 </div>
-<div id="references" class="section level2">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
-<p>Kuhnert, P.M., Pagendam, D.E., Bartley, R., Gladish, D.W., Lewis, S.E. and Bainbridge, Z.T. (2018) <a href="https://publications.csiro.au/publications/#publication/PIcsiro:EP168206">Making management decisions in face of uncertainty: a case study using the Burdekin catchment in the Great Barrier Reef, Marine and Freshwater Research</a>, 69, 1187-1200, <a href="https://doi.org/10.1071/MF17237" class="uri">https://doi.org/10.1071/MF17237</a>.</p>
-<p>Lucchesi, L.R. and Wikle C.K. (2017) <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/sta4.150">Visualizing uncertainty in areal data with bivariate choropleth maps, map pixelation and glyph rotation</a>, Stat, <a href="https://doi.org/10.1002/sta4.150" class="uri">https://doi.org/10.1002/sta4.150</a>.</p>
-<p>Lucchesi, L.R., Kuhnert, P.M. and Wikle, C.K. (2021) <a href="https://doi.org/10.21105/joss.02409">Vizumap: an R package for visualising uncertainty in spatial data</a>, Journal of Open Source Software, <a href="https://doi.org/10.21105/joss.02409" class="uri">https://doi.org/10.21105/joss.02409</a>.</p>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
+<p>Kuhnert, P.M., Pagendam, D.E., Bartley, R., Gladish, D.W., Lewis, S.E. and Bainbridge, Z.T. (2018) <a href="https://publications.csiro.au/publications/#publication/PIcsiro:EP168206" class="external-link">Making management decisions in face of uncertainty: a case study using the Burdekin catchment in the Great Barrier Reef, Marine and Freshwater Research</a>, 69, 1187-1200, <a href="https://doi.org/10.1071/MF17237" class="external-link uri">https://doi.org/10.1071/MF17237</a>.</p>
+<p>Lucchesi, L.R. and Wikle C.K. (2017) <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/sta4.150" class="external-link">Visualizing uncertainty in areal data with bivariate choropleth maps, map pixelation and glyph rotation</a>, Stat, <a href="https://doi.org/10.1002/sta4.150" class="external-link uri">https://doi.org/10.1002/sta4.150</a>.</p>
+<p>Lucchesi, L.R., Kuhnert, P.M. and Wikle, C.K. (2021) <a href="https://doi.org/10.21105/joss.02409" class="external-link">Vizumap: an R package for visualising uncertainty in spatial data</a>, Journal of Open Source Software, <a href="https://doi.org/10.21105/joss.02409" class="external-link uri">https://doi.org/10.21105/joss.02409</a>.</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/lydialucchesi/Vizumap/">https://​github.com/​lydialucchesi/​Vizumap/​</a>
-</li>
+<li><a href="https://github.com/lydialucchesi/Vizumap/" class="external-link">Browse source code</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></small></li>
+<li><small><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></small></li>
 </ul>
 </div>
+
 <div class="community">
-<h2>Community</h2>
+<h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Lydia Lucchesi <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1901-4301" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Petra Kuhnert <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-9070-0091" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="authors.html#citation">Citing Vizumap</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lydialucchesi/Vizumap/actions"><img src="https://github.com/lydialucchesi/Vizumap/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li>Lydia Lucchesi <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1901-4301" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Petra Kuhnert <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-9070-0091" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
-</div>
+
+
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Lydia Lucchesi, Petra Kuhnert.</p>
+  <p></p>
+<p>Developed by Lydia Lucchesi, Petra Kuhnert.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -227,6 +221,8 @@
 
   
 
+
+  
 
   </body>
 </html>

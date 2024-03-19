@@ -2,8 +2,6 @@ Package: Vizumap
 Type: Package
 Title: Visualizing uncertainty in spatial data
 Version: 1.2.0
-Author: Lydia Lucchesi and Petra Kuhnert
-Maintainer: Lydia Lucchesi <Lydia.Lucchesi@anu.edu.au>
 Description: Vizumap provides four uncertainty visualization approaches for spatial data.
     These approaches include the bivariate choropleth map, map pixelation, glyph rotation, and the exceedance probability map.
     In Vizumap, there are three different types of functions - formatting, building, and viewing functions - that make it easy to create 
@@ -11,7 +9,11 @@ Description: Vizumap provides four uncertainty visualization approaches for spat
 URL: https://lydialucchesi.github.io/Vizumap/, https://github.com/lydialucchesi/Vizumap
 Encoding: UTF-8
 Date: 2020-06-04
-Authors@R: c(person("Lydia", "Lucchesi", email = "Lydia.Lucchesi@anu.edu.au", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-1901-4301")), person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = c("aut"), comment = c(ORCID = "0000-0001-9070-0091")), person("Christopher", "Wikle", email = "wiklec@missouri.edu", role = c("ctb"), comment = c(ORCID = "0000-0002-0655-2696")))
+Authors@R: c(person("Lydia", "Lucchesi", email = "Lydia.Lucchesi@anu.edu.au", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-1901-4301")), 
+    person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = c("aut"), comment = c(ORCID = "0000-0001-9070-0091")), 
+    person("Christopher", "Wikle", email = "wiklec@missouri.edu", role = c("ctb"), comment = c(ORCID = "0000-0002-0655-2696")),
+    person("Benedict (Wei Jie)", "Chin", email = "benedictchin2001@gmail.com", role = c("ctb")))
+Maintainer: Lydia Lucchesi <Lydia.Lucchesi@anu.edu.au>
 Depends:
     R (>= 3.5.0)
 Imports:
@@ -37,7 +39,7 @@ Remotes: ropensci-archive/geoaxe
 License: GPL-3
 LazyLoad: TRUE
 LazyData: TRUE
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Suggests: 
     knitr,
     rmarkdown,
