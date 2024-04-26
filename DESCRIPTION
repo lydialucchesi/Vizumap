@@ -29,7 +29,8 @@ Imports:
     spbabel,
     patchwork,
     PBSmapping,
-    FRK
+    FRK,
+    maps
 License: GPL-3
 LazyLoad: TRUE
 LazyData: TRUE
