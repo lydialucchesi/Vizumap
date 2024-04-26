@@ -87,7 +87,7 @@ build_bmap <- function(data, geoData = NULL, id = NULL, border = NULL,
       stop("Border name not recognised. Must be one of county, france, italy, nz, state, usa or world \n
            (see documentation for map_data function in ggplot2 for more information)")
     else
-      bord <- map_data(border)
+      bord <- ggplot2::map_data(border)
   }
   else {
     long <- numeric(0)

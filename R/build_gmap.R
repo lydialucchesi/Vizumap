@@ -93,7 +93,7 @@ build_gmap <- function(data, geoData = NULL, id = NULL, size = 50, border = NULL
     }
     else
       if (border %in% c("county", "france", "italy", "nz", "state", "usa", "world"))
-        bord <- map_data(border)
+        bord <- ggplot2::map_data(border)
       else
         stop("Border name not recognised. Must be one of county, france, italy, nz, state, usa or world \n
              (see documentation for map_data function in ggplot2 for more information). Alternatively, it can
