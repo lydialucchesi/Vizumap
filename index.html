@@ -6,16 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visualizing uncertainty in spatial data • Vizumap</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Visualizing uncertainty in spatial data">
-<meta property="og:description" content="Vizumap provides four uncertainty visualization approaches for spatial data.
-    These approaches include the bivariate choropleth map, map pixelation, glyph rotation, and the exceedance probability map.
-    In Vizumap, there are three different types of functions - formatting, building, and viewing functions - that make it easy to create 
-    these uncertainty maps for a range of applied spatial problems.">
+<meta property="og:description" content="Vizumap provides four uncertainty visualization approaches for spatial data. These approaches include the bivariate choropleth map, map pixelation, glyph rotation, and the exceedance probability map. In Vizumap, there are three different types of functions - formatting, building, and viewing functions - that make it easy to create these uncertainty maps for a range of applied spatial problems.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -85,7 +82,7 @@
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>You can install <code>Vizumap</code> using the command below.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="dt">repo =</span> <span class="st">"lydialucchesi/Vizumap"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>, <span class="dt">force =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="at">repo =</span> <span class="st">"lydialucchesi/Vizumap"</span>, <span class="at">build_vignettes =</span> <span class="cn">TRUE</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="about-the-package">About the package<a class="anchor" aria-label="anchor" href="#about-the-package"></a>
@@ -116,7 +113,7 @@
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
 <p>A vignette is available and contains examples for each map type.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">vignette</span>(<span class="st">"Vizumap"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"Vizumap"</span>)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="contribute">Contribute<a class="anchor" aria-label="anchor" href="#contribute"></a>
@@ -133,15 +130,15 @@
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>Lucchesi et al., (2021). Vizumap: an R package for visualising uncertainty in spatial data. Journal of Open Source Software, 6(59), 2409, <a href="https://doi.org/10.21105/joss.02409" class="external-link uri">https://doi.org/10.21105/joss.02409</a></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="op">@</span>article{lucchesi2021vizumap,</span>
-<span id="cb3-2"><a href="#cb3-2"></a>  title={Vizumap<span class="op">:</span><span class="st"> </span>an R package <span class="cf">for</span> visualising uncertainty <span class="cf">in</span> spatial data},</span>
-<span id="cb3-3"><a href="#cb3-3"></a>  author={Lucchesi, Lydia R and Kuhnert, Petra M and Wikle, Christopher K},</span>
-<span id="cb3-4"><a href="#cb3-4"></a>  journal={Journal of Open Source Software},</span>
-<span id="cb3-5"><a href="#cb3-5"></a>  volume={<span class="dv">6</span>},</span>
-<span id="cb3-6"><a href="#cb3-6"></a>  number={<span class="dv">59</span>},</span>
-<span id="cb3-7"><a href="#cb3-7"></a>  pages={<span class="dv">2409</span>},</span>
-<span id="cb3-8"><a href="#cb3-8"></a>  year={<span class="dv">2021</span>}</span>
-<span id="cb3-9"><a href="#cb3-9"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="sc">@</span>article{lucchesi2021vizumap,</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  title<span class="ot">=</span>{Vizumap<span class="sc">:</span> an R package <span class="cf">for</span> visualising uncertainty <span class="cf">in</span> spatial data},</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  author<span class="ot">=</span>{Lucchesi, Lydia R and Kuhnert, Petra M and Wikle, Christopher K},</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  journal<span class="ot">=</span>{Journal of Open Source Software},</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  volume<span class="ot">=</span>{<span class="dv">6</span>},</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  number<span class="ot">=</span>{<span class="dv">59</span>},</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  pages<span class="ot">=</span>{<span class="dv">2409</span>},</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>  year<span class="ot">=</span>{<span class="dv">2021</span>}</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="history-of-vizumap">History of Vizumap<a class="anchor" aria-label="anchor" href="#history-of-vizumap"></a>
@@ -213,7 +210,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer>
