@@ -1,84 +1,221 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# Vizumap <img src='man/figures/Vizumap_Hex.png' align="right" height="138.5" />
-
-## An R package for visualizing uncertainty in spatial data.
-
 [![R build
 status](https://github.com/lydialucchesi/Vizumap/workflows/R-CMD-check/badge.svg)](https://github.com/lydialucchesi/Vizumap/actions)
 
-There is a [`Vizumap` pkgdown
-site](https://lydialucchesi.github.io/Vizumap/) with a vignette.
+<center>
+<img src="man/figures/header.png"/>
+</center>
 
-A [`Vizumap` paper](https://doi.org/10.21105/joss.02409) is available in
-the Journal of Open Source Software (JOSS). If you use `Vizumap`, please
-cite this paper.
+**Vizumap** is an R package for incorporating information about
+statistical uncertainty on maps visualizing statistical estimates. It
+provides support for building four different types of uncertainty maps:
+the bivariate map, the pixel map, the glyph map, and the exceedance
+probability map. Each of these maps is described below, alongside a
+quick start example. Additional information on Vizumap can be found in
+the Journal of Open Source Software (JOSS)
+[paper](https://doi.org/10.21105/joss.02409) or [online user
+guide](https://lydialucchesi.github.io/Vizumap/articles/Vizumap.html).
 
-## Installation
+## Table of contents
 
-You can install `Vizumap` using the command below.
+- [Package installation and
+  vignette](#package-installation-and-vignette)
+- [Maps and quick start examples](#maps-and-quick-start-examples)
+  - [Bivariate](#bivariate)
+  - [Pixel](#pixel)
+    - [Animated pixel](#animated-pixel)
+  - [Glyph](#glyph)
+  - [Exceedance probability](#exceedance-probability)
+- [Contribute](#contribute)
+- [License](#license)
+- [Vizumap citation](#vizumap-citation)
+- [References](#references)
+
+## Package installation and vignette
+
+Install Vizumap with the command below.
 
     remotes::install_github(repo = "lydialucchesi/Vizumap", build_vignettes = TRUE, force = TRUE)
 
-## About the package
+View the package vignette with the command below or online
+[here](https://lydialucchesi.github.io/Vizumap/articles/Vizumap.html).
 
-Approaches for visualising uncertainty in spatial data are presented in
-this package. These include the three approaches developed in [Lucchesi
-and Wikle
-(2017)](https://onlinelibrary.wiley.com/doi/full/10.1002/sta4.150) and a
-fourth approach presented in [Kuhnert et
-al. (2018)](https://publications.csiro.au/publications/#publication/PIcsiro:EP168206).
-The package is outlined in [Lucchesi et
-al. (2021)](https://doi.org/10.21105/joss.02409).
-
-#### Bivariate map
-
-In these bivariate choropleth maps, two colour schemes, one representing
-the estimates and another representing the margins of error, are blended
-so that an estimate and its error can be conveyed on a map using a
-single colour.
-
-#### Pixel map
-
-In this approach, each map region is pixelated. Pixels are filled with
-colours representing values within an estimate’s margin of error.
-Regions that appear as a solid colour reflect smaller margins of error,
-while more pixelated regions indicate greater uncertainty. These maps
-can be animated to provide a novel uncertainty visualisation experience.
-
-#### Glyph map
-
-In this method, glyphs located at region centroids are rotated to
-represent uncertainty. The colour filling each glyph corresponds to the
-estimate.
-
-#### Exceedance probability map
-
-The final map-based exploration is through exceedance probabilities,
-which are visualised on a map to highlight regions that exhibit varying
-levels of departure from a threshold of concern or target.
-
-## Examples
-
-A vignette is available and contains examples for each map type.
-
+    library(Vizumap)
     vignette("Vizumap")
+
+## Maps and quick start examples
+
+In this section, each map type is described and then demonstrated with
+an example dataset. The example dataset — included in the Vizumap
+package — contains predicted pollutant loads of total suspended sediment
+(TSS) from the upper Burdekin catchment in Queensland, Australia, to the
+Great Barrier Reef (GBR). The dataset also contains prediction
+uncertainties. Maps built with Vizumap can be used to communicate these
+pollutant predictions and uncertainties to catchment managers and policy
+makers, as the export of pollutants from coastal catchments within
+Australia has important implications for the health of the GBR lagoon.
+
+### Bivariate
+
+In the bivariate map \[[1](#references)\], two color schemes — one
+representing statistical estimates and one representing statistical
+uncertainties — are blended to create a 3x3 color grid. In turn, each
+geographic area can be filled with a single color that conveys
+information about both the estimate and uncertainty.
+
+**Quick start example**
+
+``` r
+# load the package
+library(Vizumap)
+
+# load the upper Burdekin (UB) data and format it
+data(UB) # this returns a data frame, UB_tss, and a shapefile, UB_shp
+UB_dat <- read.uv(data = UB_tss, estimate = "TSS", error = "TSS_error")
+
+# build a bivariate color palette
+UB_pal <- build_palette(name = "usr", colrange = list(colour = c("gold", "red4"), difC = c(4, 4)))
+
+# build the bivariate map and key, and then attach the key to the map
+UB_biv_map <- build_bmap(data = UB_dat, geoData = UB_shp, id = "scID", palette = UB_pal, terciles = TRUE)
+UB_biv_key <- build_bkey(data = UB_dat, palette = UB_pal, terciles = TRUE)
+attach_key(map = UB_biv_map, mapkey = UB_biv_key)
+```
+
+<center>
+<img src="man/figures/bivariate_map.png" width="50%"/>
+</center>
+
+### Pixel
+
+In the pixel map \[[1](#references)\], each geographic area is divided
+into small pixels. Then, values sampled from the statistical estimate’s
+confidence/credible interval are assigned to the pixels. A single-hue
+color gradient is used to represent the values on the map. Note that,
+where uncertainty is high, the sampled values span a wider range of
+color on the color gradient; thus, areas with high uncertainty appear
+more pixelated than areas with low uncertainty.
+
+**Quick start example**
+
+``` r
+# load the package
+library(Vizumap)
+
+# load the upper Burdekin (UB) data and format it
+data(UB) # this returns a data frame, UB_tss, and a shapefile, UB_shp
+UB_dat <- read.uv(data = UB_tss, estimate = "TSS", error = "TSS_error")
+
+# pixelate the shapefile
+UB_pix <- pixelate(geoData = UB_shp, id = "scID")
+
+# build and view the pixel map
+UB_pix_map <- build_pmap(data = UB_dat, pixelGeo = pixUB, id = "scID", palette = "Oranges", border = UB_shp)
+view(UB_pix_map)
+```
+
+<center>
+<img src="man/figures/pixel_map.png" width="40%"/>
+</center>
+
+#### Animated pixel
+
+The pixel map can be animated to alternate between a series of sampled
+values assigned to each pixel. When animated, areas with high
+uncertainty have visible flickering, while areas with low uncertainty
+appear almost static.
+
+**Quick start example**
+
+This quick start example picks up where the previous quick start example
+left off. Please run the pixel map code above before running the pixel
+animation code below.
+
+``` r
+UB_pixel_ani <- animate(UB_pixel_map, flickerSpeed = 0.5, aniLength = 30)
+view(UB_pixel_ani)
+```
+
+<div style="text-align: center;">
+
+<img src="man/figures/pixel_ani.gif" style="width: 400px; aspect-ratio: 4/3;" />
+
+</div>
+
+### Glyph
+
+In the glyph map \[[1](#references)\], a glyph of the same size is
+placed at the centroid of each geographic area. The color of the glyph
+represents the statistical estimate, while the rotation of the glyph
+represents the statistical uncertainty. This map is designed for
+situations in which all geographic areas — which may vary in size —
+merit equal attention.
+
+**Quick start example**
+
+``` r
+# load the package
+library(Vizumap)
+
+# load the upper Burdekin (UB) data and format it
+data(UB) # this returns a data frame, UB_tss, and a shapefile, UB_shp
+UB_dat <- read.uv(data = UB_tss, estimate = "TSS", error = "TSS_error")
+
+# build the glyph map and key, and then attach the key to the map
+UB_glyph_map <- build_gmap(data = UB_dat, geoData = UB_shp, id = "scID", size = 1, glyph = "icone", palette = "Oranges", border = NULL)
+UB_glyph_key <- build_gkey(data = UB_dat, glyph = "icone")
+attach_key(map = UB_glyph_map, mapkey = UB_glyph_key)
+```
+
+<center>
+<img src="man/figures/glyph_map.png" width="50%"/>
+</center>
+
+### Exceedance probability
+
+In the exceedance probability map \[[2](#references)\], each geographic
+area is filled with a color representing the probability of exceeding
+some threshold of concern or target. Information on calculating
+exceedance probabilities can be found in `?build_emap`,
+`vignette("Vizumap")`, and
+[here](https://lydialucchesi.github.io/Vizumap/articles/Vizumap.html).
+
+**Quick start example**
+
+``` r
+# load the package
+library(Vizumap)
+
+# load the upper Burdekin (UB) data and format it
+data(UB) # this returns a data frame, UB_tss, and a shapefile, UB_shp
+UB_dat <- read.uv(data = UB_tss, estimate = "TSS", error = "TSS_error", exceedance = "TSS_exc1")
+
+# build and view the exceedance probability map
+UB_exceed_map <- build_emap(data = UB_dat, geoData = UB_shp, id = "scID", key_label = "Pr[TSS > 837mg/L]")
+view(UB_exceed_map)
+```
+
+<center>
+<img src="man/figures/exceedance_map.png" width="40%"/>
+</center>
 
 ## Contribute
 
-To contribute to `Vizumap`, please follow these
+To contribute to Vizumap, please follow these
 [guidelines](CONTRIBUTING.md).
 
-Please note that the `Vizumap` project is released with a [Contributor
+Please note that the Vizumap project is released with a [Contributor
 Code of Conduct](CONDUCT.md). By contributing to this project, you agree
 to abide by its terms.
 
 ## License
 
-`Vizumap` version 1.2.0 is licensed under [GPLv3](LICENSE.md).
+Vizumap version 1.2.0 is licensed under [GPLv3](LICENSE.md).
 
-## Citation
+## Vizumap citation
+
+***If you use Vizumap to make/publish a map, we kindly ask that you cite
+the following paper. Thank you!***
 
 Lucchesi et al., (2021). Vizumap: an R package for visualising
 uncertainty in spatial data. Journal of Open Source Software, 6(59),
@@ -94,52 +231,14 @@ uncertainty in spatial data. Journal of Open Source Software, 6(59),
       year={2021}
     }
 
-## History of Vizumap
-
-Vizumap began as a visualisation project at the University of Missouri
-in 2016. Chris Wikle, professor of statistics, posed an interesting
-research question to Lydia Lucchesi, a student curious about data
-visualisation and R.
-
-How do you include uncertainty on a map displaying areal data estimates?
-
-Over the course of a year, they put together three methods for
-visualising uncertainty in spatial statistics: the bivariate choropleth
-map, the pixel map, and the glyph map. By mid-2017, there were maps, and
-there was a lot of R code, but there was not a tool that others could
-use to easily make these types of maps, too. That’s when statistician
-Petra Kuhnert recommended developing an R package. Over the course of a
-month, Petra and Lydia developed Vizumap (originally named VizU) at
-CSIRO Data61 in Canberra, Australia. Since then, the package has been
-expanded to include exceedance probability maps, an uncertainty
-visualisation method developed by Petra while working on a Great Barrier
-Reef (GBR) project.
-
-Vizumap has been used to visualise the uncertainty of American Community
-Survey estimates, the prediction errors of sediment estimates in a GBR
-catchment, and most recently the [uncertainty of estimated locust
-densities in
-Australia](https://www.nature.com/articles/s41598-020-73897-1/figures/4).
-We would like to assemble a Vizumap gallery that showcases different
-applications of the package’s mapping methods. If you use Vizumap to
-visualise uncertainty, please feel free to send the map our way. We
-would like to see it!
-
 ## References
 
-Kuhnert, P.M., Pagendam, D.E., Bartley, R., Gladish, D.W., Lewis, S.E.
-and Bainbridge, Z.T. (2018) [Making management decisions in face of
+\[1\] L. R. Lucchesi and C. K. Wikle, “Visualizing uncertainty in areal
+data with bivariate choropleth maps, map pixelation and glyph rotation,”
+*Stat*, 2017. <https://doi.org/10.1002/sta4.150>
+
+\[2\] P. M. Kuhnert, D. E. Pagendam, R. Bartley, D. W. Gladish, S. E.
+Lewis, and Z. T. Bainbridge, “Making management decisions in face of
 uncertainty: a case study using the Burdekin catchment in the Great
-Barrier Reef, Marine and Freshwater
-Research](https://publications.csiro.au/publications/#publication/PIcsiro:EP168206),
-69, 1187-1200, <https://doi.org/10.1071/MF17237>.
-
-Lucchesi, L.R. and Wikle C.K. (2017) [Visualizing uncertainty in areal
-data with bivariate choropleth maps, map pixelation and glyph
-rotation](https://onlinelibrary.wiley.com/doi/full/10.1002/sta4.150),
-Stat, <https://doi.org/10.1002/sta4.150>.
-
-Lucchesi, L.R., Kuhnert, P.M. and Wikle, C.K. (2021) [Vizumap: an R
-package for visualising uncertainty in spatial
-data](https://doi.org/10.21105/joss.02409), Journal of Open Source
-Software, <https://doi.org/10.21105/joss.02409>.
+Barrier Reef,” *Marine and Freshwater Research*, 2018.
+<https://doi.org/10.1071/MF17237>
