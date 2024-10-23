@@ -4,7 +4,7 @@ with rotated glyphs."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -35,20 +35,20 @@ with rotated glyphs."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/lydialucchesi/Vizumap/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Build a glyph map</h1>
-    <small class="dont-index">Source: <a href="https://github.com/lydialucchesi/Vizumap/blob/HEAD/R/build_gmap.R" class="external-link"><code>R/build_gmap.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/lydialucchesi/Vizumap/blob/master/R/build_gmap.R" class="external-link"><code>R/build_gmap.R</code></a></small>
     <div class="hidden name"><code>build_gmap.Rd</code></div>
     </div>
 
@@ -73,26 +73,28 @@ with rotated glyphs.</p>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>data</dt>
+
+
+<dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
 <dd><p>A data frame.</p></dd>
 
 
-<dt>geoData</dt>
+<dt id="arg-geodata">geoData<a class="anchor" aria-label="anchor" href="#arg-geodata"></a></dt>
 <dd><p>A spatial polygons data frame.</p></dd>
 
 
-<dt>id</dt>
+<dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
 <dd><p>Name of the common column shared by the objects passed to
 <code>data</code> and <code>geoData</code>. The estimates and errors in the data frame
 will be matched to the geographical regions of the spatial polygons data
 frame through this column.</p></dd>
 
 
-<dt>size</dt>
+<dt id="arg-size">size<a class="anchor" aria-label="anchor" href="#arg-size"></a></dt>
 <dd><p>An integer between 1 and 100. Value controls the size of the glyphs.</p></dd>
 
 
-<dt>border</dt>
+<dt id="arg-border">border<a class="anchor" aria-label="anchor" href="#arg-border"></a></dt>
 <dd><p>Name of geographical borders to be added to the map. It must be
 one of <code><a href="https://rdrr.io/pkg/maps/man/county.html" class="external-link">county</a></code>, <code><a href="https://rdrr.io/pkg/maps/man/france.html" class="external-link">france</a></code>,
 <code><a href="https://rdrr.io/pkg/maps/man/italy.html" class="external-link">italy</a></code>, <code><a href="https://rdrr.io/pkg/maps/man/nz.html" class="external-link">nz</a></code>,
@@ -103,23 +105,23 @@ refined to match latitute and longtidue coordinates provided in the data
 frame or spatial polygons data frame.</p></dd>
 
 
-<dt>glyph</dt>
+<dt id="arg-glyph">glyph<a class="anchor" aria-label="anchor" href="#arg-glyph"></a></dt>
 <dd><p>Name of glyph shape. Options include <code>icone</code> and <code>semi</code>.</p></dd>
 
 
-<dt>palette</dt>
+<dt id="arg-palette">palette<a class="anchor" aria-label="anchor" href="#arg-palette"></a></dt>
 <dd><p>Name of colour palette. It must be one of <code>Blues</code>,
 <code>Greens</code>, <code>Greys</code>, <code>Oranges</code>, <code>Purples</code> or <code>Reds</code>
 (see documentation for <code><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_fill_distiller</a></code> for more
 information).</p></dd>
 
 
-<dt>limits</dt>
+<dt id="arg-limits">limits<a class="anchor" aria-label="anchor" href="#arg-limits"></a></dt>
 <dd><p>Limits for the legend. Default is NULL, which takes the limits
 to be the range of the data.</p></dd>
 
 
-<dt>max_error</dt>
+<dt id="arg-max-error">max_error<a class="anchor" aria-label="anchor" href="#arg-max-error"></a></dt>
 <dd><p>maximum error value. Default is NULL, which takes the
 maximum from the error given</p></dd>
 
@@ -166,15 +168,15 @@ must include latitude and longitude coordinates in columns <code>"long"</code> a
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>
 
-  
 
 
-  
+
+
 
   </body></html>
 

@@ -4,7 +4,7 @@ the 3 x 3 colour grid."><!-- mathjax --><script src="https://cdnjs.cloudflare.co
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -35,20 +35,20 @@ the 3 x 3 colour grid."><!-- mathjax --><script src="https://cdnjs.cloudflare.co
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/lydialucchesi/Vizumap/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Build a bivariate colour key</h1>
-    <small class="dont-index">Source: <a href="https://github.com/lydialucchesi/Vizumap/blob/HEAD/R/build_bkey.R" class="external-link"><code>R/build_bkey.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/lydialucchesi/Vizumap/blob/master/R/build_bkey.R" class="external-link"><code>R/build_bkey.R</code></a></small>
     <div class="hidden name"><code>build_bkey.Rd</code></div>
     </div>
 
@@ -73,48 +73,50 @@ the 3 x 3 colour grid.</p>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>data</dt>
+
+
+<dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
 <dd><p>A data frame.</p></dd>
 
 
-<dt>palette</dt>
+<dt id="arg-palette">palette<a class="anchor" aria-label="anchor" href="#arg-palette"></a></dt>
 <dd><p>Name of colour palette or character vector of hex colour codes
 created with <code><a href="build_palette.html">build_palette</a></code> function. Colour palette names
 include <code>BlueYellow</code>, <code>CyanMagenta</code>, <code>BlueRed</code> and
 <code>GreenBlue</code>.</p></dd>
 
 
-<dt>terciles</dt>
+<dt id="arg-terciles">terciles<a class="anchor" aria-label="anchor" href="#arg-terciles"></a></dt>
 <dd><p>A logical value. This provides the option to define numerical
 bounds for the colour key grid using terciles instead of equal intervals.</p></dd>
 
 
-<dt>flipAxis</dt>
+<dt id="arg-flipaxis">flipAxis<a class="anchor" aria-label="anchor" href="#arg-flipaxis"></a></dt>
 <dd><p>A logical value. Whether to place the axis on the opposite
 sides or not.</p></dd>
 
 
-<dt>expertR_est</dt>
+<dt id="arg-expertr-est">expertR_est<a class="anchor" aria-label="anchor" href="#arg-expertr-est"></a></dt>
 <dd><p>A vector consisting of the range of expert values for the
 estimate (Default: NA).</p></dd>
 
 
-<dt>expertR_err</dt>
+<dt id="arg-expertr-err">expertR_err<a class="anchor" aria-label="anchor" href="#arg-expertr-err"></a></dt>
 <dd><p>A vector consisting of the range of expert values for the
 error (Default: NA).</p></dd>
 
 
-<dt>bound</dt>
+<dt id="arg-bound">bound<a class="anchor" aria-label="anchor" href="#arg-bound"></a></dt>
 <dd><p>A vector of eight elements representing the bounds for the
 estimate and error that will be used on the bivariate colour key.  These can
 be created offline using the <code><a href="findNbounds.html">findNbounds</a></code> function.</p></dd>
 
 
-<dt>fontSize</dt>
+<dt id="arg-fontsize">fontSize<a class="anchor" aria-label="anchor" href="#arg-fontsize"></a></dt>
 <dd><p>An integer value. Default is 3.</p></dd>
 
 
-<dt>transparent</dt>
+<dt id="arg-transparent">transparent<a class="anchor" aria-label="anchor" href="#arg-transparent"></a></dt>
 <dd><p>A logical value. Option to make the key background
 transparent. Default value is FALSE.</p></dd>
 
@@ -169,15 +171,15 @@ using <code><a href="attach_key.html">attach_key</a></code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>
 
-  
 
 
-  
+
+
 
   </body></html>
 
