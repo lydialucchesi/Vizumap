@@ -41,3 +41,6 @@ navbar:
     href: reference/index.html
   - text: News
     href: news/index.html
+
+home:
+  sidebar: FALSE

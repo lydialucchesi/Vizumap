@@ -13,8 +13,7 @@ the bivariate map, the pixel map, the glyph map, and the exceedance
 probability map. Each of these maps is described below, alongside a
 quick start example. Additional information on Vizumap can be found in
 the Journal of Open Source Software (JOSS)
-[paper](https://doi.org/10.21105/joss.02409) or [online user
-guide](https://lydialucchesi.github.io/Vizumap/articles/Vizumap.html).
+[paper](https://doi.org/10.21105/joss.02409) or `vignette("Vizumap")`.
 
 ## Table of contents
 
@@ -26,6 +25,7 @@ guide](https://lydialucchesi.github.io/Vizumap/articles/Vizumap.html).
     - [Animated pixel](#animated-pixel)
   - [Glyph](#glyph)
   - [Exceedance probability](#exceedance-probability)
+- [Practical applications](#practical-applications)
 - [Contribute](#contribute)
 - [License](#license)
 - [Vizumap citation](#vizumap-citation)
@@ -37,8 +37,7 @@ Install Vizumap with the command below.
 
     remotes::install_github(repo = "lydialucchesi/Vizumap", build_vignettes = TRUE, force = TRUE)
 
-View the package vignette with the command below or online
-[here](https://lydialucchesi.github.io/Vizumap/articles/Vizumap.html).
+To view the package vignette, run the following.
 
     library(Vizumap)
     vignette("Vizumap")
@@ -174,9 +173,8 @@ Click on the map for a larger view.
 In the exceedance probability map \[[2](#references)\], each geographic
 area is filled with a color representing the probability of exceeding
 some threshold of concern or target. Information on calculating
-exceedance probabilities can be found in `?build_emap`,
-`vignette("Vizumap")`, and
-[here](https://lydialucchesi.github.io/Vizumap/articles/Vizumap.html).
+exceedance probabilities can be found in `?build_emap` and
+`vignette("Vizumap")`.
 
 **Quick start example**
 
@@ -196,6 +194,22 @@ view(UB_exceed_map)
 Click on the map for a larger view.
 
 <img src="man/figures/exceedance_map.png" width="40%"/>
+
+## Practical applications
+
+Practical applications of Vizumap are listed below. If you use Vizumap,
+please let us know, so we can add your application to the list!
+
+- S. Mangeon, A. Spessa, E. Deveson, R. Darnell and D. J. Kriticos,
+  “Daily mapping of Australian Plague Locust abundance,” *Scientific
+  Reports*, 2020. <https://doi.org/10.1038/s41598-020-73897-1>
+- S. Das, B. Baffour, and A. Richardson, “Prevalence of child
+  undernutrition measures and their spatio-demographic inequalities in
+  Bangladesh: an application of multilevel Bayesian modelling,” *BMC
+  Public Health*, 2022. <https://doi.org/10.1186/s12889-022-13170-4>
+- M. Wellington, P. Kuhnert, and R. Lawes, “Rapid monitoring of cropland
+  primary productivity and shipping activity in Ukraine,” *PLoS
+  ONE*, 2023. <https://doi.org/10.1371/journal.pone.0286637>
 
 ## Contribute
 

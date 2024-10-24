@@ -5,17 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visualizing uncertainty in spatial data • Vizumap</title>
+<title>Visualizing Uncertainty in Spatial Data • Vizumap</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Visualizing uncertainty in spatial data">
-<meta property="og:description" content="Vizumap provides four uncertainty visualization approaches for spatial data.
-    These approaches include the bivariate choropleth map, map pixelation, glyph rotation, and the exceedance probability map.
-    In Vizumap, there are three different types of functions - formatting, building, and viewing functions - that make it easy to create 
-    these uncertainty maps for a range of applied spatial problems.">
+<script src="pkgdown.js"></script><meta property="og:title" content="Visualizing Uncertainty in Spatial Data">
+<meta property="og:description" content="Vizumap is an R package for incorporating information about statistical uncertainty on maps visualizing statistical estimates. It provides support for building four different types of uncertainty maps: the bivariate map, the pixel map, the glyph map, and the exceedance probability map.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -71,137 +68,197 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div class="section level1">
-<div class="page-header"><h1 id="vizumap-">Vizumap <img src="reference/figures/Vizumap_Hex.png" align="right" height="138.5"><a class="anchor" aria-label="anchor" href="#vizumap-"></a>
-</h1></div>
-<div class="section level2">
-<h2 id="an-r-package-for-visualizing-uncertainty-in-spatial-data">An R package for visualizing uncertainty in spatial data.<a class="anchor" aria-label="anchor" href="#an-r-package-for-visualizing-uncertainty-in-spatial-data"></a>
-</h2>
+
 <p><a href="https://github.com/lydialucchesi/Vizumap/actions" class="external-link"><img src="https://github.com/lydialucchesi/Vizumap/workflows/R-CMD-check/badge.svg" alt="R build status"></a></p>
-<p>There is a <a href="https://lydialucchesi.github.io/Vizumap/" class="external-link"><code>Vizumap</code> pkgdown site</a> with a vignette.</p>
-<p>A <a href="https://doi.org/10.21105/joss.02409" class="external-link"><code>Vizumap</code> paper</a> is available in the Journal of Open Source Software (JOSS). If you use <code>Vizumap</code>, please cite this paper.</p>
+<center>
+<img src="reference/figures/header.png">
+</center>
+<p><strong>Vizumap</strong> is an R package for incorporating information about statistical uncertainty on maps visualizing statistical estimates. It provides support for building four different types of uncertainty maps: the bivariate map, the pixel map, the glyph map, and the exceedance probability map. Each of these maps is described below, alongside a quick start example. Additional information on Vizumap can be found in the Journal of Open Source Software (JOSS) <a href="https://doi.org/10.21105/joss.02409" class="external-link">paper</a> or <code><a href="articles/Vizumap.html">vignette("Vizumap")</a></code>.</p>
+<div class="section level2">
+<h2 id="table-of-contents">Table of contents<a class="anchor" aria-label="anchor" href="#table-of-contents"></a>
+</h2>
+<ul>
+<li><a href="#package-installation-and-vignette">Package installation and vignette</a></li>
+<li>
+<a href="#maps-and-quick-start-examples">Maps and quick start examples</a>
+<ul>
+<li><a href="#bivariate">Bivariate</a></li>
+<li>
+<a href="#pixel">Pixel</a>
+<ul>
+<li><a href="#animated-pixel">Animated pixel</a></li>
+</ul>
+</li>
+<li><a href="#glyph">Glyph</a></li>
+<li><a href="#exceedance-probability">Exceedance probability</a></li>
+</ul>
+</li>
+<li><a href="#practical-applications">Practical applications</a></li>
+<li><a href="#contribute">Contribute</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#vizumap-citation">Vizumap citation</a></li>
+<li><a href="#references">References</a></li>
+</ul>
 </div>
 <div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+<h2 id="package-installation-and-vignette">Package installation and vignette<a class="anchor" aria-label="anchor" href="#package-installation-and-vignette"></a>
 </h2>
-<p>You can install <code>Vizumap</code> using the command below.</p>
+<p>Install Vizumap with the command below.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="at">repo =</span> <span class="st">"lydialucchesi/Vizumap"</span>, <span class="at">build_vignettes =</span> <span class="cn">TRUE</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>To view the package vignette, run the following.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(Vizumap)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"Vizumap"</span>)</span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="about-the-package">About the package<a class="anchor" aria-label="anchor" href="#about-the-package"></a>
+<h2 id="maps-and-quick-start-examples">Maps and quick start examples<a class="anchor" aria-label="anchor" href="#maps-and-quick-start-examples"></a>
 </h2>
-<p>Approaches for visualising uncertainty in spatial data are presented in this package. These include the three approaches developed in <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/sta4.150" class="external-link">Lucchesi and Wikle (2017)</a> and a fourth approach presented in <a href="https://publications.csiro.au/publications/#publication/PIcsiro:EP168206" class="external-link">Kuhnert et al. (2018)</a>. The package is outlined in <a href="https://doi.org/10.21105/joss.02409" class="external-link">Lucchesi et al. (2021)</a>.</p>
-<div class="section level4">
-<h4 id="bivariate-map">Bivariate map<a class="anchor" aria-label="anchor" href="#bivariate-map"></a>
-</h4>
-<p>In these bivariate choropleth maps, two colour schemes, one representing the estimates and another representing the margins of error, are blended so that an estimate and its error can be conveyed on a map using a single colour.</p>
+<p>In this section, each map type is described and then demonstrated with an example dataset. The example dataset — included in the Vizumap package — contains predicted pollutant loads of total suspended sediment (TSS) from the upper Burdekin catchment in Queensland, Australia, to the Great Barrier Reef (GBR). The dataset also contains prediction uncertainties. Maps built with Vizumap can be used to communicate these pollutant predictions and uncertainties to catchment managers and policy makers, as the export of pollutants from coastal catchments within Australia has important implications for the health of the GBR lagoon.</p>
+<div class="section level3">
+<h3 id="bivariate">Bivariate<a class="anchor" aria-label="anchor" href="#bivariate"></a>
+</h3>
+<p>In the bivariate map [<a href="#references">1</a>], two color schemes — one representing statistical estimates and one representing statistical uncertainties — are blended to create a 3x3 color grid. In turn, each geographic area can be filled with a single color that conveys information about both the estimate and uncertainty.</p>
+<p><strong>Quick start example</strong></p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load the package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lydialucchesi.github.io/Vizumap/" class="external-link">Vizumap</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># load the upper Burdekin (UB) data and format it</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">UB</span><span class="op">)</span> <span class="co"># this returns a data frame, UB_tss, and a shapefile, UB_shp</span></span>
+<span><span class="va">UB_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_tss</span>, estimate <span class="op">=</span> <span class="st">"TSS"</span>, error <span class="op">=</span> <span class="st">"TSS_error"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># build a bivariate color palette</span></span>
+<span><span class="va">UB_pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_palette.html">build_palette</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"usr"</span>, colrange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gold"</span>, <span class="st">"red4"</span><span class="op">)</span>, difC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># build the bivariate map and key, and then attach the key to the map</span></span>
+<span><span class="va">UB_biv_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_bmap.html">build_bmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_dat</span>, geoData <span class="op">=</span> <span class="va">UB_shp</span>, id <span class="op">=</span> <span class="st">"scID"</span>, palette <span class="op">=</span> <span class="va">UB_pal</span>, terciles <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">UB_biv_key</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_bkey.html">build_bkey</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_dat</span>, palette <span class="op">=</span> <span class="va">UB_pal</span>, terciles <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/attach_key.html">attach_key</a></span><span class="op">(</span>map <span class="op">=</span> <span class="va">UB_biv_map</span>, mapkey <span class="op">=</span> <span class="va">UB_biv_key</span><span class="op">)</span></span></code></pre></div>
+<p>Click on the map for a larger view.</p>
+<p><img src="reference/figures/bivariate_map.png" width="50%"></p>
 </div>
+<div class="section level3">
+<h3 id="pixel">Pixel<a class="anchor" aria-label="anchor" href="#pixel"></a>
+</h3>
+<p>In the pixel map [<a href="#references">1</a>], each geographic area is divided into small pixels. Then, values sampled from the statistical estimate’s confidence/credible interval are assigned to the pixels. A single-hue color gradient is used to represent the values on the map. Note that, where uncertainty is high, the sampled values span a wider range of color on the color gradient; thus, areas with high uncertainty appear more pixelated than areas with low uncertainty.</p>
+<p><strong>Quick start example</strong></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load the package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lydialucchesi.github.io/Vizumap/" class="external-link">Vizumap</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># load the upper Burdekin (UB) data and format it</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">UB</span><span class="op">)</span> <span class="co"># this returns a data frame, UB_tss, and a shapefile, UB_shp</span></span>
+<span><span class="va">UB_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_tss</span>, estimate <span class="op">=</span> <span class="st">"TSS"</span>, error <span class="op">=</span> <span class="st">"TSS_error"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># pixelate the shapefile</span></span>
+<span><span class="va">UB_pix</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pixelate.html">pixelate</a></span><span class="op">(</span>geoData <span class="op">=</span> <span class="va">UB_shp</span>, id <span class="op">=</span> <span class="st">"scID"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># build and view the pixel map</span></span>
+<span><span class="va">UB_pix_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_pmap.html">build_pmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_dat</span>, pixelGeo <span class="op">=</span> <span class="va">pixUB</span>, id <span class="op">=</span> <span class="st">"scID"</span>, palette <span class="op">=</span> <span class="st">"Oranges"</span>, border <span class="op">=</span> <span class="va">UB_shp</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/view.html">view</a></span><span class="op">(</span><span class="va">UB_pix_map</span><span class="op">)</span></span></code></pre></div>
+<p>Click on the map for a larger view.</p>
+<p><img src="reference/figures/pixel_map.png" width="35%"></p>
 <div class="section level4">
-<h4 id="pixel-map">Pixel map<a class="anchor" aria-label="anchor" href="#pixel-map"></a>
+<h4 id="animated-pixel">Animated pixel<a class="anchor" aria-label="anchor" href="#animated-pixel"></a>
 </h4>
-<p>In this approach, each map region is pixelated. Pixels are filled with colours representing values within an estimate’s margin of error. Regions that appear as a solid colour reflect smaller margins of error, while more pixelated regions indicate greater uncertainty. These maps can be animated to provide a novel uncertainty visualisation experience.</p>
+<p>The pixel map can be animated to alternate between a series of sampled values assigned to each pixel. When animated, areas with high uncertainty have visible flickering, while areas with low uncertainty appear almost static.</p>
+<p><strong>Quick start example</strong></p>
+<p>This quick start example picks up where the previous quick start example left off. Please run the pixel map code above before running the pixel animation code below.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">UB_pixel_ani</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/animate.html">animate</a></span><span class="op">(</span><span class="va">UB_pixel_map</span>, flickerSpeed <span class="op">=</span> <span class="fl">0.5</span>, aniLength <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/view.html">view</a></span><span class="op">(</span><span class="va">UB_pixel_ani</span><span class="op">)</span></span></code></pre></div>
+<p>Click on the animation for a larger view.</p>
+<p><img src="reference/figures/pixel_ani.gif" width="325px" height="270px"></p>
 </div>
-<div class="section level4">
-<h4 id="glyph-map">Glyph map<a class="anchor" aria-label="anchor" href="#glyph-map"></a>
-</h4>
-<p>In this method, glyphs located at region centroids are rotated to represent uncertainty. The colour filling each glyph corresponds to the estimate.</p>
 </div>
-<div class="section level4">
-<h4 id="exceedance-probability-map">Exceedance probability map<a class="anchor" aria-label="anchor" href="#exceedance-probability-map"></a>
-</h4>
-<p>The final map-based exploration is through exceedance probabilities, which are visualised on a map to highlight regions that exhibit varying levels of departure from a threshold of concern or target.</p>
+<div class="section level3">
+<h3 id="glyph">Glyph<a class="anchor" aria-label="anchor" href="#glyph"></a>
+</h3>
+<p>In the glyph map [<a href="#references">1</a>], a glyph of the same size is placed at the centroid of each geographic area. The color of the glyph represents the statistical estimate, while the rotation of the glyph represents the statistical uncertainty. This map is designed for situations in which all geographic areas — which may vary in size — merit equal attention.</p>
+<p><strong>Quick start example</strong></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load the package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lydialucchesi.github.io/Vizumap/" class="external-link">Vizumap</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># load the upper Burdekin (UB) data and format it</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">UB</span><span class="op">)</span> <span class="co"># this returns a data frame, UB_tss, and a shapefile, UB_shp</span></span>
+<span><span class="va">UB_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_tss</span>, estimate <span class="op">=</span> <span class="st">"TSS"</span>, error <span class="op">=</span> <span class="st">"TSS_error"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># build the glyph map and key, and then attach the key to the map</span></span>
+<span><span class="va">UB_glyph_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_gmap.html">build_gmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_dat</span>, geoData <span class="op">=</span> <span class="va">UB_shp</span>, id <span class="op">=</span> <span class="st">"scID"</span>, size <span class="op">=</span> <span class="fl">1</span>, glyph <span class="op">=</span> <span class="st">"icone"</span>, palette <span class="op">=</span> <span class="st">"Oranges"</span>, border <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="va">UB_glyph_key</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_gkey.html">build_gkey</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_dat</span>, glyph <span class="op">=</span> <span class="st">"icone"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/attach_key.html">attach_key</a></span><span class="op">(</span>map <span class="op">=</span> <span class="va">UB_glyph_map</span>, mapkey <span class="op">=</span> <span class="va">UB_glyph_key</span><span class="op">)</span></span></code></pre></div>
+<p>Click on the map for a larger view.</p>
+<p><img src="reference/figures/glyph_map.png" width="50%"></p>
+</div>
+<div class="section level3">
+<h3 id="exceedance-probability">Exceedance probability<a class="anchor" aria-label="anchor" href="#exceedance-probability"></a>
+</h3>
+<p>In the exceedance probability map [<a href="#references">2</a>], each geographic area is filled with a color representing the probability of exceeding some threshold of concern or target. Information on calculating exceedance probabilities can be found in <code><a href="reference/build_emap.html">?build_emap</a></code> and <code><a href="articles/Vizumap.html">vignette("Vizumap")</a></code>.</p>
+<p><strong>Quick start example</strong></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load the package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lydialucchesi.github.io/Vizumap/" class="external-link">Vizumap</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># load the upper Burdekin (UB) data and format it</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">UB</span><span class="op">)</span> <span class="co"># this returns a data frame, UB_tss, and a shapefile, UB_shp</span></span>
+<span><span class="va">UB_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read.uv.html">read.uv</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_tss</span>, estimate <span class="op">=</span> <span class="st">"TSS"</span>, error <span class="op">=</span> <span class="st">"TSS_error"</span>, exceedance <span class="op">=</span> <span class="st">"TSS_exc1"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># build and view the exceedance probability map</span></span>
+<span><span class="va">UB_exceed_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_emap.html">build_emap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_dat</span>, geoData <span class="op">=</span> <span class="va">UB_shp</span>, id <span class="op">=</span> <span class="st">"scID"</span>, key_label <span class="op">=</span> <span class="st">"Pr[TSS &gt; 837mg/L]"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/view.html">view</a></span><span class="op">(</span><span class="va">UB_exceed_map</span><span class="op">)</span></span></code></pre></div>
+<p>Click on the map for a larger view.</p>
+<p><img src="reference/figures/exceedance_map.png" width="40%"></p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+<h2 id="practical-applications">Practical applications<a class="anchor" aria-label="anchor" href="#practical-applications"></a>
 </h2>
-<p>A vignette is available and contains examples for each map type.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"Vizumap"</span>)</span></code></pre></div>
+<p>Practical applications of Vizumap are listed below. If you use Vizumap, please let us know, so we can add your application to the list!</p>
+<ul>
+<li>S. Mangeon, A. Spessa, E. Deveson, R. Darnell and D. J. Kriticos, “Daily mapping of Australian Plague Locust abundance,” <em>Scientific Reports</em>, 2020. <a href="https://doi.org/10.1038/s41598-020-73897-1" class="external-link uri">https://doi.org/10.1038/s41598-020-73897-1</a>
+</li>
+<li>S. Das, B. Baffour, and A. Richardson, “Prevalence of child undernutrition measures and their spatio-demographic inequalities in Bangladesh: an application of multilevel Bayesian modelling,” <em>BMC Public Health</em>, 2022. <a href="https://doi.org/10.1186/s12889-022-13170-4" class="external-link uri">https://doi.org/10.1186/s12889-022-13170-4</a>
+</li>
+<li>M. Wellington, P. Kuhnert, and R. Lawes, “Rapid monitoring of cropland primary productivity and shipping activity in Ukraine,” <em>PLoS ONE</em>, 2023. <a href="https://doi.org/10.1371/journal.pone.0286637" class="external-link uri">https://doi.org/10.1371/journal.pone.0286637</a>
+</li>
+</ul>
 </div>
 <div class="section level2">
 <h2 id="contribute">Contribute<a class="anchor" aria-label="anchor" href="#contribute"></a>
 </h2>
-<p>To contribute to <code>Vizumap</code>, please follow these <a href="CONTRIBUTING.html">guidelines</a>.</p>
-<p>Please note that the <code>Vizumap</code> project is released with a <a href="CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<p>To contribute to Vizumap, please follow these <a href="CONTRIBUTING.html">guidelines</a>.</p>
+<p>Please note that the Vizumap project is released with a <a href="CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
 </h2>
-<p><code>Vizumap</code> version 1.2.0 is licensed under <a href="LICENSE.html">GPLv3</a>.</p>
+<p>Vizumap version 1.2.0 is licensed under <a href="LICENSE.html">GPLv3</a>.</p>
 </div>
 <div class="section level2">
-<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+<h2 id="vizumap-citation">Vizumap citation<a class="anchor" aria-label="anchor" href="#vizumap-citation"></a>
 </h2>
+<p><strong><em>If you use Vizumap to make/publish a map, we kindly ask that you cite the following paper. Thank you!</em></strong></p>
 <p>Lucchesi et al., (2021). Vizumap: an R package for visualising uncertainty in spatial data. Journal of Open Source Software, 6(59), 2409, <a href="https://doi.org/10.21105/joss.02409" class="external-link uri">https://doi.org/10.21105/joss.02409</a></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="sc">@</span>article{lucchesi2021vizumap,</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  title<span class="ot">=</span>{Vizumap<span class="sc">:</span> an R package <span class="cf">for</span> visualising uncertainty <span class="cf">in</span> spatial data},</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  author<span class="ot">=</span>{Lucchesi, Lydia R and Kuhnert, Petra M and Wikle, Christopher K},</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  journal<span class="ot">=</span>{Journal of Open Source Software},</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  volume<span class="ot">=</span>{<span class="dv">6</span>},</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  number<span class="ot">=</span>{<span class="dv">59</span>},</span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  pages<span class="ot">=</span>{<span class="dv">2409</span>},</span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>  year<span class="ot">=</span>{<span class="dv">2021</span>}</span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>}</span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="history-of-vizumap">History of Vizumap<a class="anchor" aria-label="anchor" href="#history-of-vizumap"></a>
-</h2>
-<p>Vizumap began as a visualisation project at the University of Missouri in 2016. Chris Wikle, professor of statistics, posed an interesting research question to Lydia Lucchesi, a student curious about data visualisation and R.</p>
-<p>How do you include uncertainty on a map displaying areal data estimates?</p>
-<p>Over the course of a year, they put together three methods for visualising uncertainty in spatial statistics: the bivariate choropleth map, the pixel map, and the glyph map. By mid-2017, there were maps, and there was a lot of R code, but there was not a tool that others could use to easily make these types of maps, too. That’s when statistician Petra Kuhnert recommended developing an R package. Over the course of a month, Petra and Lydia developed Vizumap (originally named VizU) at CSIRO Data61 in Canberra, Australia. Since then, the package has been expanded to include exceedance probability maps, an uncertainty visualisation method developed by Petra while working on a Great Barrier Reef (GBR) project.</p>
-<p>Vizumap has been used to visualise the uncertainty of American Community Survey estimates, the prediction errors of sediment estimates in a GBR catchment, and most recently the <a href="https://www.nature.com/articles/s41598-020-73897-1/figures/4" class="external-link">uncertainty of estimated locust densities in Australia</a>. We would like to assemble a Vizumap gallery that showcases different applications of the package’s mapping methods. If you use Vizumap to visualise uncertainty, please feel free to send the map our way. We would like to see it!</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="sc">@</span>article{lucchesi2021vizumap,</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  title<span class="ot">=</span>{Vizumap<span class="sc">:</span> an R package <span class="cf">for</span> visualising uncertainty <span class="cf">in</span> spatial data},</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  author<span class="ot">=</span>{Lucchesi, Lydia R and Kuhnert, Petra M and Wikle, Christopher K},</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  journal<span class="ot">=</span>{Journal of Open Source Software},</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  volume<span class="ot">=</span>{<span class="dv">6</span>},</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>  number<span class="ot">=</span>{<span class="dv">59</span>},</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  pages<span class="ot">=</span>{<span class="dv">2409</span>},</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  year<span class="ot">=</span>{<span class="dv">2021</span>}</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<p>Kuhnert, P.M., Pagendam, D.E., Bartley, R., Gladish, D.W., Lewis, S.E. and Bainbridge, Z.T. (2018) <a href="https://publications.csiro.au/publications/#publication/PIcsiro:EP168206" class="external-link">Making management decisions in face of uncertainty: a case study using the Burdekin catchment in the Great Barrier Reef, Marine and Freshwater Research</a>, 69, 1187-1200, <a href="https://doi.org/10.1071/MF17237" class="external-link uri">https://doi.org/10.1071/MF17237</a>.</p>
-<p>Lucchesi, L.R. and Wikle C.K. (2017) <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/sta4.150" class="external-link">Visualizing uncertainty in areal data with bivariate choropleth maps, map pixelation and glyph rotation</a>, Stat, <a href="https://doi.org/10.1002/sta4.150" class="external-link uri">https://doi.org/10.1002/sta4.150</a>.</p>
-<p>Lucchesi, L.R., Kuhnert, P.M. and Wikle, C.K. (2021) <a href="https://doi.org/10.21105/joss.02409" class="external-link">Vizumap: an R package for visualising uncertainty in spatial data</a>, Journal of Open Source Software, <a href="https://doi.org/10.21105/joss.02409" class="external-link uri">https://doi.org/10.21105/joss.02409</a>.</p>
+<p>[1] L. R. Lucchesi and C. K. Wikle, “Visualizing uncertainty in areal data with bivariate choropleth maps, map pixelation and glyph rotation,” <em>Stat</em>, 2017. <a href="https://doi.org/10.1002/sta4.150" class="external-link uri">https://doi.org/10.1002/sta4.150</a></p>
+<p>[2] P. M. Kuhnert, D. E. Pagendam, R. Bartley, D. W. Gladish, S. E. Lewis, and Z. T. Bainbridge, “Making management decisions in face of uncertainty: a case study using the Burdekin catchment in the Great Barrier Reef,” <em>Marine and Freshwater Research</em>, 2018. <a href="https://doi.org/10.1071/MF17237" class="external-link uri">https://doi.org/10.1071/MF17237</a></p>
 </div>
-</div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="links">
-<h2 data-toc-skip>Links</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/lydialucchesi/Vizumap/" class="external-link">Browse source code</a></li>
-</ul>
-</div>
-
-<div class="license">
-<h2 data-toc-skip>License</h2>
-<ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></small></li>
-</ul>
-</div>
-
-<div class="community">
-<h2 data-toc-skip>Community</h2>
-<ul class="list-unstyled">
-<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
-</ul>
-</div>
-
-<div class="citation">
-<h2 data-toc-skip>Citation</h2>
-<ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing Vizumap</a></li>
-</ul>
-</div>
-
-<div class="developers">
-<h2 data-toc-skip>Developers</h2>
-<ul class="list-unstyled">
-<li>Lydia Lucchesi <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1901-4301" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Petra Kuhnert <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-9070-0091" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">More about authors...</a></li>
-</ul>
-</div>
-
-
-
   </div>
 </div>
 
