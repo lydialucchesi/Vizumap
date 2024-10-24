@@ -69,11 +69,11 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-
+<p><a href="https://github.com/lydialucchesi/Vizumap/actions" class="external-link"><img src="https://github.com/lydialucchesi/Vizumap/workflows/R-CMD-check/badge.svg" alt="R build status"></a></p>
 <center>
 <img src="reference/figures/header.png">
 </center>
-<p><strong>Vizumap</strong> is an R package for incorporating information about statistical uncertainty on maps visualizing statistical estimates. It provides support for building four different types of uncertainty maps: the bivariate map, the pixel map, the glyph map, and the exceedance probability map. Each of these maps is described below, alongside a quick start example. Additional information on Vizumap can be found in the Journal of Open Source Software (JOSS) <a href="https://doi.org/10.21105/joss.02409" class="external-link">paper</a> or <a href="https://lydialucchesi.github.io/Vizumap/articles/Vizumap.html" class="external-link">online user guide</a>.</p>
+<p><strong>Vizumap</strong> is an R package for incorporating information about statistical uncertainty on maps visualizing statistical estimates. It provides support for building four different types of uncertainty maps: the bivariate map, the pixel map, the glyph map, and the exceedance probability map. Each of these maps is described below, alongside a quick start example. Additional information on Vizumap can be found in the Journal of Open Source Software (JOSS) <a href="https://doi.org/10.21105/joss.02409" class="external-link">paper</a> or <code><a href="articles/Vizumap.html">vignette("Vizumap")</a></code>.</p>
 <div class="section level2">
 <h2 id="table-of-contents">Table of contents<a class="anchor" aria-label="anchor" href="#table-of-contents"></a>
 </h2>
@@ -93,6 +93,7 @@
 <li><a href="#exceedance-probability">Exceedance probability</a></li>
 </ul>
 </li>
+<li><a href="#practical-applications">Practical applications</a></li>
 <li><a href="#contribute">Contribute</a></li>
 <li><a href="#license">License</a></li>
 <li><a href="#vizumap-citation">Vizumap citation</a></li>
@@ -104,7 +105,7 @@
 </h2>
 <p>Install Vizumap with the command below.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="at">repo =</span> <span class="st">"lydialucchesi/Vizumap"</span>, <span class="at">build_vignettes =</span> <span class="cn">TRUE</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p>View the package vignette with the command below or online <a href="https://lydialucchesi.github.io/Vizumap/articles/Vizumap.html" class="external-link">here</a>.</p>
+<p>To view the package vignette, run the following.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(Vizumap)</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"Vizumap"</span>)</span></code></pre></div>
 </div>
@@ -192,7 +193,7 @@
 <div class="section level3">
 <h3 id="exceedance-probability">Exceedance probability<a class="anchor" aria-label="anchor" href="#exceedance-probability"></a>
 </h3>
-<p>In the exceedance probability map [<a href="#references">2</a>], each geographic area is filled with a color representing the probability of exceeding some threshold of concern or target. Information on calculating exceedance probabilities can be found in <code><a href="reference/build_emap.html">?build_emap</a></code>, <code><a href="articles/Vizumap.html">vignette("Vizumap")</a></code>, and <a href="https://lydialucchesi.github.io/Vizumap/articles/Vizumap.html" class="external-link">here</a>.</p>
+<p>In the exceedance probability map [<a href="#references">2</a>], each geographic area is filled with a color representing the probability of exceeding some threshold of concern or target. Information on calculating exceedance probabilities can be found in <code><a href="reference/build_emap.html">?build_emap</a></code> and <code><a href="articles/Vizumap.html">vignette("Vizumap")</a></code>.</p>
 <p><strong>Quick start example</strong></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load the package</span></span>
@@ -208,6 +209,19 @@
 <p>Click on the map for a larger view.</p>
 <p><img src="reference/figures/exceedance_map.png" width="40%"></p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="practical-applications">Practical applications<a class="anchor" aria-label="anchor" href="#practical-applications"></a>
+</h2>
+<p>Practical applications of Vizumap are listed below. If you use Vizumap, please let us know, so we can add your application to the list!</p>
+<ul>
+<li>S. Mangeon, A. Spessa, E. Deveson, R. Darnell and D. J. Kriticos, “Daily mapping of Australian Plague Locust abundance,” <em>Scientific Reports</em>, 2020. <a href="https://doi.org/10.1038/s41598-020-73897-1" class="external-link uri">https://doi.org/10.1038/s41598-020-73897-1</a>
+</li>
+<li>S. Das, B. Baffour, and A. Richardson, “Prevalence of child undernutrition measures and their spatio-demographic inequalities in Bangladesh: an application of multilevel Bayesian modelling,” <em>BMC Public Health</em>, 2022. <a href="https://doi.org/10.1186/s12889-022-13170-4" class="external-link uri">https://doi.org/10.1186/s12889-022-13170-4</a>
+</li>
+<li>M. Wellington, P. Kuhnert, and R. Lawes, “Rapid monitoring of cropland primary productivity and shipping activity in Ukraine,” <em>PLoS ONE</em>, 2023. <a href="https://doi.org/10.1371/journal.pone.0286637" class="external-link uri">https://doi.org/10.1371/journal.pone.0286637</a>
+</li>
+</ul>
 </div>
 <div class="section level2">
 <h2 id="contribute">Contribute<a class="anchor" aria-label="anchor" href="#contribute"></a>
@@ -245,51 +259,6 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="links">
-<h2 data-toc-skip>Links</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/lydialucchesi/Vizumap/" class="external-link">Browse source code</a></li>
-</ul>
-</div>
-
-<div class="license">
-<h2 data-toc-skip>License</h2>
-<ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></small></li>
-</ul>
-</div>
-
-<div class="community">
-<h2 data-toc-skip>Community</h2>
-<ul class="list-unstyled">
-<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
-</ul>
-</div>
-
-<div class="citation">
-<h2 data-toc-skip>Citation</h2>
-<ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing Vizumap</a></li>
-</ul>
-</div>
-
-<div class="developers">
-<h2 data-toc-skip>Developers</h2>
-<ul class="list-unstyled">
-<li>Lydia Lucchesi <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1901-4301" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Petra Kuhnert <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-9070-0091" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">More about authors...</a></li>
-</ul>
-</div>
-
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/lydialucchesi/Vizumap/actions" class="external-link"><img src="https://github.com/lydialucchesi/Vizumap/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-</ul>
-</div>
-
   </div>
 </div>
 
