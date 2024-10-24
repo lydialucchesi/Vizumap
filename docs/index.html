@@ -133,8 +133,7 @@
 <span><span class="va">UB_biv_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_bmap.html">build_bmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_dat</span>, geoData <span class="op">=</span> <span class="va">UB_shp</span>, id <span class="op">=</span> <span class="st">"scID"</span>, palette <span class="op">=</span> <span class="va">UB_pal</span>, terciles <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">UB_biv_key</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_bkey.html">build_bkey</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_dat</span>, palette <span class="op">=</span> <span class="va">UB_pal</span>, terciles <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/attach_key.html">attach_key</a></span><span class="op">(</span>map <span class="op">=</span> <span class="va">UB_biv_map</span>, mapkey <span class="op">=</span> <span class="va">UB_biv_key</span><span class="op">)</span></span></code></pre></div>
-<p>Click on the map for a larger view.</p>
-<p><img src="reference/figures/bivariate_map.png" width="50%"></p>
+<p><img src="reference/figures/bivariate_map.png" width="60%"></p>
 </div>
 <div class="section level3">
 <h3 id="pixel">Pixel<a class="anchor" aria-label="anchor" href="#pixel"></a>
@@ -155,8 +154,7 @@
 <span><span class="co"># build and view the pixel map</span></span>
 <span><span class="va">UB_pix_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_pmap.html">build_pmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_dat</span>, pixelGeo <span class="op">=</span> <span class="va">pixUB</span>, id <span class="op">=</span> <span class="st">"scID"</span>, palette <span class="op">=</span> <span class="st">"Oranges"</span>, border <span class="op">=</span> <span class="va">UB_shp</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/view.html">view</a></span><span class="op">(</span><span class="va">UB_pix_map</span><span class="op">)</span></span></code></pre></div>
-<p>Click on the map for a larger view.</p>
-<p><img src="reference/figures/pixel_map.png" width="35%"></p>
+<p><img src="reference/figures/pixel_map.png" width="45%"></p>
 <div class="section level4">
 <h4 id="animated-pixel">Animated pixel<a class="anchor" aria-label="anchor" href="#animated-pixel"></a>
 </h4>
@@ -166,8 +164,7 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">UB_pixel_ani</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/animate.html">animate</a></span><span class="op">(</span><span class="va">UB_pixel_map</span>, flickerSpeed <span class="op">=</span> <span class="fl">0.5</span>, aniLength <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/view.html">view</a></span><span class="op">(</span><span class="va">UB_pixel_ani</span><span class="op">)</span></span></code></pre></div>
-<p>Click on the animation for a larger view.</p>
-<p><img src="reference/figures/pixel_ani.gif" width="325px" height="270px"></p>
+<p><img src="reference/figures/pixel_ani.gif" width="400px" height="325px"></p>
 </div>
 </div>
 <div class="section level3">
@@ -187,8 +184,7 @@
 <span><span class="va">UB_glyph_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_gmap.html">build_gmap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_dat</span>, geoData <span class="op">=</span> <span class="va">UB_shp</span>, id <span class="op">=</span> <span class="st">"scID"</span>, size <span class="op">=</span> <span class="fl">1</span>, glyph <span class="op">=</span> <span class="st">"icone"</span>, palette <span class="op">=</span> <span class="st">"Oranges"</span>, border <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="va">UB_glyph_key</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_gkey.html">build_gkey</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_dat</span>, glyph <span class="op">=</span> <span class="st">"icone"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/attach_key.html">attach_key</a></span><span class="op">(</span>map <span class="op">=</span> <span class="va">UB_glyph_map</span>, mapkey <span class="op">=</span> <span class="va">UB_glyph_key</span><span class="op">)</span></span></code></pre></div>
-<p>Click on the map for a larger view.</p>
-<p><img src="reference/figures/glyph_map.png" width="50%"></p>
+<p><img src="reference/figures/glyph_map.png" width="60%"></p>
 </div>
 <div class="section level3">
 <h3 id="exceedance-probability">Exceedance probability<a class="anchor" aria-label="anchor" href="#exceedance-probability"></a>
@@ -206,8 +202,7 @@
 <span><span class="co"># build and view the exceedance probability map</span></span>
 <span><span class="va">UB_exceed_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_emap.html">build_emap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">UB_dat</span>, geoData <span class="op">=</span> <span class="va">UB_shp</span>, id <span class="op">=</span> <span class="st">"scID"</span>, key_label <span class="op">=</span> <span class="st">"Pr[TSS &gt; 837mg/L]"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/view.html">view</a></span><span class="op">(</span><span class="va">UB_exceed_map</span><span class="op">)</span></span></code></pre></div>
-<p>Click on the map for a larger view.</p>
-<p><img src="reference/figures/exceedance_map.png" width="40%"></p>
+<p><img src="reference/figures/exceedance_map.png" width="50%"></p>
 </div>
 </div>
 <div class="section level2">

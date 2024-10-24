@@ -81,9 +81,7 @@ UB_biv_key <- build_bkey(data = UB_dat, palette = UB_pal, terciles = TRUE)
 attach_key(map = UB_biv_map, mapkey = UB_biv_key)
 ```
 
-Click on the map for a larger view.
-
-<img src="man/figures/bivariate_map.png" width="50%"/>
+<img src="man/figures/bivariate_map.png" width="60%"/>
 
 ### Pixel
 
@@ -113,9 +111,7 @@ UB_pix_map <- build_pmap(data = UB_dat, pixelGeo = pixUB, id = "scID", palette =
 view(UB_pix_map)
 ```
 
-Click on the map for a larger view.
-
-<img src="man/figures/pixel_map.png" width="35%"/>
+<img src="man/figures/pixel_map.png" width="45%"/>
 
 #### Animated pixel
 
@@ -135,9 +131,7 @@ UB_pixel_ani <- animate(UB_pixel_map, flickerSpeed = 0.5, aniLength = 30)
 view(UB_pixel_ani)
 ```
 
-Click on the animation for a larger view.
-
-<img src="man/figures/pixel_ani.gif" width="325px" height="270px">
+<img src="man/figures/pixel_ani.gif" width="400px" height="325px">
 
 ### Glyph
 
@@ -164,9 +158,7 @@ UB_glyph_key <- build_gkey(data = UB_dat, glyph = "icone")
 attach_key(map = UB_glyph_map, mapkey = UB_glyph_key)
 ```
 
-Click on the map for a larger view.
-
-<img src="man/figures/glyph_map.png" width="50%"/>
+<img src="man/figures/glyph_map.png" width="60%"/>
 
 ### Exceedance probability
 
@@ -191,9 +183,7 @@ UB_exceed_map <- build_emap(data = UB_dat, geoData = UB_shp, id = "scID", key_la
 view(UB_exceed_map)
 ```
 
-Click on the map for a larger view.
-
-<img src="man/figures/exceedance_map.png" width="40%"/>
+<img src="man/figures/exceedance_map.png" width="50%"/>
 
 ## Practical applications
 
