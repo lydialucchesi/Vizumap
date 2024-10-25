@@ -17,14 +17,14 @@ build_gmap(
 )
 }
 \arguments{
-\item{data}{A data frame.}
+\item{data}{A data frame with estimates and errors,
+formatted with \code{read.uv}.}
 
-\item{geoData}{A spatial polygons data frame.}
+\item{geoData}{An sf or sp object.}
 
 \item{id}{Name of the common column shared by the objects passed to
 \code{data} and \code{geoData}. The estimates and errors in the data frame
-will be matched to the geographical regions of the spatial polygons data
-frame through this column.}
+will be matched to the geographical regions through this column.}
 
 \item{size}{An integer between 1 and 100. Value controls the size of the glyphs.}
 
@@ -34,8 +34,7 @@ one of \code{\link[maps]{county}}, \code{\link[maps]{france}},
 \code{\link[maps]{state}}, \code{\link[maps]{usa}} or
 \code{\link[maps]{world}} (see documentation for
 \code{\link[ggplot2]{map_data}} for more information). The borders will be
-refined to match latitute and longtidue coordinates provided in the data
-frame or spatial polygons data frame.}
+refined to match latitute and longtidue coordinates from the geoData argument.}
 
 \item{glyph}{Name of glyph shape. Options include \code{icone} and \code{semi}.}
 
@@ -55,7 +54,7 @@ This function builds a map that visualises estimates and errors simultaneously
 with rotated glyphs.
 }
 \details{
-If a spatial polygons data frame is used, glyphs will be plotted at region
+If an sf or sp object is used, glyphs will be plotted at region
 centroids. If \code{geoData} remains \code{NULL}, glyphs will be plotted at
 points on the map representing specific sites; in this case, the data frame
 must include latitude and longitude coordinates in columns \code{"long"} and

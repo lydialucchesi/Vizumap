@@ -147,7 +147,7 @@ build_bmap <- function(data, geoData = NULL, id = NULL, border = NULL,
 
   # determine whether geoData has been entered by user
   # if so, link geoData and data and plot
-  if (!is.null(geoData) & is(geoData, "SpatialPolygonsDataFrame")) {
+  if (!is.null(geoData) & inherits(geoData, "SpatialPolygonsDataFrame")) {
     geoData@data %>% dplyr::mutate_if(is.factor, as.character) -> geoData@data
     geoData@data <- left_join(geoData@data, data, by = id)
     geoData@data$id <- rownames(geoData@data)
@@ -155,7 +155,7 @@ build_bmap <- function(data, geoData = NULL, id = NULL, border = NULL,
     region_coord <- plyr::rename(region_coord, c("object_" = "id", "x_" = "long", "y_" = "lat", "branch_" = "group"))
     output_data <- join(region_coord, geoData@data, by = "id")
     bbox <- make_bbox(lat = lat, lon = long, data = output_data)
-  } else if (!is.null(geoData) & is(geoData, "sf")) {
+  } else if (!is.null(geoData) & inherits(geoData, "sf")) {
     output_data <- left_join(geoData, data, by = id)
     bbox <- NULL
   }

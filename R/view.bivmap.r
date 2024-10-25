@@ -35,7 +35,7 @@ view.bivmap <- function(obj) {
         axis.title.y = element_blank(),
         panel.background = element_blank()
       )
-  } else if (is(obj$output_data, "sf")) {
+  } else if (inherits(obj$output_data, "sf")) {
     p <- ggplot() +
       geom_sf(
         data = obj$output_data,
