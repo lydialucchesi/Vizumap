@@ -107,7 +107,7 @@ UB_dat <- read.uv(data = UB_tss, estimate = "TSS", error = "TSS_error")
 UB_pix <- pixelate(geoData = UB_shp, id = "scID")
 
 # build and view the pixel map
-UB_pix_map <- build_pmap(data = UB_dat, pixelGeo = pixUB, id = "scID", palette = "Oranges", border = UB_shp)
+UB_pix_map <- build_pmap(data = UB_dat, pixelGeo = UB_pix, id = "scID", palette = "Oranges", border = UB_shp)
 view(UB_pix_map)
 ```
 
