@@ -8,20 +8,19 @@
 #'include latitude and longitude coordinates in columns \code{"long"} and
 #'\code{"lat"}.
 #'
-#'@param data A data frame.
-#'@param geoData A spatial polygons data frame.
+#'@param data A data frame with estimates and errors,
+#' formatted with \code{read.uv}.
+#'@param geoData An sf or sp object.
 #'@param id Name of the common column shared by the objects passed to
 #'  \code{data} and \code{geoData}. The estimates and errors in the data frame
-#'  will be matched to the geographical regions of the spatial polygons data
-#'  frame through this column.
+#'  will be matched to the geographical regions through this column.
 #'@param border Name of geographical borders to be added to the map. It must be
 #'  one of \code{\link[maps]{county}}, \code{\link[maps]{france}},
 #'  \code{\link[maps]{italy}}, \code{\link[maps]{nz}},
 #'  \code{\link[maps]{state}}, \code{\link[maps]{usa}} or
 #'  \code{\link[maps]{world}} (see documentation for
 #'  \code{\link[ggplot2]{map_data}} for more information). The borders will be
-#'  refined to match latitute and longtidue coordinates provided in the data
-#'  frame or spatial polygons data frame.
+#'  refined to match latitute and longtidue coordinates from the geoData argument.
 #'@param palette Name of colour palette or character vector of hex colour codes
 #'  from the \code{\link{build_palette}} function. Colour palette names include
 #'  \code{BlueYellow}, \code{CyanMagenta}, \code{BlueRed} and \code{GreenBlue}.
@@ -101,8 +100,9 @@ build_bmap <- function(data, geoData = NULL, id = NULL, border = NULL,
       stop("Size not recognised. Must be an integer between 1 and 20.")
   }
 
-  if(is.null(bound))
-     bound <- findNbounds(data = data, estimate = estimate, error = error, terciles = terciles)
+  if (is.null(bound)) {
+    bound <- findNbounds(data = data, estimate = estimate, error = error, terciles = terciles)
+  }
 
   # define color ramps based on user input
   if (class(palette)[1] == "character" & length(palette)==1) {
@@ -122,12 +122,12 @@ build_bmap <- function(data, geoData = NULL, id = NULL, border = NULL,
   else
     stop("Palette supplied is not of class 'palette'. Please create a palette using the 'build_palette' function.")
 
-  if(!is.logical(flipAxis))
+  if (!is.logical(flipAxis))
     stop("flipAxis must be a logical value")
 
  # assign each region or point a color based on its estimate and its error
 
- if(!flipAxis) {
+ if (!flipAxis) {
    est_col <- cut(data[, estimate], breaks = bound[1:4], include.lowest = TRUE)
    err_col <- cut(data[, error], breaks = bound[5:8], include.lowest = TRUE)
  } else {
@@ -147,7 +147,7 @@ build_bmap <- function(data, geoData = NULL, id = NULL, border = NULL,
 
   # determine whether geoData has been entered by user
   # if so, link geoData and data and plot
-  if (!is.null(geoData)) {
+  if (!is.null(geoData) & is(geoData, "SpatialPolygonsDataFrame")) {
     geoData@data %>% dplyr::mutate_if(is.factor, as.character) -> geoData@data
     geoData@data <- left_join(geoData@data, data, by = id)
     geoData@data$id <- rownames(geoData@data)
@@ -155,6 +155,9 @@ build_bmap <- function(data, geoData = NULL, id = NULL, border = NULL,
     region_coord <- plyr::rename(region_coord, c("object_" = "id", "x_" = "long", "y_" = "lat", "branch_" = "group"))
     output_data <- join(region_coord, geoData@data, by = "id")
     bbox <- make_bbox(lat = lat, lon = long, data = output_data)
+  } else if (!is.null(geoData) & is(geoData, "sf")) {
+    output_data <- left_join(geoData, data, by = id)
+    bbox <- NULL
   }
   else {
     output_data <- data

@@ -17,14 +17,14 @@ build_bmap(
 )
 }
 \arguments{
-\item{data}{A data frame.}
+\item{data}{A data frame with estimates and errors,
+formatted with \code{read.uv}.}
 
-\item{geoData}{A spatial polygons data frame.}
+\item{geoData}{An sf or sp object.}
 
 \item{id}{Name of the common column shared by the objects passed to
 \code{data} and \code{geoData}. The estimates and errors in the data frame
-will be matched to the geographical regions of the spatial polygons data
-frame through this column.}
+will be matched to the geographical regions through this column.}
 
 \item{border}{Name of geographical borders to be added to the map. It must be
 one of \code{\link[maps]{county}}, \code{\link[maps]{france}},
@@ -32,8 +32,7 @@ one of \code{\link[maps]{county}}, \code{\link[maps]{france}},
 \code{\link[maps]{state}}, \code{\link[maps]{usa}} or
 \code{\link[maps]{world}} (see documentation for
 \code{\link[ggplot2]{map_data}} for more information). The borders will be
-refined to match latitute and longtidue coordinates provided in the data
-frame or spatial polygons data frame.}
+refined to match latitute and longtidue coordinates from the geoData argument.}
 
 \item{palette}{Name of colour palette or character vector of hex colour codes
 from the \code{\link{build_palette}} function. Colour palette names include
