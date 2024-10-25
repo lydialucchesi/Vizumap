@@ -35,14 +35,11 @@ its error to the estimate plus its error.}
 \code{data}, \code{pixelGeo} and \code{q} (if \code{distribution =
 "discrete"}).}
 
-\item{border}{Name of geographical borders to be added to the map. It must be
-one of \code{\link[maps]{county}}, \code{\link[maps]{france}},
-\code{\link[maps]{italy}}, \code{\link[maps]{nz}},
-\code{\link[maps]{state}}, \code{\link[maps]{usa}} or
-\code{\link[maps]{world}} (see documentation for
-\code{\link[ggplot2]{map_data}} for more information). The borders will be
-refined to match latitute and longtidue coordinates provided in the data
-frame or spatial polygons data frame. Alternatively, you can supply a \code{SpatialPolygonsDataFrame}.}
+\item{border}{An sf or sp object. Or, one of \code{\link[maps]{county}},
+\code{\link[maps]{france}}, \code{\link[maps]{italy}}, \code{\link[maps]{nz}},
+ \code{\link[maps]{state}}, \code{\link[maps]{usa}} or
+ \code{\link[maps]{world}}; these borders will be
+ refined to match latitude and longitude coordinates provided in the geoData argument.}
 
 \item{palette}{Name of colour palette. It must be one of \code{Blues},
 \code{Greens}, \code{Greys}, \code{Oranges}, \code{Purples} or \code{Reds}

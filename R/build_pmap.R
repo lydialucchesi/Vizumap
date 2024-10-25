@@ -18,14 +18,11 @@
 #'@param id Name of the common column shared by the objects passed to
 #'  \code{data}, \code{pixelGeo} and \code{q} (if \code{distribution =
 #'  "discrete"}).
-#'@param border Name of geographical borders to be added to the map. It must be
-#'  one of \code{\link[maps]{county}}, \code{\link[maps]{france}},
-#'  \code{\link[maps]{italy}}, \code{\link[maps]{nz}},
+#'@param border An sf or sp object. Or, one of \code{\link[maps]{county}},
+#'\code{\link[maps]{france}}, \code{\link[maps]{italy}}, \code{\link[maps]{nz}},
 #'  \code{\link[maps]{state}}, \code{\link[maps]{usa}} or
-#'  \code{\link[maps]{world}} (see documentation for
-#'  \code{\link[ggplot2]{map_data}} for more information). The borders will be
-#'  refined to match latitute and longtidue coordinates provided in the data
-#'  frame or spatial polygons data frame. Alternatively, you can supply a \code{SpatialPolygonsDataFrame}.
+#'  \code{\link[maps]{world}}; these borders will be
+#'  refined to match latitude and longitude coordinates provided in the geoData argument.
 #'@param palette Name of colour palette. It must be one of \code{Blues},
 #'  \code{Greens}, \code{Greys}, \code{Oranges}, \code{Purples} or \code{Reds}
 #'  (see documentation for \code{\link[ggplot2]{scale_fill_distiller}} for more
@@ -103,18 +100,20 @@ build_pmap <- function(data = NULL, distribution = NULL, pixelGeo, id, border = 
 
   # check border name and load borders
   if (!is.null(border)) {
-    if(class(border) == "SpatialPolygonsDataFrame"){
+    if (inherits(border, "SpatialPolygonsDataFrame")) {
       bord <- fortify(border)
+    } else if (inherits(border, "sf")) {
+      bord <- border
+    } else {
+      if (border %in% c("county", "france", "italy", "nz", "state", "usa", "world")) {
+        bord <- ggplot2::map_data(border)
+      } else {
+        stop("Border not recognised. Must be an sf/sp object or one of county, france, italy, nz, state, usa or world \n
+           (see documentation for map_data function in ggplot2 for more information).")
+      }
+
     }
-    else
-    if (border %in% c("county", "france", "italy", "nz", "state", "usa", "world"))
-      bord <- ggplot2::map_data(border)
-    else
-      stop("Border name not recognised. Must be one of county, france, italy, nz, state, usa or world \n
-           (see documentation for map_data function in ggplot2 for more information). Alternatively, it can
-           be a SpatialPolygonsDataFrame.\n")
-  }
-  else {
+  } else {
     long <- numeric(0)
     lat = numeric(0)
     bord <- data.frame(long = long, lat = lat, group = numeric(0))
@@ -138,7 +137,7 @@ build_pmap <- function(data = NULL, distribution = NULL, pixelGeo, id, border = 
     pixelGeo$error <- data[match(pixelGeo[[id]], data[[id]]), 2]
 
 
-    if(!is.null(q)){
+    if (!is.null(q)) {
       id <- match(pixelGeo[[id]], data[[id]])
       qdf <- q[id,]
       names(qdf) <- paste0("q", 1:ncol(q))

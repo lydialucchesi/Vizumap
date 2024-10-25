@@ -7,8 +7,7 @@
 pixelate(geoData = NULL, file = NULL, layer = NULL, pixelSize = 40, id = "id")
 }
 \arguments{
-\item{geoData}{An object of class "SpatialPolygons" or
-"SpatialPolygonsDataFrame".}
+\item{geoData}{An sf or sp object.}
 
 \item{file}{A shapefile pathway.}
 

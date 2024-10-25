@@ -5,8 +5,7 @@
 #'
 #'This function can take several minutes to run depending on the size of the shapefile. Within this function, the projection of the spatial object is removed and then returned to the original projection.
 #'
-#'@param geoData An object of class "SpatialPolygons" or
-#'  "SpatialPolygonsDataFrame".
+#'@param geoData An sf or sp object.
 #'@param file A shapefile pathway.
 #'@param layer Name of geoData layer (see documentation for
 #'  \code{\link[sf]{read_sf}} for more information).
@@ -34,11 +33,11 @@ pixelate <-
       stop("One of geoData or file needs to be supplied to this function.\n")
 
     # check class of geoData
-    if (is.null(file) &
-        (!(
-          class(geoData) %in% c("SpatialPolygons", "SpatialPolygonsDataFrame")
-        )))
-      stop("geoData must be one of class SpatialPolygons or SpatialPolygonsDataFrame.\n")
+    # if (is.null(file) &
+    #     (!(
+    #       class(geoData) %in% c("SpatialPolygons", "SpatialPolygonsDataFrame")
+    #     )))
+    #   stop("geoData supplied from a file must be one of class SpatialPolygons or SpatialPolygonsDataFrame.\n")
 
     # check that layer is entered with file
     if (!is.null(file) & is.null(layer))
@@ -48,8 +47,14 @@ pixelate <-
     full_grid <- st_make_grid(geoData, n = pixelSize)
 
     # define a function that finds the pixels inside each region
-    pixel_poly <- function(x) {
-      grid <- st_intersection(full_grid, st_as_sf(geoData[x,]))
+    pixel_fun <- function(x) {
+
+      if (inherits(geoData, "sf")) {
+        grid <- st_intersection(full_grid, geoData[x,])
+      } else {
+        grid <- st_intersection(full_grid, st_as_sf(geoData[x,]))
+      }
+
       grid <- suppressWarnings(st_cast(grid, "POLYGON"))
       grid <- as_Spatial(grid)
       grid$ID <- rep(geoData[x, id][[1]], length(grid))
@@ -57,7 +62,11 @@ pixelate <-
     }
 
     # reformat all of the region grids into a single data frame
-    list_grids <- lapply(1:length(geoData), pixel_poly)
+    if (inherits(geoData, "sf")) {
+      list_grids <- lapply(1:nrow(geoData), pixel_fun)
+    } else {
+      list_grids <- lapply(1:length(geoData), pixel_fun)
+    }
     all_grids <- do.call(rbind, list_grids)
     pixel_df <- SpatialPolygonsDataFrame_to_df(all_grids)
     pixel_df$`id.1` <- NULL
