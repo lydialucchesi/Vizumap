@@ -24,7 +24,7 @@
 #'  error (Default: NA).
 #'@param bound A vector of eight elements representing the bounds for the
 #'  estimate and error that will be used on the bivariate colour key.  These can
-#'  be created offline using the \code{\link{findNbounds}} function.
+#'  be created using the \code{\link{findNbounds}} function.
 #'@param fontSize An integer value. Default is 3.
 #'@param transparent A logical value. Option to make the key background
 #'  transparent. Default value is FALSE.
@@ -65,6 +65,7 @@ build_bkey <-
             bound = NULL,
             fontSize = 3,
             transparent = FALSE) {
+
     estimate <- names(data)[1]
     error <- names(data)[2]
     if (class(palette)[1] == "character" & length(palette) ==

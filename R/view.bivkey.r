@@ -2,8 +2,10 @@
 #'@import "ggplot2"
 
 view.bivkey <- function(obj) {
-  if (class(obj)[1] != "bivkey")
+
+  if (class(obj)[1] != "bivkey") {
     stop("Object is not of class 'bivkey'")
+  }
 
   if (!obj$flipped) {
     x <- 'x'
@@ -13,7 +15,8 @@ view.bivkey <- function(obj) {
     y <- 'x'
   }
 
-  # plot color key grid and add it to the user's environment so that it can be replotted if needed
+  # plot color key grid and add it to the user's environment so that it
+  # can be replotted if needed
   if (isTRUE(obj$transparent)) {
     p <-
       ggplot() + geom_polygon(
@@ -63,9 +66,7 @@ view.bivkey <- function(obj) {
           angle = 'angle'
         ),
         size = obj$fontSize
-      ) +
-      xlim(c(-1.2, 7.2)) +
-      ylim(c(-.75, 6))
+      )
   } else {
     p <-
       ggplot() + geom_polygon(
@@ -112,9 +113,7 @@ view.bivkey <- function(obj) {
           angle = 'angle'
         ),
         size = obj$fontSize
-      ) +
-      xlim(c(-1.2, 7.2)) +
-      ylim(c(-.75, 6))
+      )
   }
 
   p

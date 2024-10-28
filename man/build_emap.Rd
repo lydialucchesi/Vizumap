@@ -22,17 +22,16 @@ A number of options are considered for calculating the probability of exceeding
 a threshold. See below for more information.}
 
 \item{pdflist}{A list capturing the pdf function that defines the distribution function to use to
-calculate the probabilities of exeedence. By default this is NULL and assumes
+calculate the probabilities of exceedance. By default this is NULL and assumes
 the exceedance probabilities have been calculated outside of the function and passed
-as a third column of the data dataframe.  Functions need to conform to the class
+as a third column of the data frame.  Functions need to conform to the class
 of distribution functions available within R through the \code{stats} package.}
 
-\item{geoData}{A spatial polygons data frame.}
+\item{geoData}{An sf or sp object.}
 
 \item{id}{Name of the common column shared by the objects passed to
 \code{data} and \code{geoData}. The exceedance probability in the data frame
-will be matched to the geographical regions of the spatial polygons data
-frame through this column.}
+will be matched to the geographical regions through this column.}
 
 \item{key_label}{Label of legend.}
 
@@ -59,8 +58,7 @@ one of \code{\link[maps]{county}}, \code{\link[maps]{france}},
 \code{\link[maps]{state}}, \code{\link[maps]{usa}} or
 \code{\link[maps]{world}} (see documentation for
 \code{\link[ggplot2]{map_data}} for more information). The borders will be
-refined to match latitute and longtidue coordinates provided in the data
-frame or spatial polygons data frame.}
+refined to match latitute and longtidue coordinates from the geoData argument.}
 }
 \description{
 This function builds a map that visualises the probability of exceeding some

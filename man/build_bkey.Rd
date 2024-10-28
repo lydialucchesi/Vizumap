@@ -38,7 +38,7 @@ error (Default: NA).}
 
 \item{bound}{A vector of eight elements representing the bounds for the
 estimate and error that will be used on the bivariate colour key.  These can
-be created offline using the \code{\link{findNbounds}} function.}
+be created using the \code{\link{findNbounds}} function.}
 
 \item{fontSize}{An integer value. Default is 3.}
 

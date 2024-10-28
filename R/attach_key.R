@@ -29,8 +29,7 @@ attach_key <- function(map, mapkey) {
   k <- view(mapkey)
   m <- view(map)
 
-  m + k + plot_layout(widths = c(4, 1), heights = c(4, 1))
-
+  m + k
 
 }
 
