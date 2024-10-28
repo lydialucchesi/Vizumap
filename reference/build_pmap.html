@@ -102,14 +102,11 @@ its error to the estimate plus its error.</p></dd>
 
 
 <dt id="arg-border">border<a class="anchor" aria-label="anchor" href="#arg-border"></a></dt>
-<dd><p>Name of geographical borders to be added to the map. It must be
-one of <code><a href="https://rdrr.io/pkg/maps/man/county.html" class="external-link">county</a></code>, <code><a href="https://rdrr.io/pkg/maps/man/france.html" class="external-link">france</a></code>,
-<code><a href="https://rdrr.io/pkg/maps/man/italy.html" class="external-link">italy</a></code>, <code><a href="https://rdrr.io/pkg/maps/man/nz.html" class="external-link">nz</a></code>,
-<code><a href="https://rdrr.io/pkg/maps/man/state.html" class="external-link">state</a></code>, <code><a href="https://rdrr.io/pkg/maps/man/usa.html" class="external-link">usa</a></code> or
-<code><a href="https://rdrr.io/pkg/maps/man/world.html" class="external-link">world</a></code> (see documentation for
-<code><a href="https://ggplot2.tidyverse.org/reference/map_data.html" class="external-link">map_data</a></code> for more information). The borders will be
-refined to match latitute and longtidue coordinates provided in the data
-frame or spatial polygons data frame. Alternatively, you can supply a <code>SpatialPolygonsDataFrame</code>.</p></dd>
+<dd><p>An sf or sp object. Or, one of <code><a href="https://rdrr.io/pkg/maps/man/county.html" class="external-link">county</a></code>,
+<code><a href="https://rdrr.io/pkg/maps/man/france.html" class="external-link">france</a></code>, <code><a href="https://rdrr.io/pkg/maps/man/italy.html" class="external-link">italy</a></code>, <code><a href="https://rdrr.io/pkg/maps/man/nz.html" class="external-link">nz</a></code>,
+ <code><a href="https://rdrr.io/pkg/maps/man/state.html" class="external-link">state</a></code>, <code><a href="https://rdrr.io/pkg/maps/man/usa.html" class="external-link">usa</a></code> or
+ <code><a href="https://rdrr.io/pkg/maps/man/world.html" class="external-link">world</a></code>; these borders will be
+ refined to match latitude and longitude coordinates provided in the geoData argument.</p></dd>
 
 
 <dt id="arg-palette">palette<a class="anchor" aria-label="anchor" href="#arg-palette"></a></dt>

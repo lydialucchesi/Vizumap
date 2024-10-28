@@ -76,18 +76,18 @@ with rotated glyphs.</p>
 
 
 <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
-<dd><p>A data frame.</p></dd>
+<dd><p>A data frame with estimates and errors,
+formatted with <code>read.uv</code>.</p></dd>
 
 
 <dt id="arg-geodata">geoData<a class="anchor" aria-label="anchor" href="#arg-geodata"></a></dt>
-<dd><p>A spatial polygons data frame.</p></dd>
+<dd><p>An sf or sp object.</p></dd>
 
 
 <dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
 <dd><p>Name of the common column shared by the objects passed to
 <code>data</code> and <code>geoData</code>. The estimates and errors in the data frame
-will be matched to the geographical regions of the spatial polygons data
-frame through this column.</p></dd>
+will be matched to the geographical regions through this column.</p></dd>
 
 
 <dt id="arg-size">size<a class="anchor" aria-label="anchor" href="#arg-size"></a></dt>
@@ -101,8 +101,7 @@ one of <code><a href="https://rdrr.io/pkg/maps/man/county.html" class="external-
 <code><a href="https://rdrr.io/pkg/maps/man/state.html" class="external-link">state</a></code>, <code><a href="https://rdrr.io/pkg/maps/man/usa.html" class="external-link">usa</a></code> or
 <code><a href="https://rdrr.io/pkg/maps/man/world.html" class="external-link">world</a></code> (see documentation for
 <code><a href="https://ggplot2.tidyverse.org/reference/map_data.html" class="external-link">map_data</a></code> for more information). The borders will be
-refined to match latitute and longtidue coordinates provided in the data
-frame or spatial polygons data frame.</p></dd>
+refined to match latitute and longtidue coordinates from the geoData argument.</p></dd>
 
 
 <dt id="arg-glyph">glyph<a class="anchor" aria-label="anchor" href="#arg-glyph"></a></dt>
@@ -128,7 +127,7 @@ maximum from the error given</p></dd>
 </dl></div>
     <div id="details">
     <h2>Details</h2>
-    <p>If a spatial polygons data frame is used, glyphs will be plotted at region
+    <p>If an sf or sp object is used, glyphs will be plotted at region
 centroids. If <code>geoData</code> remains <code>NULL</code>, glyphs will be plotted at
 points on the map representing specific sites; in this case, the data frame
 must include latitude and longitude coordinates in columns <code>"long"</code> and
