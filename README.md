@@ -3,6 +3,7 @@
 status](https://github.com/lydialucchesi/Vizumap/workflows/R-CMD-check/badge.svg)](https://github.com/lydialucchesi/Vizumap/actions)
 
 <center>
+
 <img src="man/figures/header.png"/>
 </center>
 
@@ -98,16 +99,18 @@ more pixelated than areas with low uncertainty.
 ``` r
 # load the package
 library(Vizumap)
+library(sf)
+sf_use_s2(FALSE)
 
 # load the upper Burdekin (UB) data and format it
 data(UB) # this returns a data frame, UB_tss, and a shapefile, UB_shp
 UB_dat <- read.uv(data = UB_tss, estimate = "TSS", error = "TSS_error")
 
 # pixelate the shapefile
-UB_pix <- pixelate(geoData = UB_shp, id = "scID")
+UB_pix <- pixelate(geoData = UB_shp, id = "scID", pixelSize = 100)
 
 # build and view the pixel map
-UB_pix_map <- build_pmap(data = UB_dat, pixelGeo = UB_pix, id = "scID", palette = "Oranges", border = UB_shp)
+UB_pix_map <- build_pmap(data = UB_dat, distribution = "normal", pixelGeo = UB_pix, id = "scID", palette = "Oranges", border = UB_shp)
 view(UB_pix_map)
 ```
 
